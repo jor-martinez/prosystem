@@ -1,0 +1,117 @@
+@media screen and (max-width: 1199px){
+   .main-header .navigator-container .nav-list .list-item-main{
+      padding: 25px 10px;
+   }
+   
+}
+
+@media screen and (max-width: 991px){
+   .custom-menu {
+      display: block;
+   }
+
+   .custom-menu-top{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   .custom-menu-toggle {
+         display: block;
+         display: none\9;
+         margin-right: 20px;
+   }
+   .custom-menu-bottom {
+         position: absolute;
+         top: 100px;
+         width: 100%;
+         border-top: 1px solid #eee;
+         z-index: 100;
+   }
+
+   .custom-menu-bottom .pure-menu-link {
+         color: rgb(255, 255, 255);
+         opacity: 1;
+         -webkit-transform: translateX(0);
+         -moz-transform: translateX(0);
+         -ms-transform: translateX(0);
+         transform: translateX(0);
+         -webkit-transition: all 0.5s;
+         -moz-transition: all 0.5s;
+         -ms-transition: all 0.5s;
+         transition: all 0.5s;
+   }
+
+   .custom-menu-bottom .pure-menu-link:hover{
+      color: #3ADBEB;
+   }
+
+   .custom-menu-bottom.custom-menu-tucked .pure-menu-link {
+         -webkit-transform: translateX(-140px);
+         -moz-transform: translateX(-140px);
+         -ms-transform: translateX(-140px);
+         transform: translateX(-140px);
+         opacity: 0;
+         opacity: 1\9;
+   }
+
+   .pure-menu-horizontal .custom-menu-tucked {
+         z-index: -1;
+         top: 45px;
+         position: absolute;
+         overflow: hidden;
+   }
+}
+
+@media screen and (max-width: 575px){
+   .logo {
+      margin-left: 10px ;
+      width: 200px;
+    }
+    .custom-menu-toggle{
+       margin-right: 20px;
+    }
+   .custom-menu .pure-menu-list{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+   }
+
+   .site-footer{
+      height: 100%;
+      background-size: cover;
+   }
+   .site-footer .main-footer{
+      margin: 0;
+      padding: 0;
+   }
+   .site-footer .about-widget{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      margin-bottom: 20px;
+   }
+   .site-footer .about-widget .social-block {
+      margin: 0;
+      margin-left: 50px;
+   }
+   .site-footer .links-widget{
+      display: none;
+   }
+   .site-footer .newsletter-widget{
+      display: none;
+   }
+   .site-footer .bottom-footer{
+      height: 50px;
+      margin: 0;
+      padding: 0;
+      display: block;
+   }
+   .site-footer .bottom-footer p {
+      margin:  0;
+      padding-top: 10px;
+      color: #B7BBC1;
+      font-size: 15px;
+   }
+}

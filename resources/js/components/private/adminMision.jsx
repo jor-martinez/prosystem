@@ -1,0 +1,217 @@
+import React, { Component } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import SweetAlert from 'sweetalert2'
+import Helmet from 'react-helmet'
+import Form from 'muicss/lib/react/form'
+import Button from 'muicss/lib/react/button'
+import Textarea from 'muicss/lib/react/textarea'
+
+
+class Mission extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            datos: [],
+            load: false,
+            loadAction: false,
+            mision: '',
+            vision: '',
+            objetivo: ''
+        }
+        this.getData = this.getData.bind(this)
+        this.actualizar = this.actualizar.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.handleOnSubmit = this.handleOnSubmit.bind(this)
+        this.resetForm = this.resetForm.bind(this)
+    }
+    getData() {
+        axios.get('/api/nosotros').then(res => {
+            console.log(res.data)
+            this.setState({
+                datos: res.data,
+                load: true
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    componentDidMount() {
+        this.getData()
+    }
+    actualizar() {
+        this.getData()
+    }
+    handleChange(e) {
+        const { name, value } = e.target;
+
+        this.setState({
+            [name]: value
+        })
+    }
+    handleOnSubmit(e) {
+        e.preventDefault()
+        this.setState({ loadAction: true })
+
+        if (this.state.datos.length === 1) {
+            SweetAlert.fire(
+                'Atención !',
+                'No se pueden agregar mas registros',
+                'warning'
+            ).then(() => this.resetForm())
+            this.setState({ loadAction: false })
+
+        } else {
+            const data = new FormData()
+            data.append('mision', this.state.mision)
+            data.append('vision', this.state.vision)
+            data.append('objetivo', this.state.objetivo)
+
+            axios({
+                method: 'post',
+                url: '/dev/nosotros/nueva',
+                data
+            }).then(res => {
+                SweetAlert.fire(
+                    'Correcto',
+                    'El producto se ha agregado correctamente',
+                    'success'
+                ).then(() => {
+                    this.getData()
+                    this.resetForm()
+                })
+                this.setState({ loadAction: false })
+            }).catch(err => {
+                console.log(err.response.errors)
+                SweetAlert.fire(
+                    'Oooops!',
+                    'Algo salió mal',
+                    'error'
+                ).then(() => {
+                    this.getData()
+                })
+                this.setState({ loadAction: false })
+            })
+        }
+    }
+    resetForm() {
+        document.getElementById('mis').value = '';
+        document.getElementById('vis').value = '';
+        document.getElementById('obj').value = '';
+    }
+    render() {
+        const { datos, load, loadAction } = this.state
+        return (
+            <div className="main-containor admin-process">
+                <Helmet>
+                    <title>Admin | Empresa</title>
+                </Helmet>
+                <section className="item-list">
+                    <div className="refresh">
+                        <button className="btn-refresh tooltip" onClick={this.actualizar}>
+                            <i className="fas fa-sync-alt"></i>
+                            <span className="tooltiptext">Actualizar lista</span>
+                        </button>
+                        {
+                            (datos.length !== 0)
+                            &&
+                            <Link to={{ pathname: '/admin/mision-vision-objetivo-info/editar', state: { datos } }}
+                                className="button button-edit tooltip">
+                                <i className="fas fa-edit"></i>
+                                <span className="tooltiptext">Editar</span>
+                            </Link>
+                        }
+                    </div>
+                    {
+                        (load)
+                            ?
+                            (datos.length === 0)
+                                ?
+                                <strong className="no-data">No hay información en la base de datos. <br />
+                                    Empieza agregando un registro.
+                                </strong>
+                                :
+                                <div className="containor-full" key={datos[0].id}>
+                                    <section className="item-containor process-containor">
+                                        <div className="info-containor" >
+                                            <div className="text-containor">
+                                                <h2>Misión</h2>
+                                                <p>{datos[0].mision}</p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section className="item-containor process-containor">
+                                        <div className="info-containor" >
+                                            <div className="text-containor">
+                                                <h2>Visión</h2>
+                                                <p>{datos[0].vision}</p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section className="item-containor process-containor">
+                                        <div className="info-containor" >
+                                            <div className="text-containor">
+                                                <h2>Objetivo</h2>
+                                                <p>{datos[0].objetivo}</p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            
+                            :
+                            <span className="preloader pre-mision">Cargando información ...</span>
+                    }
+                </section>
+                <section id="add-product" className="item-add">
+                    <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
+                        <legend>Agrega la misión, visión y el objetivo</legend>
+                        <Textarea
+                            rows="3"
+                            id="mis"
+                            className="form-input"
+                            label="Mision"
+                            floatingLabel={true}
+                            name="mision"
+                            onChange={this.handleChange}
+                            required
+                        />
+                        <Textarea
+                            rows="3"
+                            id="vis"
+                            className="form-input"
+                            label="Vision"
+                            floatingLabel={true}
+                            name="vision"
+                            onChange={this.handleChange}
+                            required
+                        />
+                        <Textarea
+                            rows="3"
+                            id="obj"
+                            className="form-input"
+                            label="Objetivo"
+                            floatingLabel={true}
+                            name="objetivo"
+                            onChange={this.handleChange}
+                            required
+                        />
+                        <Button variant="raised" color="primary" disabled={loadAction} >
+                            {
+                                (loadAction)
+                                    ?
+                                    <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                                    :
+                                    <span>Agregar</span>
+                            }
+                        </Button>
+                        <Button variant="flat" type="reset" >Limpiar Campos</Button>
+                    </Form>
+
+                </section>
+                
+            </div>
+        )
+    }
+}
+
+export default Mission
