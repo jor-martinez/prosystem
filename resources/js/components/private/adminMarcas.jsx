@@ -25,7 +25,6 @@ class AdminMarcas extends Component{
       this.getMarcas = this.getMarcas.bind(this)
       this.actualizar = this.actualizar.bind(this)
       this.onReset = this.onReset.bind(this)
-      this.resetForm = this.resetForm.bind(this)
    }
 
    actualizar(){
@@ -85,8 +84,11 @@ class AdminMarcas extends Component{
             'success'
          ).then(()=>{
             this.getMarcas()
-            this.resetForm()
             this.onReset()
+            this.setState({
+               Nombre: '',
+               Imagen: ''
+            })
          })
       }).catch(err=>{
          console.log('Error!', err)
@@ -100,9 +102,6 @@ class AdminMarcas extends Component{
    onReset(){
       document.getElementById('info').innerHTML = ' Subir imagen'
       this.setState({ img: '' })
-   }
-   resetForm(){
-      document.getElementById('nombre').value = '';
    }
    render(){
       const {marcas,load,loadAction} = this.state
@@ -190,6 +189,7 @@ class AdminMarcas extends Component{
                      label="Nombre"
                      floatingLabel={true}
                      onChange={this.handleChange}
+                     value={this.state.Nombre}
                      name="Nombre"
                   />
                   <Container>

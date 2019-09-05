@@ -22,7 +22,6 @@ class Mission extends Component {
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
         this.handleEditorChange = this.handleEditorChange.bind(this)
     }
     getHistory() {
@@ -76,7 +75,7 @@ class Mission extends Component {
                     'success'
                 ).then(() => {
                     this.getHistory()
-                    this.resetForm()
+                    this.setState({historia: ''})
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -95,9 +94,6 @@ class Mission extends Component {
     handleEditorChange(e) {
         console.log(e.target.getContent())
         this.setState({ historia: e.target.getContent() })
-    }
-    resetForm() {
-        document.getElementById('mis').value = '';
     }
     render() {
         const { history, load, loadAction } = this.state
@@ -154,6 +150,7 @@ class Mission extends Component {
                             id="editor-descripcion"
                             textareaName="historia"
                             onChange={this.handleEditorChange}
+                            value={this.state.historia}
                             init={{
                                 height: 400,
                                 plugins: 'link image code lists advlist',

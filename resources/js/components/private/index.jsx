@@ -28,6 +28,7 @@ import EditMission from './EditMision'
 import AdminHistory from './adminHistoria'
 import EditHistory from './EditHistory'
 import AdminContacto from './AdminContacto'
+import EditContacto from './EditContacto'
 
 
 import '../../css/stylesAdmin.css'
@@ -75,7 +76,7 @@ class Admin extends Component{
                      <li><Link to="/admin/productos" >Productos</Link></li>
                      <li><Link className="hover-submenu" to="#" >Empresa</Link>
                         <ul className="submenu-admin">
-                           <li><Link to="/admin/mision-vision-objetivo" >Misión, visión y valores</Link></li>
+                           <li><Link to="/admin/mision-vision-objetivo" >Misión, visión y objetivo</Link></li>
                            <li><Link to="/admin/historia" >Historia</Link></li>
                            <li><Link to="/admin/contacto" >Contácto</Link></li>
                         </ul>
@@ -111,6 +112,7 @@ class Admin extends Component{
                   <Route path="/admin/historia" component={AdminHistory} />
                   <Route path="/admin/historia-info/editar" component={EditHistory} />
                   <Route path="/admin/contacto" component={AdminContacto} />
+                  <Route path="/admin/contacto-info/editar" component={EditContacto} />
                </Switch>
             </Router>
             

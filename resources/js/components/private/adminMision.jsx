@@ -23,7 +23,6 @@ class Mission extends Component {
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getData() {
         axios.get('/api/nosotros').then(res => {
@@ -78,7 +77,11 @@ class Mission extends Component {
                     'success'
                 ).then(() => {
                     this.getData()
-                    this.resetForm()
+                    this.setState({
+                        mision: '',
+                        vision: '',
+                        objetivo: ''
+                    })
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -93,11 +96,6 @@ class Mission extends Component {
                 this.setState({ loadAction: false })
             })
         }
-    }
-    resetForm() {
-        document.getElementById('mis').value = '';
-        document.getElementById('vis').value = '';
-        document.getElementById('obj').value = '';
     }
     render() {
         const { datos, load, loadAction } = this.state
@@ -173,6 +171,7 @@ class Mission extends Component {
                             floatingLabel={true}
                             name="mision"
                             onChange={this.handleChange}
+                            value={this.state.mision}
                             required
                         />
                         <Textarea
@@ -183,6 +182,7 @@ class Mission extends Component {
                             floatingLabel={true}
                             name="vision"
                             onChange={this.handleChange}
+                            value={this.state.vision}
                             required
                         />
                         <Textarea
@@ -193,6 +193,7 @@ class Mission extends Component {
                             floatingLabel={true}
                             name="objetivo"
                             onChange={this.handleChange}
+                            value={this.state.objetivo}
                             required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction} >

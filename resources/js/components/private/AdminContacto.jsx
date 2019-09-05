@@ -17,14 +17,13 @@ class AdminContacto extends Component {
             load: false,
             loadAction: false,
             ubicacion: '',
-            telefonos: [],
-            correos: []
+            telefonos: '',
+            correos: ''
         }
         this.getDatosContacto = this.getDatosContacto.bind(this)
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getDatosContacto() {
         axios.get('/api/empresa').then(res => {
@@ -64,9 +63,10 @@ class AdminContacto extends Component {
 
         } else {
             const data = new FormData()
+
             data.append('ubicacion', this.state.ubicacion)
-            data.append('telefono', this.state.vision)
-            data.append('correo', this.state.objetivo)
+            data.append('telefono', this.state.telefonos)
+            data.append('correo', this.state.correos)
 
             axios({
                 method: 'post',
@@ -79,7 +79,11 @@ class AdminContacto extends Component {
                     'success'
                 ).then(() => {
                     this.getDatosContacto()
-                    this.resetForm()
+                    this.setState({
+                        ubicacion: '',
+                        telefonos: '',
+                        correos: ''
+                    })
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -94,11 +98,6 @@ class AdminContacto extends Component {
                 this.setState({ loadAction: false })
             })
         }
-    }
-    resetForm() {
-        document.getElementById('tel').value = '';
-        document.getElementById('corr').value = '';
-        document.getElementById('ubi').value = '';
     }
     render() {
         const { datosContacto, load, loadAction } = this.state
@@ -174,24 +173,29 @@ class AdminContacto extends Component {
                             floatingLabel={true}
                             name="ubicacion"
                             onChange={this.handleChange}
+                            value={this.state.ubicacion}
                             required
                         />
-                        <Input
+                        <Textarea
+                            rows="3"
                             id="tel"
                             className="form-input"
                             label="Teléfonos"
                             floatingLabel={true}
-                            name="telefono"
+                            name="telefonos"
                             onChange={this.handleChange}
+                            value={this.state.telefonos}
                             required
                         />
-                        <Input
+                        <Textarea
+                            rows="3"
                             id="corr"
                             className="form-input"
                             label="Correos"
                             floatingLabel={true}
-                            name="correo"
+                            name="correos"
                             onChange={this.handleChange}
+                            value={this.state.correos}
                             required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction} >

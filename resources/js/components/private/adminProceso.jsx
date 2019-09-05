@@ -22,7 +22,6 @@ class AdminProceso extends Component{
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getProcesos(){
         axios.get('/api/proceso',).then(res=>{
@@ -76,7 +75,10 @@ class AdminProceso extends Component{
                     'success'
                 ).then(() => {
                     this.getProcesos()
-                    this.resetForm()
+                    this.setState({
+                        proceso: '',
+                        descripcion: ''
+                    })
                 })
                 this.setState({ loadAction: false })
             }).catch(err=>{
@@ -92,10 +94,6 @@ class AdminProceso extends Component{
                 this.setState({ loadAction: false })
             })
         }
-    }
-    resetForm(){
-        document.getElementById('proceso').value = '';
-        document.getElementById('descripcion').value = '';
     }
     render(){
         const {procesos,load,loadAction} = this.state
@@ -152,6 +150,8 @@ class AdminProceso extends Component{
                             floatingLabel={true}
                             name="proceso"
                             onChange={this.handleChange}
+                            value={this.state.proceso}
+                            required
                         />
                         <Input
                             id="descripcion"
@@ -160,6 +160,8 @@ class AdminProceso extends Component{
                             floatingLabel={true}
                             name="descripcion"
                             onChange={this.handleChange}
+                            value={this.state.descripcion}
+                            required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction} >
                             {

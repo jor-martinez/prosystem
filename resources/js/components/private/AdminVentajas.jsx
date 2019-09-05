@@ -22,7 +22,6 @@ class AdminVentajas extends Component {
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getVentajas() {
         axios.get('/api/caracteristicas').then(res => {
@@ -75,8 +74,11 @@ class AdminVentajas extends Component {
                     'La ventaja se ha agregado correctamente',
                     'success'
                 ).then(() => {
-                    this.getVentajas()
-                    this.resetForm()
+                    this.getVentajas()+
+                    this.setState({
+                        titulo: '',
+                        descripcion: ''
+                    })
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -91,10 +93,6 @@ class AdminVentajas extends Component {
                 this.setState({ loadAction: false })
             })
         }
-    }
-    resetForm() {
-        document.getElementById('titulo').value = '';
-        document.getElementById('descripcion').value = '';
     }
     render() {
         const { ventajas, load, loadAction } = this.state
@@ -151,6 +149,8 @@ class AdminVentajas extends Component {
                             floatingLabel={true}
                             name="titulo"
                             onChange={this.handleChange}
+                            value={this.state.titulo}
+                            required
                         />
                         <Input
                             id="descripcion"
@@ -159,6 +159,8 @@ class AdminVentajas extends Component {
                             floatingLabel={true}
                             name="descripcion"
                             onChange={this.handleChange}
+                            value={this.state.descripcion}
+                            required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction} >
                             {

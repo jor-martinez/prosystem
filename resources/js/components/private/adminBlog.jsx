@@ -29,7 +29,6 @@ class AdminBlog extends Component{
         this.handleEditorChange = this.handleEditorChange.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getPosts(){
         axios.get('/api/blog').then(res=>{
@@ -92,8 +91,11 @@ class AdminBlog extends Component{
                 'success'
             ).then(() => {
                 this.getPosts()
-                this.resetForm()
                 this.onReset()
+                this.setState({
+                    titulo: '',
+                    cuerpo: ''
+                })
             })
         }).catch(err=>{
             this.setState({ loadAction: false })
@@ -105,12 +107,6 @@ class AdminBlog extends Component{
             )
         })
     }
-    resetForm(){
-        document.getElementById('titulo').value = '';
-        document.getElementById('autor').value = '';
-        document.getElementById('editor-descripcion').value = '';
-        document.getElementById('file-upload').value = '';
-    }
     render(){
         const {load,loadAction,posts} = this.state
         return(
@@ -121,8 +117,8 @@ class AdminBlog extends Component{
                 <section className="item-list">
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
-                            <i class="fas fa-sync-alt"></i>
-                            <span class="tooltiptext">Actualizar lista</span>
+                            <i className="fas fa-sync-alt"></i>
+                            <span className="tooltiptext">Actualizar lista</span>
                         </button>
                     </div>
                     {
@@ -144,7 +140,7 @@ class AdminBlog extends Component{
                                             <p>Autor: {post.autor} <br /> Fecha de creación: <Moment format="DD/MM/YYYY HH:mm">{post.created_at}</Moment></p>
                                         </div>
                                         <div className="buttons-containor">
-                                            <Link to={{ pathname: '/admin/articulo/' + post.slug, state: { post: post } }}
+                                            <Link to={{ pathname: '/admin/articulo/' + post.slug, state: { post } }}
                                                 className="button button-show">Ver más</Link>
                                         </div>
                                     </section>
@@ -163,6 +159,7 @@ class AdminBlog extends Component{
                             floatingLabel={true}
                             name="titulo"
                             onChange={this.handleChange}
+                            value={this.state.titulo}
                         />
                         <Input
                             id="autor"
@@ -179,6 +176,7 @@ class AdminBlog extends Component{
                             id="editor-descripcion"
                             textareaName="cuerpo"
                             onChange={this.handleEditorChange}
+                            value={this.state.cuerpo}
                             init={{
                                 height: 400,
                                 plugins: 'link image code lists advlist',

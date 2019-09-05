@@ -15,14 +15,13 @@ class AdminUsers extends Component{
             load: false,
             users:[],
             name: '',
-            email: '',
-            password: ''
+            correo: '',
+            contra: ''
         }
         this.getUsuarios = this.getUsuarios.bind(this)
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getUsuarios(){
         axios.get('/dev/usuario').then(res=>{
@@ -51,8 +50,8 @@ class AdminUsers extends Component{
         const data = new FormData()
 
         data.append('nombre', this.state.name)
-        data.append('email', this.state.email)
-        data.append('password', this.state.password)
+        data.append('email', this.state.correo)
+        data.append('password', this.state.contra)
 
         axios({
             method: 'post',
@@ -67,7 +66,11 @@ class AdminUsers extends Component{
                 'success'
             ).then(() => {
                 this.getUsuarios()
-                this.resetForm()
+                this.setState({
+                    name: '',
+                    correo: '',
+                    contra: ''
+                })
             })
         }).catch(err=>{
             this.setState({ loadAction: false })
@@ -86,11 +89,6 @@ class AdminUsers extends Component{
         this.setState({
             [name]: value
         })
-    }
-    resetForm(){
-        document.getElementById('nombre').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('pass').value = '';
     }
     render(){
         const {users,load,loadAction} = this.state
@@ -176,28 +174,28 @@ class AdminUsers extends Component{
                             label="Nombre"
                             floatingLabel={true}
                             onChange={this.handleChange}
+                            value={this.state.name}
                             name="name"
-                            defaultValue={null}
                             required
                         />
                         <Input
-                            id="email"
+                            id="corr"
                             label="Email"
                             floatingLabel={true}
                             type="email"
                             onChange={this.handleChange}
-                            name="email"
-                            defaultValue={null}
+                            value={this.state.correo}
+                            name="correo"
                             required
                         />
                         <Input
-                            id="pass"
+                            id="con"
                             label="Contraseña"
                             floatingLabel={true}
                             type="password"
                             onChange={this.handleChange}
-                            name="password"
-                            defaultValue={null}
+                            value={this.state.contra}
+                            name="contra"
                             required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction}>

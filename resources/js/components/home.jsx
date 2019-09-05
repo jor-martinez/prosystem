@@ -24,16 +24,11 @@ class Home extends Component{
          slider:[],
          services:[],
          marcas: [],
-         proceso1: [],
-         proceso2: [],
-         proceso3: [],
-         ventaja1: [],
-         ventaja2: [],
-         ventaja3: [],
-         prod1: [],
-         prod2: [],
-         prod3: [],
-         prod4: []
+         procesos: [],
+         ventajas: [],
+         productos: [],
+         nosotros: [],
+         historia: []
       }
       
       this.getServices = this.getServices.bind(this)
@@ -41,6 +36,16 @@ class Home extends Component{
       this.getProcesos = this.getProcesos.bind(this)
       this.getVentajas = this.getVentajas.bind(this)
       this.getProductos = this.getProductos.bind(this)
+      this.getMisionVision = this.getMisionVision.bind(this)
+      this.getHistory = this.getHistory.bind(this)
+   }
+   getHistory(){
+      axios.get('/api/historia').then(result=>{
+         console.log(result)
+         this.setState({historia: result.data})
+      }).catch(err=>{
+         console.log(err)
+      })
    }
    getServices(){
       axios.get('/api/servicios').then(result=>{
@@ -50,7 +55,16 @@ class Home extends Component{
          console.log(err)
       })
    }
-
+   getMisionVision(){
+      axios.get('/api/nosotros').then(res=>{
+         console.log(res.data)
+         this.setState({
+            nosotros: res.data
+         })
+      }).catch(err=>{
+         console.log(err)
+      })
+   }
    getSliders(){
       axios.get('/api/slyder').then(result=>{
          console.log(result)
@@ -64,9 +78,7 @@ class Home extends Component{
       axios.get('/api/proceso').then(res=>{
          console.log(res.data)
          this.setState({
-            proceso1: res.data[0],
-            proceso2: res.data[1],
-            proceso3: res.data[2]
+            procesos: res.data
          })
       }).catch(err=>{
          console.log(err)
@@ -76,9 +88,7 @@ class Home extends Component{
       axios.get('/api/caracteristicas').then(res => {
          console.log(res.data)
          this.setState({
-            ventaja1: res.data[0],
-            ventaja2: res.data[1],
-            ventaja3: res.data[2]
+            ventajas: res.data
          })
       }).catch(err => {
          console.log(err)
@@ -88,10 +98,7 @@ class Home extends Component{
       axios.get('/api/productos').then(res => {
          console.log(res.data)
          this.setState({
-            prod1: res.data[0],
-            prod2: res.data[1],
-            prod3: res.data[2],
-            prod4: res.data[3]
+            productos: res.data
          })
       }).catch(err => {
          console.log(err)
@@ -103,6 +110,8 @@ class Home extends Component{
       this.getProcesos()
       this.getVentajas()
       this.getProductos()
+      this.getMisionVision()
+      this.getHistory()
    }
 
    render(){
@@ -125,7 +134,7 @@ class Home extends Component{
          slidesToScroll: 1,
       }
 
-      const {services,slider} = this.state
+      const {services,slider,nosotros,historia,procesos,ventajas,productos} = this.state
       return(
          <div>
             <Helmet>
@@ -162,60 +171,40 @@ class Home extends Component{
                      <h2>Lo que ofrecemos</h2>
                   </div>
                   <div className="row">
-                        <div className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
-                           <div className="icon-block">
-                              <i className="fas fa-calendar"></i>
+                     {
+                        (productos.map(producto=>(
+                           <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
+                              <div className="icon-block">
+                                 <center><i className="fas fa-archive"></i></center>
+                              </div>
+                              <h3><a href={producto.link}>{producto.titulo}</a></h3>
+                              <p>{producto.descripcion}</p>
+                              <a href={producto.link} className="more-link">Leer más</a>
                            </div>
-                           <h3><a href={this.state.prod1.link || "#"}>{this.state.prod1.titulo || 'titulo'}</a></h3>
-                           <p>{this.state.prod1.descripcion}</p>
-                           <a href={this.state.prod1.link} className="more-link">Leer más</a>
-                        </div>
-                        <div className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="500ms">
-                           <div className="icon-block">
-                              <i className="fas fa-calendar"></i>
-                           </div>
-                           <h3><a href={this.state.prod2.link}>{this.state.prod2.titulo}</a></h3>
-                           <p>{this.state.prod2.descripcion}</p>
-                           <a href={this.state.prod2.link} className="more-link">Leer más</a>
-                        </div>
-                        <div className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="1000ms">
-                           <div className="icon-block">
-                              <i className="fas fa-calendar"></i>
-                           </div>
-                           <h3><a href={this.state.prod3.link}>{this.state.prod3.titulo}</a></h3>
-                           <p>{this.state.prod3.descripcion}</p>
-                           <a href={this.state.prod3.link} className="more-link">Leer más</a>
-                        </div>
-                        <div className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="1500ms">
-                           <div className="icon-block">
-                              <i className="fas fa-calendar"></i>
-                           </div>
-                           <h3><a href={this.state.prod4.link}>{this.state.prod4.titulo}</a></h3>
-                           <p>{this.state.prod4.descripcion}</p>
-                           <a href={this.state.prod4.link} className="more-link">Leer más</a>
-                        </div>
+                        )))
+                     }
                   </div>
                </div>
             </section>
             <section className="about-style-one">
                <div className="container">
-                  <div className="row">
-                        <div className="content-block my-auto">
-                           <div className="title-block">
-                              <span className="tag-line">Nuestra historia</span>{/* /.tag-line */}
-                              <h2>10 años de experiencia</h2>
-                           </div>
-                           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiu smod tempor incidunt enim ad minim veniam quis nostrud exerc tation ullamco laboris nisi ut aliquip ex ea commodo con sequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-                           <ul className="list-item">
-                              <li><i className="far fa-circle"></i> Convallis ligula ligula gravida tristique.</li>
-                              <li><i className="far fa-circle"></i> Convallis ligula ligula gravida tristique.</li>
-                           </ul>
-                           <a href="#" className="more-btn">Otra acción</a>
+                  {
+                     (historia.map(item=>(
+                        <div className="row" key={item.id}>
+                              <div className="content-block my-auto">
+                                 <div className="title-block">
+                                    <span className="tag-line">Nuestra historia</span>{/* /.tag-line */}
+                                    <h2>Pro System</h2>
+                                 </div>
+                                 <div className="about-description" dangerouslySetInnerHTML={{ __html: item.historia }} ></div>
+                                 <a href="#" className="more-btn">Otra acción</a>
+                              </div>
+                              <div className="image-block">
+                                 <img src={story} alt="Awesome Image" />
+                              </div>
                         </div>
-                        <div className="image-block">
-                           <img src={story} alt="Awesome Image" />
-                        </div>
-                  </div>
+                     )))
+                  }
                </div>
             </section>
             <section className="mission-style-one wow fadeInUp" data-wow-duration="1300ms">
@@ -226,21 +215,27 @@ class Home extends Component{
                            01
                         </div>
                         <h3>Nuestra Misión</h3>
-                        <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
+                        {
+                           nosotros.map(item=>(<p key={item.id}>{item.mision}</p>))
+                        }
                      </div>
                      <div className="single-mission-one">
                         <div className="count-block">
                            02
                         </div>
                         <h3>Nuestra Visión</h3>
-                        <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
+                        {
+                           nosotros.map(item=>(<p key={item.id}>{item.vision}</p>))
+                        }
                      </div>
                      <div className="single-mission-one">
                         <div className="count-block">
                            03
                         </div>
-                        <h3>Nuestros Valores</h3>
-                        <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
+                        <h3>Nuestro Objetivo</h3>
+                        {
+                           nosotros.map(item=>(<p key={item.id} >{item.objetivo}</p>))
+                        }
                      </div>
                   </div>
                </div>
@@ -276,7 +271,7 @@ class Home extends Component{
                                  </div>
                                  <div className="text-block">
                                     <h3><Link to="servicio">{service.nombre}</Link></h3>
-                                    <p>{service.descripcion}</p>
+                                    <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
                                     <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }} 
                                     className="more-btn">Leer más</Link>
                                  </div>
@@ -293,7 +288,7 @@ class Home extends Component{
                               </div>
                               <div className="text-block">
                                  <h3><Link to="/servicio">{service.nombre}</Link></h3>
-                                 <p>{service.descripcion}</p>
+                                 <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
                                  <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}
                                  className="more-btn">Leer más</Link>
                               </div>
@@ -307,46 +302,28 @@ class Home extends Component{
             </section>
             <section className="fun-fact-style-one" style={{backgroundImage: `url(${funFact})`}}>
             </section>
-            <section className="featured-style-one">
+            <section className="featured-style-one"> 
                <div className="container">
                   <div className="content-block my-auto">
                      <div className="title-block">
                         <span className="tag-line">ProSystem</span>
                         <h2>¿Por qué elegirnos?</h2>
                      </div>
-                     <div className="signle-featured-one">
-                        <div className="icon-block">
-                           <div className="inner-block">
-                              <i class="far fa-user"></i>
+                     {
+                        (ventajas.map(ventaja=>(
+                           <div className="signle-featured-one" key={ventaja.id}>
+                              <div className="icon-block">
+                                 <div className="inner-block">
+                                    <i className="far fa-hand-point-right"></i>
+                                 </div>
+                              </div>
+                              <div className="text-block">
+                                 <h3>{ventaja.titulo}</h3>
+                                 <p>{ventaja.descripcion}</p>
+                              </div>
                            </div>
-                        </div>
-                        <div className="text-block">
-                           <h3>{this.state.ventaja1.titulo}</h3>
-                           <p>{this.state.ventaja1.descripcion}</p>
-                        </div>
-                     </div>
-                     <div className="signle-featured-one">
-                        <div className="icon-block">
-                           <div className="inner-block">
-                              <i class="far fa-star"></i>
-                           </div>
-                        </div>
-                        <div className="text-block">
-                           <h3>{this.state.ventaja2.titulo}</h3>
-                           <p>{this.state.ventaja2.descripcion}</p>
-                        </div>
-                     </div>
-                     <div className="signle-featured-one">
-                        <div className="icon-block">
-                           <div className="inner-block">
-                           <i class="fas fa-headset"></i>
-                           </div>
-                        </div>
-                        <div className="text-block">
-                           <h3>{this.state.ventaja3.titulo}</h3>
-                           <p>{this.state.ventaja3.descripcion}</p>
-                        </div>
-                     </div>
+                        )))
+                     }
                   </div>
                   <div className="image-block">
                      <img src={featured} alt="awesome image" />
@@ -360,27 +337,17 @@ class Home extends Component{
                      <h2>Proceso de trabajo</h2>
                   </div>
                   <div className="working-process-wrap">
-                     <div className="single-working-process-one wow fadeInUp">
-                        <div className="count-block">
-                           01
-                        </div>
-                        <h3>{this.state.proceso1.proceso}</h3>
-                        <p>{this.state.proceso1.descripcion || 'Descripcion'}</p>
-                     </div>
-                     <div className="single-working-process-one wow fadeInUp">
-                        <div className="count-block">
-                           02
-                        </div>
-                        <h3>{this.state.proceso2.proceso}</h3>
-                        <p>{this.state.proceso2.descripcion}</p>
-                     </div>
-                     <div className="single-working-process-one wow fadeInUp">
-                        <div className="count-block">
-                           03
-                        </div>
-                        <h3>{this.state.proceso3.proceso}</h3>
-                        <p>{this.state.proceso3.descripcion}</p>
-                     </div>
+                     {
+                        (procesos.map(proceso=>(
+                           <div className="single-working-process-one wow fadeInUp" key={proceso.id}>
+                              <div className="count-block">
+                                 01
+                              </div>
+                              <h3>{proceso.proceso}</h3>
+                              <p>{proceso.descripcion}</p>
+                           </div>
+                        )))
+                     }
                   </div>
                </div>
             </section>

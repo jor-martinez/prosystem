@@ -28,7 +28,6 @@ class AdminSlider extends Component{
       this.handleChange = this.handleChange.bind(this)
       this.handleOnSubmit = this.handleOnSubmit.bind(this)
       this.onReset = this.onReset.bind(this)
-      this.resetForm = this.resetForm.bind(this)
    }
    actualizar(){
       this.getSliders()
@@ -87,8 +86,13 @@ class AdminSlider extends Component{
             'success'
          ).then(()=>{
             this.getSliders()
-            this.resetForm()
             this.onReset()
+            this.setState({
+               titulo: '',
+               descripcion: '',
+               imagen: '',
+               link: ''
+            })
          })
       }).catch(err=>{
          this.setState({loadAction: false})
@@ -104,12 +108,7 @@ class AdminSlider extends Component{
       document.getElementById('info').innerHTML = ' Subir imagen'
       this.setState({ img: '' })
    }
-   resetForm(){
-      document.getElementById('titulo').value = '';
-      document.getElementById('descripcion').value = '';
-      document.getElementById('link').value = '';
-      document.getElementById('file-upload').value = '';
-   }
+   
    render(){
       const {sliders,load,loadAction} = this.state
       return(
@@ -201,6 +200,7 @@ class AdminSlider extends Component{
                      floatingLabel={true}
                      name="titulo"
                      onChange={this.handleChange}
+                     value={this.state.titulo}
                   />
                   <Input
                      id="descripcion"
@@ -209,12 +209,13 @@ class AdminSlider extends Component{
                      floatingLabel={true}
                      name="descripcion"
                      onChange={this.handleChange}
+                     value={this.state.descripcion}
                   />
                   <Container>
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen</span> 
                      </label>
-                     <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="Imagen" />
+                     <input id="file-upload" required onChange={this.handleChange} type="file" accept="image/" name="Imagen" />
                   </Container>
                   <Input
                      id="link"
@@ -224,6 +225,7 @@ class AdminSlider extends Component{
                      floatingLabel={true}
                      name="link"
                      onChange={this.handleChange}
+                     value={this.state.link}
                   />
                   <div id="show-img"><img id="img" src={this.state.img} /></div>
                   <Button variant="raised" color="primary" disabled={loadAction} >

@@ -23,7 +23,6 @@ class AdminProducts extends Component {
         this.actualizar = this.actualizar.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
-        this.resetForm = this.resetForm.bind(this)
     }
     getProductos() {
         axios.get('/api/productos').then(res => {
@@ -78,7 +77,11 @@ class AdminProducts extends Component {
                     'success'
                 ).then(() => {
                     this.getProductos()
-                    this.resetForm()
+                    this.setState({
+                        titulo: '',
+                        descripcion: '',
+                        link: ''
+                    })
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -93,11 +96,6 @@ class AdminProducts extends Component {
                 this.setState({ loadAction: false })
             })
         }
-    }
-    resetForm() {
-        document.getElementById('titulo').value = '';
-        document.getElementById('descripcion').value = '';
-        document.getElementById('enlace').value = '';
     }
     render() {
         const { productos, load, loadAction } = this.state
@@ -153,7 +151,9 @@ class AdminProducts extends Component {
                             floatingLabel={true}
                             name="titulo"
                             onChange={this.handleChange}
-                            required                        />
+                            value={this.state.titulo}
+                            required
+                        />
                         <Input
                             id="descripcion"
                             className="form-input"
@@ -161,6 +161,7 @@ class AdminProducts extends Component {
                             floatingLabel={true}
                             name="descripcion"
                             onChange={this.handleChange}
+                            value={this.state.descripcion}
                             required
                         />
                         <Input
@@ -171,6 +172,7 @@ class AdminProducts extends Component {
                             name="link"
                             type="url"
                             onChange={this.handleChange}
+                            value={this.state.link}
                             required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction} >

@@ -28,7 +28,6 @@ class AdminServices extends Component{
       this.actualizar = this.actualizar.bind(this)
       this.handleEditorChange = this.handleEditorChange.bind(this)
       this.onReset = this.onReset.bind(this)
-      this.resetForm  =this.resetForm.bind(this)
    }
 
    actualizar(){
@@ -88,8 +87,11 @@ class AdminServices extends Component{
                'success'
             ).then(()=>{
                this.getServices()
-               this.resetForm()
                this.onReset()
+               this.setState({
+                  nombre: '',
+                  descripcion: ''
+               })
             })
             console.log(res);
          }).catch(err=>{
@@ -113,11 +115,6 @@ class AdminServices extends Component{
    onReset() {
       document.getElementById('info').innerHTML = ' Subir imagen de portada'
       this.setState({ img: '' })
-   }
-   resetForm(){
-      document.getElementById('nombre').value = '';
-      document.getElementById('editor-descripcion').value = '';
-      document.getElementById('file-upload').value = '';
    }
    render(){
       const {services,load,loadAction} = this.state
@@ -170,12 +167,14 @@ class AdminServices extends Component{
                      floatingLabel={true}
                      name="nombre"
                      onChange={this.handleChange}
+                     value={this.state.nombre}
                   />
                   <Editor
                      apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
                      id="editor-descripcion"
                      textareaName="descripcion"
                      onChange={this.handleEditorChange}
+                     value={this.state.descripcion}
                      init={{
                         height: 400,
                         plugins: 'link image code lists advlist',
