@@ -23,8 +23,8 @@ class CreateSlyderTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('titulo', 50);
-            $table->string('descripcion', 100);
+            $table->string('titulo', 50)->nullable();
+            $table->string('descripcion', 100)->nullable();
             $table->string('imagen', 50);
             $table->string('link', 100)->nullable();
         });
