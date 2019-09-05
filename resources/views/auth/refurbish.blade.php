@@ -8,7 +8,7 @@
     <title>Resturar Contraseña</title>
 </head>
 <body>
-    <form method="POST" action="/password/reset">
+    <form method="POST" action="/contraseña/restaurar">
     @csrf
 
         <input type="hidden" name="token" value="{{ $token }}">

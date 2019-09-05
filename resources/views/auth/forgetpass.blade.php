@@ -7,7 +7,7 @@
     <title>Recuperación de contraseña</title>
 </head>
 <body>
-    <form method="post" action="/password/email">
+    <form method="post" action="/contraseña/correo">
         {{ csrf_field() }}
         <p class="form-row form-row-wide">
             <label>Correo electrónico<span class="required">*</span></label>

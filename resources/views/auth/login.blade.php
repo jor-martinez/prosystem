@@ -47,7 +47,7 @@
                                         @enderror
                                     </div>
                                     <div class="links-group">
-                                        <a href="/recuperacion" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                                        <a href="/contraseña/restaurar" class="forgot-link">¿Olvidaste tu contraseña?</a>
                                         <input type="submit" class="btn-primary" value="Ingresar">
                                     </div>
                                 </form>
