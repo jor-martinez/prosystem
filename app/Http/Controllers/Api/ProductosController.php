@@ -18,7 +18,7 @@ class ProductosController extends Controller
     {
         
         $datos = [
-            'titulo' => 'required|string|min:5|max:100',
+            'titulo' => 'required|string|min:5',
             'descripcion' => 'required|string|min:10',
             'link' => 'required|string|min:11'
         ];
@@ -34,7 +34,7 @@ class ProductosController extends Controller
     public function update(Request $request, $id)
     {
         $datos = [
-            'titulo' => 'required|string|min:5|max:100',
+            'titulo' => 'required|string|min:5',
             'descripcion' => 'required|string|min:10',
             'link' => 'required|string|min:11'
         ];

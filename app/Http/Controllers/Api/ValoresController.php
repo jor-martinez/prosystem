@@ -19,7 +19,7 @@ class ValoresController extends Controller
     {
 
         $datos = [
-            'valores' => 'required|string|min:5|max:50',
+            'valores' => 'required|string|min:5',
             'descripcion' => 'required|string|min:10'
         ];
 
@@ -37,8 +37,8 @@ class ValoresController extends Controller
     {
 
         $datos = [
-            'valores' => 'required|string|min:5|max:50',
-            'descripcion' => 'required|string|min:10|max:50'
+            'valores' => 'required|string|min:5',
+            'descripcion' => 'required|string|min:10'
         ];
 
         $this -> validate($request, $datos);

@@ -15,9 +15,9 @@ class NosotrosController extends Controller
       public function store(Request $request)
       {
           $datos = [
-              'mision' => 'required|string|min:20|max:100',
-              'vision' => 'required|string|min:20|max:100',
-              'objetivo' => 'required|string|min:20|max:100'
+              'mision' => 'required|string|min:20',
+              'vision' => 'required|string|min:20',
+              'objetivo' => 'required|string|min:20'
           ];
           $this -> validate($request, $datos);
           $dato = new Nosotros;
@@ -30,14 +30,12 @@ class NosotrosController extends Controller
       public function update(Request $request, $id)
       {
           $datos = [
-              'historia' => 'required|string|min:20|max:100',
-              'mision' => 'required|string|min:20|max:100',
-              'vision' => 'required|string|min:20|max:100',
-              'objetivo' => 'required|string|min:20|max:100'
+              'mision' => 'required|string|min:20',
+              'vision' => 'required|string|min:20',
+              'objetivo' => 'required|string|min:20'
           ];
           $this -> validate($request, $datos);
           $dato = Nosotros::findOrFail($id);
-          $dato -> historia = $request -> historia;
           $dato -> mision = $request -> mision;
           $dato -> vision = $request -> vision;
           $dato -> objetivo = $request -> objetivo;

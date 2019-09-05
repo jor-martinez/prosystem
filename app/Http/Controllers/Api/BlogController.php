@@ -20,8 +20,8 @@ class BlogController extends Controller
     {
 
         $datos = [
-            'titulo' => 'required|string|min:5|max:50',
-            'autor' => 'required|string|min:5|max:50',
+            'titulo' => 'required|string|min:5',
+            'autor' => 'required|string|min:5',
             'cuerpo' => 'required|string|min:10'
         ];
         $this -> validate($request, $datos);
@@ -46,8 +46,8 @@ class BlogController extends Controller
     public function update(Request $request, $id)   //update
     {
         $datos = [
-            'titulo' => 'required|string|min:5|max:50',
-            'autor' => 'required|string|min:5|max:50',
+            'titulo' => 'required|string|min:5',
+            'autor' => 'required|string|min:5',
             'cuerpo' => 'required|string|min:10'
         ];
         $this -> validate($request, $datos);

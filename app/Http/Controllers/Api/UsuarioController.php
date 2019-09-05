@@ -21,7 +21,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $datos = [
-            'nombre' => 'required|string|min:5|max:50',
+            'nombre' => 'required|string|min:5',
             'email' => 'required|string',
             'password' => 'required|string'
          ];
@@ -41,7 +41,7 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
          $datos = [
-             'nombre' => 'required|string|min:5|max:50',
+             'nombre' => 'required|string|min:5',
              'email' => 'required|string'
          ];
 

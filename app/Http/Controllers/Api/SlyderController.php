@@ -20,7 +20,7 @@ class SlyderController extends Controller
     public function store(Request $request)
     {
          $datos = [
-             'nombre' => 'required|string|min:8|max:50',
+             'nombre' => 'required|string|min:8',
              'descripcion' => 'required|string|min:10'
          ];
 
@@ -47,7 +47,7 @@ class SlyderController extends Controller
     public function update(Request $request, $id)
     {
          $datos = [
-             'nombre' => 'required|string|min:5|max:50',
+             'nombre' => 'required|string|min:5',
              'descripcion' => 'required|string|min:10'
          ];
 
@@ -55,7 +55,6 @@ class SlyderController extends Controller
 
         $dato = Slyder::findOrFail($id);
             if($_FILES['imagen']['name']==''){
-                // $titulo = $dato -> titulo;
                 $nombre = $dato -> imagen;
                 $dato -> imagen = $nombre;
             } else{

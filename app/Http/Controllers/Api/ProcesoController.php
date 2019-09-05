@@ -19,8 +19,8 @@ class ProcesoController extends Controller
     {
 
         $datos = [
-            'proceso' => 'required|string|min:8|max:50',
-            'descripcion' => 'required|string|min:20'
+            'proceso' => 'required|string|min:8',
+            'descripcion' => 'required|string'
         ];
 
         $this -> validate($request, $datos);
@@ -36,8 +36,8 @@ class ProcesoController extends Controller
     {
 
         $datos = [
-            'proceso' => 'required|string|min:8|max:50',
-            'descripcion' => 'required|string|min:20|max:50'
+            'proceso' => 'required|string|min:8',
+            'descripcion' => 'required|string|min:20'
         ];
         $this -> validate($request, $datos);
 

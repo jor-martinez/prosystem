@@ -21,7 +21,7 @@ class ServiciosController extends Controller
     {
 
         $datos = [
-            'nombre' => 'required|string|min:8|max:50',
+            'nombre' => 'required|string|min:8',
             'descripcion' => 'required|string|min:10'
         ];
 
@@ -48,7 +48,7 @@ class ServiciosController extends Controller
     {
 
         $datos = [
-            'nombre' => 'required|string|min:5|max:50',
+            'nombre' => 'required|string|min:5',
             'descripcion' => 'required|string|min:10'
         ];
 

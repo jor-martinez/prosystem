@@ -35,7 +35,7 @@ class HistoriaController extends Controller
     public function update(Request $request, $id)
     {
         $datos = [
-            'historia' => 'required|string|min:20|max:100'
+            'historia' => 'required|string|min:20'
         ];
 
         $this -> validate($request, $datos);

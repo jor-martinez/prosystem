@@ -19,7 +19,7 @@ class MarcasController extends Controller
     public function store(Request $request)
     {
           $datos = [
-              'Nombre' => 'required|string|min:2|max:19'
+              'Nombre' => 'required|string|min:2'
           ];
           $this -> validate($request, $datos);
 
