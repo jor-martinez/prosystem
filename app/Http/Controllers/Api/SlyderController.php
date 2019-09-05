@@ -14,7 +14,7 @@ class SlyderController extends Controller
     public function index()
     {
         $deslizas = Slyder::all();
-        return view('dev.create-slyder', ['deslizas' => $deslizas]);
+        return $deslizas;
     }
 
     public function store(Request $request)

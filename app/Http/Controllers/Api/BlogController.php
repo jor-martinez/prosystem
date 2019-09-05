@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
-        return view('dev.create-blog', ['blogs' => $blogs]);
+        return $blogs;
     }
 
     public function store(Request $request)   //Store

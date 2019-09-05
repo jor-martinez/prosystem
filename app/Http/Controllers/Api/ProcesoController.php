@@ -12,7 +12,7 @@ class ProcesoController extends Controller
     public function index()
     {
           $procesos = Proceso::all();
-          return view('dev.create-proceso', ['procesos' => $procesos]);
+          return $procesos;
     }
 
     public function store(Request $request)

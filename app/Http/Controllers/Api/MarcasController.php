@@ -13,7 +13,7 @@ class MarcasController extends Controller
     public function index()
     {
         $marcas = Marca::all();
-        return view('dev.create-marca', ['marcas' => $marcas]);
+        return $marcas;
     }
 
     public function store(Request $request)

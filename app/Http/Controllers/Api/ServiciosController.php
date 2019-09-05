@@ -14,7 +14,7 @@ class ServiciosController extends Controller
     public function index()
     {
         $servicios = Servicios::all();
-        return view('dev.create-servicios', ['servicios' => $servicios]);
+        return $servicios;
     }
 
     public function store(Request $request)

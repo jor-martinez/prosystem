@@ -14,7 +14,7 @@ class CaracteristicasController extends Controller
     public function index()
     {
         $caracteristicas = Caracteristicas::all();
-        return view('dev.create-caracteristicas', ['caracteristicas' => $caracteristicas]);
+        return $caracteristicas;
     }
 
     public function store(Request $request)

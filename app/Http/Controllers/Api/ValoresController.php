@@ -12,7 +12,7 @@ class ValoresController extends Controller
     public function index()
     {
         $valores = Valores::all();
-        return view('dev.create-valores', ['valores' => $valores]);
+        return $valores;
     }
 
     public function store(Request $request)

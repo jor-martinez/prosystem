@@ -12,7 +12,7 @@ class ProductosController extends Controller
     public function index()
     {
         $productos = Productos::all();
-        return view('dev.create-productos', ['productos' => $productos]);
+        return $productos;
     }
     public function store(Request $request)
     {

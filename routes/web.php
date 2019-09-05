@@ -5,11 +5,6 @@ Route::get('/login', 'Auth\LoginController@showLoginForm') -> name('showLoginFor
 Route::post('/login', 'Auth\LoginController@login') -> name('attemptLogin');
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
-//Recuperación de contraseña
-Route::get('/recuperacion', 'Auth\ClaveController@index');
-Route::post('/enviado', 'Auth\ClaveController@enviar');
-Route::get('/recuperar', 'Auth\ClaveController@store');
-
 // Password Reset
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')
 -> name('password.email');
@@ -37,7 +32,6 @@ Route::prefix('api') -> group(function() {
     Route::get('productos', 'Api\MainController@productos');
     Route::get('servicios', 'Api\MainController@servicios');
     Route::get('valores', 'Api\MainController@valores');
-    //Route::get('usuarios', 'Api\MainController@usuarios');
     Route::get('slyder', 'Api\MainController@slyder');
 });
 

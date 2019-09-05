@@ -15,7 +15,6 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        // return view('dev.create-user', ['usuarios' => $usuarios]);
         return $usuarios;
     }
 
@@ -35,7 +34,6 @@ class UsuarioController extends Controller
         $dato -> password = bcrypt($request -> password);
         $dato -> save();
 
-        //  return redirect('/api/usuarios');
         return response("creado", 200) -> header('Content-Type', 'application/json');
     }
 

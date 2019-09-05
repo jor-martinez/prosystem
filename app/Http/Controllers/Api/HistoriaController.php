@@ -12,8 +12,7 @@ class HistoriaController extends Controller
     public function index()
     {
         $historia = Historia::all();
-        return view('dev.create-historia', ['historia' => $historia]);
-        //return ['historia' => $historia];
+        return $historia;
     }
 
 

@@ -10,7 +10,7 @@ class NosotrosController extends Controller
       public function index()
       {
           $nosotros = Nosotros::all();
-          return view('dev.create-nosotros', ['nosotros' => $nosotros]);
+          return $nosotros;
       }
       public function store(Request $request)
       {
