@@ -20,7 +20,7 @@ class EmpresaController extends Controller
 
         $datos = [
             'ubicacion' => 'required|string|min:15|max:100',
-            'telefono' => 'required|int|min:10|max:100',
+            'telefono' => 'required|string|min:10|max:100',
             'correo' => 'required|string|min:11|max:30'
         ];
 
