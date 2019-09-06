@@ -9,6 +9,8 @@ import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
 import { Editor } from '@tinymce/tinymce-react';
 import Moment from 'react-moment'
+import errorAlert from './errors'
+
 
 class AdminBlog extends Component{
     constructor(props){
@@ -21,7 +23,8 @@ class AdminBlog extends Component{
             cuerpo: '',
             autor: localStorage.getItem('usuarioNombre'),
             encabezado: '',
-            fechaCreado:''
+            fechaCreado:'',
+            errors: {}
         }
         this.getPosts = this.getPosts.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -98,17 +101,21 @@ class AdminBlog extends Component{
                 })
             })
         }).catch(err=>{
-            this.setState({ loadAction: false })
-            console.log(err.response.data)
+            this.setState({
+                loadAction: false,
+                errors: err.response.data.errors
+            })
+            console.log(err.response.data.errors)
             SweetAlert.fire(
                 'Error',
                 'Algo salió mal!',
                 'error'
             )
+            window.scrollTo(0,0)
         })
     }
     render(){
-        const {load,loadAction,posts} = this.state
+        const {load,loadAction,posts,errors} = this.state
         return(
             <div className="main-containor admin-blog">
                 <Helmet>
@@ -154,6 +161,7 @@ class AdminBlog extends Component{
                 <section className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agregar un artículo</legend>
+                        {errorAlert(errors)}
                         <Input
                             id="titulo"
                             className="form-input"

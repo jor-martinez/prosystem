@@ -7,7 +7,7 @@ import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
 import { Editor } from '@tinymce/tinymce-react'
-
+import errorAlert from './errors'
 
 class Mission extends Component {
     constructor(props) {
@@ -16,7 +16,8 @@ class Mission extends Component {
             history: [],
             load: false,
             loadAction: false,
-            historia: ''
+            historia: '',
+            errors: {}
         }
         this.getHistory = this.getHistory.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -79,7 +80,7 @@ class Mission extends Component {
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
-                console.log(err.response.errors)
+                console.log(err.response.data.errors)
                 SweetAlert.fire(
                     'Oooops!',
                     'Algo salió mal',
@@ -87,7 +88,11 @@ class Mission extends Component {
                 ).then(() => {
                     this.getHistory()
                 })
-                this.setState({ loadAction: false })
+                this.setState({
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
+                window.scrollTo(0,0)
             })
         }
     }
@@ -96,7 +101,7 @@ class Mission extends Component {
         this.setState({ historia: e.target.getContent() })
     }
     render() {
-        const { history, load, loadAction } = this.state
+        const { history, load, loadAction, errors } = this.state
         return (
             <div className="main-containor admin-history">
                 <Helmet>
@@ -145,6 +150,7 @@ class Mission extends Component {
                 <section id="add-product" className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agrega la historia</legend>
+                        {errorAlert(errors)}
                         <Editor
                             apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
                             id="editor-descripcion"

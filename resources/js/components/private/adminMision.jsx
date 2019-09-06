@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
-
+import errorAlert from './errors'
 
 class Mission extends Component {
     constructor(props) {
@@ -17,7 +17,8 @@ class Mission extends Component {
             loadAction: false,
             mision: '',
             vision: '',
-            objetivo: ''
+            objetivo: '',
+            errors: {}
         }
         this.getData = this.getData.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -93,12 +94,16 @@ class Mission extends Component {
                 ).then(() => {
                     this.getData()
                 })
-                this.setState({ loadAction: false })
+                this.setState({
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
+                window.scrollTo(0,0)
             })
         }
     }
     render() {
-        const { datos, load, loadAction } = this.state
+        const { datos, load, loadAction, errors } = this.state
         return (
             <div className="main-containor admin-process">
                 <Helmet>
@@ -163,6 +168,7 @@ class Mission extends Component {
                 <section id="add-product" className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agrega la misión, visión y el objetivo</legend>
+                        {errorAlert(errors)}
                         <Textarea
                             rows="3"
                             id="mis"

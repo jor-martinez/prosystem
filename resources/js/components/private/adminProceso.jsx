@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
-
+import errorAlert from './errors'
 
 class AdminProceso extends Component{
     constructor(props){
@@ -16,7 +16,8 @@ class AdminProceso extends Component{
             load: false,
             loadAction: false,
             proceso: '',
-            descripcion: ''
+            descripcion: '',
+            errors: {}
         }
         this.getProcesos = this.getProcesos.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -82,21 +83,24 @@ class AdminProceso extends Component{
                 })
                 this.setState({ loadAction: false })
             }).catch(err=>{
-                const errs = err.response.data.errors
-                console.log(err.response.data.errors['descripcion'])
-                SweetAlert.fire({
-                    title: 'Ooops!',
-                    type: 'error',
-                    html: `<span>${errs}</span>`
-                }).then(() => {
+                console.log(err.response.data.errors)
+                SweetAlert.fire(
+                    'Oooops!',
+                    'Algo salió mal',
+                    'error'
+                ).then(() => {
                     this.getProcesos()
                 })
-                this.setState({ loadAction: false })
+                this.setState({
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
+                window.scrollTo(0,0)
             })
         }
     }
     render(){
-        const {procesos,load,loadAction} = this.state
+        const {procesos,load,loadAction,errors} = this.state
         return(
             <div className="main-containor admin-process">
                 <Helmet>
@@ -143,6 +147,7 @@ class AdminProceso extends Component{
                 <section className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agregar un proceso</legend>
+                        {errorAlert(errors)}
                         <Input
                             id="proceso"
                             className="form-input"

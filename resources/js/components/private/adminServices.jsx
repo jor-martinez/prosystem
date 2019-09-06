@@ -105,7 +105,9 @@ class AdminServices extends Component{
             )
             console.log(err.response.data.errors)
             this.setState({errors: err.response.data.errors})
+            window.scrollTo(0,0)
          })
+         
 
       // console.log(this.state)
    }
