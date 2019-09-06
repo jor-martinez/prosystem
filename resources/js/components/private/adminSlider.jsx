@@ -107,6 +107,7 @@ class AdminSlider extends Component{
          this.setState({
             errors: err.response.data.errors
          })
+         window.scrollTo(0,0)
       })
    }
    onReset() {
@@ -198,7 +199,7 @@ class AdminSlider extends Component{
             <section className="item-add">
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                   <legend>Agregar un Slider</legend>
-                  {errorAlert(errros)}
+                  {errorAlert(errors)}
                   <Input
                      id="titulo"
                      className="form-input"
@@ -221,7 +222,7 @@ class AdminSlider extends Component{
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen</span> 
                      </label>
-                     <input id="file-upload" required onChange={this.handleChange} type="file" accept="image/" name="Imagen" />
+                     <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="Imagen" />
                   </Container>
                   <Input
                      id="link"

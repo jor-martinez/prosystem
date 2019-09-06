@@ -94,11 +94,16 @@ class AdminMarcas extends Component{
          })
       }).catch(err=>{
          console.log('Error!', err)
+         this.setState({
+            loadAction: false,
+            errors: err.response.data.errors
+         })
          SweetAlert.fire(
             'Error',
             'Algo salió mal!',
             'error'
          )
+         window.scrollTo(0,0)
       })
    }
    onReset(){
@@ -106,7 +111,7 @@ class AdminMarcas extends Component{
       this.setState({ img: '' })
    }
    render(){
-      const {marcas,load,loadAction} = this.state
+      const {marcas,load,loadAction,errors} = this.state
       return(
          <div className="main-containor admin-marcas">
             <Helmet>
@@ -186,6 +191,7 @@ class AdminMarcas extends Component{
             <section className="item-add">
                <Form onSubmit={this.handleSubmit} encType="multipart/form-data" autoComplete="off">
                   <legend>Agregar una Marca</legend>
+                  {errorAlert(errors)}
                   <Input
                      id="nombre"
                      label="Nombre"

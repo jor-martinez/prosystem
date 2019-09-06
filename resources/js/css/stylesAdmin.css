@@ -616,3 +616,12 @@ textarea{
    left: 50px;
    top: 50px;
 }
+/* ERRORES */
+
+.errors-containor .error-text{
+   color: #b71c1c;
+   padding: 15px;
+   background: #ffcdd2;
+   border-radius: 5px;
+   border: 1px solid #f44336;
+}

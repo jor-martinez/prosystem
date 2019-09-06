@@ -85,7 +85,7 @@ class AdminUsers extends Component{
                 'error'
             )
             this.getUsuarios()
-
+            window.scrollTo(0,0)
         })
     }
     handleChange(e){

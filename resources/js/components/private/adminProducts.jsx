@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
+import errorAlert from './errors'
 
 
 class AdminProducts extends Component {
@@ -17,7 +18,8 @@ class AdminProducts extends Component {
             loadAction: false,
             titulo: '',
             descripcion: '',
-            link: ''
+            link: '',
+            errrors: {}
         }
         this.getProductos = this.getProductos.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -93,12 +95,16 @@ class AdminProducts extends Component {
                 ).then(() => {
                     this.getProductos()
                 })
-                this.setState({ loadAction: false })
+                this.setState({ 
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
+                window.scrollTo(0,0)
             })
         }
     }
     render() {
-        const { productos, load, loadAction } = this.state
+        const { productos, load, loadAction, errors } = this.state
         return (
             <div className="main-containor admin-process">
                 <Helmet>
@@ -144,6 +150,7 @@ class AdminProducts extends Component {
                 <section id="add-product" className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agregar una producto</legend>
+                        {errorAlert(errors)}
                         <Input
                             id="titulo"
                             className="form-input"

@@ -7,7 +7,7 @@ import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
 import Input from 'muicss/lib/react/input'
-
+import errorAlert from './errors'
 
 class AdminContacto extends Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class AdminContacto extends Component {
             loadAction: false,
             ubicacion: '',
             telefonos: '',
-            correos: ''
+            correos: '',
+            errors: {}
         }
         this.getDatosContacto = this.getDatosContacto.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -95,12 +96,16 @@ class AdminContacto extends Component {
                 ).then(() => {
                     this.getDatosContacto()
                 })
-                this.setState({ loadAction: false })
+                this.setState({
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
+                window.scrollTo(0,0)
             })
         }
     }
     render() {
-        const { datosContacto, load, loadAction } = this.state
+        const { datosContacto, load, loadAction, errors } = this.state
         return (
             <div className="main-containor admin-process">
                 <Helmet>
@@ -165,6 +170,7 @@ class AdminContacto extends Component {
                 <section id="add-product" className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agrega la información de contacto</legend>
+                        {errorAlert(errors)}
                         <Textarea
                             rows="3"
                             id="ubi"

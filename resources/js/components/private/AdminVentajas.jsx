@@ -95,6 +95,7 @@ class AdminVentajas extends Component {
                     loadAction: false,
                     errors: err.response.data.errors
                 })
+                window.scrollTo(0,0)
             })
         }
     }
