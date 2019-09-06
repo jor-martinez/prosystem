@@ -29,7 +29,7 @@ class ProcesoController extends Controller
         $dato -> proceso = $request -> proceso;
         $dato -> descripcion = $request -> descripcion;
         $dato -> save();
-
+        return response("creado", 200) -> header('Content-Type', 'application/json');
     }
 
     public function update(Request $request, $id)

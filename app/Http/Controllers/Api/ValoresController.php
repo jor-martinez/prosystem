@@ -48,7 +48,7 @@ class ValoresController extends Controller
         $dato -> descripcion = $request -> descripcion;
         $dato -> save();
 
-        return response("eliminado", 200) -> header('Content-Type', 'application/json');
+        return response("actualizado", 200) -> header('Content-Type', 'application/json');
     }
 
     public function destroy($id)

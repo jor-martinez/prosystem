@@ -23,7 +23,7 @@ class BlogController extends Controller
             'titulo' => 'required|string|min:5',
             'autor' => 'required|string|min:5',
             'cuerpo' => 'required|string|min:10',
-            'Imagen' => 'required|image|mimes:jpg,jpeg,png'
+            'encabezado' => 'required|image|mimes:jpg,jpeg,png'
         ];
         $this -> validate($request, $datos);
 
@@ -55,29 +55,35 @@ class BlogController extends Controller
 
         $dato = Blog::findOrFail($id);
 
-        if($_FILES['encabezado']['name']==''){
-            $nombre = $dato -> encabezado;
-            $dato -> encabezado = $nombre;
-        } else{
-            $ruta_acceso_imagen = public_path('images\blog').'/'.$dato -> encabezado;//Eliminar imagen actual
-            unlink($ruta_acceso_imagen);
+        if(is_null($request -> file('encabezado'))){
+            
+                $dato -> titulo = $request -> titulo;
+                $dato -> slug = StringReplace::getPureString($request -> titulo);
+                $dato -> autor = $request -> autor;
+                $dato -> cuerpo = $request -> cuerpo;
+                $dato -> save();
 
-            $file = $request -> file('encabezado');//Tomando nueva imagen
-            $nombre = $file -> getClientOriginalName();
+            return response("actualizado", 200) -> header('Content-Type', 'application/json');
+               
+            
+        }  else{
+                $ruta_acceso_imagen = public_path('images\blog').'/'.$dato -> encabezado;//Eliminar imagen actual
+                unlink($ruta_acceso_imagen);
 
-            $upload = Storage::disk('uploads') -> put('images/blog/' . $nombre, file_get_contents($file)); //Insertamos nueva imagen
-            $dato -> encabezado = $nombre;
+                $file = $request -> file('encabezado');//Tomando nueva imagen
+                $nombre = $file -> getClientOriginalName();
+
+                $upload = Storage::disk('uploads') -> put('images/blog/' . $nombre, file_get_contents($file)); //Insertamos nueva imagen
+                $dato -> encabezado = $nombre;
+
+                $dato -> titulo = $request -> titulo;
+                $dato -> slug = StringReplace::getPureString($request -> titulo);
+                $dato -> autor = $request -> autor;
+                $dato -> cuerpo = $request -> cuerpo;
+                $dato -> save();
+
+            return response("actualizado", 200) -> header('Content-Type', 'application/json');
         }
-
-        $dato -> titulo = $request -> titulo;
-        $dato -> slug = StringReplace::getPureString($request -> titulo);
-        $dato -> autor = $request -> autor;
-        $dato -> cuerpo = $request -> cuerpo;
-        $dato -> save();
-
-       return $dato
-       ? response('actualizado', 200) -> header('Content-type', 'application/json')
-       : response('Error', 500) -> header('Content-type', 'application/json');
     }
 
     public function destroy($titulo)

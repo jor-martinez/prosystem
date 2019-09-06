@@ -56,11 +56,18 @@ class ServiciosController extends Controller
         $this -> validate($request, $datos);
 
         $dato = Servicios::findOrFail($id);
-        if($_FILES['Imagen']['name']==''){
-            $nombre = $dato -> Imagen;
-            $dato -> Imagen = $nombre;
-        } else{
-            $ruta_acceso_imagen = public_path('images\servicios').'/'.$dato -> Imagen;//Eliminar imagen actual
+        if(is_null($request -> file('Imagen'))){
+
+            $dato -> nombre = $request -> nombre;
+            $dato -> slug = StringReplace::getPureString($request -> nombre);
+            $dato -> descripcion = $request -> descripcion;
+            $dato -> save();
+
+            return response("actualizado", 200) -> header('Content-Type', 'application/json');
+               
+            
+        }  else{
+            $ruta_acceso_imagen = public_path('images\servicios').'/'.$dato -> Imagen;
             unlink($ruta_acceso_imagen);
 
             $file = $request -> file('Imagen');//Tomando nueva imagen
@@ -68,14 +75,30 @@ class ServiciosController extends Controller
 
             $upload = Storage::disk('uploads') -> put('images/servicios/' . $nombre, file_get_contents($file)); //Insertamos nueva imagen
             $dato -> Imagen = $nombre;
+
+            $dato -> nombre = $request -> nombre;
+            $dato -> slug = StringReplace::getPureString($request -> nombre);
+            $dato -> descripcion = $request -> descripcion;
+            $dato -> save();
+
+            return response("actualizado", 200) -> header('Content-Type', 'application/json');
         }
+        
+        
+        // if($_FILES['Imagen']['name']==''){
+        //     $nombre = $dato -> Imagen;
+        //     $dato -> Imagen = $nombre;
+        // } else{
+        //     $ruta_acceso_imagen = public_path('images\servicios').'/'.$dato -> Imagen;//Eliminar imagen actual
+        //     unlink($ruta_acceso_imagen);
 
-        $dato -> nombre = $request -> nombre;
-        $dato -> slug = StringReplace::getPureString($request -> nombre);
-        $dato -> descripcion = $request -> descripcion;
-        $dato -> save();
+        //     $file = $request -> file('Imagen');//Tomando nueva imagen
+        //     $nombre = $file -> getClientOriginalName();
 
-        return response("actualizado", 200) -> header('Content-Type', 'application/json');
+        //     $upload = Storage::disk('uploads') -> put('images/servicios/' . $nombre, file_get_contents($file)); //Insertamos nueva imagen
+        //     $dato -> Imagen = $nombre;
+        // }
+        
     }
 
     public function destroy($slug)

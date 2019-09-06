@@ -21,7 +21,7 @@ class EmpresaController extends Controller
         $datos = [
             'ubicacion' => 'required|string|min:15',
             'telefono' => 'required|string|min:10',
-            'correo' => 'required|string|min:11'
+            'correo' => 'required|email|min:11'
         ];
 
         $this -> validate($request, $datos);
@@ -32,7 +32,7 @@ class EmpresaController extends Controller
         $dato -> correo = $request -> correo;
         $dato -> save();
 
-         return redirect('/api/empresa/');
+        return response("creado", 200) -> header('Content-Type', 'application/json');
     }
 
     public function update(Request $request, $id)

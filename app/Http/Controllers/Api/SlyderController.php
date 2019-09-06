@@ -46,11 +46,20 @@ class SlyderController extends Controller
     public function update(Request $request, $id)
     {
         $dato = Slyder::findOrFail($id);
-            if($_FILES['imagen']['name']==''){
-                $nombre = $dato -> imagen;
-                $dato -> imagen = $nombre;
-            } else{
-                $ruta_acceso_imagen = public_path('images/slyder').'/'.$dato -> imagen;
+
+        if(is_null($request -> file('imagen'))){
+
+            
+            $dato -> titulo = $request -> titulo;
+            $dato -> descripcion = $request -> descripcion;
+            $dato -> link = $request -> link;
+            $dato -> save();
+
+            return response("actualizado", 200) -> header('Content-Type', 'application/json');
+               
+            
+        }  else{
+            $ruta_acceso_imagen = public_path('images/slyder').'/'.$dato -> imagen;
                 unlink($ruta_acceso_imagen);
 
                 $file = $request -> file('imagen');//Tomando nueva imagen
@@ -58,15 +67,15 @@ class SlyderController extends Controller
 
                 $upload = Storage::disk('uploads') -> put('images/slyder/' . $nombre, file_get_contents($file)); //Insertamos nueva imagen
                 $dato -> imagen = $nombre;
-            }
 
-            $dato -> titulo = $request -> titulo;
-            $dato -> descripcion = $request -> descripcion;
-            $dato -> link = $request -> link;
-            $dato -> save();
+                $dato -> titulo = $request -> titulo;
+                $dato -> descripcion = $request -> descripcion;
+                $dato -> link = $request -> link;
+                $dato -> save();
 
-        return response("eliminado", 200) -> header('Content-Type', 'application/json');
- 
+            return response("actualizado", 200) -> header('Content-Type', 'application/json');
+        }
+
     }
 
     public function destroy($id)

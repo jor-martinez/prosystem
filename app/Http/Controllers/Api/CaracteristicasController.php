@@ -30,7 +30,7 @@ class CaracteristicasController extends Controller
         $dato -> descripcion = $request -> descripcion;
         $dato -> save();
 
-        return redirect('/api/caracteristicas/');
+        return response("creado", 200) -> header('Content-Type', 'application/json');
     }
 
     public function update(Request $request, $id)

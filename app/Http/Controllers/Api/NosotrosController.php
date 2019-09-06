@@ -25,7 +25,7 @@ class NosotrosController extends Controller
           $dato -> vision = $request -> vision;
           $dato -> objetivo = $request -> objetivo;
           $dato -> save();
-           return redirect('/api/nosotros');
+          return response("creado", 200) -> header('Content-Type', 'application/json');
       }
       public function update(Request $request, $id)
       {
