@@ -19,7 +19,8 @@ class MarcasController extends Controller
     public function store(Request $request)
     {
           $datos = [
-              'Nombre' => 'required|string|min:2'
+              'Nombre' => 'required|string|min:2',
+              'Imagen' => 'required|image|mimes:jpg,jpeg,png'
           ];
           $this -> validate($request, $datos);
 

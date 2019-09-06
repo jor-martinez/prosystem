@@ -22,7 +22,8 @@ class ServiciosController extends Controller
 
         $datos = [
             'nombre' => 'required|string|min:8',
-            'descripcion' => 'required|string|min:10'
+            'descripcion' => 'required|string|min:10',
+            'Imagen' => 'required|image|mimes:jpg,jpeg,png'
         ];
 
         $this -> validate($request, $datos);

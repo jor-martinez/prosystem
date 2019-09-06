@@ -20,8 +20,8 @@ class CaracteristicasController extends Controller
     public function store(Request $request)
     {
         $datos = [
-            'titulo' => 'required|string|min:2',
-            'descripcion' => 'required|string|min:2',
+            'titulo' => 'required|string|min:5',
+            'descripcion' => 'required|string|min:5',
         ];
         $this -> validate($request, $datos);
 

@@ -22,7 +22,8 @@ class BlogController extends Controller
         $datos = [
             'titulo' => 'required|string|min:5',
             'autor' => 'required|string|min:5',
-            'cuerpo' => 'required|string|min:10'
+            'cuerpo' => 'required|string|min:10',
+            'Imagen' => 'required|image|mimes:jpg,jpeg,png'
         ];
         $this -> validate($request, $datos);
 

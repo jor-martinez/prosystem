@@ -20,7 +20,7 @@ class SlyderController extends Controller
     public function store(Request $request)
     {
          $datos = [
-             'imagen' => 'required'
+             'Imagen' => 'required|image|mimes:jpg,jpeg,png'
          ];
 
         $this -> validate($request, $datos);

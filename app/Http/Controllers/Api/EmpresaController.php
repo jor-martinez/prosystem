@@ -41,7 +41,7 @@ class EmpresaController extends Controller
         $datos = [
             'ubicacion' => 'required|string|min:15',
             'telefono' => 'required|string|min:10',
-            'correo' => 'required|string|min:11'
+            'correo' => 'required|email|min:11'
         ];
 
         $this -> validate($request, $datos);

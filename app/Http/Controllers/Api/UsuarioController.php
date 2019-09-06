@@ -22,7 +22,7 @@ class UsuarioController extends Controller
     {
         $datos = [
             'nombre' => 'required|string|min:5',
-            'email' => 'required|string',
+            'email' => 'required|email',
             'password' => 'required|string'
          ];
 
