@@ -132,7 +132,9 @@ class AdminBlog extends Component{
                                 (posts.map((post) => (
                                     <section key={post.id} className="item-containor blog-containor">
                                         <div className="img-containor">
-                                            <img src={`../images/blog/${post.encabezado}`} alt="imagen-blog" />
+                                            <Link to={{ pathname: '/admin/articulo/' + post.slug, state: { post } }}>
+                                                <img src={`../images/blog/${post.encabezado}`} alt="imagen-blog" />
+                                            </Link>
                                         </div>
                                         <div className="text-containor">
                                             <h2>{post.titulo}</h2>

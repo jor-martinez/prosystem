@@ -177,9 +177,9 @@ class Home extends Component{
                               <div className="icon-block">
                                  <center><i className="fas fa-archive"></i></center>
                               </div>
-                              <h3><a href={producto.link}>{producto.titulo}</a></h3>
+                              <h3><a href={producto.link} target="blank">{producto.titulo}</a></h3>
                               <p>{producto.descripcion}</p>
-                              <a href={producto.link} className="more-link">Leer más</a>
+                              <a href={producto.link} target="blank" className="more-link">Leer más</a>
                            </div>
                         )))
                      }

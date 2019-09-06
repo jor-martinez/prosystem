@@ -7,6 +7,7 @@ import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
+import errorAlert from './errors'
 
 
 class AdminSlider extends Component{
@@ -21,7 +22,8 @@ class AdminSlider extends Component{
          descripcion: '',
          imagen: '',
          link: '',
-         img: null
+         img: null,
+         errors: {}
       }
       this.getSliders = this.getSliders.bind(this)
       this.actualizar = this.actualizar.bind(this)
@@ -96,12 +98,15 @@ class AdminSlider extends Component{
          })
       }).catch(err=>{
          this.setState({loadAction: false})
-         console.log(err.response.errors)
          SweetAlert.fire(
             'Error',
             'Algo salió mal!',
             'error'
          )
+         console.log(err.response.data.errors)
+         this.setState({
+            errors: err.response.data.errors
+         })
       })
    }
    onReset() {
@@ -110,7 +115,7 @@ class AdminSlider extends Component{
    }
    
    render(){
-      const {sliders,load,loadAction} = this.state
+      const {sliders,load,loadAction,errors} = this.state
       return(
          <div className="main-containor admin-sliders">
             <Helmet>
@@ -193,6 +198,7 @@ class AdminSlider extends Component{
             <section className="item-add">
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                   <legend>Agregar un Slider</legend>
+                  {errorAlert(errros)}
                   <Input
                      id="titulo"
                      className="form-input"

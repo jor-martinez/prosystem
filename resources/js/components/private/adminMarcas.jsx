@@ -7,6 +7,7 @@ import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
+import errorAlert from './errors'
 
 class AdminMarcas extends Component{
    constructor(props){
@@ -18,7 +19,8 @@ class AdminMarcas extends Component{
          marcas: [],
          Nombre: '',
          Imagen: '',
-         img: null
+         img: null,
+         errors: {}
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)

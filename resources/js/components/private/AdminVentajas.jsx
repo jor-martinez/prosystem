@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
-
+import errorAlert from './errors'
 
 class AdminVentajas extends Component {
     constructor(props) {
@@ -16,7 +16,8 @@ class AdminVentajas extends Component {
             load: false,
             loadAction: false,
             titulo: '',
-            descripcion: ''
+            descripcion: '',
+            errors: {}
         }
         this.getVentajas = this.getVentajas.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -82,7 +83,7 @@ class AdminVentajas extends Component {
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
-                console.log(err.response.errors)
+                console.log(err.response.data.errors)
                 SweetAlert.fire(
                     'Oooops!',
                     'Algo salió mal',
@@ -90,12 +91,15 @@ class AdminVentajas extends Component {
                 ).then(() => {
                     this.getVentajas()
                 })
-                this.setState({ loadAction: false })
+                this.setState({
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
             })
         }
     }
     render() {
-        const { ventajas, load, loadAction } = this.state
+        const { ventajas, load, loadAction,errors } = this.state
         return (
             <div className="main-containor admin-process">
                 <Helmet>
@@ -142,6 +146,7 @@ class AdminVentajas extends Component {
                 <section className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agregar una ventaja</legend>
+                        {errorAlert(errors)}
                         <Input
                             id="titulo"
                             className="form-input"

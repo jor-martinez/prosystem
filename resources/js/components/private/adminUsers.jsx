@@ -4,8 +4,8 @@ import SweetAlert from 'sweetalert2'
 import Helmet from 'react-helmet'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
-import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
+import errorAlert from './errors'
 
 class AdminUsers extends Component{
     constructor(props){
@@ -16,7 +16,8 @@ class AdminUsers extends Component{
             users:[],
             name: '',
             correo: '',
-            contra: ''
+            contra: '',
+            errors: {}
         }
         this.getUsuarios = this.getUsuarios.bind(this)
         this.actualizar = this.actualizar.bind(this)
@@ -73,7 +74,10 @@ class AdminUsers extends Component{
                 })
             })
         }).catch(err=>{
-            this.setState({ loadAction: false })
+            this.setState({
+                loadAction: false,
+                errors: err.response.data.errors
+            })
             console.log(err.response.errors)
             SweetAlert.fire(
                 'Error',
@@ -81,6 +85,7 @@ class AdminUsers extends Component{
                 'error'
             )
             this.getUsuarios()
+
         })
     }
     handleChange(e){
@@ -90,8 +95,9 @@ class AdminUsers extends Component{
             [name]: value
         })
     }
+    
     render(){
-        const {users,load,loadAction} = this.state
+        const {users,load,loadAction,errors} = this.state
         return(
             <div className="main-containor admin-users">
                 <Helmet>
@@ -169,6 +175,7 @@ class AdminUsers extends Component{
                 <section className="item-add">
                     <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                         <legend>Agregar usuario</legend>
+                        {errorAlert(errors)}
                         <Input
                             id="nombre"
                             label="Nombre"
@@ -176,7 +183,6 @@ class AdminUsers extends Component{
                             onChange={this.handleChange}
                             value={this.state.name}
                             name="name"
-                            required
                         />
                         <Input
                             id="corr"
@@ -186,7 +192,6 @@ class AdminUsers extends Component{
                             onChange={this.handleChange}
                             value={this.state.correo}
                             name="correo"
-                            required
                         />
                         <Input
                             id="con"
@@ -196,7 +201,6 @@ class AdminUsers extends Component{
                             onChange={this.handleChange}
                             value={this.state.contra}
                             name="contra"
-                            required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction}>
                             {

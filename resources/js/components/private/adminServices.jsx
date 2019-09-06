@@ -7,7 +7,8 @@ import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
-import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from '@tinymce/tinymce-react'
+import errorAlert from './errors'
 
 class AdminServices extends Component{
    constructor(props){
@@ -20,7 +21,8 @@ class AdminServices extends Component{
          nombre: '',
          descripcion: '',
          Imagen: '',
-         img: null
+         img: null,
+         errors: {}
       }
       this.handleOnSubmit = this.handleOnSubmit.bind(this)
       this.handleChange = this.handleChange.bind(this)
@@ -96,14 +98,13 @@ class AdminServices extends Component{
             console.log(res);
          }).catch(err=>{
             this.setState({loadAction: false})
-            console.log(err.response.data)
-            const errs = err.response.data.errors;
-            this.setState({errores: errs})
             SweetAlert.fire(
                'Error',
                'Algo salió mal!',
                'error'
             )
+            console.log(err.response.data.errors)
+            this.setState({errors: err.response.data.errors})
          })
 
       // console.log(this.state)
@@ -117,7 +118,7 @@ class AdminServices extends Component{
       this.setState({ img: '' })
    }
    render(){
-      const {services,load,loadAction} = this.state
+      const {services,load,loadAction,errors} = this.state
       return(
          <div className="main-containor admin-services">
             <Helmet>
@@ -141,11 +142,12 @@ class AdminServices extends Component{
                         (services.map((service)=>(
                            <section key={service.id} className="item-containor">
                               <div className="img-containor">
-                                 <img src={`../images/servicios/${service.Imagen}`} alt="imagen-servicio"/>
+                                 <Link to={{ pathname: '/admin/servicio/'+service.slug, state : { service: service } }}>
+                                    <img src={`../images/servicios/${service.Imagen}`} alt="imagen-servicio"/>
+                                 </Link>
                               </div>
                               <div className="text-containor">
                                  <h2>{service.nombre}</h2>
-                                 {/* <p dangerouslySetInnerHTML={{ __html: service.descripcion }}></p> */}
                               </div>
                               <div className="buttons-containor">
                                  <Link to={{ pathname: '/admin/servicio/'+service.slug, state : { service: service } }}
@@ -160,6 +162,7 @@ class AdminServices extends Component{
             <section className="item-add">
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                   <legend>Agregar un servicio</legend>
+                  {errorAlert(errors)}
                   <Input
                      id="nombre"
                      className="form-input"
