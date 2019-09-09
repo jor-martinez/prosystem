@@ -7,6 +7,7 @@ import Form from 'muicss/lib/react/form'
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
 import { Editor } from '@tinymce/tinymce-react'
+import errorAlert from './errors'
 
 class Articulo extends Component{
    constructor(props){
@@ -19,7 +20,8 @@ class Articulo extends Component{
          encabezado: this.props.location.state.post.encabezado,
          autor: this.props.location.state.post.autor,
          img: null,
-         loadAction: false
+         loadAction: false,
+         errors: {}
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleOnDelete = this.handleOnDelete.bind(this)
@@ -109,7 +111,10 @@ class Articulo extends Component{
                 window.location.href = '/admin/articulos'
             })
         }).catch(err=>{
-            this.setState({loadAction: false})
+            this.setState({
+               loadAction: false,
+               errors: err.response.data.errors
+            })
             console.log(err)
             console.log(err.response.data)
             SweetAlert.fire(
@@ -125,7 +130,7 @@ class Articulo extends Component{
    }
    render(){
       console.log(this.state)
-      const {loadAction} = this.state
+      const {loadAction,errors} = this.state
       return(
          <div>
             <div className="one-service-containor" id="serv-cont" >
@@ -150,6 +155,7 @@ class Articulo extends Component{
             <div className="one-service-edit" id="serv-edit">
                <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data">
                   <legend>Editar Articulo</legend>
+                  {errorAlert(errors)}
                   <Input
                      label="Titulo"
                      floatingLabel={true}

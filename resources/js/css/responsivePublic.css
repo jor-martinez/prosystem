@@ -5,14 +5,14 @@
 }
 
 @media screen and (max-width: 991px){
-   .slider{
+   body .slider{
       height: 400px;
    }
    .info-slider-container{
       margin: auto;
       width: 70%;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 120px;
    }
    .offer-style-one .row{
       display: flex;
@@ -41,6 +41,7 @@
    .carrusel-services{
       height: 100%;
    }
+   
    .single-service-one{
       margin-bottom: 10px;
    }
@@ -48,7 +49,7 @@
       width: 45%;
    }
    .single-service-one .image-block {
-      height: 250px;
+      height: 160px;
    }
    .single-service-one .image-block > img{
       height: 100%;
@@ -59,9 +60,15 @@
    }
    .single-service-one .text-block h3{
       font-size: 20px;
+      display: inline-block;
+      height: 40px;
+      margin-bottom: 10px;
    }
    .single-service-one .text-block p{
       font-size: 12px;
+   }
+   .single-service-responsive .image-block{
+      height: 200px;
    }
    .service-style-two{
       margin-bottom: 10px;
@@ -95,6 +102,7 @@
    }
    .featured-style-one .signle-featured-one .icon-block .inner-block i {
       font-size: 14px;
+      padding: 0;
    }
 
    /* acerca de nosotros */
@@ -117,6 +125,19 @@
 
    .blog-style-three .single-blog-style-three{
       width: 45%;
+      height: 100%;
+   }
+   .blog-style-three .single-blog-style-three .image-block{
+      height: 200px;
+   }
+   .blog-style-three .single-blog-style-three .text-block h3{
+      display: inline-block;
+      height: 55px;
+   }
+
+   /* Contacto */
+   .single-contact-info-one p{
+      padding: 0 10px;
    }
 }
 

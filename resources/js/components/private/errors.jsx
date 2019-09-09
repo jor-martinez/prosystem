@@ -4,7 +4,7 @@ const errorAlert = (message) => {
    if(!message) return null
   
    return(
-      <div className="errors-containor">
+      <div className="alert alert-danger">
          {Object.keys(message).map(field=>
             <div className="error-text" key={field}><strong>{field}: </strong>
                {message[field].map(error=>

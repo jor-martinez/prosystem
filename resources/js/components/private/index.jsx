@@ -8,6 +8,7 @@ import {
 import axios from 'axios'
 
 import logo from '../media/resources/logo-pro.png'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import AdminServices from './adminServices'
 import AdminSlider from './adminSlider'

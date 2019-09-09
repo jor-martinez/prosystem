@@ -1,0 +1,16 @@
+.container{
+    width: 90%;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+.container .item-container{
+    width: 30%;
+    height: 150px;
+    margin: 50px 10px;
+}
+.contenedor{
+    width: 90%;
+    margin: 150px auto;
+}
