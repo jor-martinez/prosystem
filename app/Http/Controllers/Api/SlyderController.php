@@ -20,13 +20,14 @@ class SlyderController extends Controller
     public function store(Request $request)
     {
          $datos = [
-             'Imagen' => 'required|image|mimes:jpg,jpeg,png'
+             'imagen' => 'required|image|mimes:jpg,jpeg,png'
          ];
 
         $this -> validate($request, $datos);
 
         $file = $request -> file('imagen');
         $nombre = $file -> getClientOriginalName();
+        $upload = Storage::disk('uploads') -> put('images/slyder/' . $nombre, file_get_contents($file));
 
         $dato = new Slyder;
         $dato -> titulo = $request -> titulo;
@@ -34,8 +35,6 @@ class SlyderController extends Controller
         $dato -> imagen = $nombre;
         $dato -> link = $request -> link;
         $dato -> save();
-
-        $upload = Storage::disk('uploads') -> put('images/slyder/' . $nombre, file_get_contents($file));
 
         return $upload
                ? response($nombre, 200) -> header('Content-type', 'application/json')
