@@ -58,9 +58,7 @@ class Blog extends Component {
                                  </div>
                               </div>
                               <div className="text-block">
-                                 <h3>
-                                    <Link to={{ pathname: '/articulo/' + articulo.slug, state: { articulo } }}>{articulo.titulo}</Link>
-                                 </h3>
+                                 <h3><a href="blog-details.html">{articulo.titulo}</a></h3>
                                  <div className="meta-info">
                                     <a href="#">Por {articulo.autor}</a>
                                     <span className="sep">/</span>
