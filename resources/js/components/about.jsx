@@ -21,6 +21,7 @@ class About extends Component{
    componentDidMount(){
       this.getMisionVision()
       this.getHistory()
+      window.scrollTo(0,0)
    }
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{

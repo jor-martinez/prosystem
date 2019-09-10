@@ -5,6 +5,7 @@ import SweetAlert from 'sweetalert2'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
+import errorAlert from './errors'
 
 class EditContacto extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class EditContacto extends Component {
             id: this.props.location.state.datosContacto[0].id,
             ubicacion: this.props.location.state.datosContacto[0].ubicacion,
             telefonos: this.props.location.state.datosContacto[0].telefono,
-            correos: this.props.location.state.datosContacto[0].correo
+            correos: this.props.location.state.datosContacto[0].correo,
+            errors: {}
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleOnUpdate = this.handleOnUpdate.bind(this)
@@ -47,7 +49,10 @@ class EditContacto extends Component {
                 window.location.href = '/admin/contacto'
             })
         }).catch(err => {
-            this.setState({ loadAction: false })
+            this.setState({
+                loadAction: false,
+                errors: err.response.data.errors
+            })
             console.log(err.response.data)
             SweetAlert.fire(
                 'Error',
@@ -57,12 +62,13 @@ class EditContacto extends Component {
         })
     }
     render() {
-        const { loadAction } = this.state
+        const { loadAction,errors } = this.state
         console.log(this.props)
         return (
             <div className="one-process-edit">
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar datos de contacto</legend>
+                    {errorAlert(errors)}
                     <Textarea
                         className="form-input"
                         label="Ubicación"

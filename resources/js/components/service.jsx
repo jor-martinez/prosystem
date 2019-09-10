@@ -13,6 +13,9 @@ class Service extends Component{
          Imagen: this.props.location.state.service.Imagen
       }
    }
+   componentDidMount(){
+      window.scrollTo(0,0)
+   }
    render(){
       return(
          <div>

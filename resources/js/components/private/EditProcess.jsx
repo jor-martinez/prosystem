@@ -5,6 +5,7 @@ import SweetAlert from 'sweetalert2'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
+import errorAlert from './errors'
 
 class EditProceso extends Component{
     constructor(props){
@@ -13,7 +14,8 @@ class EditProceso extends Component{
             id: this.props.location.state.proceso.id,
             proceso: this.props.location.state.proceso.proceso,
             descripcion: this.props.location.state.proceso.descripcion,
-            loadAction: false
+            loadAction: false,
+            errors: {}
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleOnUpdate = this.handleOnUpdate.bind(this)
@@ -46,7 +48,10 @@ class EditProceso extends Component{
                 window.location.href = '/admin/procesos'
             })
         }).catch(err=>{
-            this.setState({ loadAction: false })
+            this.setState({
+                loadAction: false,
+                errors: err.response.data.errors
+            })
             console.log(err.response.data)
             SweetAlert.fire(
                 'Error',
@@ -56,11 +61,12 @@ class EditProceso extends Component{
         })
     }
     render(){
-        const {loadAction} = this.state
+        const {loadAction,errors} = this.state
         return (
             <div className="one-process-edit">
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar proceso</legend>
+                    {errorAlert(errors)}
                     <Input
                         className="form-input"
                         label="Nombre"

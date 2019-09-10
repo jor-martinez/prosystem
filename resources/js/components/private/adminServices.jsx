@@ -92,7 +92,9 @@ class AdminServices extends Component{
                this.onReset()
                this.setState({
                   nombre: '',
-                  descripcion: ''
+                  descripcion: '',
+                  Imagen: '',
+                  img: null
                })
             })
             console.log(res);
@@ -217,6 +219,9 @@ class AdminServices extends Component{
                         }
                      }}
                   />
+                  <Container>
+                     <p>Nota: El nombre de las imagenes no debe tener espacios.</p>
+                  </Container>
                   <Container>
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen de portada</span> 

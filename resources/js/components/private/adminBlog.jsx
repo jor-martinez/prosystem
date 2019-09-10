@@ -225,6 +225,9 @@ class AdminBlog extends Component{
                             }}
                         />
                         <Container>
+                            <p>Nota: El nombre de las imagenes no debe tener espacios.</p>
+                        </Container>
+                        <Container>
                             <label htmlFor="file-upload" className="subir">
                                 <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen de portada</span>
                             </label>

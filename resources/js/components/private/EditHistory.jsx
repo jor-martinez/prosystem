@@ -6,13 +6,15 @@ import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
 import { Editor } from '@tinymce/tinymce-react'
+import errorAlert from './errors'
 
 class EditHistory extends Component {
     constructor(props) {
         super(props)
         this.state = {
             id: this.props.location.state.history[0].id,
-            historia: this.props.location.state.history[0].historia
+            historia: this.props.location.state.history[0].historia,
+            errors: {}
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleOnUpdate = this.handleOnUpdate.bind(this)
@@ -45,7 +47,10 @@ class EditHistory extends Component {
                 window.location.href = '/admin/historia'
             })
         }).catch(err => {
-            this.setState({ loadAction: false })
+            this.setState({
+                loadAction: false,
+                errors: err.response.data.errors
+            })
             console.log(err.response.data)
             SweetAlert.fire(
                 'Error',
@@ -59,11 +64,12 @@ class EditHistory extends Component {
         this.setState({ historia: e.target.getContent() })
     }
     render() {
-        const { loadAction } = this.state
+        const { loadAction,errors } = this.state
         return (
             <div className="one-process-edit one-history-edit">
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar historia</legend>
+                    {errorAlert(errors)}
                     <Editor
                         apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
                         id="editor-descripcion"

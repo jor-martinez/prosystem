@@ -29,6 +29,7 @@ class Services extends Component{
    
    componentDidMount(){
       this.getServices()
+      window.scrollTo(0,0)
    }
 
    render(){
