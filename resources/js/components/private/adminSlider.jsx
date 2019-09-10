@@ -81,7 +81,7 @@ class AdminSlider extends Component{
          data: data
       }).then(res=>{
          this.setState({loadAction: false})
-         console.log('Slider agregada correctamente', res)
+         console.log(res)
          SweetAlert.fire(
             'Correcto',
             'El servicio se ha agregado correctamente',
@@ -93,6 +93,7 @@ class AdminSlider extends Component{
                titulo: '',
                descripcion: '',
                imagen: '',
+               img: null,
                link: ''
             })
          })
@@ -218,6 +219,9 @@ class AdminSlider extends Component{
                      onChange={this.handleChange}
                      value={this.state.descripcion}
                   />
+                  <Container>
+                     <p>Nota: El nombre de las imagenes no debe tener espacios.</p>
+                  </Container>
                   <Container>
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen</span> 

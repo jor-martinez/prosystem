@@ -31,6 +31,7 @@ class Brands extends Component{
    }
    componentDidMount(){
       this.getMarcas()
+      window.scrollTo(0,0)
    }
    render(){
       const {marcas} = this.state

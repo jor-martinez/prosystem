@@ -17,6 +17,7 @@ class Contact extends Component{
    }
    componentDidMount(){
       this.getDatosContacto()
+      window.scrollTo(0,0)
    }
    getDatosContacto(){
       axios.get('/api/empresa').then(res=>{

@@ -112,6 +112,7 @@ class Home extends Component{
       this.getProductos()
       this.getMisionVision()
       this.getHistory()
+      window.scrollTo(0,0)
    }
 
    render(){
@@ -173,6 +174,8 @@ class Home extends Component{
                   <div className="row">
                      {
                         (productos.map(producto=>(
+                           (producto.link)
+                           ?
                            <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
                               <div className="icon-block">
                                  <center><i className="fas fa-archive"></i></center>
@@ -180,6 +183,14 @@ class Home extends Component{
                               <h3><a href={producto.link} target="blank">{producto.titulo}</a></h3>
                               <p>{producto.descripcion}</p>
                               <a href={producto.link} target="blank" className="more-link">Leer más</a>
+                           </div>
+                           :
+                           <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
+                              <div className="icon-block">
+                                 <center><i className="fas fa-archive"></i></center>
+                              </div>
+                              <h3><a href="#" target="blank">{producto.titulo}</a></h3>
+                              <p>{producto.descripcion}</p>
                            </div>
                         )))
                      }
@@ -341,7 +352,7 @@ class Home extends Component{
                         (procesos.map(proceso=>(
                            <div className="single-working-process-one wow fadeInUp" key={proceso.id}>
                               <div className="count-block">
-                                 01
+                                 {'0'+proceso.id}
                               </div>
                               <h3>{proceso.proceso}</h3>
                               <p>{proceso.descripcion}</p>

@@ -15,6 +15,9 @@ class Articulo extends Component {
             fechaCreado: this.props.location.state.articulo.created_at
         }
     }
+    componentDidMount(){
+        window.scrollTo(0,0)
+    }
     render() {
         return (
             <div>

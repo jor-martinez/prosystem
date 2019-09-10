@@ -5,6 +5,7 @@ import SweetAlert from 'sweetalert2'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
+import errorAlert from './errors'
 
 class EditMission extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class EditMission extends Component {
             id: this.props.location.state.datos[0].id,
             mision: this.props.location.state.datos[0].mision,
             vision: this.props.location.state.datos[0].vision,
-            objetivo: this.props.location.state.datos[0].objetivo
+            objetivo: this.props.location.state.datos[0].objetivo,
+            errors: {}
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleOnUpdate = this.handleOnUpdate.bind(this)
@@ -47,7 +49,10 @@ class EditMission extends Component {
                 window.location.href = '/admin/mision-vision-objetivo'
             })
         }).catch(err => {
-            this.setState({ loadAction: false })
+            this.setState({
+                loadAction: false,
+                errors: err.response.data.errors
+            })
             console.log(err.response.data)
             SweetAlert.fire(
                 'Error',
@@ -57,12 +62,13 @@ class EditMission extends Component {
         })
     }
     render() {
-        const { loadAction } = this.state
+        const { loadAction,errors } = this.state
         console.log(this.props)
         return (
             <div className="one-process-edit">
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar misión, visión y objetivo</legend>
+                    {errorAlert(errors)}
                     <Textarea
                         className="form-input"
                         label="Misión"

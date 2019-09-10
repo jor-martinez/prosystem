@@ -174,13 +174,12 @@ class AdminProducts extends Component {
                         <Input
                             id="enlace"
                             className="form-input"
-                            label="Link"
+                            label="Link (opcional)"
                             floatingLabel={true}
                             name="link"
                             type="url"
                             onChange={this.handleChange}
                             value={this.state.link}
-                            required
                         />
                         <Button variant="raised" color="primary" disabled={loadAction} >
                             {

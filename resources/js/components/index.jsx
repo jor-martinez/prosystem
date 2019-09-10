@@ -25,6 +25,7 @@ import Blog from './blog'
 import Articulo from './articulo'
 import Contact from './contact'
 import Error404 from './error404'
+import Paginacion from './paginacion'
 
 class App extends Component{
    constructor(props){
@@ -75,6 +76,7 @@ class App extends Component{
                   <Route path="/blog" component={Blog} />
                   <Route path="/articulo" component={Articulo} />
                   <Route path="/contacto" component={Contact} />
+                  <Route path="/paginacion" component={Paginacion} />
                   <Route component={Error404} />
                </Switch>
                <a href="#" onClick={this.handleOnScroll} className="scroll-to-top"><i className="fas fa-angle-up"></i></a>
@@ -113,9 +115,8 @@ class App extends Component{
                                  <h3>Contáctanos</h3>
                               </div>
                               <form action="#" className="newsletter-form">
-                                 <p>Deja tu email y nosotros nos comunicamos contigo</p>
-                                 <input type="text" placeholder="Ingresa tu email" />
-                                 <button type="submit">Subscríbete</button>
+                                 <p>Consulta las diferentes opciones de contácto</p>
+                                 <Link to="/contacto" className="cta-btn">Contáctanos</Link>
                               </form>
                            </div>
                         </div>

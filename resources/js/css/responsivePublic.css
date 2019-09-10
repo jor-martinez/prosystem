@@ -5,14 +5,14 @@
 }
 
 @media screen and (max-width: 991px){
-   .slider{
+   body .slider{
       height: 400px;
    }
    .info-slider-container{
       margin: auto;
       width: 70%;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 120px;
    }
    .offer-style-one .row{
       display: flex;
@@ -46,6 +46,7 @@
    }
    .service-style-two .single-service-one{
       width: 45%;
+      margin-bottom: 50px;
    }
    .single-service-one .image-block {
       height: 250px;
@@ -95,6 +96,7 @@
    }
    .featured-style-one .signle-featured-one .icon-block .inner-block i {
       font-size: 14px;
+      padding: 0;
    }
 
    /* acerca de nosotros */
@@ -121,7 +123,9 @@
 }
 
 @media screen and (max-width: 575px){
-
+   body .slider{
+      height: 300px;
+   }
    .page-title-block{
       height: 80px;
    }
@@ -137,7 +141,7 @@
       background-size: cover;
    }
    .info-slider-container{
-      padding-top: 40px;
+      padding-top: 100px;
    }
    .info-slider-container h1{
       font-size: 32px;
@@ -187,10 +191,11 @@
    }
    .mission-style-one .inner-container{
       padding: 30px;
-      flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
    }
-   .mission-style-one .single-mission-one{
-      margin: auto;
+   .mission-style-one .inner-container .single-mission-one{
+      margin: 0 auto;
       width: 90%;
       text-align: center;
    }
@@ -208,9 +213,24 @@
    }
 
    .cta-style-one{
-      margin-top: 200px;
+      margin-top: 180px;
    }
-
+   .cta-style-one .title-block .tag-line{
+      font-size: 18px;
+   }
+   .cta-style-one .title-block h2{
+      font-size: 32px;
+   }
+   .cta-style-one p{
+      font-size: 15px;
+      padding: 0 10px;
+   }
+   .single-service-one .text-block p{
+      display: none;
+   }
+   .single-service-one .text-block > div{
+      height: 40px;
+   }
    .services-style-one{
       width: 90%;
    }

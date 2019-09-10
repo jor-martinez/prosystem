@@ -27,6 +27,7 @@ class Blog extends Component {
    }
    componentDidMount(){
       this.getArticles()
+      window.scrollTo(0,0)
    }
    render(){
       const {articulos} = this.state
