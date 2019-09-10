@@ -99,10 +99,10 @@ class Contact extends Component{
                            <span className="tag-line">Escríbenos un mensaje</span>
                            <h2>¡Mantente en contacto!</h2>
                            </div>
-                           <form action="inc/sendemail.php" className="contact-form-one contact-form-validated">
+                           <form action="sendmail" method="POST" className="contact-form-one contact-form-validated">
                               <input type="text" name="name" placeholder="Su nombre" />
                               <input type="text" name="email" placeholder="Su correo" />
-                              <textarea placeholder="Su mensaje" name="message" defaultValue={""} />
+                              <textarea placeholder="Su mensaje" name="msg" defaultValue={""} />
                               <button type="submit">Enviar ahora</button>
                            </form>
                         </div>
