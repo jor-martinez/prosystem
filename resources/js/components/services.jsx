@@ -58,7 +58,7 @@ class Services extends Component{
                <div className="row">
                   {
                      (services.map((servicio)=>(
-                        <div className="single-service-one single-service-responsive" key={servicio.id}>
+                        <div className="single-service-one" key={servicio.id}>
                            <div className="image-block">
                               <img src={`../images/servicios/${servicio.Imagen}`} alt="Servicio 1" />
                               <div className="overlay-block">

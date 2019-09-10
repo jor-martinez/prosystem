@@ -5,7 +5,6 @@ import SweetAlert from 'sweetalert2'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
-import errorAlert from './errors'
 
 class EditVentaja extends Component {
     constructor(props) {
@@ -14,8 +13,7 @@ class EditVentaja extends Component {
             id: this.props.location.state.ventaja.id,
             titulo: this.props.location.state.ventaja.titulo,
             descripcion: this.props.location.state.ventaja.descripcion,
-            loadAction: false,
-            errors: {}
+            loadAction: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleOnUpdate = this.handleOnUpdate.bind(this)
@@ -48,10 +46,7 @@ class EditVentaja extends Component {
                 window.location.href = '/admin/ventajas'
             })
         }).catch(err => {
-            this.setState({
-                loadAction: false,
-                errors: err.response.data.errors
-            })
+            this.setState({ loadAction: false })
             console.log(err.response.data)
             SweetAlert.fire(
                 'Error',
@@ -61,12 +56,11 @@ class EditVentaja extends Component {
         })
     }
     render() {
-        const { loadAction, errors } = this.state
+        const { loadAction } = this.state
         return (
             <div className="one-process-edit">
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar ventaja</legend>
-                    {errorAlert(errors)}
                     <Input
                         className="form-input"
                         label="Titulo"

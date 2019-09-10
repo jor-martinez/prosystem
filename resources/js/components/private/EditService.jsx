@@ -7,7 +7,6 @@ import Form from 'muicss/lib/react/form'
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
 import { Editor } from '@tinymce/tinymce-react'
-import errorAlert from './errors'
 
 class Service extends Component{
    constructor(props){
@@ -20,8 +19,7 @@ class Service extends Component{
          slug: this.props.location.state.service.slug,
          Imagen: this.props.location.state.service.Imagen,
          img: null,
-         loadAction: false,
-         errors: {}
+         loadAction: false
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleOnDelete = this.handleOnDelete.bind(this)
@@ -110,11 +108,9 @@ class Service extends Component{
             window.location.href = '/admin/servicios'
          })
       }).catch(err=>{
-         this.setState({
-            loadAction: false,
-            errors: err.response.data.errors
-         })
+         this.setState({loadAction: false})
          console.log(err)
+         console.log(err.response.data)
          SweetAlert.fire(
             'Error',
             'Algo salió mal',
@@ -128,7 +124,7 @@ class Service extends Component{
    }
    render(){
       console.log(this.state)
-      const {loadAction,errors} = this.state
+      const {loadAction} = this.state
       return(
          <div>
             <div className="one-service-containor" id="serv-cont" >
@@ -153,7 +149,6 @@ class Service extends Component{
             <div className="one-service-edit" id="serv-edit">
                <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data">
                   <legend>Editar servicio</legend>
-                  {errorAlert(errors)}
                   <Input
                      label="Nombre"
                      floatingLabel={true}
