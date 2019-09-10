@@ -19,8 +19,7 @@ class ProductosController extends Controller
         
         $datos = [
             'titulo' => 'required|string|min:5',
-            'descripcion' => 'required|string|min:10',
-            'link' => 'required|string|min:11'
+            'descripcion' => 'required|string|min:10'
         ];
         $this -> validate($request, $datos);
         $dato = new Productos;
@@ -35,8 +34,7 @@ class ProductosController extends Controller
     {
         $datos = [
             'titulo' => 'required|string|min:5',
-            'descripcion' => 'required|string|min:10',
-            'link' => 'required|string|min:11'
+            'descripcion' => 'required|string|min:10'
         ];
         $this -> validate($request, $datos);
         $dato = Productos::findOrFail($id);
