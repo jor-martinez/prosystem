@@ -18,21 +18,7 @@ Route::get('/contraseña/restaurar/{token}', 'Auth\ResetPasswordController@showR
 -> name('password.reset');
 
 //Correo de contacto
-//Route::post('/coreo/contacto', 'EmailController@contact');
-Route::post('sendmail', function() {
-  $data = array(
-    'name' => "Formulario de contacto",
-  );
-
-  Mail:send('email', $data, function($message){
-    $message->from('hello@example.com', $name);
-
-    $message->to('daniel@prosystem.mx')->subject('Formulario de contacto');
-
-    $message->subject($msg);
-  });
-  return "Tu email ha sido enviado correctamente";
-});
+Route::post('/enviar', 'EmailController@enviar');
 
 // Front
 

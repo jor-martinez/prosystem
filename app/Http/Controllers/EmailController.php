@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mail;
+use App\Mail\Contacto;
+use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function contact(Request $request){
-        $subject = "Contacto";
-        $for = "daniel@prosystem.mx";
+    public function enviar(Request $request){
+        $remitente = $request -> email;
+        $contenido = $request -> msg;
+        $persona = $request -> name;
 
-        Mail::send('email', function($message) use($subject,$for){
-            $msj->from($email,$name);
-            $msj->subject($subject);
-            $msj->to($for);
+        Mail::send('contacto', ['contenido' => $contenido], function ($contacto) use($remitente, $contenido, $persona) {
+            $contacto->from($remitente, $persona);
+            $contacto->to('daniel@prosystem.mx');
+            $contacto->subject('Nuevo contacto desde ProSystem');
         });
-        return redirect()->back();
+
+        return response()->json(['status' => 200, 'message' => 'Envio exitoso']);
     }
 }

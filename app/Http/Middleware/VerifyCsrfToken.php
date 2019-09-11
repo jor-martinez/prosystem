@@ -19,6 +19,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //'url':'localhost:8000/api/empesa';
+        '/enviar'
     ];
 }
