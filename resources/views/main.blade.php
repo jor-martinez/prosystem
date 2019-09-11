@@ -9,9 +9,13 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/preloader.css') }}"/>
         <title>Pro System</title>
     </head>
     <body>
+      <div id="spinner" class="preloader">
+          <img src="{{ asset('images/spinner.png') }}" alt="spinner"/>
+      </div>
       <div id="root"></div>
     </body>
     <script type="text/javascript" src="{{ asset('js/public.js') }}"></script>

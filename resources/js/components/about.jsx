@@ -22,6 +22,7 @@ class About extends Component{
       this.getMisionVision()
       this.getHistory()
       window.scrollTo(0,0)
+      document.getElementById('spinner').style.display = 'none';
    }
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{

@@ -28,6 +28,7 @@ class Blog extends Component {
    componentDidMount(){
       this.getArticles()
       window.scrollTo(0,0)
+      document.getElementById('spinner').style.display = 'none';
    }
    render(){
       const {articulos} = this.state

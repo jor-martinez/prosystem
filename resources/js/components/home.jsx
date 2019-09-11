@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import Slider from 'react-animated-slider';
-import 'react-animated-slider/build/horizontal.css';
-import Carrusel from 'react-slick'
+import Slider from 'react-animated-slider'
+import AliceCarousel from 'react-alice-carousel'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Helmet from 'react-helmet'
@@ -15,6 +14,9 @@ import Brand from './sliderMarcas'
 
 import '../css/stylesPublic.css'
 import '../css/responsivePublic.css'
+import "react-alice-carousel/lib/alice-carousel.css"
+import 'react-animated-slider/build/horizontal.css'
+
 
 class Home extends Component{
    constructor(...props){
@@ -28,7 +30,8 @@ class Home extends Component{
          ventajas: [],
          productos: [],
          nosotros: [],
-         historia: []
+         historia: [],
+         load: true
       }
       
       this.getServices = this.getServices.bind(this)
@@ -42,7 +45,7 @@ class Home extends Component{
    getHistory(){
       axios.get('/api/historia').then(result=>{
          console.log(result)
-         this.setState({historia: result.data})
+         this.setState({historia: result.data, load: false})
       }).catch(err=>{
          console.log(err)
       })
@@ -98,7 +101,8 @@ class Home extends Component{
       axios.get('/api/productos').then(res => {
          console.log(res.data)
          this.setState({
-            productos: res.data
+            productos: res.data,
+            load: false
          })
       }).catch(err => {
          console.log(err)
@@ -113,31 +117,25 @@ class Home extends Component{
       this.getMisionVision()
       this.getHistory()
       window.scrollTo(0,0)
+      document.getElementById('spinner').style.display = 'none';
    }
 
    render(){
-      // window.title = "Inicio"
-      const settings = {
-         autoplay: true,
-         dots: true,
-         infinite: true,
-         speed: 1500,
-         slidesToShow: 3,
-         slidesToScroll: 1,
-      }
+      const responsive = {
+         0: { items: 1 },
+         600: { items: 1},
+         900: { items: 2},
+         1024: { items: 3 },
 
-      const settings575 = {
-         autoplay: true,
-         dots: true,
-         infinite: true,
-         speed: 1500,
-         slidesToShow: 1,
-         slidesToScroll: 1,
-      }
+       }
 
-      const {services,slider,nosotros,historia,procesos,ventajas,productos} = this.state
+
+      const {services,slider,nosotros,historia,procesos,ventajas,productos,load} = this.state
+
+   
       return(
          <div>
+            
             <Helmet>
                <title>Pro System</title>
             </Helmet>
@@ -271,43 +269,29 @@ class Home extends Component{
                      </div>
                </section>
                {
-                  (window.innerWidth <= 575)
-                  ?
-                     <Carrusel {...settings575} className="carrusel-services">
-                        {
-                           services.map((service)=>(
-                              <div className="single-service-one" key={service.id}>
-                                 <div className="image-block">
-                                    <img src={`../images/servicios/${service.Imagen}`} alt="Servicio" />
-                                 </div>
-                                 <div className="text-block">
-                                    <h3><Link to="servicio">{service.nombre}</Link></h3>
-                                    <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
-                                    <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }} 
-                                    className="more-btn">Leer más</Link>
-                                 </div>
-                              </div>
-                           ))
-                        }
-                     </Carrusel>
-                  :
-                     <Carrusel {...settings} className="carrusel-services">
-                        {services.map((service)=>(
-                           <div className="single-service-one" key={service.id}>
-                              <div className="image-block">
-                                 <img src={`../images/servicios/${service.Imagen}`} alt="Servicio" />
-                              </div>
-                              <div className="text-block">
-                                 <h3><Link to="/servicio">{service.nombre}</Link></h3>
-                                 <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
-                                 <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}
-                                 className="more-btn">Leer más</Link>
-                              </div>
+                  <AliceCarousel
+                     mouseDragEnabled
+                     responsive={responsive}
+                     autoPlay
+                     infinite
+                     duration={2000}
+                     buttonsDisabled
+                     autoPlayInterval={1000}
+                  >
+                     {services.map(service=>
+                        <div className="single-service-one" key={service.id}>
+                           <div className="image-block">
+                              <img src={`../images/servicios/${service.Imagen}`} alt="Servicio" />
                            </div>
-                        ))
-
-                        }
-                     </Carrusel>
+                           <div className="text-block">
+                              <h3><Link to="/servicio">{service.nombre}</Link></h3>
+                              <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
+                              <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}
+                              className="more-btn">Leer más</Link>
+                           </div>
+                        </div>
+                     )}
+                  </AliceCarousel>
                }
 
             </section>

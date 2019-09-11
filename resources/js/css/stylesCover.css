@@ -2,7 +2,7 @@
 
 body {
    margin: 0;
-   margin-top: 100px;
+   margin-top: 120px;
    font-family: "Work Sans", sans-serif;
    font-size: 15px;
    line-height: 26px;
@@ -16,123 +16,6 @@ a:focus,
 a:visited {
     text-decoration: none;
 }
-
-/* header */
-/* .Main-container { padding: 1rem; } */
-.header{
-   z-index: 20000;
-}
-.logo {
-  margin-left: 40px;
-  width: 230px;
-}
-
-.custom-menu-wrapper {
-   z-index: 20000;
-   height: 100px;
-   width: 100%;
-   background-color: rgb(255, 255, 255);
-   white-space: nowrap;
-   position: fixed;
-   top: 0;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   box-shadow: 0 0 5px 0 grey;
-}
-
-.custom-menu {
-   display: inline-block;
-   width: auto;
-   vertical-align: middle;
-   -webkit-font-smoothing: antialiased;
-}
-
-.custom-menu .pure-menu-list{
-   display: flex;
-   margin-right: 40px;
-}
-
-.custom-menu .pure-menu-list .pure-menu-item{
-   list-style: none;
-   margin: 15px;
-}
-
-.custom-menu .pure-menu-link,
-.custom-menu .pure-menu-heading {
-   font-weight: 500;
-   font-size: 17px;
-   color: #182345;
-   position: relative;
-   top: 5px;
-   transition: all .4s ease;
-}
-
-.custom-menu .pure-menu-link:hover,
-.custom-menu .pure-menu-heading:hover {
-    color: #3ADBEB;
-}
-
-.custom-menu-top {
-   position: relative;
-   padding-top: .5em;
-   padding-bottom: .5em;
-}
-
-.custom-menu-brand {
-    display: block;
-    text-align: center;
-    /* position: relative; */
-    /* right: -120%; */
-}
-
-.custom-menu-toggle {
-   display: block;
-   width: 44px;
-   height: 44px;
-   /* position: absolute; */
-   /* top: 20px;
-   left: 10px; */
-   display: none;
-}
-
-.custom-menu-toggle .bar {
-   background-color: #161827;
-   display: block;
-   width: 30px;
-   height: 3px;
-   border-radius: 100px;
-   position: absolute;
-   top: 35px;
-   /* right: 12px; */
-   -webkit-transition: all 0.5s;
-   -moz-transition: all 0.5s;
-   -ms-transition: all 0.5s;
-   transition: all 0.5s;
-}
-
-.custom-menu-toggle .bar:first-child {
-    -webkit-transform: translateY(-6px);
-    -moz-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
-}
-
-.custom-menu-toggle.x .bar {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.custom-menu-toggle.x .bar:first-child {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-
 
 /* Footer */
 

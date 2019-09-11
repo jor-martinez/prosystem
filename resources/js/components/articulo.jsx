@@ -17,6 +17,7 @@ class Articulo extends Component {
     }
     componentDidMount(){
         window.scrollTo(0,0)
+        document.getElementById('spinner').style.display = 'none';
     }
     render() {
         return (

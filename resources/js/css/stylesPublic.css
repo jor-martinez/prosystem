@@ -180,6 +180,7 @@ body .slider{
    margin-bottom: 17px;
    display: inline-block;
    height: 50px;
+   text-align: left;
 }
 
 .single-offer-style-one h3 a {
@@ -843,10 +844,9 @@ body .slider{
    font-size: 17px;
    line-height: 26px;
 }
-.service-style-one .carrusel-services{
-   height: 950px;
-}
+
 .single-service-one{
+   margin: 0 20px;
    margin-bottom: 10px;
    height: 480px;
 }
@@ -876,8 +876,9 @@ body .slider{
    margin: 0;
 }
 .single-service-one .text-block > div{
-   height: 80px;
+   height: 70px;
    overflow: hidden;
+   margin-bottom: 10px;
 }
 .single-service-one .text-block h3 {
    font-size: 20px;

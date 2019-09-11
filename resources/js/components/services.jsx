@@ -30,6 +30,7 @@ class Services extends Component{
    componentDidMount(){
       this.getServices()
       window.scrollTo(0,0)
+      document.getElementById('spinner').style.display = 'none';
    }
 
    render(){

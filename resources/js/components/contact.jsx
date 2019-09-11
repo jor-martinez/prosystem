@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Helmet from 'react-helmet'
 import axios from 'axios'
+import SweetAlert from 'sweetalert2'
 
 import pageTitle from './media/resources/page-title-bg.jpg'
 
@@ -11,13 +12,20 @@ class Contact extends Component{
    constructor(props){
       super(props)
       this.state={
-         contacto: []
+         contacto: [],
+         name: '',
+         email: '',
+         msg: '',
+         loadAction: false
       }
       this.getDatosContacto = this.getDatosContacto.bind(this)
+      this.handleOnSubmit = this.handleOnSubmit.bind(this)
+      this.change = this.change.bind(this)
    }
    componentDidMount(){
       this.getDatosContacto()
       window.scrollTo(0,0)
+      document.getElementById('spinner').style.display = 'none';
    }
    getDatosContacto(){
       axios.get('/api/empresa').then(res=>{
@@ -28,8 +36,48 @@ class Contact extends Component{
          console.log(err)
       })
    }
+   change(e){
+      const {name, value} = e.target
+
+      this.setState({
+         [name]: value
+      })
+   }
+
+   handleOnSubmit(e){
+      e.preventDefault()
+      // console.log(this.state)
+      this.setState({loadAction: true})
+
+      const data = new FormData()
+
+      data.append('name', this.state.name)
+      data.append('email', this.state.email)
+      data.append('msg', this.state.msg)
+
+      axios.post('/enviar', data).then(res=>{
+         console.log(res)
+         SweetAlert.fire({
+            type: 'success',
+            title: 'Correo enviado correctamente'
+          })
+          this.setState({
+             name: '',
+             email: '',
+             msg: '',
+             loadAction: false
+          })
+      }).catch(err=>{
+         console.log(err)
+         SweetAlert.fire({
+            type: 'error',
+            title: 'Ocurrió un error'
+          })
+          this.setState({loadAction: false})
+      })
+   }
    render(){
-      const {contacto} = this.state
+      const {contacto, loadAction} = this.state
       return(
          <div>
             <Helmet>
@@ -100,11 +148,22 @@ class Contact extends Component{
                            <span className="tag-line">Escríbenos un mensaje</span>
                            <h2>¡Mantente en contacto!</h2>
                            </div>
-                           <form action="/enviar" method="POST" className="contact-form-one contact-form-validated">
-                              <input type="text" name="name" placeholder="Su nombre" />
-                              <input type="text" name="email" placeholder="Su correo" />
-                              <textarea placeholder="Su mensaje" name="msg" defaultValue={""} />
-                              <button type="submit">Enviar ahora</button>
+                           <form onSubmit={this.handleOnSubmit} className="contact-form-one contact-form-validated" autoComplete="off">
+                              <label htmlFor="">Nombre</label>
+                              <input type="text" value={this.state.name} onChange={this.change} name="name" required/>
+                              <label htmlFor="">Correo</label>
+                              <input type="email" value={this.state.email} onChange={this.change} name="email" required/>
+                              <label htmlFor="">Mensaje</label>
+                              <textarea value={this.state.msg} onChange={this.change} name="msg" defaultValue={""} required/>
+                              <button type="submit" disabled={loadAction}>
+                                 {
+                                 (loadAction)
+                                       ?
+                                       <span><i className="fas fa-spinner fa-spin"></i> Enviando</span>
+                                       :
+                                       <span>Enviar</span>
+                                 }
+                              </button>
                            </form>
                         </div>
                      </div>
