@@ -75,7 +75,7 @@ const Navigation = styled.header`
       }
     }
     a.active {
-      color: #3ADBEB;
+      color: #182345;
     }
   }
 
