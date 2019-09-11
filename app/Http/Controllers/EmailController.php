@@ -13,7 +13,7 @@ class EmailController extends Controller
         $contenido = $request -> msg;
         $persona = $request -> name;
 
-        Mail::send('contacto', ['contenido' => $contenido], function ($contacto) use($remitente, $contenido, $persona) {
+        Mail::send('email.contacto', ['contenido' => $contenido], function ($contacto) use($remitente, $contenido, $persona) {
             $contacto->from($remitente, $persona);
             $contacto->to('daniel@prosystem.mx');
             $contacto->subject('Nuevo contacto desde ProSystem');

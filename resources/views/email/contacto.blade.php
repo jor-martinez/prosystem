@@ -3,7 +3,7 @@
 <head></head>
 <body>
     <div>
-        <h1>{{$contenido}}</h1>
+        <p>{{$contenido}}</p>
     </div>
 </body>
 </html>
