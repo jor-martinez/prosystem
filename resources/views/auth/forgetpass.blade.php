@@ -20,12 +20,17 @@
                 <div class="form-group">
                     <i class="fas fa-envelope"></i>
                     <!-- <label>Correo electrónico<span class="required">*</span></label> -->
-                    <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Correo">
+                    <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Correo" autoload:'off'>
 
                     @if ($errors->has('email'))
                     <span class="invalid-feedback" style="color: red;">
                         {{ $errors->first('email') }}
                     </span>
+                    @endif
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
                     @endif
                 </div>
 
