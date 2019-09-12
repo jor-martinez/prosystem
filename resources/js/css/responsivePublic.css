@@ -7,12 +7,25 @@
 @media screen and (max-width: 991px){
    body .slider{
       height: 400px;
+      margin-top: -15px;
+   }
+   .slider .slider-img{
+      height: 400px;
    }
    .info-slider-container{
       margin: auto;
       width: 70%;
       text-align: center;
-      padding-top: 120px;
+      padding-top: 100px;
+   }
+   .slider .button-slider{
+      top: 200px;
+   }
+   .page-title-block{
+      margin-top: -15px;
+   }
+   .offer-style-one{
+      margin-top: 80px;
    }
    .offer-style-one .row{
       display: flex;
@@ -125,6 +138,22 @@
 @media screen and (max-width: 575px){
    body .slider{
       height: 300px;
+      margin-top: -15px;
+   }
+   .slider .slider-img{
+      height: 300px;
+   }
+   .info-slider-container{
+      padding-top: 100px;
+   }
+   .slider .button-slider{
+      top: 150px;
+   }
+   .page-title-block{
+      margin-top: -15px;
+   }
+   .offer-style-one{
+      margin-top: 80px;
    }
    .page-title-block{
       height: 80px;

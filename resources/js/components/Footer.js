@@ -40,7 +40,7 @@ const Footer = () => (
                         <h3>Contáctanos</h3>
                     </div>
                     <form action="#" className="newsletter-form">
-                        <p>Consulta las diferentes opciones de contácto</p>
+                        <p>Consulta las diferentes opciones de contacto</p>
                         <Link to="/contacto" className="cta-btn">Contáctanos</Link>
                     </form>
                 </div>

@@ -89,9 +89,9 @@ body{
    position: relative;
    top: 70px;
    z-index: 200;
-   color: red;
+   color: #721c24;
    font-size: 12px;
-   font-weight: 100;
+   font-weight: 900;
 }
 
 input:-webkit-autofill,
@@ -127,4 +127,13 @@ input:-webkit-autofill:focus {
    background: rgb(0, 195, 255);
    color: #fff;
    cursor: pointer;
+}
+
+.form-group .success-alert{
+   position: relative;
+   top: 12px;
+   z-index: 200;
+   color: #155724;
+   font-size: 13px;
+   font-weight: 900;
 }

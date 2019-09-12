@@ -19,10 +19,8 @@
     "lodash": "^4.17.5",
     "popper.js": "^1.12",
     "react": "^16.2.0",
-    "react-animated-slider": "^1.1.4",
     "react-dom": "^16.2.0",
     "react-router-dom": "^5.0.1",
-    "react-slick": "^0.24.0",
     "resolve-url-loader": "^2.3.1",
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0"

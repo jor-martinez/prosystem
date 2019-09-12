@@ -25,7 +25,7 @@ class Contact extends Component{
    componentDidMount(){
       this.getDatosContacto()
       window.scrollTo(0,0)
-      document.getElementById('spinner').style.display = 'none';
+      // document.getElementById('spinner').style.display = 'none';
    }
    getDatosContacto(){
       axios.get('/api/empresa').then(res=>{
@@ -154,7 +154,7 @@ class Contact extends Component{
                               <label htmlFor="">Correo</label>
                               <input type="email" value={this.state.email} onChange={this.change} name="email" required/>
                               <label htmlFor="">Mensaje</label>
-                              <textarea value={this.state.msg} onChange={this.change} name="msg" defaultValue={""} required/>
+                              <textarea value={this.state.msg} onChange={this.change} name="msg" required/>
                               <button type="submit" disabled={loadAction}>
                                  {
                                  (loadAction)

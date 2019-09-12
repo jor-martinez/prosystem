@@ -131,8 +131,8 @@ class AdminServices extends Component{
             <section className="item-list">
                <div className="refresh">
                   <button className="btn-refresh tooltip" onClick={this.actualizar}>
-                     <i class="fas fa-sync-alt"></i>
-                     <span class="tooltiptext">Actualizar lista</span>
+                     <i className="fas fa-sync-alt"></i>
+                     <span className="tooltiptext">Actualizar lista</span>
                   </button>
                </div>
                {

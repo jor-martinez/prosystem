@@ -7,13 +7,16 @@ import Moment from 'react-moment'
 import pageTitle from './media/resources/page-title-bg.jpg'
 
 import Brand from './sliderMarcas'
+import ListPagination from './listaPags'
 
 class Blog extends Component {
    constructor(props){
       super(props)
 
       this.state = {
-         articulos: []
+         articulos: [],
+         currentPage: 1,
+         postsPerPage: 3
       }
       this.getArticles = this.getArticles.bind(this)
    }
@@ -28,10 +31,19 @@ class Blog extends Component {
    componentDidMount(){
       this.getArticles()
       window.scrollTo(0,0)
-      document.getElementById('spinner').style.display = 'none';
+      // document.getElementById('spinner').style.display = 'none';
    }
    render(){
-      const {articulos} = this.state
+      const {articulos,currentPage,postsPerPage} = this.state
+
+      // obtener los post
+      const indexOfLastPost = currentPage * postsPerPage,
+      indexOfFirstPost = indexOfLastPost - postsPerPage,
+      currentPost = articulos.slice(indexOfFirstPost, indexOfLastPost)
+
+      // Cambiar pagina
+      const paginate = pageNumber => this.setState({currentPage: pageNumber})
+
       return (
          <div>
             <Helmet>
@@ -51,8 +63,8 @@ class Blog extends Component {
                <div className="container">
                   <div className="row">
                      {
-                        (articulos.map((articulo)=>(
-                           <div className="single-blog-style-three">
+                        (currentPost.map((articulo)=>(
+                           <div key={articulo.id} className="single-blog-style-three">
                               <div className="image-block">
                                  <img src={`../images/blog/${articulo.encabezado}`} alt="Post Blog" />
                                  <div className="overlay-block">
@@ -73,13 +85,7 @@ class Blog extends Component {
                         )))
                      }                     
                   </div>
-                  <div className="post-pagination text-center">
-                     <a href="#"><i className="cameron-icon-left-arrow" /></a>
-                     <a href="#" className="active">1</a>
-                     <a href="#">2</a>
-                     <a href="#">3</a><a href="#">4</a>
-                     <a href="#">5</a><a href="#"><i className="cameron-icon-right-arrow" /></a>
-                  </div>
+                  <ListPagination postPerPage={postsPerPage} totalPost={articulos.length} paginate={paginate} />
                </div>
             </section>
             <section className="brands-area-one">

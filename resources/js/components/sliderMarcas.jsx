@@ -1,17 +1,8 @@
 import React, {Component} from 'react'
-import Carrusel from 'react-slick'
+import AliceCarousel from 'react-alice-carousel'
+import "react-alice-carousel/lib/alice-carousel.css"
 import axios from 'axios'
 
-
-const settings2 = {
-   autoplay: true,
-   dots: false,
-   infinite: true,
-   speed: 2000,
-   slidesToShow: 4,
-   slidesToScroll: 1,
-   arrows: false
-}
 
 class Brands extends Component{
    constructor(props){
@@ -35,17 +26,32 @@ class Brands extends Component{
    }
    render(){
       const {marcas} = this.state
+      const responsive = {
+         0: { items: 1 },
+         600: { items: 2},
+         900: { items: 3},
+         1024: { items: 4 },
+
+      }
       return(
          <div>
-            <Carrusel {...settings2} className="slider-logos">
+            <AliceCarousel
+               mouseDragEnabled
+               autoPlay
+               autoPlayInterval={1000}
+               responsive={responsive}
+               dotsDisabled
+               duration={2500}
+               buttonsDisabled
+            >
                {
                   marcas.map((marca)=>(
-                     <div className="item" key={marca.id}>
+                     <div className="item-brand" key={marca.id}>
                         <center><img className="img-marca" src={`../images/marcas/${marca.Imagen}`} alt="marca" /></center>
                      </div>
                   ))
                }
-            </Carrusel>
+            </AliceCarousel>
          </div>
       )
    }

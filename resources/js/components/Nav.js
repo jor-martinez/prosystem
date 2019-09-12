@@ -15,7 +15,6 @@ const Navigation = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 120px;
-  margin-bottom: 60px;
   background: #fff;
   padding-left: 50px;
 
@@ -80,6 +79,8 @@ const Navigation = styled.header`
   }
 
   @media only screen and (max-width: 991px) {
+    position: relative;
+    top: 0;
     padding: 0px;
     .logo {
       padding-left: 15px;
@@ -91,12 +92,14 @@ const Navigation = styled.header`
       }
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 991px) {
+    position: relative;
+    top: 0;
     height: auto;
     min-height: 50px;
     display: block;
     .logo {
-      width: 30%;
+      width: 200px;
       display: block;
       padding-top: 20px;
       margin: 0px;
@@ -195,7 +198,7 @@ class Nav extends Component {
               <li>Blog</li>
             </NavLink>
             <NavLink activeClassName="active" to="/contacto">
-              <li>Contácto</li>
+              <li>Contacto</li>
             </NavLink>
           </ul>
         </nav>

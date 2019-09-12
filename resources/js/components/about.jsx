@@ -22,7 +22,7 @@ class About extends Component{
       this.getMisionVision()
       this.getHistory()
       window.scrollTo(0,0)
-      document.getElementById('spinner').style.display = 'none';
+      // document.getElementById('spinner').style.display = 'none';
    }
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{
@@ -63,7 +63,7 @@ class About extends Component{
                <div className="container">
                   {
                      (historia.map(item=>(
-                        <div className="row">
+                        <div key={item.id} className="row">
                               <div className="content-block my-auto">
                                  <div className="title-block">
                                     <span className="tag-line">Nuestra historia</span>

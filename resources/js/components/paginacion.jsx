@@ -11,7 +11,7 @@ class Paginacion extends Component{
             posts: [],
             loading: false,
             currentPage: 1,
-            postsPerPage: 10
+            postsPerPage: 2
         }
         this.getData = this.getData.bind(this)
     }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Slider from 'react-animated-slider'
 import AliceCarousel from 'react-alice-carousel'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
@@ -15,7 +14,6 @@ import Brand from './sliderMarcas'
 import '../css/stylesPublic.css'
 import '../css/responsivePublic.css'
 import "react-alice-carousel/lib/alice-carousel.css"
-import 'react-animated-slider/build/horizontal.css'
 
 
 class Home extends Component{
@@ -31,7 +29,6 @@ class Home extends Component{
          productos: [],
          nosotros: [],
          historia: [],
-         load: true
       }
       
       this.getServices = this.getServices.bind(this)
@@ -101,23 +98,29 @@ class Home extends Component{
       axios.get('/api/productos').then(res => {
          console.log(res.data)
          this.setState({
-            productos: res.data,
-            load: false
+            productos: res.data
          })
       }).catch(err => {
          console.log(err)
       })
    }
    componentDidMount(){
-      this.getServices()
-      this.getSliders()
-      this.getProcesos()
-      this.getVentajas()
-      this.getProductos()
-      this.getMisionVision()
-      this.getHistory()
+      Promise.all([
+         this.getServices(),
+         this.getSliders(),
+         this.getProcesos(),
+         this.getVentajas(),
+         this.getProductos(),
+         this.getMisionVision(),
+         this.getHistory(),
+      ]).then(res=>{
+         console.log(res)
+      }).catch(err=>{
+         console.log(err)
+      })
+      
       window.scrollTo(0,0)
-      document.getElementById('spinner').style.display = 'none';
+      // document.getElementById('spinner').style.display = 'none';
    }
 
    render(){
@@ -126,43 +129,60 @@ class Home extends Component{
          600: { items: 1},
          900: { items: 2},
          1024: { items: 3 },
+      }
+      const responsive1 = {
+         1024: { items: 1 },
+      }
 
-       }
 
+      const {services,slider,nosotros,historia,procesos,ventajas,productos} = this.state
 
-      const {services,slider,nosotros,historia,procesos,ventajas,productos,load} = this.state
-
-   
       return(
          <div>
-            
             <Helmet>
                <title>Pro System</title>
             </Helmet>
-            <Slider className="slider" autoplay={2500}>
-               {slider.map((item) => (
-                  (item.link)
-                  ?
-                     <div
-                        key={item.id}
-                        style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
-                        <div className="center info-slider-container">
-                           <h1>{item.titulo}</h1>
-                           <p>{item.descripcion}</p>
-                           <a target="blank" href={`${item.link}`}>Ver publicacion</a>
+            <section className="slider">
+               <AliceCarousel
+                  mouseDragEnabled
+                  responsive={responsive1}
+                  infinite
+                  duration={2000}
+                  autoPlay
+                  duration={2000}
+                  autoPlayInterval={1000}
+                  buttonsDisabled
+                  fadeOutAnimation
+                  ref={(el) => (this.Carousel = el)}
+               >
+                  {slider.map((item) => (
+                     (item.link)
+                     ?
+                        <div
+                           className="slider-img"
+                           key={item.id}
+                           style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                           <div className="center info-slider-container">
+                              <h1>{item.titulo}</h1>
+                              <p>{item.descripcion}</p>
+                              <a target="blank" href={`${item.link}`}>Ver publicacion</a>
+                           </div>
                         </div>
-                     </div>
-                  :
-                     <div
-                        key={item.id}
-                        style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
-                        <div className="center info-slider-container">
-                           <h1>{item.titulo}</h1>
-                           <p>{item.descripcion}</p>
+                     :
+                        <div
+                           className="slider-img"
+                           key={item.id}
+                           style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                           <div className="center info-slider-container">
+                              <h1>{item.titulo}</h1>
+                              <p>{item.descripcion}</p>
+                           </div>
                         </div>
-                     </div>
-               ))}
-            </Slider>
+                  ))}
+               </AliceCarousel>
+               <button className="button-slider button-prev" onClick={() => this.Carousel.slidePrev()}><i className="fas fa-chevron-left"></i></button>
+               <button className="button-slider button-next" onClick={() => this.Carousel.slideNext()}><i className="fas fa-chevron-right"></i></button>
+            </section>
             <section className="offer-style-one">
                <div className="container">
                   <div className="title-block">
