@@ -15,7 +15,7 @@
                 <img src="{{ asset('images/logo-pro.png') }}" alt="logo">
             </div>
             <h4 class="login-title">Ingresa tu correo</h4>
-            <form method="post" action="/contraseña/correo">
+            <form method="post" action="/contraseña/correo" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <i class="fas fa-envelope"></i>
@@ -23,7 +23,7 @@
                     <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="Correo" autoload:'off'>
 
                     @if ($errors->has('email'))
-                    <span class="invalid-feedback" style="color: red;">
+                    <span class="invalid-feedback forget-invalid">
                         {{ $errors->first('email') }}
                     </span>
                     @endif
@@ -34,7 +34,7 @@
                     @endif
                 </div>
 
-                <div class="links-group">
+                <div class="links-group links-forget">
                     <input class="btn-primary" type="submit" value="Enviar solicitud">
                 </div>
             </form>

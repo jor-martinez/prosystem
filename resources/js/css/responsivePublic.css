@@ -144,7 +144,7 @@
       height: 300px;
    }
    .info-slider-container{
-      padding-top: 100px;
+      padding-top: 50px;
    }
    .slider .button-slider{
       top: 150px;
@@ -164,13 +164,9 @@
    .page-title-block .container{
       margin-top: -30px;
    }
-
    .slider{
       height: 300px;
       background-size: cover;
-   }
-   .info-slider-container{
-      padding-top: 100px;
    }
    .info-slider-container h1{
       font-size: 32px;

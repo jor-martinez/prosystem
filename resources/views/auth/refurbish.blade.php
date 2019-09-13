@@ -16,7 +16,7 @@
                 <img src="{{ asset('images/logo-pro.png') }}" alt="logo">
             </div>
             <h4 class="login-title">Ingresa tu nueva contraseña</h4>
-            <form method="POST" action="/contraseña/restaurar">
+            <form method="POST" action="/contraseña/restaurar" autocomplete="off">
             @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
 

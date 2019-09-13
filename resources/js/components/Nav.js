@@ -116,7 +116,6 @@ const Navigation = styled.header`
       cursor: pointer;
     }
     ul.collapsed {
-      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
