@@ -24,7 +24,7 @@ class CreateProcesoTrabajoTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('proceso', 45);
-            $table->string('descripcion');
+            $table->longtext('descripcion');
         });
     }
 
