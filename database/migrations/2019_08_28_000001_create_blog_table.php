@@ -23,11 +23,11 @@ class CreateBlogTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('titulo', 45);
-            $table->string('slug', 45);
-            $table->string('autor', 45);
-            $table->longtext('cuerpo', 45);
-            $table->string('encabezado', 45);
+            $table->string('titulo', 80);
+            $table->string('slug', 80);
+            $table->string('autor', 80);
+            $table->longtext('cuerpo');
+            $table->string('encabezado', 80);
             $table->nullableTimestamps();
         });
     }

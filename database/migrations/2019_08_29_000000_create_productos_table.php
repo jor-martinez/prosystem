@@ -23,9 +23,9 @@ class CreateProductosTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('titulo', 50);
+            $table->string('titulo', 100);
             $table->longText('descripcion');
-            $table->string('link', 100)->nullable();
+            $table->longText('link')->nullable();
         });
     }
 
