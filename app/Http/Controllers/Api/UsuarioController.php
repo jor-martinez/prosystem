@@ -14,7 +14,7 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::where('email', '<>', 'admin@prosystem.mx') -> get() ;
         return $usuarios;
     }
 
