@@ -16,11 +16,13 @@
               </ul>
             </div>
           @endif
-          <form action="/dev/productos/nueva/" method="POST" class="form-inline align-items-center justify-content-center" autocomplete="off">          {{ csrf_field() }}
+          <form action="/dev/productos/nueva/" method="POST" class="form-inline align-items-center justify-content-center" autocomplete="off" enctype="multipart/form-data">
+          {{ csrf_field() }}
             <div class="form-group mx-sm-3 mb-2">
-              <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo">
-              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
-              <input type="text" class="form-control" id="link" name="link" placeholder="Link">
+              <input class="form-control" id="titulo" name="titulo" placeholder="Titulo">
+              <input class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
+              <input class="form-control" id="link" name="link" placeholder="Link">
+              <input accept="image/" class="form-control" type="file" id="imagen" name="imagen" placeholder="Imagen"/>
             </div>
             <button type="submit" class="btn btn-success mb-2">Aceptar</button>
           </form>
@@ -44,11 +46,12 @@
               {{$producto->link}}
               <div class="d-flex">
                 @if($producto->completado == 0)
-                <form action="productos/editar/{{$producto->id}}/" method="POST" style="margin-right: 5px">
+                <form action="productos/editar/{{$producto->id}}/" method="POST" style="margin-right: 5px" enctype="multipart/form-data">
                 {{ csrf_field() }}
                   <input class="form-control" id="titulo" name="titulo" value="{{$producto->titulo}}">
                   <input class="form-control" id="descripcion" name="descripcion" value="{{$producto->descripcion}}">
                   <input class="form-control" id="link" name="link" value="{{$producto->link}}">
+                  <input accept="image/" class="form-control" type="file" id="imagen" name="imagen" placeholder="Imagen"/>
                   <button class="btn btn-info" type="submit" style="float:right">Actualizar</button>
                 </form>
                 @endif

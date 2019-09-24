@@ -14,7 +14,7 @@ class ServiciosController extends Controller
     public function index()
     {
         $servicios = Servicios::all();
-        return $servicios;
+        return view('dev.create-servicios')->with ('servicios', $servicios);
     }
 
     public function store(Request $request)
@@ -29,19 +29,19 @@ class ServiciosController extends Controller
         $this -> validate($request, $datos);
 
         $file = $request -> file('Imagen');
-        $nombre = $file -> getClientOriginalName();
+        $nombre_imagen = uniqid();
 
         $dato = new Servicios;
         $dato -> nombre = $request -> nombre;
         $dato -> slug = StringReplace::getPureString($request -> nombre);
         $dato -> descripcion = $request -> descripcion;
-        $dato -> Imagen = $nombre;
+        $dato -> Imagen = $nombre_imagen;
         $dato -> save();
 
-        $upload = Storage::disk('uploads') -> put('images/servicios/' . $nombre, file_get_contents($file));
+        $upload = Storage::disk('uploads') -> put('images/servicios/' . $nombre_imagen, file_get_contents($file));
 
         return $upload
-               ? response($nombre, 200) -> header('Content-type', 'application/json')
+               ? response(200) -> header('Content-type', 'application/json')
                : response('Error', 500) -> header('Content-type', 'application/json');
     }
 
@@ -83,21 +83,6 @@ class ServiciosController extends Controller
 
             return response("actualizado", 200) -> header('Content-Type', 'application/json');
         }
-        
-        
-        // if($_FILES['Imagen']['name']==''){
-        //     $nombre = $dato -> Imagen;
-        //     $dato -> Imagen = $nombre;
-        // } else{
-        //     $ruta_acceso_imagen = public_path('images\servicios').'/'.$dato -> Imagen;//Eliminar imagen actual
-        //     unlink($ruta_acceso_imagen);
-
-        //     $file = $request -> file('Imagen');//Tomando nueva imagen
-        //     $nombre = $file -> getClientOriginalName();
-
-        //     $upload = Storage::disk('uploads') -> put('images/servicios/' . $nombre, file_get_contents($file)); //Insertamos nueva imagen
-        //     $dato -> Imagen = $nombre;
-        // }
         
     }
 
