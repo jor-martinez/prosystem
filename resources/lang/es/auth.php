@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'falló' => 'Estos datos no concuerdan con algún usuario.',
+    'failed' => 'Estos datos no concuerdan con algún usuario.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

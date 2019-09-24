@@ -24,6 +24,7 @@ class CreateProductosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('titulo', 100);
+            $table->string('slug', 45);
             $table->longText('descripcion');
             $table->longText('link')->nullable();
             $table->string('imagen', 45);

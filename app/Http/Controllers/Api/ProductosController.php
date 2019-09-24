@@ -30,6 +30,7 @@ class ProductosController extends Controller
 
         $dato = new Productos;
         $dato -> titulo = $request -> titulo;
+        $dato -> slug = StringReplace::getPureString($request -> titulo);
         $dato -> descripcion = $request -> descripcion;
         $dato -> link = $request -> link;
         $dato -> imagen = $nombre_imagen;
@@ -40,7 +41,7 @@ class ProductosController extends Controller
         // return $upload
         //        ? response(200) -> header('Content-type', 'application/json')
         //        : response('Error', 500) -> header('Content-type', 'application/json');
-        return response("actualizado", 200) -> header('Content-Type', 'application/json');
+        return response("creado", 200) -> header('Content-Type', 'application/json');
     }
     
     public function update(Request $request, $id)
@@ -55,6 +56,7 @@ class ProductosController extends Controller
 
         if(is_null($request -> file('Imagen'))){
             $dato -> titulo = $request -> titulo;
+            $dato -> slug = StringReplace::getPureString($request -> titulo);
             $dato -> descripcion = $request -> descripcion;
             $dato -> link = $request -> link;
             $dato -> save();
