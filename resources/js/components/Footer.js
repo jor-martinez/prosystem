@@ -31,7 +31,6 @@ const Footer = () => (
                         <li><Link to="/acerca" ><i className="fas fa-chevron-right"></i> Acerca de nosotros</Link></li>
                         <li><Link to="/contacto" ><i className="fas fa-chevron-right"></i> Contáctanos</Link></li>
                         <li><Link to="/servicios" ><i className="fas fa-chevron-right"></i> Servicios</Link></li>
-                        <li><Link to="/privacidad" ><i className="fas fa-chevron-right"></i> Política de privacidad</Link></li>
                         
                     </ul>
                 </div>

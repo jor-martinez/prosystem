@@ -191,7 +191,9 @@ textarea{
    display: flex;
    transition: all 1s linear;
 }
-
+.content-service{
+   height: 100%;
+}
 
 /* marcas */
 .main-containor .item-list .marca-containor{
@@ -315,6 +317,13 @@ textarea{
    background: #b71c1c;
    color: #fff;
    font-size: 18px;
+}
+.buttons-block{
+   position: absolute;
+   left: 10px;
+   top: 120px;
+   display: flex;
+   flex-direction: column;
 }
 
 .main-containor .item-add{
@@ -574,33 +583,22 @@ textarea{
  }
  
  .tooltip .tooltiptext {
-   font-size: 14px;
-   visibility: hidden;
-   width: 120px;
+    font-size: 14px;
    background-color: #555;
    color: #fff;
+   visibility: hidden;
+   width: 120px;
    text-align: center;
    border-radius: 6px;
    padding: 5px 0;
+   
+   /* Position the tooltip */
    position: absolute;
    z-index: 1;
-   bottom: 125%;
-   left: 50%;
-   margin-left: -60px;
-   opacity: 0;
-   transition: opacity 0.3s;
+   top: 8px;
+   left: 105%;
  }
  
- .tooltip .tooltiptext::after {
-   content: "";
-   position: absolute;
-   top: 100%;
-   left: 50%;
-   margin-left: -5px;
-   border-width: 5px;
-   border-style: solid;
-   border-color: #555 transparent transparent transparent;
- }
  
  .tooltip:hover .tooltiptext {
    visibility: visible;

@@ -59,7 +59,11 @@ class AdminProducts extends Component {
                 'Atención !',
                 'No se pueden agregar mas productos',
                 'warning'
-            ).then(() => this.resetForm())
+            ).then(() => this.setState({
+                titulo: '',
+                descripcion: '',
+                link: ''
+            }))
             this.setState({ loadAction: false })
 
         } else {

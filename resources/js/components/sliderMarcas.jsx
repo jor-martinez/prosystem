@@ -27,7 +27,7 @@ class Brands extends Component{
    render(){
       const {marcas} = this.state
       const responsive = {
-         0: { items: 1 },
+         0: { items: 2 },
          600: { items: 2},
          900: { items: 3},
          1024: { items: 4 },
@@ -38,11 +38,11 @@ class Brands extends Component{
             <AliceCarousel
                mouseDragEnabled
                autoPlay
-               autoPlayInterval={1000}
                responsive={responsive}
                dotsDisabled
-               duration={2500}
+               duration={2000}
                buttonsDisabled
+               infinite
             >
                {
                   marcas.map((marca)=>(

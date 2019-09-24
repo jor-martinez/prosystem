@@ -138,7 +138,7 @@ class Service extends Component{
                </div>
                <div className="info-block">
                   <h1>{this.state.nombre}</h1>
-                  <div dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
+                  <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
                   <div className="buttons-block">
                      <button onClick={this.handleOnClickEdit} className="button button-edit tooltip">
                         <i className="fas fa-edit"></i>
