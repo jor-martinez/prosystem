@@ -26,6 +26,7 @@ class CreateProductosTable extends Migration
             $table->string('titulo', 100);
             $table->longText('descripcion');
             $table->longText('link')->nullable();
+            $table->string('imagen', 45);
         });
     }
 
