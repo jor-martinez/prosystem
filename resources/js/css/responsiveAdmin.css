@@ -1,0 +1,133 @@
+/* Responsive Panel de administración */
+
+@media screen and (max-width: 991px){
+    .main-containor{
+        flex-direction: column-reverse;
+    }
+    .main-containor .item-add{
+        width: 85%;
+        margin: auto;
+    }
+    .main-containor .item-list{
+        width: 85%;
+        margin: 50px auto;
+        position: relative;
+    }
+    .refresh{
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        left: 105%;
+        top: 10px;
+    }
+    .item-list .item-containor{
+        margin: 10px auto;
+    }
+    .button-show{
+        font-size: 16px;
+        width: 80px;
+        padding-top: 10px;
+    }
+    .tooltip .tooltiptext-left{
+        top: 5px;
+        left: -320%;
+    }
+    .main-containor .item-list .marca-containor{
+        width: 45%;
+        margin: 10px auto;
+    }
+
+    /* para ver un servicio */
+    .buttons-block{
+        left: 91%;
+        top: 155px;
+    }
+    .delete-btn{
+        margin: 10px;
+    }
+    .one-service-edit{
+        width: 80%;
+    }
+    .one-process-edit{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 575px){
+    .admin-main-panel{
+        width: 80%;
+        margin: auto;
+    }
+    .tooltip .tooltiptext{
+        font-size: 12px;
+    }
+    .tooltip .tooltiptext-left{
+        top: 3px;
+        left: -420%;
+        font-size: 12px;
+    }
+    .refresh .btn-refresh{
+        width: 30px;
+        height: 30px;
+    }
+    .btn{
+        width: 35px;
+        height: 35px;
+    }
+    .button-logout i{
+        font-size: 16px;
+    }
+    .main-containor .item-add{
+        width: 100%;
+    }
+    .main-containor .item-list{
+        width: 90%;
+    }
+    .item-list .item-containor{
+        height: 150px;
+        width: 100%;
+    }
+    .item-containor .text-containor h2{
+        font-size: 14px;
+    }
+    .button-show{
+        width: 50px;
+        height: 35px;
+        font-size: 12px;
+    }
+    .button-edit-res{
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .main-containor .item-list .marca-containor{
+        width: 100%;
+        height: 150px;
+    }
+    .admin-process .item-list .process-containor .text-containor .info-butt-containor > p{
+        height: 60px;
+        font-size: 12px;
+    }
+    .admin-process .item-list .product-containor .text-containor .info-butt-containor .inner-info{
+        font-size: 12px;
+    }
+    .item-containor .text-containor p{
+        font-size: 12px;
+    }
+    .one-service-containor{
+        flex-direction: column;
+    }
+    .one-service-containor .img-block{
+        width: 100%;
+    }
+    .one-service-containor .info-block{
+        width: 100%;
+    }
+    .edit-btn,
+    .delete-btn,
+    .return-btn{
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}

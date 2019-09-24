@@ -47,7 +47,7 @@ const Footer = () => (
             </div>
         </div>
         <div className="bottom-footer text-center">
-            <p><Link to="/">Pro System</Link> &copy; 2019 Todos los derechos reservados</p>
+            <p><Link to="/">Infornet</Link> &copy; 2019 Todos los derechos reservados</p>
         </div>
     </footer>
 )

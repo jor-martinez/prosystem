@@ -80,6 +80,7 @@ class AdminVentajas extends Component {
                         titulo: '',
                         descripcion: ''
                     })
+                    document.getElementById('errores').style.display = 'none';
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -104,14 +105,14 @@ class AdminVentajas extends Component {
         return (
             <div className="main-containor admin-process">
                 <Helmet>
-                    <title>Admin | Proceso</title>
+                    <title>Admin | Ventajas</title>
                 </Helmet>
 
                 <section className="item-list">
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext">Actualizar lista</span>
+                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                         </button>
                     </div>
                     {
@@ -128,14 +129,16 @@ class AdminVentajas extends Component {
                                         <div className="info-containor">
                                             <div className="text-containor">
                                                 <h2>{ventaja.titulo}</h2>
-                                                <p>{ventaja.descripcion}</p>
-                                            </div>
-                                            <div className="buttons-containor">
-                                                <Link to={{ pathname: '/admin/ventaja/editar', state: { ventaja } }}
-                                                    className="button button-edit tooltip">
-                                                    <i className="fas fa-edit"></i>
-                                                    <span className="tooltiptext">Editar</span>
-                                                </Link>
+                                                <div className="info-butt-containor">
+                                                    <p>{ventaja.descripcion}</p>
+                                                    <div className="buttons-containor">
+                                                        <Link to={{ pathname: '/admin/ventaja/editar', state: { ventaja } }}
+                                                            className="button button-edit tooltip button-edit-res">
+                                                            <i className="fas fa-edit"></i>
+                                                            <span className="tooltiptext">Editar</span>
+                                                        </Link>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </section>

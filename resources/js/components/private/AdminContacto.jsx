@@ -76,7 +76,7 @@ class AdminContacto extends Component {
             }).then(res => {
                 SweetAlert.fire(
                     'Correcto',
-                    'El producto se ha agregado correctamente',
+                    'La información de contacto se ha agregado correctamente',
                     'success'
                 ).then(() => {
                     this.getDatosContacto()
@@ -85,6 +85,7 @@ class AdminContacto extends Component {
                         telefonos: '',
                         correos: ''
                     })
+                    document.getElementById('errores').style.display = 'none';
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -115,15 +116,15 @@ class AdminContacto extends Component {
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext">Actualizar lista</span>
+                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                         </button>
                         {
                             (datosContacto.length !== 0)
                             &&
                             <Link to={{ pathname: '/admin/contacto-info/editar', state: { datosContacto } }}
-                                className="button button-edit tooltip">
+                                className="button button-edit tooltip button-edit-res">
                                 <i className="fas fa-edit"></i>
-                                <span className="tooltiptext">Editar</span>
+                                <span className="tooltiptext tooltiptext-left">Editar</span>
                             </Link>
                         }
                     </div>

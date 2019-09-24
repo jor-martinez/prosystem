@@ -141,14 +141,18 @@ class Articulo extends Component{
                   <h1>{this.state.titulo}</h1>
                   <div dangerouslySetInnerHTML={{ __html: this.state.cuerpo }}></div>
                   <div className="buttons-block">
-                     <button onClick={this.handleOnClickEdit} className="button button-edit tooltip">
+                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip">
                         <i className="fas fa-edit"></i>
-                        <span className="tooltiptext">Editar</span>
+                        <span className="tooltiptext tooltiptext-left">Editar</span>
                      </button>
-                     <button onClick={this.handleOnDelete} className="button button-delete tooltip">
+                     <button onClick={this.handleOnDelete} className="button button-delete delete-btn tooltip">
                         <i className="fas fa-trash-alt"></i>
-                        <span className="tooltiptext">Eliminar</span>
+                        <span className="tooltiptext tooltiptext-left">Eliminar</span>
                      </button>
+                     <Link className="button button-return tooltip return-btn" to="/admin/articulos">
+                        <i className="fas fa-reply"></i>
+                        <span className="tooltiptext tooltiptext-left">Regresar</span>
+                     </Link>
                   </div>
                </div>
             </div>
@@ -218,9 +222,9 @@ class Articulo extends Component{
                      {
                         (loadAction)
                         ?
-                           <span><i className="fas fa-spinner fa-spin"></i> Editando</span>
+                           <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
                         :
-                           <span>Editar</span>
+                           <span>Aplicar cambios</span>
                      }
                   </Button>
                   <Link className="button button-cancel" to="/admin/articulos">Cancelar</Link>

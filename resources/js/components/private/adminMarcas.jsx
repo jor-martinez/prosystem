@@ -82,7 +82,7 @@ class AdminMarcas extends Component{
          console.log('Marca agregada correctamente', res)
          SweetAlert.fire(
             'Correcto',
-            'El servicio se ha agregado correctamente',
+            'La marca se ha agregado correctamente',
             'success'
          ).then(()=>{
             this.getMarcas()
@@ -91,6 +91,7 @@ class AdminMarcas extends Component{
                Nombre: '',
                Imagen: ''
             })
+            document.getElementById('errores').style.display = 'none';
          })
       }).catch(err=>{
          console.log('Error!', err)
@@ -121,7 +122,7 @@ class AdminMarcas extends Component{
                <div className="refresh">
                   <button className="btn-refresh tooltip" onClick={this.actualizar}>
                      <i className="fas fa-sync-alt"></i>
-                     <span className="tooltiptext">Actualizar lista</span>
+                     <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                   </button>
                </div>
                {

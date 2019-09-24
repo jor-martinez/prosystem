@@ -21,6 +21,7 @@
     <script type="text/javascript" src="{{ asset('js/public.js') }}"></script>
     <script>
       function Load(){
+        document.getElementById('spinner').style.opacity = '0';
         document.getElementById('spinner').style.display = 'none';
       }
     </script>

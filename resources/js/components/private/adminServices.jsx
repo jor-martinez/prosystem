@@ -96,6 +96,7 @@ class AdminServices extends Component{
                   Imagen: '',
                   img: null
                })
+               document.getElementById('errores').style.display = 'none';
             })
             console.log(res);
          }).catch(err=>{
@@ -132,7 +133,7 @@ class AdminServices extends Component{
                <div className="refresh">
                   <button className="btn-refresh tooltip" onClick={this.actualizar}>
                      <i className="fas fa-sync-alt"></i>
-                     <span className="tooltiptext">Actualizar lista</span>
+                     <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                   </button>
                </div>
                {

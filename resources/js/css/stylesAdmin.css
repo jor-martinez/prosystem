@@ -19,12 +19,16 @@ a:visited {
 textarea{
    font-family: 'Roboto', sans-serif;
 }
-/* Logo */
+/* P+agina de inicio */
+
 .admin-main-panel{
    padding: 50px 0;
    width: 100%;
    height: 100%;
    text-align: center;
+}
+.admin-main-panel h1, p{
+   color: #263238;
 }
 
 .logo-anim{
@@ -131,10 +135,12 @@ textarea{
 .nav-admin-container .logo-cont img{
    width: 100%;
 }
-.nav-admin-container .user-logued{
-   position: absolute;
-   top: 90px;
-   right: 20px;
+.user-logued{
+   position: relative;
+   top: 10px;
+   width: 100%;
+   text-align: right;
+   padding-right: 20px;
 }
 .submenu-admin{
    list-style: none;
@@ -318,10 +324,18 @@ textarea{
    color: #fff;
    font-size: 18px;
 }
+.button-return{
+   width: 40px;
+   height: 40px;
+   background: #26C6DA;
+   color: #fff;
+   font-size: 20px;
+   padding: 5px 10px;
+}
 .buttons-block{
    position: absolute;
    left: 10px;
-   top: 120px;
+   top: 180px;
    display: flex;
    flex-direction: column;
 }
@@ -400,7 +414,8 @@ textarea{
 }
 .admin-process .item-list .process-containor .text-containor{
    padding-top: 15px;
-   width: 90%;
+   width: 100%;
+   height: 100%;
    display: flex;
 }
 .admin-process .item-list .process-containor .info-containor{
@@ -408,19 +423,33 @@ textarea{
 }
 .admin-process .item-list .process-containor .text-containor > h2{
    display: inline-block;
-   width: 50%;
+   width: 30%;
    margin: 0;
    padding-right: 10px;
 }
-.admin-process .item-list .process-containor .text-containor > p{
+.admin-process .item-list .process-containor .text-containor .info-butt-containor{
+   width: 70%;
+}
+.admin-process .item-list .process-containor .text-containor .info-butt-containor > p{
    display: inline-block;
-   width: 40%;
+   height: 50px;
    margin: 0;
 }
-.admin-process .item-list .process-containor .buttons-containor{
+.admin-process .item-list .process-containor .text-containor .info-butt-containor .buttons-containor{
+   width: 100%;
+   height: 60px;
+}
+.admin-process .item-list .product-containor{
+   height: 180px;
+}
+.admin-process .item-list .product-containor .text-containor .info-butt-containor .inner-info{
+   overflow: hidden;
+   height: 100px;
+}
+/* .admin-process .item-list .process-containor .buttons-containor{
    width: 15%;
    align-items: center;
-}
+} */
 
 /* Historia */
 
@@ -561,7 +590,7 @@ textarea{
 
 .refresh{
    position: absolute;
-   top: 130px;
+   top: 190px;
    left: 10px;
    display: flex;
    flex-direction: column;
@@ -614,6 +643,9 @@ textarea{
    left: 50px;
    top: 50px;
 }
+.pre-inicio{
+   left: 0;
+}
 /* ERRORES */
 
 .errors-containor .error-text{
@@ -622,4 +654,51 @@ textarea{
    background: #ffcdd2;
    border-radius: 5px;
    border: 1px solid #f44336;
+}
+
+/* botones de cerrar sesion e ir a pro system */
+
+.buttons-logout{
+   position: fixed;
+   bottom: 20px;
+   left: 10px;
+   display: flex;
+   flex-direction: column;
+}
+.btn{
+   width: 50px;
+   height: 50px;
+   margin: 5px 0;
+   border: none;
+   border-radius: 5px;
+}
+.btn a{
+   display: inline-block;
+   width: 100%;
+   height: 100%;
+   padding: 5px;
+}
+.go-prosystem{
+   background: #039BE5;
+   transition: all .4s ease;
+}
+.go-prosystem:hover{
+   background: #2196F3;
+}
+.go-prosystem img{
+   width: 100%;
+   height: 100%;
+   filter: brightness(0) invert(1);
+}
+.button-logout{
+   background: #b71c1c;
+   transition: all .4s ease;
+}
+.button-logout:hover{
+   background: #d50000;
+}
+.button-logout i{
+   font-size: 30px;
+   margin: 5px auto;
+   color: #fff;
 }

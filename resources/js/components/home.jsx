@@ -192,23 +192,15 @@ class Home extends Component{
                   <div className="row">
                      {
                         (productos.map(producto=>(
-                           (producto.link)
-                           ?
                            <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
                               <div className="icon-block">
-                                 <center><i className="fas fa-archive"></i></center>
+                                 <img src={`../images/productos/${producto.imagen}`} alt="imagen del producto"/>
                               </div>
-                              <h3><a href={producto.link} target="blank">{producto.titulo}</a></h3>
-                              <p>{producto.descripcion}</p>
-                              <a href={producto.link} target="blank" className="more-link">Leer más</a>
-                           </div>
-                           :
-                           <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
-                              <div className="icon-block">
-                                 <center><i className="fas fa-archive"></i></center>
+                              <h3>{producto.titulo}</h3>
+                              <div>
+                                 <Link to={{ pathname: '/producto/'+producto.slug, state : { producto } }}
+                                 className="more-link">Leer más</Link>
                               </div>
-                              <h3><a href="#" target="blank">{producto.titulo}</a></h3>
-                              <p>{producto.descripcion}</p>
                            </div>
                         )))
                      }
@@ -226,7 +218,7 @@ class Home extends Component{
                                     <h2>Pro System</h2>
                                  </div>
                                  <div className="about-description" dangerouslySetInnerHTML={{ __html: item.historia }} ></div>
-                                 <a href="#" className="more-btn">Otra acción</a>
+                                 <Link to="/acerca" className="more-btn">Leer más</Link>
                               </div>
                               <div className="image-block">
                                  <img src={story} alt="Awesome Image" />

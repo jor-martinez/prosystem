@@ -80,6 +80,7 @@ class AdminProceso extends Component{
                         proceso: '',
                         descripcion: ''
                     })
+                    document.getElementById('errores').style.display = 'none';
                 })
                 this.setState({ loadAction: false })
             }).catch(err=>{
@@ -111,7 +112,7 @@ class AdminProceso extends Component{
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext">Actualizar lista</span>
+                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                         </button>
                     </div>
                     {
@@ -128,14 +129,16 @@ class AdminProceso extends Component{
                                         <div className="info-containor">
                                             <div className="text-containor">
                                                 <h2>{proceso.proceso}</h2>
-                                                <p>{proceso.descripcion}</p>
-                                            </div>
-                                            <div className="buttons-containor">
-                                                <Link to={{ pathname: '/admin/proceso/editar', state: { proceso } }}
-                                                className="button button-edit tooltip">
-                                                    <i className="fas fa-edit"></i>
-                                                    <span className="tooltiptext">Editar</span>
-                                                </Link>
+                                                <div className="info-butt-containor">
+                                                    <p>{proceso.descripcion}</p>
+                                                    <div className="buttons-containor">
+                                                        <Link to={{ pathname: '/admin/proceso/editar', state: { proceso } }}
+                                                        className="button button-edit tooltip button-edit-res">
+                                                            <i className="fas fa-edit"></i>
+                                                            <span className="tooltiptext">Editar</span>
+                                                        </Link>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </section>

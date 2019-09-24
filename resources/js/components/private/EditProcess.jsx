@@ -87,9 +87,9 @@ class EditProceso extends Component{
                         {
                             (loadAction)
                                 ?
-                                <span><i className="fas fa-spinner fa-spin"></i> Editando</span>
+                                <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
                                 :
-                                <span>Editar</span>
+                                <span>Aplicar cambios</span>
                         }
                     </Button>
                     <Link className="button button-cancel" to="/admin/procesos">Cancelar</Link>

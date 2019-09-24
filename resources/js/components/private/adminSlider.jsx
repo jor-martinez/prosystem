@@ -84,7 +84,7 @@ class AdminSlider extends Component{
          console.log(res)
          SweetAlert.fire(
             'Correcto',
-            'El servicio se ha agregado correctamente',
+            'El slider se ha agregado correctamente',
             'success'
          ).then(()=>{
             this.getSliders()
@@ -96,6 +96,7 @@ class AdminSlider extends Component{
                img: null,
                link: ''
             })
+            document.getElementById('errores').style.display = 'none';
          })
       }).catch(err=>{
          this.setState({loadAction: false})
@@ -128,7 +129,7 @@ class AdminSlider extends Component{
                <div className="refresh">
                   <button className="btn-refresh tooltip" onClick={this.actualizar}>
                      <i className="fas fa-sync-alt"></i>
-                     <span className="tooltiptext">Actualizar lista</span>
+                     <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                   </button>
                </div>
                {

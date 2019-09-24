@@ -12,6 +12,7 @@ body{
    background-image: url('../images/testi-bg-1-1.jpg');
    background-size: cover;
    background-repeat: no-repeat;
+   background-position: center;
    font-family: 'Roboto', sans-serif;
 }
 /* Login box */
@@ -44,7 +45,7 @@ body{
 }
 
 .form-group{
-   width: 55%;
+   width: 70%;
    height: 100%;
    margin: 20px auto;
    padding-left: 10px;
@@ -74,7 +75,7 @@ body{
 .form-group .form-control{
    border: none;
    height: 100%;
-   width: 80%;
+   width: 92%;
    /* border-radius: 0 25px 25px 0; */
    background: none;
    text-align: center;
@@ -180,3 +181,35 @@ input:-webkit-autofill:focus {
       
    }
 }
+
+/* Responsive login */
+
+@media screen and (max-width: 991px){
+   .login-box{
+      width: 50%;
+   }
+}
+@media screen and (max-width: 900px){
+   .form-group .form-control{
+      width: 90%;
+   }
+}
+@media screen and (max-width: 750px){
+   .form-group .form-control{
+      width: 89%;
+   }
+}
+@media screen and (max-width: 700px){
+   .form-group .form-control{
+      width: 80%;
+   }
+}
+@media screen and (max-width: 575px){
+   .login-box{
+      width: 90%;
+      margin-top: 50px;
+   }
+}
+
+/* Responsive Admin */
+

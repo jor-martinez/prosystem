@@ -19,6 +19,7 @@ import Service from './service'
 import Blog from './blog'
 import Articulo from './articulo'
 import Contact from './contact'
+import Product from './producto'
 import Error404 from './error404'
 import Paginacion from './paginacion'
 
@@ -48,6 +49,7 @@ class App extends Component{
                   <Route path="/articulo" component={Articulo} />
                   <Route path="/contacto" component={Contact} />
                   <Route path="/paginacion" component={Paginacion} />
+                  <Route path="/producto" component={Product} />
                   <Route component={Error404} />
                </Switch>
                <a href="#" onClick={this.handleOnScroll} className="scroll-to-top"><i className="fas fa-angle-up"></i></a>

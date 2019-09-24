@@ -7,8 +7,9 @@ import {
 } from 'react-router-dom'
 import axios from 'axios'
 
-import logo from '../media/resources/logo-pro.png'
+import icon from '../media/resources/spinner.png'
 
+import Header from './NavAdmin'
 import AdminServices from './adminServices'
 import AdminSlider from './adminSlider'
 import Service from './EditService'
@@ -32,6 +33,7 @@ import EditContacto from './EditContacto'
 
 
 import '../../css/stylesAdmin.css'
+import '../../css/responsiveAdmin.css'
 
 class Admin extends Component{
    constructor(props){
@@ -60,38 +62,10 @@ class Admin extends Component{
       return(
          <div>
             <Router>
-               <section className="nav-admin-container">
-                  <div className="logo-cont">
-                     <a href="/"><img src={logo} alt="logo pro system"/></a>
-                  </div>
-                  <ul>
-                     <li><Link to="/admin" >Inicio</Link></li>
-                     <li><Link to="/admin/slider" >Slider</Link></li>
-                     <li><Link to="/admin/servicios" >Servicios</Link></li>
-                     <li><Link to="/admin/marcas" >Marcas</Link></li>
-                     <li><Link to="/admin/articulos" >Blog</Link></li>
-                     <li><Link to="/admin/usuarios" >Usuarios</Link></li>
-                     <li><Link to="/admin/procesos" >Proceso de trabajo</Link></li>
-                     <li><Link to="/admin/ventajas" >Ventajas</Link></li>
-                     <li><Link to="/admin/productos" >Productos</Link></li>
-                     <li><Link className="hover-submenu" to="#" >Empresa</Link>
-                        <ul className="submenu-admin">
-                           <li><Link to="/admin/mision-vision-objetivo" >Misión, visión y objetivo</Link></li>
-                           <li><Link to="/admin/historia" >Historia</Link></li>
-                           <li><Link to="/admin/contacto" >Contácto</Link></li>
-                        </ul>
-                     </li>
-                  </ul>
-                  <ul className="list-a">
-                     <a href="/" target="_blank" >Ir a Pro System</a>
-                     <a className="logout" href="/logout" onClick={()=>{
-                        localStorage.removeItem('usuarioNombre')
-                     }} >Cerrar sesión</a>
-                  </ul>
-                  <div className="user-logued">
-                     <span>Sesión activa: {this.state.user.email}</span>
-                  </div>
-               </section>
+               <Header/>
+               <div className="user-logued">
+                  <span>Sesión activa: {this.state.user.email}</span>
+               </div>
                <Switch>
                   <Route exact path="/admin" component={AdminHome} />
                   <Route path="/admin/servicios" component={AdminServices} />
@@ -114,6 +88,18 @@ class Admin extends Component{
                   <Route path="/admin/contacto" component={AdminContacto} />
                   <Route path="/admin/contacto-info/editar" component={EditContacto} />
                </Switch>
+               <div className="buttons-logout">
+                  <button className="btn go-prosystem tooltip">
+                     <a href="/" target="_blank"><img src={icon} alt="icono"/></a>
+                     <span className="tooltiptext">Ir a Pro System</span>
+                  </button>
+                  <button className="btn button-logout tooltip">
+                     <a href="/logout" onClick={()=>{
+                        localStorage.removeItem('usuarioNombre')
+                     }}><i className="fas fa-sign-out-alt"></i></a>
+                     <span className="tooltiptext">Cerrar sesión</span>
+                  </button>
+               </div>
             </Router>
             
          </div>

@@ -72,6 +72,7 @@ class AdminUsers extends Component{
                     correo: '',
                     contra: ''
                 })
+                document.getElementById('errores').style.display = 'none';
             })
         }).catch(err=>{
             this.setState({
@@ -107,7 +108,7 @@ class AdminUsers extends Component{
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext">Actualizar lista</span>
+                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                         </button>
                     </div>
                     {

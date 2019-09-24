@@ -77,6 +77,7 @@ class Mission extends Component {
                 ).then(() => {
                     this.getHistory()
                     this.setState({historia: ''})
+                    document.getElementById('errores').style.display = 'none';
                 })
                 this.setState({ loadAction: false })
             }).catch(err => {
@@ -111,15 +112,15 @@ class Mission extends Component {
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext">Actualizar lista</span>
+                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                         </button>
                         {
                             (history.length !== 0)
                             &&
                             <Link to={{ pathname: '/admin/historia-info/editar', state: { history } }}
-                                className="button button-edit tooltip">
+                                className="button button-edit tooltip button-edit-res">
                                 <i className="fas fa-edit"></i>
-                                <span className="tooltiptext">Editar</span>
+                                <span className="tooltiptext tooltiptext-left">Editar</span>
                             </Link>
                         }
                     </div>

@@ -28,7 +28,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <i class="fas fa-envelope"></i>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autofocus placeholder="Usuario">
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autofocus placeholder="Correo">
                                         @error('email')
                                             <p class="invalid-feedback" role="alert">
                                                 <span>{{ $message }}</span>

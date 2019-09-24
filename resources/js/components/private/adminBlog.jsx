@@ -99,6 +99,7 @@ class AdminBlog extends Component{
                     titulo: '',
                     cuerpo: ''
                 })
+                document.getElementById('errores').style.display = 'none';
             })
         }).catch(err=>{
             this.setState({
@@ -125,7 +126,7 @@ class AdminBlog extends Component{
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext">Actualizar lista</span>
+                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
                         </button>
                     </div>
                     {

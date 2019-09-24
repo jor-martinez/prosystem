@@ -47,7 +47,7 @@ class Admin extends Component{
                         Solo accede en la barra de navegación a la sección que quieras trabajar. </p>
                   </div>
                   :
-                  <span className="preloader">Cargando información ...</span>
+                  <span className="preloader pre-inicio">Cargando información ...</span>
                }
          </div>
       )
