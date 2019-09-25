@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
-
+import axios from 'axios'
 import styled from "styled-components";
 
 import logo from '../media/resources/logo-1-2.png'
@@ -41,7 +41,7 @@ const Navigation = styled.header`
     opacity: 0.65;
     transition: all 0.6s;
     color: #222;
-    font-size: 1em;
+    font-size: .9em;
     text-align: center;
   }
   a:hover {
@@ -162,16 +162,30 @@ class Nav extends Component {
     this.state = {
       isExpanded: false
     };
+    this.getUser = this.getUser.bind(this)
   }
   handleToggle(e) {
     e.preventDefault();
     this.setState({
-      isExpanded: !this.state.isExpanded
+      isExpanded: !this.state.isExpanded,
+      user: []
     });
   }
+  getUser() {
+    axios.get('/admin/obtener-info').then(res => {
+      //  console.log(res.data.email)
+       this.setState({
+          email: res.data.email
+       })
+    }).catch(err => {
+       console.log(err)
+    })
+  }
+  componentDidMount(){
+      this.getUser()
+  }
   render() {
-    const { isExpanded } = this.state;
-
+    const { isExpanded, email } = this.state;
     return (
       <Navigation>
         <div className="logo">
@@ -219,6 +233,17 @@ class Nav extends Component {
             <NavLink activeClassName="active" to="/admin/contacto">
               <li>Contacto</li>
             </NavLink>
+            {
+              (email === 'admin@prosystem.mx')
+              ?
+              <NavLink activeClassName="active" to="/admin/usuarios">
+                <li>Usuarios</li>
+              </NavLink>
+              :
+              <NavLink activeClassName="active" to="/admin/usuarios">
+                <li>Perfil</li>
+              </NavLink>
+            }
 
             {/* <li><a href="/" target="_blank">Ir a Pro System</a></li>
 
