@@ -52,6 +52,16 @@
     .one-process-edit{
         width: 80%;
     }
+    .profile-containor{
+        flex-direction: column;
+    }
+    .profile-containor .profile-edit{
+        margin:auto;
+        width: 80%;
+    }
+    .profile-containor .profile-info table{
+        width: 100%;
+     }
 }
 @media screen and (max-width: 575px){
     .admin-main-panel{

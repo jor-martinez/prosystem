@@ -63,7 +63,7 @@ class EditMission extends Component {
     }
     render() {
         const { loadAction,errors } = this.state
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div className="one-process-edit">
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">

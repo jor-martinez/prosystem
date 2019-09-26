@@ -157,9 +157,11 @@
    }
    .page-title-block{
       height: 80px;
+      padding-top: 65px;
    }
    .page-title-block h2{
-      font-size: 40px;
+      font-size: 35px;
+      line-height: 35px;
    }
    .page-title-block .container{
       margin-top: -30px;

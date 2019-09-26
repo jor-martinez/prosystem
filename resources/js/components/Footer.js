@@ -16,12 +16,12 @@ const Footer = () => (
                         </Link>
                         <p>En Prosystem le ofrecemos un robusto portafolio de soluciones tecnológicas de seguridad y servicios personalizados</p>
                     </div>
-                    <div className="social-block">
+                    {/* <div className="social-block">
                         <a href="http://www.facebook.com" target="blank"><i className="fab fa-facebook-f"></i></a>
                         <a href="http://www.twitter.com" target="blank"><i className="fab fa-twitter"></i></a>
                         <a href="http://www.vimeo.com" target="blank"><i className="fab fa-vimeo-v"></i></a>
                         <a href="http://www.linkedin.com" target="blank"><i className="fab fa-linkedin-in"></i></a>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="footer-widget links-widget">
                     <div className="footer-widget-title">
@@ -47,7 +47,8 @@ const Footer = () => (
             </div>
         </div>
         <div className="bottom-footer text-center">
-            <p><Link to="/">Infornet</Link> &copy; 2019 Todos los derechos reservados</p>
+            <p><Link to="/">Pro System</Link> &copy; 2019 Todos los derechos reservados</p>
+            <p>Página diseñada por <a href="https://www.infornet.mx" target="_blank" >Infornet</a> </p>
         </div>
     </footer>
 )

@@ -43,10 +43,12 @@
 
 .page-title-block h2 {
    /* margin: 0; */
-   font-size: 60px;
+   font-size: 50px;
    font-weight: 500;
    color: #fff;
    margin-bottom: 30px;
+   text-transform: uppercase;
+   line-height: 65px;
 }
 
 .page-title-block .thm-breadcrumb a,
@@ -188,8 +190,9 @@ body .slider{
 }
 
 .single-offer-style-one .icon-block {
+   width: 80%;
+   margin: auto;
    margin-bottom: 20px;
-   width: 100%;
 }
 
 .single-offer-style-one .icon-block > img {

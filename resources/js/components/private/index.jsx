@@ -16,6 +16,7 @@ import Service from './EditService'
 import AdminHome from './admin'
 import AdminMarcas from './adminMarcas'
 import AdminUsers from './adminUsers'
+import Profile from './profile'
 import AdminBlog from './adminBlog'
 import Articulo from './EditArticulo'
 import AdminProcess from './adminProceso'
@@ -46,7 +47,7 @@ class Admin extends Component{
    }
    getUser() {
       axios.get('/admin/obtener-info').then(res => {
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             user: res.data
          })
@@ -74,7 +75,13 @@ class Admin extends Component{
                   <Route path="/admin/marcas" component={AdminMarcas} />
                   <Route path="/admin/procesos" component={AdminProcess} />
                   <Route path="/admin/proceso/editar" component={EditProcess} />
-                  <Route path="/admin/usuarios" component={AdminUsers} />
+                  {
+                     (this.state.user.email === 'admin@prosystem.mx')
+                     ?
+                     <Route path="/admin/usuarios" component={AdminUsers} />
+                     :
+                     <Route path="/admin/usuarios" component={Profile} />
+                  }
                   <Route path="/admin/articulos" component={AdminBlog} />
                   <Route path="/admin/articulo" component={Articulo} />
                   <Route path="/admin/ventajas" component={AdminVentajas} />
