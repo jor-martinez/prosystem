@@ -208,7 +208,7 @@ class EditProducto extends Component {
                             <label htmlFor="file-upload" className="subir">
                                 <i className="fas fa-cloud-upload-alt"></i><span id="info"> Elegir otra imagen (opcional)</span> 
                             </label>
-                            <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="imagen" required/>
+                            <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="imagen"/>
                         </Container>
                         <div id="show-img"><img id="img" src={this.state.img} /></div>
                         <Button variant="raised" color="primary" disabled={loadAction} >

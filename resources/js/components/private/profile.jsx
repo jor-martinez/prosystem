@@ -17,7 +17,10 @@ class Profile extends Component{
             id: '',
             nombre: '',
             email: '',
-            errors: {}
+            errors: {},
+            password:'',
+            passwordNew: '',
+            passwordConfirm: ''
 
         }
         this.getProfile = this.getProfile.bind(this)
@@ -25,6 +28,8 @@ class Profile extends Component{
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
         this.handleOnClickEdit = this.handleOnClickEdit.bind(this)
         this.handleOnCancel = this.handleOnCancel.bind(this)
+        this.handleOnClickEditPass = this.handleOnClickEditPass.bind(this)
+        this.handleOnSubmitPass = this.handleOnSubmitPass.bind(this)
     }
     componentDidMount(){
         this.getProfile()
@@ -94,11 +99,74 @@ class Profile extends Component{
         document.getElementById('serv-edit').style.opacity = '1';
         // document.getElementById('serv-cont').style.display = 'none';
         document.getElementById('btn-dlt').style.display = 'inline';
+        document.getElementById('pass-edit').style.display = 'none';
+        document.getElementById('pass-edit').style.opacity = '0';
     }
     handleOnCancel(){
         document.getElementById('btn-dlt').style.display = 'none';
         document.getElementById('serv-edit').style.display = 'none';
         document.getElementById('serv-edit').style.opacity = '0';
+        document.getElementById('pass-edit').style.display = 'none';
+        document.getElementById('pass-edit').style.opacity = '0';
+    }
+    handleOnClickEditPass(){
+        document.getElementById('pass-edit').style.display = 'block';
+        document.getElementById('pass-edit').style.opacity = '1';
+        document.getElementById('btn-dlt').style.display = 'inline';
+        document.getElementById('serv-edit').style.display = 'none';
+        document.getElementById('serv-edit').style.opacity = '0';
+    }
+    handleOnSubmitPass(e){
+        e.preventDefault()
+        this.setState({ loadAction: true })
+        console.log(this.state)
+        const data = new FormData()
+
+        if(this.state.passwordConfirm === this.state.passwordNew){
+            data.append('password', this.state.password)
+            data.append('passwordNew', this.state.passwordNew)
+            
+            axios.post('/dev/usuario/modificarPassword/'+this.state.id, data).then(res=>{
+                this.setState({ loadAction: false })
+                // console.log(res)
+                SweetAlert.fire(
+                    'Correcto',
+                    'La contraseña se modificó exitosamente',
+                    'success'
+                ).then(() => {
+                    // window.location.href = '/admin/mision-vision-objetivo'
+                    document.getElementById('btn-dlt').style.display = 'none';
+                    document.getElementById('serv-edit').style.display = 'none';
+                    document.getElementById('serv-edit').style.opacity = '0';
+                    window.location.href = '/logout'
+                })
+            }).catch(err=>{
+                console.log(err)
+                this.setState({
+                    loadAction: false,
+                    errors: err.response.data.errors
+                })
+                SweetAlert.fire(
+                    'Error',
+                    'Algo salió mal',
+                    'error'
+                )
+            })
+        }
+        else{
+            SweetAlert.fire(
+                'Atención !',
+                'Las contraseñas no coinciden',
+                'warning'
+            ).then(() => {
+                this.setState({
+                    loadAction: false,
+                    passwordNew: '',
+                    passwordConfirm: ''
+                })
+                document.getElementById('np').focus();
+            })
+        }
     }
     render(){
         const {user, load, loadAction, nombre, email, errors} = this.state
@@ -131,10 +199,14 @@ class Profile extends Component{
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className="buttons-block">
-                                    <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip">
+                                <div className="buttons-block buttons-block-admin">
+                                    <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn edit-mision tooltip">
                                         <i className="fas fa-edit"></i>
-                                        <span className="tooltiptext tooltiptext-left">Editar</span>
+                                        <span className="tooltiptext tooltiptext-left">Cambiar datos</span>
+                                    </button>
+                                    <button onClick={this.handleOnClickEditPass} className="button button-edit edit-btn edit-mision tooltip">
+                                        <i className="fas fa-key"></i>
+                                        <span className="tooltiptext tooltiptext-left">Cambiar contraseña</span>
                                     </button>
                                     <button id="btn-dlt" className="button button-delete delete-btn tooltip"
                                     style={{display: 'none'}}
@@ -171,9 +243,55 @@ class Profile extends Component{
                                     {
                                         (loadAction)
                                             ?
-                                            <span><i className="fas fa-spinner fa-spin"></i> Editando perfil</span>
+                                            <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
                                             :
-                                            <span>Editar perfil</span>
+                                            <span>Aplicar cambios</span>
+                                    }
+                                </Button>
+                            </Form>
+                        </div>
+                        <div className="password-edit" id="pass-edit">
+                            <Form onSubmit={this.handleOnSubmitPass} encType="multipart/form-data" autoComplete="off">
+                                <legend>Cambia tu contraseña</legend>
+                                {errorAlert(errors)}
+                                <Input
+                                    className="form-input"
+                                    label="Contraseña actual"
+                                    floatingLabel={true}
+                                    name="password"
+                                    required
+                                    type="password"
+                                    value={this.state.password}
+                                    onChange={this.handleChange}
+                                />
+                                <Input
+                                    id="np"
+                                    className="form-input"
+                                    label="Nueva contraseña"
+                                    floatingLabel={true}
+                                    name="passwordNew"
+                                    required
+                                    type="password"
+                                    value={this.state.passwordNew}
+                                    onChange={this.handleChange}
+                                />
+                                <Input
+                                    className="form-input"
+                                    label="Confirma la nueva contraseña"
+                                    floatingLabel={true}
+                                    name="passwordConfirm"
+                                    required
+                                    type="password"
+                                    value={this.state.passwordConfirm}
+                                    onChange={this.handleChange}
+                                />
+                                <Button variant="raised" color="primary" disabled={loadAction} >
+                                    {
+                                        (loadAction)
+                                            ?
+                                            <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
+                                            :
+                                            <span>Aplicar cambios</span>
                                     }
                                 </Button>
                             </Form>

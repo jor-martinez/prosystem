@@ -57,8 +57,9 @@ class AdminProceso extends Component{
                 'Atención !',
                 'No se pueden agregar mas procesos',
                 'warning'
-            ).then(() => this.resetForm())
-            this.setState({ loadAction: false })
+            ).then(() => {
+                this.setState({ loadAction: false })
+            })
             
         }else{
             const data = new FormData()
@@ -147,43 +148,47 @@ class AdminProceso extends Component{
                             <span className="preloader">Cargando información ...</span>
                     }
                 </section>
-                <section className="item-add">
-                    <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
-                        <legend>Agregar un proceso</legend>
-                        {errorAlert(errors)}
-                        <Input
-                            id="proceso"
-                            className="form-input"
-                            label="Nombre"
-                            floatingLabel={true}
-                            name="proceso"
-                            onChange={this.handleChange}
-                            value={this.state.proceso}
-                            required
-                        />
-                        <Input
-                            id="descripcion"
-                            className="form-input"
-                            label="Descripción"
-                            floatingLabel={true}
-                            name="descripcion"
-                            onChange={this.handleChange}
-                            value={this.state.descripcion}
-                            required
-                        />
-                        <Button variant="raised" color="primary" disabled={loadAction} >
-                            {
-                                (loadAction)
-                                    ?
-                                    <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                                    :
-                                    <span>Agregar</span>
-                            }
-                        </Button>
-                        <Button variant="flat" type="reset" >Limpiar Campos</Button>
-                    </Form>
-                    
-                </section>
+                {
+                    (procesos.length < 3)
+                    &&
+                    <section className="item-add">
+                        <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
+                            <legend>Agregar un proceso</legend>
+                            {errorAlert(errors)}
+                            <Input
+                                id="proceso"
+                                className="form-input"
+                                label="Nombre"
+                                floatingLabel={true}
+                                name="proceso"
+                                onChange={this.handleChange}
+                                value={this.state.proceso}
+                                required
+                            />
+                            <Input
+                                id="descripcion"
+                                className="form-input"
+                                label="Descripción"
+                                floatingLabel={true}
+                                name="descripcion"
+                                onChange={this.handleChange}
+                                value={this.state.descripcion}
+                                required
+                            />
+                            <Button variant="raised" color="primary" disabled={loadAction} >
+                                {
+                                    (loadAction)
+                                        ?
+                                        <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                                        :
+                                        <span>Agregar</span>
+                                }
+                            </Button>
+                            <Button variant="flat" type="reset" >Limpiar Campos</Button>
+                        </Form>
+                        
+                    </section>
+                }
             </div>
         )
     }

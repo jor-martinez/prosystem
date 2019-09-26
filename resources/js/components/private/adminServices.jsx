@@ -153,10 +153,10 @@ class AdminServices extends Component{
                               </div>
                               <div className="text-containor">
                                  <h2>{service.nombre}</h2>
-                              </div>
-                              <div className="buttons-containor">
-                                 <Link to={{ pathname: '/admin/servicio/'+service.slug, state : { service: service } }}
-                                 className="button button-show">Ver más</Link>
+                                 <div className="buttons-containor">
+                                    <Link to={{ pathname: '/admin/servicio/'+service.slug, state : { service: service } }}
+                                    className="button button-show">Ver más</Link>
+                                 </div>
                               </div>
                            </section>
                         )))
@@ -221,25 +221,24 @@ class AdminServices extends Component{
                      }}
                   />
                   <Container>
-                     <p>Nota: El nombre de las imagenes no debe tener espacios.</p>
-                  </Container>
-                  <Container>
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen de portada</span> 
                      </label>
                      <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="Imagen" />
                   </Container>
                   <div id="show-img"><img id="img" src={this.state.img} /></div>
-                  <Button variant="raised" color="primary" disabled={loadAction}>
-                     {
-                        (loadAction)
-                        ?
-                           <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                        :
-                           <span>Agregar</span>
-                     }
-                  </Button>
-                  <Button variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                  <Container>
+                     <Button className="button-form" variant="raised" color="primary" disabled={loadAction}>
+                        {
+                           (loadAction)
+                           ?
+                              <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                           :
+                              <span>Agregar</span>
+                        }
+                     </Button>
+                     <Button className="button-form" variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                  </Container>
                </Form>
             </section>
          </div>

@@ -264,11 +264,11 @@ class Home extends Component{
             <section id="cta-style-one" className="cta-style-one text-center" style={{backgroundImage: `url(${cta})`}}>
                <div className="container">
                   <div className="title-block">
-                     <span className="tag-line">¡Mantente seguro!</span>{/* /.tag-line */}
-                     <h2>Llamado de acción</h2>
+                     <span className="tag-line">¡Servicio destacado!</span>{/* /.tag-line */}
+                     <h2>Servicio de ingeniería</h2>
                   </div>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt <br /> mollit anim id est laborum.</p>
-                  <a href="index.html" className="cta-btn">Otra acción</a>
+                  <p>Ingeniería especializada para la ejecución completa de grandes o pequeños proyectos, asumiendo la responsabilidad total del mismo.</p>
+                  {/* <a href="index.html" className="cta-btn">Otra acción</a> */}
                </div>
             </section>
             <section className="services-style-one">

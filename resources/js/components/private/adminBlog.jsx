@@ -147,11 +147,11 @@ class AdminBlog extends Component{
                                         <div className="text-containor">
                                             <h2>{post.titulo}</h2>
                                             {/* <p dangerouslySetInnerHTML={{ __html: service.descripcion }}></p> */}
-                                            <p>Autor: {post.autor} <br /> Fecha de creación: <Moment format="DD/MM/YYYY HH:mm">{post.created_at}</Moment></p>
-                                        </div>
-                                        <div className="buttons-containor">
-                                            <Link to={{ pathname: '/admin/articulo/' + post.slug, state: { post } }}
-                                                className="button button-show">Ver más</Link>
+                                            <p> <strong>Autor:</strong>  {post.autor} <br /> <strong>Fecha de creación:</strong> <Moment format="DD/MM/YYYY HH:mm">{post.created_at}</Moment></p>
+                                            <div className="buttons-containor">
+                                                <Link to={{ pathname: '/admin/articulo/' + post.slug, state: { post } }}
+                                                    className="button button-show">Ver más</Link>
+                                            </div>
                                         </div>
                                     </section>
                                 ))).reverse()
@@ -235,16 +235,18 @@ class AdminBlog extends Component{
                             <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="encabezado" />
                         </Container>
                         <div id="show-img"><img id="img" src={this.state.img} /></div>
-                        <Button variant="raised" color="primary" disabled={loadAction}>
-                            {
+                        <Container>
+                            <Button className="button-form" variant="raised" color="primary" disabled={loadAction}>
+                                {
                                 (loadAction)
-                                    ?
+                                ?
                                     <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                                    :
+                                :
                                     <span>Agregar</span>
-                            }
-                        </Button>
-                        <Button variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                                }
+                            </Button>
+                            <Button className="button-form" variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                        </Container>
                     </Form>
                 </section>
             </div>

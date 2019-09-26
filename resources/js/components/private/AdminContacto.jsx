@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Textarea from 'muicss/lib/react/textarea'
+import Container from 'muicss/lib/react/container'
 import Input from 'muicss/lib/react/input'
 import errorAlert from './errors'
 
@@ -122,7 +123,7 @@ class AdminContacto extends Component {
                             (datosContacto.length !== 0)
                             &&
                             <Link to={{ pathname: '/admin/contacto-info/editar', state: { datosContacto } }}
-                                className="button button-edit tooltip button-edit-res">
+                                className="button button-edit tooltip button-edit-res edit-mision">
                                 <i className="fas fa-edit"></i>
                                 <span className="tooltiptext tooltiptext-left">Editar</span>
                             </Link>
@@ -168,56 +169,62 @@ class AdminContacto extends Component {
                             <span className="preloader pre-mision">Cargando información ...</span>
                     }
                 </section>
-                <section id="add-product" className="item-add">
-                    <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
-                        <legend>Agrega la información de contacto</legend>
-                        {errorAlert(errors)}
-                        <Textarea
-                            rows="3"
-                            id="ubi"
-                            className="form-input"
-                            label="Ubicación"
-                            floatingLabel={true}
-                            name="ubicacion"
-                            onChange={this.handleChange}
-                            value={this.state.ubicacion}
-                            required
-                        />
-                        <Textarea
-                            rows="3"
-                            id="tel"
-                            className="form-input"
-                            label="Teléfonos"
-                            floatingLabel={true}
-                            name="telefonos"
-                            onChange={this.handleChange}
-                            value={this.state.telefonos}
-                            required
-                        />
-                        <Textarea
-                            rows="3"
-                            id="corr"
-                            className="form-input"
-                            label="Correos"
-                            floatingLabel={true}
-                            name="correos"
-                            onChange={this.handleChange}
-                            value={this.state.correos}
-                            required
-                        />
-                        <Button variant="raised" color="primary" disabled={loadAction} >
-                            {
-                                (loadAction)
+                {
+                    (datosContacto.length < 1)
+                    &&
+                    <section id="add-product" className="item-add">
+                        <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
+                            <legend>Agrega la información de contacto</legend>
+                            {errorAlert(errors)}
+                            <Textarea
+                                rows="3"
+                                id="ubi"
+                                className="form-input"
+                                label="Ubicación"
+                                floatingLabel={true}
+                                name="ubicacion"
+                                onChange={this.handleChange}
+                                value={this.state.ubicacion}
+                                required
+                            />
+                            <Textarea
+                                rows="3"
+                                id="tel"
+                                className="form-input"
+                                label="Teléfonos"
+                                floatingLabel={true}
+                                name="telefonos"
+                                onChange={this.handleChange}
+                                value={this.state.telefonos}
+                                required
+                            />
+                            <Textarea
+                                rows="3"
+                                id="corr"
+                                className="form-input"
+                                label="Correos"
+                                floatingLabel={true}
+                                name="correos"
+                                onChange={this.handleChange}
+                                value={this.state.correos}
+                                required
+                            />
+                            <Container>
+                                <Button className="button-form" variant="raised" color="primary" disabled={loadAction}>
+                                    {
+                                    (loadAction)
                                     ?
-                                    <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                                        <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
                                     :
-                                    <span>Agregar</span>
-                            }
-                        </Button>
-                        <Button variant="flat" type="reset" >Limpiar Campos</Button>
-                    </Form>
+                                        <span>Agregar</span>
+                                    }
+                                </Button>
+                                <Button className="button-form" variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                            </Container>
+                        </Form>
 
-                </section>
+                    </section>
+                }
 
             </div>
         )

@@ -145,53 +145,51 @@ class AdminSlider extends Component{
                               <div className="img-containor">
                                  <img src={`../images/slyder/${slider.imagen}`} alt="imagen-servicio"/>
                               </div>
-                              <div className="info-containor">
                                  <div className="text-containor">
                                     <h2>{slider.titulo}</h2>
-                                    <p>{slider.descripcion}</p>
-                                 </div>
-                                 <div className="buttons-containor">
-                                    <button onClick={()=>{
-                                       SweetAlert.fire({
-                                          title: '¿Estás seguro de eliminar este elemento?',
-                                          text: "No se podrán revertir los cambios",
-                                          type: 'warning',
-                                          showCancelButton: true,
-                                          confirmButtonColor: '#3085d6',
-                                          cancelButtonColor: '#d33',
-                                          cancelButtonText: 'Cancelar',
-                                          confirmButtonText: 'Si, eliminalo!'
-                                       }).then((result) => {
-                                          if (result.value) {
-                                             axios.delete('/dev/slyder/borrar/'+slider.id).then((res)=>{
-                                                console.log(res)
-                                                SweetAlert.fire(
-                                                   'Eliminado!',
-                                                   'El elemento ha sido eliminado.',
-                                                   'success'
-                                                ).then(()=>{
-                                                   this.getSliders()
+                                    {/* <p>{slider.descripcion}</p> */}
+                                    <div className="buttons-containor">
+                                       <button onClick={()=>{
+                                          SweetAlert.fire({
+                                             title: '¿Estás seguro de eliminar este elemento?',
+                                             text: "No se podrán revertir los cambios",
+                                             type: 'warning',
+                                             showCancelButton: true,
+                                             confirmButtonColor: '#3085d6',
+                                             cancelButtonColor: '#d33',
+                                             cancelButtonText: 'Cancelar',
+                                             confirmButtonText: 'Si, eliminalo!'
+                                          }).then((result) => {
+                                             if (result.value) {
+                                                axios.delete('/dev/slyder/borrar/'+slider.id).then((res)=>{
+                                                   console.log(res)
+                                                   SweetAlert.fire(
+                                                      'Eliminado!',
+                                                      'El elemento ha sido eliminado.',
+                                                      'success'
+                                                   ).then(()=>{
+                                                      this.getSliders()
+                                                   })
+                                                }).catch(err=>{
+                                                   console.log(err)
+                                                   SweetAlert.fire(
+                                                      'Ooops!',
+                                                      'Algo salió mal. !',
+                                                      'error'
+                                                   ).then(()=>{
+                                                      this.getSliders()
+                                                   })
                                                 })
-                                             }).catch(err=>{
-                                                console.log(err)
-                                                SweetAlert.fire(
-                                                   'Ooops!',
-                                                   'Algo salió mal. !',
-                                                   'error'
-                                                ).then(()=>{
-                                                   this.getSliders()
-                                                })
-                                             })
 
-                                             
-                                          }
-                                       })
-                                    }} className="button button-delete tooltip">
-                                       <i className="fas fa-trash-alt"></i>
-                                       <span className="tooltiptext">Eliminar</span>
-                                    </button>
+                                                
+                                             }
+                                          })
+                                       }} className="button button-delete tooltip">
+                                          <i className="fas fa-trash-alt"></i>
+                                          <span className="tooltiptext">Eliminar</span>
+                                       </button>
+                                    </div>
                                  </div>
-                              </div>
                            </section>
                         )))
                   :
@@ -221,9 +219,6 @@ class AdminSlider extends Component{
                      value={this.state.descripcion}
                   />
                   <Container>
-                     <p>Nota: El nombre de las imagenes no debe tener espacios.</p>
-                  </Container>
-                  <Container>
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen</span> 
                      </label>
@@ -240,16 +235,18 @@ class AdminSlider extends Component{
                      value={this.state.link}
                   />
                   <div id="show-img"><img id="img" src={this.state.img} /></div>
-                  <Button variant="raised" color="primary" disabled={loadAction} >
-                     {
-                        (loadAction)
-                        ?
-                           <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                        :
-                           <span>Agregar</span>
-                     }
-                  </Button>
-                  <Button variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                  <Container>
+                     <Button className="button-form" variant="raised" color="primary" disabled={loadAction}>
+                        {
+                           (loadAction)
+                           ?
+                              <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                           :
+                              <span>Agregar</span>
+                        }
+                     </Button>
+                     <Button className="button-form" variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                  </Container>
                </Form>
             </section>
          </div>

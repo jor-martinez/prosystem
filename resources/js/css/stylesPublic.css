@@ -1346,8 +1346,8 @@ body .slider{
    height: 110px;
    justify-content: center;
    text-align: center; 
-   border-top: 2px solid #161827;
-   border-bottom: 2px solid #161827;
+   border-top: 1px solid rgba(34, 34, 34, .4);
+   border-bottom: 1px solid rgba(34, 34, 34, .4);
    margin: 10px 0;
 }
 
@@ -1693,6 +1693,7 @@ body .slider{
 }
 
 .single-contact-info-one p {
+   padding: 0 15px;
    font-size: 16px;
    line-height: 26px;
    color: rgb(102, 102, 102);

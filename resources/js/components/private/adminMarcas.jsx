@@ -140,47 +140,47 @@ class AdminMarcas extends Component{
                            </div>
                            <div className="text-containor">
                               <h2>{marca.Nombre}</h2>
-                           </div>
-                           <div className="buttons-containor">
-                              <button onClick={()=>{
-                                 SweetAlert.fire({
-                                    title: '¿Estás seguro de eliminar este elemento?',
-                                    text: "No se podrán revertir los cambios",
-                                    type: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    cancelButtonText: 'Cancelar',
-                                    confirmButtonText: 'Si, eliminalo!'
-                                 }).then((result) => {
-                                    if (result.value) {
-                                       axios.delete('/dev/marcas/borrar/'+marca.id).then((res)=>{
-                                          console.log(res)
-                                          SweetAlert.fire(
-                                             'Eliminado!',
-                                             'El elemento ha sido eliminado.',
-                                             'success'
-                                          ).then(() => {
-                                             this.getMarcas()
+                              <div className="buttons-containor">
+                                 <button onClick={()=>{
+                                    SweetAlert.fire({
+                                       title: '¿Estás seguro de eliminar este elemento?',
+                                       text: "No se podrán revertir los cambios",
+                                       type: 'warning',
+                                       showCancelButton: true,
+                                       confirmButtonColor: '#3085d6',
+                                       cancelButtonColor: '#d33',
+                                       cancelButtonText: 'Cancelar',
+                                       confirmButtonText: 'Si, eliminalo!'
+                                    }).then((result) => {
+                                       if (result.value) {
+                                          axios.delete('/dev/marcas/borrar/'+marca.id).then((res)=>{
+                                             console.log(res)
+                                             SweetAlert.fire(
+                                                'Eliminado!',
+                                                'El elemento ha sido eliminado.',
+                                                'success'
+                                             ).then(() => {
+                                                this.getMarcas()
+                                             })
+                                          }).catch(err=>{
+                                             console.log(err)
+                                             SweetAlert.fire(
+                                                'Ooops!',
+                                                'Algo salió mal.',
+                                                'error'
+                                             ).then(() => {
+                                                this.getMarcas()
+                                             })
                                           })
-                                       }).catch(err=>{
-                                          console.log(err)
-                                          SweetAlert.fire(
-                                             'Ooops!',
-                                             'Algo salió mal.',
-                                             'error'
-                                          ).then(() => {
-                                             this.getMarcas()
-                                          })
-                                       })
 
-                                       
-                                    }
-                                 })
-                              }} className="button button-delete tooltip">
-                                 <i className="fas fa-trash-alt"></i>
-                                 <span className="tooltiptext">Eliminar</span>
-                              </button>
+                                          
+                                       }
+                                    })
+                                 }} className="button button-delete tooltip">
+                                    <i className="fas fa-trash-alt"></i>
+                                    <span className="tooltiptext">Eliminar</span>
+                                 </button>
+                              </div>
                            </div>
                         </section>
 
@@ -211,16 +211,18 @@ class AdminMarcas extends Component{
                      <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="Imagen" required/>
                   </Container>
                   <div id="show-img"><img id="img" src={this.state.img} /></div>
-                  <Button variant="raised" color="primary" disabled={loadAction}>
-                     {
-                        (loadAction)
-                        ?
-                           <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                        :
-                           <span>Agregar</span>
-                     }
-                  </Button>
-                  <Button variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                  <Container>
+                     <Button className="button-form" variant="raised" color="primary" disabled={loadAction}>
+                        {
+                           (loadAction)
+                           ?
+                              <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                           :
+                              <span>Agregar</span>
+                        }
+                     </Button>
+                     <Button className="button-form" variant="flat" type="reset" onClick={this.onReset} >Limpiar Campos</Button>
+                  </Container>
                </Form> 
             </section>
          </div>

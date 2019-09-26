@@ -177,92 +177,97 @@ class AdminProducts extends Component {
                             <span className="preloader">Cargando información ...</span>
                     }
                 </section>
-                <section id="add-product" className="item-add">
-                    <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
-                        <legend>Agregar una producto</legend>
-                        {errorAlert(errors)}
-                        <Input
-                            id="titulo"
-                            className="form-input"
-                            label="Nombre"
-                            floatingLabel={true}
-                            name="titulo"
-                            onChange={this.handleChange}
-                            value={this.state.titulo}
-                            required
-                        />
-                        <Editor
-                            apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
-                            textareaName="descripcion"
-                            value={this.state.descripcion}
-                            onChange={this.handleEditorChange}
-                            init={{
-                                height: 400,
-                                plugins: 'link image code lists advlist',
-                                toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright | numlist bullist | image link ',
-                                image_title: true,
+                {
+                    (productos.length < 4)
+                    &&
+                    <section id="add-product" className="item-add">
+                        <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
+                            <legend>Agregar una producto</legend>
+                            {errorAlert(errors)}
+                            <Input
+                                id="titulo"
+                                className="form-input"
+                                label="Nombre"
+                                floatingLabel={true}
+                                name="titulo"
+                                onChange={this.handleChange}
+                                value={this.state.titulo}
+                                required
+                            />
+                            <Editor
+                                apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
+                                textareaName="descripcion"
+                                value={this.state.descripcion}
+                                onChange={this.handleEditorChange}
+                                init={{
+                                    height: 400,
+                                    plugins: 'link image code lists advlist',
+                                    toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright | numlist bullist | image link ',
+                                    image_title: true,
 
-                                /* enable automatic uploads of images represented by blob or data URIs*/
-                                automatic_uploads: true,
-                                file_picker_types: 'image',
+                                    /* enable automatic uploads of images represented by blob or data URIs*/
+                                    automatic_uploads: true,
+                                    file_picker_types: 'image',
 
-                                /* and here's our custom image picker*/
-                                file_picker_callback: function (cb, value, meta) {
-                                    var input = document.createElement('input');
-                                    input.setAttribute('type', 'file');
-                                    input.setAttribute('accept', 'image/*');
+                                    /* and here's our custom image picker*/
+                                    file_picker_callback: function (cb, value, meta) {
+                                        var input = document.createElement('input');
+                                        input.setAttribute('type', 'file');
+                                        input.setAttribute('accept', 'image/*');
 
-                                    input.onchange = function () {
-                                        var file = this.files[0];
+                                        input.onchange = function () {
+                                            var file = this.files[0];
 
-                                        var reader = new FileReader();
-                                        reader.onload = function () {
-                                            var id = 'blobid' + (new Date()).getTime();
-                                            var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                                            var base64 = reader.result.split(',')[1];
-                                            var blobInfo = blobCache.create(id, file, base64);
-                                            blobCache.add(blobInfo);
+                                            var reader = new FileReader();
+                                            reader.onload = function () {
+                                                var id = 'blobid' + (new Date()).getTime();
+                                                var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                                var base64 = reader.result.split(',')[1];
+                                                var blobInfo = blobCache.create(id, file, base64);
+                                                blobCache.add(blobInfo);
 
-                                            /* call the callback and populate the Title field with the file name */
-                                            cb(blobInfo.blobUri(), { title: file.name });
+                                                /* call the callback and populate the Title field with the file name */
+                                                cb(blobInfo.blobUri(), { title: file.name });
+                                            };
+                                            reader.readAsDataURL(file);
                                         };
-                                        reader.readAsDataURL(file);
-                                    };
 
-                                    input.click();
+                                        input.click();
+                                    }
+                                }}
+                            />
+                            <Input
+                                id="enlace"
+                                className="form-input"
+                                label="Link (opcional)"
+                                floatingLabel={true}
+                                name="link"
+                                type="url"
+                                onChange={this.handleChange}
+                                value={this.state.link}
+                            />
+                            <Container>
+                                <label htmlFor="file-upload" className="subir">
+                                    <i className="fas fa-cloud-upload-alt"></i><span id="info"> Imagen de portada</span> 
+                                </label>
+                                <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="imagen" required/>
+                            </Container>
+                            <div id="show-img"><img id="img" src={this.state.img} /></div>
+                            <Button variant="raised" color="primary" disabled={loadAction} >
+                                {
+                                    (loadAction)
+                                        ?
+                                        <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                                        :
+                                        <span>Agregar</span>
                                 }
-                            }}
-                        />
-                        <Input
-                            id="enlace"
-                            className="form-input"
-                            label="Link (opcional)"
-                            floatingLabel={true}
-                            name="link"
-                            type="url"
-                            onChange={this.handleChange}
-                            value={this.state.link}
-                        />
-                        <Container>
-                            <label htmlFor="file-upload" className="subir">
-                                <i className="fas fa-cloud-upload-alt"></i><span id="info"> Imagen de portada</span> 
-                            </label>
-                            <input id="file-upload" onChange={this.handleChange} type="file" accept="image/" name="imagen" required/>
-                        </Container>
-                        <div id="show-img"><img id="img" src={this.state.img} /></div>
-                        <Button variant="raised" color="primary" disabled={loadAction} >
-                            {
-                                (loadAction)
-                                    ?
-                                    <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                                    :
-                                    <span>Agregar</span>
-                            }
-                        </Button>
-                        <Button variant="flat" type="reset" >Limpiar Campos</Button>
-                    </Form>
+                            </Button>
+                            <Button variant="flat" type="reset" >Limpiar Campos</Button>
+                        </Form>
 
-                </section>
+                    </section>
+
+                }
             </div>
         )
     }

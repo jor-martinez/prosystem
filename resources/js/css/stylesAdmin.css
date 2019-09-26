@@ -137,10 +137,17 @@ textarea{
 }
 .user-logued{
    position: relative;
-   top: 10px;
+   top: 20px;
    width: 100%;
    text-align: right;
    padding-right: 20px;
+}
+.user-logued > span{
+   color: #fff;
+   font-weight: 500;
+   background-color: #007bff;
+   padding: 10px;
+   border-radius: 50px;
 }
 .submenu-admin{
    list-style: none;
@@ -180,6 +187,7 @@ textarea{
    display: flex;
    flex-wrap: wrap;
    height: 100%;
+   margin: 0 auto;
 }
 .main-containor .no-data{
    font-size: 20px;
@@ -189,11 +197,15 @@ textarea{
    top: 50px;
    color: #b71c1c;
 }
+
 .item-list .item-containor{
    width: 95%;
    height: 170px;
-   margin: 10px;
-   box-shadow: 0 0 5px 0 black;
+   margin: 0 10px 10px 10px;
+   padding: 10px;
+   /* box-shadow: 0 0 5px 0 black; */
+   border: 2px solid rgb(230, 230, 230);
+   border-radius: 10px;
    display: flex;
    transition: all 1s linear;
 }
@@ -216,20 +228,23 @@ textarea{
 /* usuarios */
 
 .main-containor .item-list .user-containor{
-   height: 50px;
+   height: 70px;
 }
 .main-containor .item-list .user-containor .text-containor{
    padding-top: 15px;
-   width: 80%;
+   width: 100%;
 }
 .main-containor .item-list .user-containor .text-containor > .user-name{
    display: inline-block;
    font-weight: 600;
-   width: 50%;
+   width: 40%;
 }
 .main-containor .item-list .user-containor .text-containor > .user-email{
    display: inline-block;
    width: 50%;
+}
+.main-containor .item-list .user-containor .text-containor .buttons-containor{
+   bottom: 5px;
 }
 
 .item-containor .img-containor{
@@ -248,7 +263,8 @@ textarea{
 }
 .item-containor .text-containor{
    padding: 10px;
-   width: 60%;
+   width: 80%;
+   position: relative;
    /* border: 1px solid black; */
 }
 .item-containor .text-containor h2{
@@ -270,8 +286,9 @@ textarea{
    display: flex;
    justify-content: center;
    text-align: center;
-   width: 40%;
-   height: 100%;
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
    /* border: 1px solid black; */
 }
 .button{
@@ -295,6 +312,15 @@ textarea{
    font-size: 20px;
    padding: 5px 10px;
 }
+.edit-mision{
+   width: 50px;
+   height: 50px;
+   font-size: 20px;
+   padding-top: 10px;
+   text-align: center;
+   margin: 0;
+   margin-top: 10px;
+}
 .button-delete{
    width: 40px;
    height: 40px;
@@ -303,13 +329,19 @@ textarea{
    font-size: 20px;
    margin: auto;
 }
+.delete-btn{
+   width: 50px;
+   height: 50px;
+   font-size: 20px;
+   margin-top: 10px;
+}
 .button-show{
    display: inline-block;
-   width: 100px;
-   height: 40px;
+   width: 80px;
+   height: 30px;
    background: #e53935;
    color: #fff;
-   font-size: 20px;
+   font-size: 16px;
    background: #26C6DA;
    padding-top: 5px;
    margin: auto;
@@ -335,7 +367,7 @@ textarea{
 .buttons-block{
    position: absolute;
    left: 10px;
-   top: 180px;
+   top: 10px;
    display: flex;
    flex-direction: column;
 }
@@ -374,6 +406,9 @@ textarea{
 #editor-descripcion{
    margin: 10px 0;
 }
+.button-form{
+   width: 40%;
+}
 
 /* Blog */
 
@@ -407,6 +442,10 @@ textarea{
 .admin-blog .item-list .buttons-containor{
    width: 100%;
    height: 50px;
+   position: relative;
+   margin-top: 30px;
+   bottom: 0;
+   right: 0;
 }
 
 /* PROCESO DE TRABAJO */
@@ -431,15 +470,17 @@ textarea{
 }
 .admin-process .item-list .process-containor .text-containor .info-butt-containor{
    width: 70%;
+   position: relative;
 }
 .admin-process .item-list .process-containor .text-containor .info-butt-containor > p{
    display: inline-block;
-   height: 50px;
+   height: 45px;
    margin: 0;
 }
 .admin-process .item-list .process-containor .text-containor .info-butt-containor .buttons-containor{
-   width: 100%;
-   height: 60px;
+   position: absolute;
+   right: -20px;
+   bottom: -20px;
 }
 .admin-process .item-list .product-containor{
    height: 180px;
@@ -587,20 +628,22 @@ textarea{
 /* Perfil */
 
 .profile-containor{
-   width: 80%;
+   width: 100%;
    margin: 40px auto;
    display: flex;
    justify-content: space-between;
+   position: relative;
 }
 .profile-containor .profile-info{
    width: 80%;
-   margin: auto;
+   margin: 0 auto;
+   padding: 0 100px;
 }
 .profile-containor .profile-info h1{
    font-size: 22px;
 }
 .profile-containor .profile-info table{
-   width: 90%;
+   width: 100%;
 }
 .profile-containor .profile-info table th{
    text-align: left;
@@ -622,10 +665,11 @@ textarea{
    background-color: rgb(112, 243, 255);
 }
 .profile-containor .profile-edit{
-   width: 50%;
    display: none;
    opacity: 0;
    transition: display 2s ease-in;
+   width: 70%;
+   padding: 0 100px;
    /* transition: display .4s ease-in; */
 }
 .profile-containor .profile-edit > form{
@@ -635,7 +679,21 @@ textarea{
    border: 2px solid rgb(230, 230, 230);
    border-radius: 10px;
 }
-
+.profile-containor .password-edit{
+   display: none;
+   opacity: 0;
+   transition: display 2s ease-in;
+   width: 70%;
+   padding: 0 100px;
+   /* transition: display .4s ease-in; */
+}
+.profile-containor .password-edit > form{
+   padding: 25px;
+   display: flex;
+   flex-direction: column;
+   border: 2px solid rgb(230, 230, 230);
+   border-radius: 10px;
+}
 
 
 /* para editar servicio imagen vista previa */
@@ -651,11 +709,12 @@ textarea{
    align-items: center;
 }
 .refresh .btn-refresh{
-   width: 40px;
-   height: 40px;
+   width: 50px;
+   height: 50px;
    border: none;
    background: #26C6DA;
    color: #fff;
+   font-size: 20px;
    cursor: pointer;
    border-radius: 5px;
 }

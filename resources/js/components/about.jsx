@@ -108,16 +108,6 @@ class About extends Component{
                   }
                </div>
             </section>
-            <section className="cta-style-one text-center home-page-two" style={{backgroundImage: `url(${cta})`}} >
-               <div className="container">
-                  <div className="title-block">
-                     <span className="tag-line">¡Mantente seguro!</span>
-                     <h2>Llamado de acción</h2>
-                  </div>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt <br /> mollit anim id est laborum.</p>
-                  <a href="index.html" className="cta-btn">Otra acción</a>
-               </div>
-            </section>
             <section className="brands-area-one">
                <Brand/>
             </section>
