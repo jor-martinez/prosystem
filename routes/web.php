@@ -136,18 +136,26 @@ Route::middleware(['auth:admin']) -> group(function() {
         Route::post('/modificar/{id}', 'Api\UsuarioController@update');
         Route::post('/modificarclave/{id}', 'Api\UsuarioController@clave');
         Route::delete('/borrar/{id}', 'Api\UsuarioController@destroy');
+        Route::post('/modificarPassword/{id}', 'Api\UsuarioController@passwordUpdate');
       });
 
     });
 
     Route::get('/admin/obtener-info', 'Api\UsuarioController@show');
-    Route::get('/admin/{path?}', function () {
-      return view('admin');
-    });
+     Route::get('/admin/{path?}', function () {
+       return view('admin');
+     });
+    // Route::get('/admin/{path?}', function(){
+    //   return View::make('admin');
+    // }) -> where('path', '.*');
 
 });
 
-Route::get('/{path?}', function () {
-  return view('main');
-});
+//  Route::get('/{path?}', function () {
+//    return view('main');
+//  });
 
+
+Route::get('/{path?}', function($path = null){
+  return View::make('main');
+}) -> where('path', '.*');
