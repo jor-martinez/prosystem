@@ -67,7 +67,7 @@ class BlogController extends Controller
                
             
         }  else{
-                $ruta_acceso_imagen = public_path('images\blog').'/'.$dato -> encabezado;//Eliminar imagen actual
+                $ruta_acceso_imagen = public_path('images/blog').'/'.$dato -> encabezado;//Eliminar imagen actual
                 unlink($ruta_acceso_imagen);
 
                 $file = $request -> file('encabezado');//Tomando nueva imagen
@@ -89,7 +89,7 @@ class BlogController extends Controller
     public function destroy($titulo)
     {
         $dato = Blog::findOrFail($titulo);
-        $ruta_acceso_imagen = public_path('images\blog').'/'.$dato -> encabezado;
+        $ruta_acceso_imagen = public_path('images/blog').'/'.$dato -> encabezado;
         unlink($ruta_acceso_imagen);
         $dato -> delete();
 

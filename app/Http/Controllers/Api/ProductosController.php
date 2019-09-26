@@ -54,7 +54,7 @@ class ProductosController extends Controller
 
         $dato = Productos::findOrFail($id);
 
-        if(is_null($request -> file('Imagen'))){
+        if(is_null($request -> file('imagen'))){
             $dato -> titulo = $request -> titulo;
             $dato -> slug = StringReplace::getPureString($request -> titulo);
             $dato -> descripcion = $request -> descripcion;
@@ -63,7 +63,7 @@ class ProductosController extends Controller
     
             return response("actualizado", 200) -> header('Content-Type', 'application/json');
         } else {
-            $ruta_acceso_imagen = public_path('images\productos').'/'.$dato -> imagen;
+            $ruta_acceso_imagen = public_path('images/productos').'/'.$dato -> imagen;
             unlink($ruta_acceso_imagen);
 
             $file = $request -> file('imagen');
@@ -85,7 +85,7 @@ class ProductosController extends Controller
     public function destroy($id)
     {
         $dato = Productos::findOrFail($id);
-        $ruta_acceso_imagen = public_path('images\productos').'/'.$dato -> imagen;
+        $ruta_acceso_imagen = public_path('images/productos').'/'.$dato -> imagen;
         unlink($ruta_acceso_imagen);
         $dato -> delete();
         return response("eliminado", 200) -> header('Content-Type', 'application/json');

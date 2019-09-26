@@ -6,15 +6,15 @@ Route::post('/login', 'Auth\LoginController@login') -> name('attemptLogin');
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
 // Password Reset
-Route::post('/contraseña/correo', 'Auth\ForgotPasswordController@sendResetLinkEmail')
+Route::post('/password/correo', 'Auth\ForgotPasswordController@sendResetLinkEmail')
 -> name('password.email');
 
-Route::get('/contraseña/restaurar', 'Auth\ForgotPasswordController@showLinkRequestForm')
+Route::get('/password/restaurar', 'Auth\ForgotPasswordController@showLinkRequestForm')
   -> name('password.request');
 
-Route::post('/contraseña/restaurar', 'Auth\ResetPasswordController@reset');
+Route::post('/password/restaurar', 'Auth\ResetPasswordController@reset');
 
-Route::get('/contraseña/restaurar/{token}', 'Auth\ResetPasswordController@showResetForm')
+Route::get('/password/restaurar/{token}', 'Auth\ResetPasswordController@showResetForm')
 -> name('password.reset');
 
 //Correo de contacto

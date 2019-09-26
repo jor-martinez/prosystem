@@ -51,7 +51,7 @@
                   <input class="form-control" id="titulo" name="titulo" value="{{$producto->titulo}}">
                   <input class="form-control" id="descripcion" name="descripcion" value="{{$producto->descripcion}}">
                   <input class="form-control" id="link" name="link" value="{{$producto->link}}">
-                  <input accept="image/" class="form-control" type="file" id="imagen" name="imagen" placeholder="Imagen"/>
+                  <input accept="image/" class="form-control" type="file" id="imagen" name="imagen" placeholder="Imagen">
                   <button class="btn btn-info" type="submit" style="float:right">Actualizar</button>
                 </form>
                 @endif

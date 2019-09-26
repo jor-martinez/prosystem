@@ -67,7 +67,7 @@ class ServiciosController extends Controller
                
             
         }  else{
-            $ruta_acceso_imagen = public_path('images\servicios').'/'.$dato -> Imagen;
+            $ruta_acceso_imagen = public_path('images/servicios').'/'.$dato -> Imagen;
             unlink($ruta_acceso_imagen);
 
             $file = $request -> file('Imagen');//Tomando nueva imagen
@@ -89,7 +89,7 @@ class ServiciosController extends Controller
     public function destroy($slug)
     {
         $dato = Servicios::findOrFail($slug);
-        $ruta_acceso_imagen = public_path('images\servicios').'/'.$dato -> Imagen;
+        $ruta_acceso_imagen = public_path('images/servicios').'/'.$dato -> Imagen;
         unlink($ruta_acceso_imagen);
         $dato -> delete();
 
