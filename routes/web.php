@@ -104,7 +104,7 @@ Route::middleware(['auth:admin']) -> group(function() {
         Route::post('/nueva', 'Api\ProductosController@store');
         Route::post('/editar/{id}', 'Api\ProductosController@update');
         Route::delete('/borrar/{id}', 'Api\ProductosController@destroy');
-        Route::get('/{slug}', 'Api\BlogController@show');
+        Route::get('/{slug}', 'Api\ProductosController@show');
       });
 
       //VALORES
@@ -121,7 +121,7 @@ Route::middleware(['auth:admin']) -> group(function() {
         Route::post('/nueva', 'Api\ServiciosController@store');
         Route::post('/editar/{id}', 'Api\ServiciosController@update');
         Route::delete('/borrar/{id}', 'Api\ServiciosController@destroy');
-        Route::get('/{slug}', 'Api\BlogController@show');
+        Route::get('/{slug}', 'Api\ServiciosController@show');
       });
 
       //SLYDER
