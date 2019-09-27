@@ -98,7 +98,11 @@ class ServiciosController extends Controller
 
     public function show($slug)
     {
-        $servicios = Servicios::findOrFail($slug);
-        return (['servicios'=>$servicios]);
+        $datos = Blog::all();
+        foreach($datos as $dato){
+            if (($dato->slug) == $slug){
+                return [$dato];
+            }
+        }    
     } 
 }

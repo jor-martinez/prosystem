@@ -96,9 +96,13 @@ class BlogController extends Controller
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $blog = Blog::find($id);
-        return $blog;
+        $datos = Blog::all();
+        foreach($datos as $dato){
+            if (($dato->slug) == $slug){
+                return [$dato];
+            }
+        }    
     } 
 }

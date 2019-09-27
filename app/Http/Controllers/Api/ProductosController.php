@@ -91,7 +91,11 @@ class ProductosController extends Controller
 
     public function show($slug)
     {
-        $productos = Productos::findOrFail($slug);
-        return (['productos'=>$productos]);
-    } 
+        $datos = Productos::all();
+        foreach($datos as $dato){
+            if (($dato->slug) == $slug){
+                return [$dato];
+            }
+        }    
+    }  
 }
