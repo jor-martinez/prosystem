@@ -96,9 +96,10 @@ class BlogController extends Controller
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
 
-    public function show($slug)
+    public function show($id)
     {
-        $blog = Blog::findOrFail($slug);
-        return (['blog'=>$blog]);
+        $blog = Blog::find($id);
+        return $blog;
+        // kreturn View::make('users.show')->with('blog', $blog);
     } 
 }
