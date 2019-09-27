@@ -48,7 +48,7 @@ Route::middleware(['auth:admin']) -> group(function() {
         Route::post('/nueva', 'Api\BlogController@store');
         Route::post('/editar/{id}', 'Api\BlogController@update');
         Route::delete('/borrar/{id}', 'Api\BlogController@destroy');
-        Route::get('/{slug}', 'Api\BlogController@show');
+        Route::get('/{id}', 'Api\BlogController@show');
       });
 
       //CARACTERISTICAS
