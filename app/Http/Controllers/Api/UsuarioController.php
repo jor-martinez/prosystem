@@ -70,37 +70,37 @@ class UsuarioController extends Controller
 
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
+    
+    public function show()
+    {
+        return Usuario::findOrFail(Auth::id());
+    }
 
     public function passwordUpdate(Request $request, $id)
     {
-        return Usuario::findOrFail($id);
 
+        $dato = Usuario::findOrFail($id);
         $reglas = [
             'password'      => 'required|string|min:6',
-            'passwordNew'   => 'required|string|min:6|confirmed'
+            'passwordNew'   => 'required|string|min:6'
         ];
-
+    
         $mensajes = [
             'password.required'      => 'password requerida',
             'passwordNew.required'   => 'password requerida',
             'passwordNew.min'        => 'password debe tener al menos 6 caracteres'
         ];
-
+    
         $this -> validate($request, $reglas, $mensajes);
-
+    
         if (\Hash::check($request['password'], $dato -> password)) {
-
-            $estado = $dato -> update([
-                'passwordNew' => bcrypt($request -> password)
-            ]);
+           $dato -> password = bcrypt($request -> passwordNew);
+           $dato -> save();
         } else {
            return response(['message' => 'Las contraseña actual no coincide'], 500) -> header('content-type', 'application/json');
         }  
 
-    return $estado
-        ? response('Contraseña actualizada', 200) -> header('content-type', 'application/json')
-        : response('No se pudo actualizar la contraseña', 500) -> header('content-type', 'application/json');
-
-}
+    return response('Contraseña actualizada', 200) -> header('content-type', 'application/json');
     }
 }
+

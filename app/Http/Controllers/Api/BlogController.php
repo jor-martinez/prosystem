@@ -95,4 +95,10 @@ class BlogController extends Controller
 
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
+
+    public function show($slug)
+    {
+        $blog = Blog::findOrFail($slug);
+        return (['blog'=>$blog]);
+    } 
 }

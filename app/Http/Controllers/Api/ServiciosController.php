@@ -95,4 +95,10 @@ class ServiciosController extends Controller
 
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
+
+    public function show($slug)
+    {
+        $servicios = Servicios::findOrFail($slug);
+        return (['servicios'=>$servicios]);
+    } 
 }

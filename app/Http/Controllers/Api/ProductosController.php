@@ -38,9 +38,6 @@ class ProductosController extends Controller
 
         $upload = Storage::disk('uploads') -> put('images/productos/' . $nombre_imagen, file_get_contents($file));
 
-        // return $upload
-        //        ? response(200) -> header('Content-type', 'application/json')
-        //        : response('Error', 500) -> header('Content-type', 'application/json');
         return response("creado", 200) -> header('Content-Type', 'application/json');
     }
     
@@ -82,6 +79,7 @@ class ProductosController extends Controller
 
     
     }
+
     public function destroy($id)
     {
         $dato = Productos::findOrFail($id);
@@ -90,4 +88,10 @@ class ProductosController extends Controller
         $dato -> delete();
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
+
+    public function show($slug)
+    {
+        $productos = Productos::findOrFail($slug);
+        return (['productos'=>$productos]);
+    } 
 }
