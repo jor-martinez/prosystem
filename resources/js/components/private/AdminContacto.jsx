@@ -151,7 +151,7 @@ class AdminContacto extends Component {
                                         <div className="info-containor" >
                                             <div className="text-containor">
                                                 <h2>Teléfonos</h2>
-                                                <p>{datosContacto[0].telefono}</p>
+                                                <p style={{whiteSpace: "pre-line"}}>{datosContacto[0].telefono}</p>
                                             </div>
                                         </div>
                                     </section>
@@ -159,7 +159,7 @@ class AdminContacto extends Component {
                                         <div className="info-containor" >
                                             <div className="text-containor">
                                                 <h2>Correos</h2>
-                                                <p>{datosContacto[0].correo}</p>
+                                                <p style={{whiteSpace: "pre-line"}}>{datosContacto[0].correo}</p>
                                             </div>
                                         </div>
                                     </section>

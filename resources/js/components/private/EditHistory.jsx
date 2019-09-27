@@ -67,6 +67,12 @@ class EditHistory extends Component {
         const { loadAction,errors } = this.state
         return (
             <div className="one-process-edit one-history-edit">
+                <div className="return">
+                    <Link className="button button-return tooltip return-btn" to="/admin/historia">
+                        <i className="fas fa-reply"></i>
+                        <span className="tooltiptext">Regresar</span>
+                    </Link>
+                </div>
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar historia</legend>
                     {errorAlert(errors)}

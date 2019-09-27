@@ -14,10 +14,11 @@ class Service extends Component{
       super(props)
 
       this.state = {
+         slug: this.props.location.pathname.substring(16),
          id: this.props.location.state.service.id,
          nombre: this.props.location.state.service.nombre,
          descripcion: this.props.location.state.service.descripcion,
-         slug: this.props.location.state.service.slug,
+         // slug: this.props.location.state.service.slug,
          Imagen: this.props.location.state.service.Imagen,
          img: null,
          loadAction: false,
@@ -28,8 +29,18 @@ class Service extends Component{
       this.handleOnClickEdit = this.handleOnClickEdit.bind(this)
       this.handleOnUpdate = this.handleOnUpdate.bind(this)
       this.handleEditorChange = this.handleEditorChange.bind(this)
+      this.getService = this.getService.bind(this)
    }
-
+   componentDidMount(){
+      this.getService()
+   }
+   getService(){
+      axios.get('/dev/servicios/'+this.state.slug).then(res=>{
+         console.log(res)
+      }).catch(err=>{
+         console.log(err)
+      })
+   }
    handleChange(e){
       const { name, value, type } = e.target;
       if ( type !== 'file') {
@@ -63,7 +74,7 @@ class Service extends Component{
        }).then((result) => {
          if (result.value) {
             axios.delete('/dev/servicios/borrar/'+this.state.id).then((res)=>{
-               console.log(res)
+               // console.log(res)
                SweetAlert.fire(
                   'Eliminado!',
                   'El elemento ha sido eliminado.',
@@ -81,7 +92,7 @@ class Service extends Component{
    handleOnUpdate(e){
       e.preventDefault();
 
-      console.log()
+      // console.log()
 
       this.setState({loadAction: true})
 
@@ -91,7 +102,7 @@ class Service extends Component{
       formData.append('Imagen', this.state.Imagen);
       
 
-      console.log(formData)
+      // console.log(formData)
 
       axios({
          method: 'post',
@@ -100,7 +111,7 @@ class Service extends Component{
          config: {headers: {'Content-Type': 'multipart/form-data'}}
       }).then(res=>{
          this.setState({loadAction: false})
-         console.log(res)
+         // console.log(res)
          SweetAlert.fire(
             'Correcto',
             'El servicio se ha modificado correctamente!!',
@@ -127,7 +138,7 @@ class Service extends Component{
       this.setState({descripcion: e.target.getContent()})
    }
    render(){
-      console.log(this.state)
+      // console.log(this.state)
       const {loadAction,errors} = this.state
       return(
          <div>
@@ -138,8 +149,8 @@ class Service extends Component{
                <div className="info-block">
                   <h1>{this.state.nombre}</h1>
                   <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
-                  <div className="buttons-block">
-                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip">
+                  <div className="buttons-block one-item-btn-block">
+                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
                         <i className="fas fa-edit"></i>
                         <span className="tooltiptext tooltiptext-left">Editar</span>
                      </button>
@@ -155,6 +166,12 @@ class Service extends Component{
                </div>
             </div>
             <div className="one-service-edit" id="serv-edit">
+               <div className="return">
+                  <Link className="button button-return tooltip return-btn" to="/admin/servicios">
+                     <i className="fas fa-reply"></i>
+                     <span className="tooltiptext">Regresar</span>
+                  </Link>
+               </div>
                <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data">
                   <legend>Editar servicio</legend>
                   {errorAlert(errors)}

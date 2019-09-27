@@ -126,7 +126,7 @@ class EditProducto extends Component {
                     <h1>{this.state.nombre}</h1>
                     <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
                     <div className="buttons-block">
-                        <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip">
+                        <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
                             <i className="fas fa-edit"></i>
                             <span className="tooltiptext tooltiptext-left">Editar</span>
                         </button>
@@ -142,6 +142,12 @@ class EditProducto extends Component {
                 </div>
                 </div>
                 <div className="one-process-edit" id="serv-edit">
+                    <div className="return">
+                        <Link className="button button-return tooltip return-btn" to="/admin/productos">
+                            <i className="fas fa-reply"></i>
+                            <span className="tooltiptext">Regresar</span>
+                        </Link>
+                    </div>
                     <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                         <legend>Editar Producto</legend>
                         {errorAlert(errors)}

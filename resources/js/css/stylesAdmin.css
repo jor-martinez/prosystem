@@ -333,6 +333,8 @@ textarea{
    width: 50px;
    height: 50px;
    font-size: 20px;
+   margin: 0;
+   margin-bottom: 10px;
    margin-top: 10px;
 }
 .button-show{
@@ -357,12 +359,16 @@ textarea{
    font-size: 18px;
 }
 .button-return{
-   width: 40px;
-   height: 40px;
+   width: 50px;
+   height: 50px;
    background: #26C6DA;
    color: #fff;
    font-size: 20px;
-   padding: 5px 10px;
+   padding-top: 10px;
+}
+.return-btn{
+   margin: 0;
+   text-align: center;
 }
 .buttons-block{
    position: absolute;
@@ -374,11 +380,17 @@ textarea{
 .buttons-block .tacha{
    transform: rotate(45deg);
 }
+.one-item-btn-block{
+   top: 180px;
+}
 .main-containor .item-add{
    width: 50%;
    padding: 0 20px;
 }
-
+.return{
+   position: absolute;
+   left: 10px;
+}
 .main-containor .item-add form{
    padding: 25px;
    display: flex;
@@ -556,7 +568,9 @@ textarea{
    width: 80%;
    margin: 50px auto;
    display: flex;
-   box-shadow: 0 0 5px 0 grey;
+   border: 2px solid rgb(230, 230, 230);
+   border-radius: 10px;
+   padding: 10px;
 }
 .one-service-containor .img-block{
    /* border: 1px solid black; */
@@ -793,10 +807,12 @@ textarea{
 }
 .go-prosystem{
    background: #039BE5;
-   transition: all .4s ease;
+   opacity: .5;
+   transition: all .5s ease;
 }
 .go-prosystem:hover{
    background: #2196F3;
+   opacity: 1;
 }
 .go-prosystem img{
    width: 100%;
@@ -805,10 +821,12 @@ textarea{
 }
 .button-logout{
    background: #b71c1c;
-   transition: all .4s ease;
+   opacity: .5;
+   transition: all .5s ease;
 }
 .button-logout:hover{
    background: #d50000;
+   opacity: 1;
 }
 .button-logout i{
    font-size: 30px;

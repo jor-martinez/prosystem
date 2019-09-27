@@ -176,7 +176,7 @@ class AdminMarcas extends Component{
                                           
                                        }
                                     })
-                                 }} className="button button-delete tooltip">
+                                 }} className="button button-delete tooltip delete-btn">
                                     <i className="fas fa-trash-alt"></i>
                                     <span className="tooltiptext">Eliminar</span>
                                  </button>
@@ -201,9 +201,6 @@ class AdminMarcas extends Component{
                      value={this.state.Nombre}
                      name="Nombre"
                   />
-                  <Container>
-                     <p>Nota: El nombre de las imagenes no debe tener espacios.</p>
-                  </Container>
                   <Container>
                      <label htmlFor="file-upload" className="subir">
                         <i className="fas fa-cloud-upload-alt"></i><span id="info"> Subir imagen</span> 

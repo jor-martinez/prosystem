@@ -64,6 +64,12 @@ class EditVentaja extends Component {
         const { loadAction, errors } = this.state
         return (
             <div className="one-process-edit">
+                <div className="return">
+                    <Link className="button button-return tooltip return-btn" to="/admin/ventajas">
+                        <i className="fas fa-reply"></i>
+                        <span className="tooltiptext">Regresar</span>
+                    </Link>
+                </div>
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar ventaja</legend>
                     {errorAlert(errors)}

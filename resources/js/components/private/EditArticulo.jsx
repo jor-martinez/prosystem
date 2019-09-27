@@ -14,6 +14,7 @@ class Articulo extends Component{
       super(props)
 
       this.state = {
+         slug: this.props.location.pathname.substring(16),
          id: this.props.location.state.post.id,
          titulo: this.props.location.state.post.titulo,
          cuerpo: this.props.location.state.post.cuerpo,
@@ -28,8 +29,11 @@ class Articulo extends Component{
       this.handleOnClickEdit = this.handleOnClickEdit.bind(this)
       this.handleOnUpdate = this.handleOnUpdate.bind(this)
       this.handleEditorChange = this.handleEditorChange.bind(this)
+      this.getArticulo = this.getArticulo.bind(this)
    }
-
+   componentDidMount(){
+      this.getArticulo()
+   }
    handleChange(e){
       const { name, value, type } = e.target;
       if ( type !== 'file') {
@@ -44,6 +48,13 @@ class Articulo extends Component{
          const pdrs = document.getElementById('file-upload').files[0].name
          document.getElementById('info').innerHTML = ' '+pdrs
       }
+   }
+   getArticulo(){
+      axios.get('/dev/blog/'+this.state.slug).then(res=>{
+         console.log(res)
+      }).catch(err=>{
+         console.log(err)
+      })
    }
    handleOnClickEdit(){
       document.getElementById('serv-edit').style.display = 'block';
@@ -129,7 +140,7 @@ class Articulo extends Component{
       this.setState({cuerpo: e.target.getContent()})
    }
    render(){
-      console.log(this.state)
+      console.log(this.props.location.pathname.substring(16))
       const {loadAction,errors} = this.state
       return(
          <div>
@@ -140,8 +151,8 @@ class Articulo extends Component{
                <div className="info-block">
                   <h1>{this.state.titulo}</h1>
                   <div dangerouslySetInnerHTML={{ __html: this.state.cuerpo }}></div>
-                  <div className="buttons-block">
-                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip">
+                  <div className="buttons-block one-item-btn-block">
+                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
                         <i className="fas fa-edit"></i>
                         <span className="tooltiptext tooltiptext-left">Editar</span>
                      </button>
@@ -157,6 +168,12 @@ class Articulo extends Component{
                </div>
             </div>
             <div className="one-service-edit" id="serv-edit">
+               <div className="return">
+                  <Link className="button button-return tooltip return-btn" to="/admin/articulos">
+                     <i className="fas fa-reply"></i>
+                     <span className="tooltiptext">Regresar</span>
+                  </Link>
+               </div>
                <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data">
                   <legend>Editar Articulo</legend>
                   {errorAlert(errors)}

@@ -18,7 +18,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        left: 105%;
+        left: 110%;
         top: 10px;
     }
     .item-list .item-containor{
@@ -27,11 +27,11 @@
     .button-show{
         font-size: 16px;
         width: 80px;
-        padding-top: 10px;
+        padding-top: 5px;
     }
     .tooltip .tooltiptext-left{
-        top: 5px;
-        left: -320%;
+        top: 10px;
+        left: -255%;
     }
     .main-containor .item-list .marca-containor{
         width: 45%;
@@ -40,11 +40,8 @@
 
     /* para ver un servicio */
     .buttons-block{
-        left: 91%;
+        left: 94%;
         top: 155px;
-    }
-    .delete-btn{
-        margin: 10px;
     }
     .one-service-edit{
         width: 80%;
@@ -76,9 +73,16 @@
         left: -420%;
         font-size: 12px;
     }
+    .refresh{
+        left: 106%;
+    }
     .refresh .btn-refresh{
         width: 30px;
         height: 30px;
+        font-size: 18px;
+    }
+    .buttons-block{
+        left: 93%;
     }
     .btn{
         width: 35px;
@@ -100,15 +104,23 @@
     .item-containor .text-containor h2{
         font-size: 14px;
     }
+    .item-containor .buttons-containor{
+        bottom: 0;
+        right: 0;
+    }
     .button-show{
-        width: 50px;
-        height: 35px;
+        width: 60px;
+        height: 28px;
         font-size: 12px;
+    }
+    .button-form{
+        width: 100%;
     }
     .button-edit-res{
         width: 30px;
         height: 30px;
         font-size: 14px;
+        padding-top: 5px;
     }
     .main-containor .item-list .marca-containor{
         width: 100%;
@@ -139,5 +151,8 @@
         width: 30px;
         height: 30px;
         font-size: 12px;
+    }
+    .return-btn{
+        padding-top: 8px;
     }
 }

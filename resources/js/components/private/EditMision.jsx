@@ -66,6 +66,12 @@ class EditMission extends Component {
         // console.log(this.props)
         return (
             <div className="one-process-edit">
+                <div className="return">
+                    <Link className="button button-return tooltip return-btn" to="/admin/mision-vision-objetivo">
+                        <i className="fas fa-reply"></i>
+                        <span className="tooltiptext">Regresar</span>
+                    </Link>
+                </div>
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                     <legend>Editar misión, visión y objetivo</legend>
                     {errorAlert(errors)}

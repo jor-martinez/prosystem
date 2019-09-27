@@ -184,7 +184,7 @@ class AdminSlider extends Component{
                                                 
                                              }
                                           })
-                                       }} className="button button-delete tooltip">
+                                       }} className="button button-delete tooltip delete-btn">
                                           <i className="fas fa-trash-alt"></i>
                                           <span className="tooltiptext">Eliminar</span>
                                        </button>
