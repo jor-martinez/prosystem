@@ -99,7 +99,6 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = Blog::find($id);
-        return $blog;
-        // kreturn View::make('users.show')->with('blog', $blog);
+        return (['blog'=>$blog]);
     } 
 }
