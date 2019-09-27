@@ -4,6 +4,7 @@ import Moment from 'react-moment'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
+import Container from 'muicss/lib/react/container'
 import errorAlert from './errors'
 import SweetAlert from 'sweetalert2'
 
@@ -20,7 +21,9 @@ class Profile extends Component{
             errors: {},
             password:'',
             passwordNew: '',
-            passwordConfirm: ''
+            passwordConfirm: '',
+            eyeOpen: true,
+            eyeOpen2: true
 
         }
         this.getProfile = this.getProfile.bind(this)
@@ -30,6 +33,8 @@ class Profile extends Component{
         this.handleOnCancel = this.handleOnCancel.bind(this)
         this.handleOnClickEditPass = this.handleOnClickEditPass.bind(this)
         this.handleOnSubmitPass = this.handleOnSubmitPass.bind(this)
+        this.showPass = this.showPass.bind(this)
+        this.showPassCon = this.showPassCon.bind(this)
     }
     componentDidMount(){
         this.getProfile()
@@ -164,12 +169,32 @@ class Profile extends Component{
                     passwordNew: '',
                     passwordConfirm: ''
                 })
-                document.getElementById('np').focus();
+                // document.getElementById('np').focus();
             })
         }
     }
+    showPass(){
+        const newpass = document.getElementById('inp')
+        if(newpass.type === "password"){
+            newpass.type = "text";
+            this.setState({eyeOpen: false})
+        }else{
+            newpass.type = "password";
+            this.setState({eyeOpen: true})
+        }
+    }
+    showPassCon(){
+        const newpass = document.getElementById('inp2')
+        if(newpass.type === "password"){
+            newpass.type = "text";
+            this.setState({eyeOpen2: false})
+        }else{
+            newpass.type = "password";
+            this.setState({eyeOpen2: true})
+        }
+    }
     render(){
-        const {user, load, loadAction, nombre, email, errors} = this.state
+        const {user, load, loadAction, nombre, email, errors, eyeOpen, eyeOpen2} = this.state
         return(
             <div>
                 {
@@ -239,15 +264,18 @@ class Profile extends Component{
                                     value={email}
                                     onChange={this.handleChange}
                                 />
-                                <Button variant="raised" color="primary" disabled={loadAction} >
-                                    {
-                                        (loadAction)
-                                            ?
-                                            <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
-                                            :
-                                            <span>Aplicar cambios</span>
-                                    }
-                                </Button>
+                                <Container>
+                                    <Button className="button-form" variant="raised" color="primary" disabled={loadAction} >
+                                        {
+                                            (loadAction)
+                                                ?
+                                                <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
+                                                :
+                                                <span>Aplicar cambios</span>
+                                        }
+                                    </Button>
+
+                                </Container>
                             </Form>
                         </div>
                         <div className="password-edit" id="pass-edit">
@@ -264,36 +292,58 @@ class Profile extends Component{
                                     value={this.state.password}
                                     onChange={this.handleChange}
                                 />
-                                <Input
-                                    id="np"
-                                    className="form-input"
-                                    label="Nueva contraseña"
-                                    floatingLabel={true}
-                                    name="passwordNew"
-                                    required
-                                    type="password"
-                                    value={this.state.passwordNew}
-                                    onChange={this.handleChange}
-                                />
-                                <Input
-                                    className="form-input"
-                                    label="Confirma la nueva contraseña"
-                                    floatingLabel={true}
-                                    name="passwordConfirm"
-                                    required
-                                    type="password"
-                                    value={this.state.passwordConfirm}
-                                    onChange={this.handleChange}
-                                />
-                                <Button variant="raised" color="primary" disabled={loadAction} >
+                                <Container className="form-group">
+                                    <Input
+                                        id="inp"
+                                        className="form-input"
+                                        label="Nueva contraseña"
+                                        floatingLabel={true}
+                                        name="passwordNew"
+                                        required
+                                        type="password"
+                                        value={this.state.passwordNew}
+                                        onChange={this.handleChange}
+                                    />
                                     {
-                                        (loadAction)
-                                            ?
-                                            <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
-                                            :
-                                            <span>Aplicar cambios</span>
+                                        (eyeOpen)
+                                        ?
+                                        <span onClick={this.showPass}><i className="fas fa-eye"></i></span>
+                                        :
+                                        <span onClick={this.showPass}><i className="fas fa-eye-slash"></i></span>
                                     }
-                                </Button>
+                                </Container>
+                                <Container className="form-group">
+                                    <Input
+                                        id="inp2"
+                                        className="form-input"
+                                        label="Confirma la nueva contraseña"
+                                        floatingLabel={true}
+                                        name="passwordConfirm"
+                                        required
+                                        type="password"
+                                        value={this.state.passwordConfirm}
+                                        onChange={this.handleChange}
+                                    />
+                                    {
+                                        (eyeOpen2)
+                                        ?
+                                        <span onClick={this.showPassCon}><i className="fas fa-eye"></i></span>
+                                        :
+                                        <span onClick={this.showPassCon}><i className="fas fa-eye-slash"></i></span>
+                                    }
+                                </Container>
+                                <Container>
+                                    <Button className="button-form" variant="raised" color="primary" disabled={loadAction} >
+                                        {
+                                            (loadAction)
+                                                ?
+                                                <span><i className="fas fa-spinner fa-spin"></i> Aplicando cambios</span>
+                                                :
+                                                <span>Aplicar cambios</span>
+                                        }
+                                    </Button>
+
+                                </Container>
                             </Form>
                         </div>
                     </div>

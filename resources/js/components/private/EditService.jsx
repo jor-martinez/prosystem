@@ -15,11 +15,10 @@ class Service extends Component{
 
       this.state = {
          slug: this.props.location.pathname.substring(16),
-         id: this.props.location.state.service.id,
-         nombre: this.props.location.state.service.nombre,
-         descripcion: this.props.location.state.service.descripcion,
-         // slug: this.props.location.state.service.slug,
-         Imagen: this.props.location.state.service.Imagen,
+         id: '',
+         nombre: '',
+         descripcion: '',
+         Imagen: '',
          img: null,
          loadAction: false,
          errors: {}
@@ -37,6 +36,12 @@ class Service extends Component{
    getService(){
       axios.get('/dev/servicios/'+this.state.slug).then(res=>{
          console.log(res)
+         this.setState({
+            id: res.data[0].id,
+            nombre: res.data[0].nombre,
+            descripcion: res.data[0].descripcion,
+            Imagen: res.data[0].Imagen
+         })
       }).catch(err=>{
          console.log(err)
       })
@@ -60,7 +65,6 @@ class Service extends Component{
       document.getElementById('serv-edit').style.display = 'block';
       document.getElementById('serv-cont').style.display = 'none';
    }
-
    handleOnDelete(){
       SweetAlert.fire({
          title: '¿Estás seguro de eliminar este elemento?',
@@ -88,7 +92,6 @@ class Service extends Component{
           }
        })
    }
-
    handleOnUpdate(e){
       e.preventDefault();
 
@@ -100,8 +103,7 @@ class Service extends Component{
       formData.append('nombre', this.state.nombre);
       formData.append('descripcion', this.state.descripcion);
       formData.append('Imagen', this.state.Imagen);
-      
-
+   
       // console.log(formData)
 
       axios({
@@ -139,16 +141,16 @@ class Service extends Component{
    }
    render(){
       // console.log(this.state)
-      const {loadAction,errors} = this.state
+      const {loadAction,errors,nombre,descripcion,Imagen} = this.state
       return(
          <div>
             <div className="one-service-containor" id="serv-cont" >
                <div className="img-block">
-                  <img src={`../../images/servicios/${this.state.Imagen}`} alt="Imagen del servicio" />
+                  <img src={`../../images/servicios/${Imagen}`} alt="Imagen del servicio" />
                </div>
                <div className="info-block">
-                  <h1>{this.state.nombre}</h1>
-                  <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
+                  <h1>{nombre}</h1>
+                  <div className="content-service" dangerouslySetInnerHTML={{ __html: descripcion }}></div>
                   <div className="buttons-block one-item-btn-block">
                      <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
                         <i className="fas fa-edit"></i>
@@ -179,7 +181,7 @@ class Service extends Component{
                      label="Nombre"
                      floatingLabel={true}
                      className="form-input"
-                     value={this.state.nombre}
+                     value={nombre}
                      onChange={this.handleChange}
                      name="nombre"
                      required
@@ -187,7 +189,7 @@ class Service extends Component{
                   <Editor
                      apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
                      textareaName="descripcion"
-                     initialValue={this.state.descripcion}
+                     value={descripcion}
                      onChange={this.handleEditorChange}
                      init={{
                         height: 400,

@@ -15,11 +15,12 @@ class Articulo extends Component{
 
       this.state = {
          slug: this.props.location.pathname.substring(16),
-         id: this.props.location.state.post.id,
-         titulo: this.props.location.state.post.titulo,
-         cuerpo: this.props.location.state.post.cuerpo,
-         encabezado: this.props.location.state.post.encabezado,
-         autor: this.props.location.state.post.autor,
+         articulo: [],
+         id: '',
+         titulo: '',
+         cuerpo: '',
+         encabezado: '',
+         autor: '',
          img: null,
          loadAction: false,
          errors: {}
@@ -51,7 +52,14 @@ class Articulo extends Component{
    }
    getArticulo(){
       axios.get('/dev/blog/'+this.state.slug).then(res=>{
-         console.log(res)
+         // console.log(res.data[0].autor)
+         this.setState({
+            id: res.data[0].id,
+            titulo: res.data[0].titulo,
+            cuerpo: res.data[0].cuerpo,
+            encabezado: res.data[0].encabezado,
+            autor: res.data[0].autor
+         })
       }).catch(err=>{
          console.log(err)
       })
@@ -60,7 +68,6 @@ class Articulo extends Component{
       document.getElementById('serv-edit').style.display = 'block';
       document.getElementById('serv-cont').style.display = 'none';
    }
-
    handleOnDelete(){
       SweetAlert.fire({
          title: '¿Estás seguro de eliminar este elemento?',
@@ -85,11 +92,15 @@ class Articulo extends Component{
                
             }).catch(err=>{
                console.log(err)
+               SweetAlert.fire(
+                  'Oooops!',
+                  'Algo salió mal.',
+                  'error'
+              )
             })
           }
        })
    }
-
    handleOnUpdate(e){
         e.preventDefault();
 
@@ -140,17 +151,17 @@ class Articulo extends Component{
       this.setState({cuerpo: e.target.getContent()})
    }
    render(){
-      console.log(this.props.location.pathname.substring(16))
-      const {loadAction,errors} = this.state
+      console.log(this.state.cuerpo)
+      const {loadAction,errors, titulo, encabezado, cuerpo} = this.state
       return(
          <div>
             <div className="one-service-containor" id="serv-cont" >
                <div className="img-block">
-                  <img src={`../../images/blog/${this.state.encabezado}`} alt="Imagen del servicio" />
+                  <img src={`../../images/blog/${encabezado}`} alt="Imagen del servicio" />
                </div>
                <div className="info-block">
-                  <h1>{this.state.titulo}</h1>
-                  <div dangerouslySetInnerHTML={{ __html: this.state.cuerpo }}></div>
+                  <h1>{titulo}</h1>
+                  <div dangerouslySetInnerHTML={{ __html: cuerpo }}></div>
                   <div className="buttons-block one-item-btn-block">
                      <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
                         <i className="fas fa-edit"></i>
@@ -181,7 +192,7 @@ class Articulo extends Component{
                      label="Titulo"
                      floatingLabel={true}
                      className="form-input"
-                     value={this.state.titulo}
+                     value={titulo}
                      onChange={this.handleChange}
                      name="titulo"
                      required
@@ -189,7 +200,7 @@ class Articulo extends Component{
                   <Editor
                      apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
                      textareaName="cuerpo"
-                     initialValue={this.state.cuerpo}
+                     value={this.state.cuerpo}
                      onChange={this.handleEditorChange}
                      init={{
                         height: 400,
