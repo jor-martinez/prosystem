@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import axios from 'axios'
 import SweetAlert from 'sweetalert2'
 
-import pageTitle from './media/resources/page-title-bg.jpg'
+import pageTitle from './media/resources/get-in-touch.jpg'
 
 import Brand from './sliderMarcas'
 

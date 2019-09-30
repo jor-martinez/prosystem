@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import axios from 'axios'
 import Moment from 'react-moment'
 
-import pageTitle from './media/resources/page-title-bg.jpg'
+import pageTitle from './media/resources/blog.jpg'
 
 import Brand from './sliderMarcas'
 import ListPagination from './listaPags'

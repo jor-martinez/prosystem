@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 import Helmet from 'react-helmet'
 import axios from 'axios'
 
-import pageTitle from './media/resources/page-title-bg.jpg'
-import cta from './media/resources/building.jpg'
+import pageTitle from './media/resources/acerca-de-nosotros.jpg'
+// import cta from './media/resources/building.jpg'
 
 import Brand from './sliderMarcas'
 

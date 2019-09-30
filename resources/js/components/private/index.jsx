@@ -87,7 +87,7 @@ class Admin extends Component{
                   <Route path="/admin/ventajas" component={AdminVentajas} />
                   <Route path="/admin/ventaja/editar" component={EditVentaja} />
                   <Route path="/admin/productos" component={AdminProducts} />
-                  <Route path="/admin/producto/editar" component={EditProduct} />
+                  <Route path="/admin/producto" component={EditProduct} />
                   <Route path="/admin/mision-vision-objetivo" component={AdminMision} />
                   <Route path="/admin/mision-vision-objetivo-info/editar" component={EditMission} />
                   <Route path="/admin/historia" component={AdminHistory} />

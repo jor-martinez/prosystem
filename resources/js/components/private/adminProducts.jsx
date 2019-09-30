@@ -162,7 +162,7 @@ class AdminProducts extends Component {
                                                 <div className="info-butt-containor">
                                                     <div className="inner-info" dangerouslySetInnerHTML={{ __html: producto.descripcion}}></div>
                                                     <div className="buttons-containor">
-                                                        <Link to={{ pathname: '/admin/producto/editar', state: { producto } }}
+                                                        <Link to={{ pathname: '/admin/producto/'+producto.slug, state: { producto } }}
                                                             className="button button-edit tooltip button-edit-res">
                                                             <i className="fas fa-edit"></i>
                                                             <span className="tooltiptext">Editar</span>
@@ -236,7 +236,7 @@ class AdminProducts extends Component {
                                     }
                                 }}
                             />
-                            <Input
+                            {/* <Input
                                 id="enlace"
                                 className="form-input"
                                 label="Link (opcional)"
@@ -245,7 +245,7 @@ class AdminProducts extends Component {
                                 type="url"
                                 onChange={this.handleChange}
                                 value={this.state.link}
-                            />
+                            /> */}
                             <Container>
                                 <label htmlFor="file-upload" className="subir">
                                     <i className="fas fa-cloud-upload-alt"></i><span id="info"> Imagen de portada</span> 

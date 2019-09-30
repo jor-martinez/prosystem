@@ -13,11 +13,12 @@ class EditProducto extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id: this.props.location.state.producto.id,
-            titulo: this.props.location.state.producto.titulo,
-            descripcion: this.props.location.state.producto.descripcion,
-            link: this.props.location.state.producto.link,
-            imagen: this.props.location.state.producto.imagen,
+            slug: this.props.location.pathname.substring(16),
+            id: '',
+            titulo: '',
+            descripcion: '',
+            link: '',
+            imagen: '',
             img: null,
             loadAction: false,
             errors: {}
@@ -27,6 +28,23 @@ class EditProducto extends Component {
         this.handleEditorChange = this.handleEditorChange.bind(this)
         this.handleOnClickEdit = this.handleOnClickEdit.bind(this)
         this.handleOnDelete = this.handleOnDelete.bind(this)
+    }
+    componentDidMount(){
+        this.getProduct()
+    }
+    getProduct(){
+        axios.get('/dev/productos/'+this.state.slug).then(res=>{
+            console.log(res)
+            this.setState({
+               id: res.data[0].id,
+               titulo: res.data[0].titulo,
+               descripcion: res.data[0].descripcion,
+               imagen: res.data[0].imagen,
+               link: res.data[0].link
+            })
+         }).catch(err=>{
+            console.log(err)
+         })
     }
     handleChange(e){
         const { name, value, type } = e.target;
@@ -66,6 +84,11 @@ class EditProducto extends Component {
                         })
                 }).catch(err=>{
                     console.log(err)
+                    SweetAlert.fire(
+                        'Oooops!',
+                        'Algo salió mal.',
+                        'error'
+                        )
                 })
             }
         })
@@ -79,7 +102,8 @@ class EditProducto extends Component {
         data.append('titulo', this.state.titulo)
         data.append('descripcion', this.state.descripcion)
         data.append('link', this.state.link)
-
+        data.append('imagen', this.state.imagen)
+        
         axios({
             method: 'post',
             url: '/dev/productos/editar/' + this.state.id,
@@ -115,31 +139,32 @@ class EditProducto extends Component {
         document.getElementById('serv-cont').style.display = 'none';
     }
     render() {
+        console.log(this.state.slug)
         const { loadAction, errors } = this.state
         return (
             <div>
                 <div className="one-service-containor" id="serv-cont" >
-                <div className="img-block">
-                    <img src={`../../images/productos/${this.state.imagen}`} alt="Imagen del servicio" />
-                </div>
-                <div className="info-block">
-                    <h1>{this.state.nombre}</h1>
-                    <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
-                    <div className="buttons-block">
-                        <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
-                            <i className="fas fa-edit"></i>
-                            <span className="tooltiptext tooltiptext-left">Editar</span>
-                        </button>
-                        <button onClick={this.handleOnDelete} className="button button-delete delete-btn tooltip">
-                            <i className="fas fa-trash-alt"></i>
-                            <span className="tooltiptext tooltiptext-left">Eliminar</span>
-                        </button>
-                        <Link className="button button-return tooltip return-btn" to="/admin/productos">
-                            <i className="fas fa-reply"></i>
-                            <span className="tooltiptext tooltiptext-left">Regresar</span>
-                        </Link>
+                    <div className="img-block">
+                        <img src={`../../images/productos/${this.state.imagen}`} alt="Imagen del producto" />
                     </div>
-                </div>
+                    <div className="info-block">
+                        <h1>{this.state.nombre}</h1>
+                        <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
+                        <div className="buttons-block one-item-btn-block">
+                            <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
+                                <i className="fas fa-edit"></i>
+                                <span className="tooltiptext tooltiptext-left">Editar</span>
+                            </button>
+                            <button onClick={this.handleOnDelete} className="button button-delete delete-btn tooltip">
+                                <i className="fas fa-trash-alt"></i>
+                                <span className="tooltiptext tooltiptext-left">Eliminar</span>
+                            </button>
+                            <Link className="button button-return tooltip return-btn" to="/admin/productos">
+                                <i className="fas fa-reply"></i>
+                                <span className="tooltiptext tooltiptext-left">Regresar</span>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
                 <div className="one-process-edit" id="serv-edit">
                     <div className="return">
@@ -163,7 +188,7 @@ class EditProducto extends Component {
                         <Editor
                             apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
                             textareaName="descripcion"
-                            initialValue={this.state.descripcion}
+                            value={this.state.descripcion}
                             onChange={this.handleEditorChange}
                             init={{
                                 height: 400,
@@ -202,14 +227,14 @@ class EditProducto extends Component {
                                 }
                             }}
                         />
-                        <Input
+                        {/* <Input
                             className="form-input"
                             label="Link (opcional)"
                             floatingLabel={true}
                             name="link"
                             value={this.state.link}
                             onChange={this.handleChange}
-                        />
+                        /> */}
                         <Container>
                             <label htmlFor="file-upload" className="subir">
                                 <i className="fas fa-cloud-upload-alt"></i><span id="info"> Elegir otra imagen (opcional)</span> 
