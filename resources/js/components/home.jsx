@@ -11,6 +11,11 @@ import featured from './media/resources/featured-1-1.jpg'
 import funFact from './media/resources/fun-fact-bg-1-1.jpg'
 
 import Brand from './sliderMarcas'
+import {
+   PreSlider,
+   PreProduct,
+   PreMision
+} from './allPreloaders'
 
 import '../css/stylesPublic.css'
 import '../css/responsivePublic.css'
@@ -30,7 +35,9 @@ class Home extends Component{
          productos: [],
          nosotros: [],
          historia: [],
-         preContSlider: false
+         preContSlider: false,
+         preContProduct: false,
+         preContMision: false
       }
       this.getServices = this.getServices.bind(this)
       this.getSliders = this.getSliders.bind(this)
@@ -43,7 +50,7 @@ class Home extends Component{
    getHistory(){
       axios.get('/api/historia').then(result=>{
          // console.log(result)
-         this.setState({historia: result.data, load: false})
+         this.setState({historia: result.data, preContSlider: true})
       }).catch(err=>{
          console.log(err)
       })
@@ -60,7 +67,8 @@ class Home extends Component{
       axios.get('/api/nosotros').then(res=>{
          // console.log(res.data)
          this.setState({
-            nosotros: res.data
+            nosotros: res.data,
+            preContMision: true
          })
       }).catch(err=>{
          console.log(err)
@@ -99,7 +107,8 @@ class Home extends Component{
       axios.get('/api/productos').then(res => {
          // console.log(res.data)
          this.setState({
-            productos: res.data
+            productos: res.data,
+            preContProduct: true
          })
       }).catch(err => {
          console.log(err)
@@ -136,78 +145,104 @@ class Home extends Component{
       }
 
 
-      const {services,slider,nosotros,historia,procesos,ventajas,productos} = this.state
+      const {
+         services,
+         slider,
+         nosotros,
+         historia,
+         procesos,
+         ventajas,
+         productos,
+         preContSlider,
+         preContProduct,
+         preContMision
+      } = this.state
 
       return(
          <div>
             <Helmet>
                <title>Pro System</title>
             </Helmet>
-            <section className="slider">
-               <AliceCarousel
-                  mouseDragEnabled
-                  responsive={responsive1}
-                  infinite
-                  duration={2000}
-                  autoPlay
-                  duration={2000}
-                  autoPlayInterval={1000}
-                  buttonsDisabled
-                  fadeOutAnimation
-                  ref={(el) => (this.Carousel = el)}
-               >
-                  {slider.map((item) => (
-                     (item.link)
-                     ?
-                        <div
-                           className="slider-img"
-                           key={item.id}
-                           style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
-                           <div className="center info-slider-container">
-                              <h1>{item.titulo}</h1>
-                              <p>{item.descripcion}</p>
-                              <a target="blank" href={`${item.link}`}>Ver publicación</a>
-                           </div>
-                        </div>
-                     :
-                        <div
-                           className="slider-img"
-                           key={item.id}
-                           style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
-                           <div className="center info-slider-container">
-                              <h1>{item.titulo}</h1>
-                              <p>{item.descripcion}</p>
-                           </div>
-                        </div>
-                  ))}
-               </AliceCarousel>
-               <button className="button-slider button-prev" onClick={() => this.Carousel.slidePrev()}><i className="fas fa-chevron-left"></i></button>
-               <button className="button-slider button-next" onClick={() => this.Carousel.slideNext()}><i className="fas fa-chevron-right"></i></button>
-            </section>
-            <section className="offer-style-one">
-               <div className="container">
-                  <div className="title-block">
-                     <span className="tag-line">Algunos productos</span>{/* /.tag-line */}
-                     <h2>Lo que ofrecemos</h2>
-                  </div>
-                  <div className="row">
-                     {
-                        (productos.map(producto=>(
-                           <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
-                              <div className="icon-block">
-                                 <img src={`../images/productos/${producto.imagen}`} alt="imagen del producto"/>
-                              </div>
-                              <h3>{producto.titulo}</h3>
-                              <div>
-                                 <Link to={{ pathname: '/producto/'+producto.slug, state : { producto } }}
-                                 className="more-link">Leer más</Link>
+            {
+               (preContSlider)
+               ?
+               <section className="slider">
+                  <AliceCarousel
+                     mouseDragEnabled
+                     responsive={responsive1}
+                     infinite
+                     duration={2000}
+                     autoPlay
+                     duration={2000}
+                     autoPlayInterval={1000}
+                     buttonsDisabled
+                     fadeOutAnimation
+                     ref={(el) => (this.Carousel = el)}
+                  >
+                     {slider.map((item) => (
+                        (item.link)
+                        ?
+                           <div
+                              className="slider-img"
+                              key={item.id}
+                              style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                              <div className="center info-slider-container">
+                                 <h1>{item.titulo}</h1>
+                                 <p>{item.descripcion}</p>
+                                 <a target="blank" href={`${item.link}`}>Ver publicación</a>
                               </div>
                            </div>
-                        )))
-                     }
+                        :
+                           <div
+                              className="slider-img"
+                              key={item.id}
+                              style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                              <div className="center info-slider-container">
+                                 <h1>{item.titulo}</h1>
+                                 <p>{item.descripcion}</p>
+                              </div>
+                           </div>
+                     ))}
+                  </AliceCarousel>
+                  <button className="button-slider button-prev" onClick={() => this.Carousel.slidePrev()}><i className="fas fa-chevron-left"></i></button>
+                  <button className="button-slider button-next" onClick={() => this.Carousel.slideNext()}><i className="fas fa-chevron-right"></i></button>
+               </section>
+               :
+               <PreSlider/>
+            }
+            {
+               (preContProduct)
+               ?
+               <section className="offer-style-one">
+                  <div className="container">
+                     <div className="title-block">
+                        <span className="tag-line">Algunos productos</span>{/* /.tag-line */}
+                        <h2>Lo que ofrecemos</h2>
+                     </div>
+                     <div className="row">
+                        {
+                           (productos.map(producto=>(
+                              <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
+                                 <div className="icon-block">
+                                    <img src={`../images/productos/${producto.imagen}`} alt="imagen del producto"/>
+                                 </div>
+                                 <h3>{producto.titulo}</h3>
+                                 <div>
+                                    <Link to={{ pathname: '/producto/'+producto.slug, state : { producto } }}
+                                    className="more-link">Leer más</Link>
+                                 </div>
+                              </div>
+                           )))
+                        }
+                     </div>
                   </div>
-               </div>
-            </section>
+               </section>
+               :
+               <PreProduct/>
+            }
+            {
+               (preContHistory)
+            }
             <section className="about-style-one">
                <div className="container">
                   {
@@ -238,7 +273,11 @@ class Home extends Component{
                         </div>
                         <h3>Nuestra Misión</h3>
                         {
+                           (preContMision)
+                           ?
                            nosotros.map(item=>(<p key={item.id}>{item.mision}</p>))
+                           :
+                           <PreMision/>
                         }
                      </div>
                      <div className="single-mission-one">
@@ -247,7 +286,11 @@ class Home extends Component{
                         </div>
                         <h3>Nuestra Visión</h3>
                         {
+                           (preContMision)
+                           ?
                            nosotros.map(item=>(<p key={item.id}>{item.vision}</p>))
+                           :
+                           <PreMision/>
                         }
                      </div>
                      <div className="single-mission-one">
@@ -256,7 +299,11 @@ class Home extends Component{
                         </div>
                         <h3>Nuestro Objetivo</h3>
                         {
+                           (preContMision)
+                           ?
                            nosotros.map(item=>(<p key={item.id} >{item.objetivo}</p>))
+                           :
+                           <PreMision/>
                         }
                      </div>
                   </div>
