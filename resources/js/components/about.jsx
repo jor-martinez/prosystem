@@ -26,7 +26,7 @@ class About extends Component{
    }
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             nosotros: res.data
          })
@@ -36,7 +36,7 @@ class About extends Component{
    }
    getHistory(){
       axios.get('/api/historia').then(result=>{
-         console.log(result)
+         // console.log(result)
          this.setState({historia: result.data})
       }).catch(err=>{
          console.log(err)

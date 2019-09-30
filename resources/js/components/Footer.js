@@ -47,7 +47,7 @@ const Footer = () => (
             </div>
         </div>
         <div className="bottom-footer text-center">
-            <p><Link to="/">Pro System</Link> &copy; 2019 Todos los derechos reservados</p>
+            <p>Copyright &copy; 2019 <Link to="/">Pro System.</Link> Todos los derechos reservados</p>
             <p>Creada por <a href="https://www.infornet.mx" target="_blank" >Infornet</a> </p>
         </div>
     </footer>

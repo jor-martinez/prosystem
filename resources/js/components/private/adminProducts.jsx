@@ -33,7 +33,7 @@ class AdminProducts extends Component {
     }
     getProductos() {
         axios.get('/api/productos').then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 productos: res.data,
                 load: true
@@ -124,7 +124,7 @@ class AdminProducts extends Component {
         }
     }
     handleEditorChange(e){
-        console.log(e.target.getContent())
+        // console.log(e.target.getContent())
         this.setState({descripcion: e.target.getContent()})
     }
     onReset(){

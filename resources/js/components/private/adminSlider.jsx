@@ -36,7 +36,7 @@ class AdminSlider extends Component{
    }
    getSliders(){
       axios.get('/api/slyder').then(res=>{
-         console.log(res)
+         // console.log(res)
          this.setState({
             sliders: res.data,
             load: true
@@ -67,7 +67,7 @@ class AdminSlider extends Component{
       e.preventDefault()
       this.setState({loadAction: true})
       
-      console.log(this.state)
+      // console.log(this.state)
       const data = new FormData()
       
       data.append('titulo', this.state.titulo)
@@ -81,7 +81,7 @@ class AdminSlider extends Component{
          data: data
       }).then(res=>{
          this.setState({loadAction: false})
-         console.log(res)
+         // console.log(res)
          SweetAlert.fire(
             'Correcto',
             'El slider se ha agregado correctamente',

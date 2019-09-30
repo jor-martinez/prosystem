@@ -35,7 +35,7 @@ class Service extends Component{
    }
    getService(){
       axios.get('/dev/servicios/'+this.state.slug).then(res=>{
-         console.log(res)
+         // console.log(res)
          this.setState({
             id: res.data[0].id,
             nombre: res.data[0].nombre,

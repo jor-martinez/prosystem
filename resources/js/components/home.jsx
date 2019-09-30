@@ -3,6 +3,7 @@ import AliceCarousel from 'react-alice-carousel'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Helmet from 'react-helmet'
+import ContentLoader from 'react-content-loader'
 
 import story from './media/resources/story-1-1.png'
 import cta from './media/resources/building.jpg'
@@ -29,8 +30,8 @@ class Home extends Component{
          productos: [],
          nosotros: [],
          historia: [],
+         preContSlider: false
       }
-      
       this.getServices = this.getServices.bind(this)
       this.getSliders = this.getSliders.bind(this)
       this.getProcesos = this.getProcesos.bind(this)
@@ -41,7 +42,7 @@ class Home extends Component{
    }
    getHistory(){
       axios.get('/api/historia').then(result=>{
-         console.log(result)
+         // console.log(result)
          this.setState({historia: result.data, load: false})
       }).catch(err=>{
          console.log(err)
@@ -49,7 +50,7 @@ class Home extends Component{
    }
    getServices(){
       axios.get('/api/servicios').then(result=>{
-         console.log(result)
+         // console.log(result)
          this.setState({services: result.data})
       }).catch(err=>{
          console.log(err)
@@ -57,7 +58,7 @@ class Home extends Component{
    }
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             nosotros: res.data
          })
@@ -67,7 +68,7 @@ class Home extends Component{
    }
    getSliders(){
       axios.get('/api/slyder').then(result=>{
-         console.log(result)
+         // console.log(result)
          this.setState({slider: result.data})
       }).catch(err=>{
          console.log(err)
@@ -76,7 +77,7 @@ class Home extends Component{
 
    getProcesos(){
       axios.get('/api/proceso').then(res=>{
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             procesos: res.data
          })
@@ -86,7 +87,7 @@ class Home extends Component{
    }
    getVentajas() {
       axios.get('/api/caracteristicas').then(res => {
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             ventajas: res.data
          })
@@ -96,7 +97,7 @@ class Home extends Component{
    }
    getProductos() {
       axios.get('/api/productos').then(res => {
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             productos: res.data
          })
@@ -114,7 +115,7 @@ class Home extends Component{
          this.getMisionVision(),
          this.getHistory(),
       ]).then(res=>{
-         console.log(res)
+         // console.log(res)
       }).catch(err=>{
          console.log(err)
       })
@@ -165,7 +166,7 @@ class Home extends Component{
                            <div className="center info-slider-container">
                               <h1>{item.titulo}</h1>
                               <p>{item.descripcion}</p>
-                              <a target="blank" href={`${item.link}`}>Ver publicacion</a>
+                              <a target="blank" href={`${item.link}`}>Ver publicación</a>
                            </div>
                         </div>
                      :
@@ -313,7 +314,7 @@ class Home extends Component{
                <div className="container">
                   <div className="content-block my-auto">
                      <div className="title-block">
-                        <span className="tag-line">ProSystem</span>
+                        <span className="tag-line">Pro System</span>
                         <h2>¿Por qué elegirnos?</h2>
                      </div>
                      {

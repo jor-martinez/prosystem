@@ -191,6 +191,7 @@ body .slider{
 
 .single-offer-style-one .icon-block {
    width: 80%;
+   height: 150px;
    margin: auto;
    margin-bottom: 20px;
 }
@@ -1036,13 +1037,15 @@ body .slider{
 }
 
 .service-style-two .row{
+   width: 100%;
    display:  flex;
    flex-wrap: wrap;
    justify-content: space-between;
 }
 
 .service-style-two .single-service-one{
-   width: 29%;
+   width: 30%;
+   margin: 0;
    margin-bottom: 30px;
 }
 /* Detalles del servicio*/

@@ -28,7 +28,7 @@ class Mission extends Component {
     }
     getData() {
         axios.get('/api/nosotros').then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 datos: res.data,
                 load: true

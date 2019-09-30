@@ -50,7 +50,7 @@ class AdminBlog extends Component{
         this.getPosts()
     }
     handleEditorChange(e) {
-        console.log(e.target.getContent())
+        // console.log(e.target.getContent())
         this.setState({ cuerpo: e.target.getContent() })
     }
     onReset() {

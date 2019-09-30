@@ -29,7 +29,7 @@ class AdminContacto extends Component {
     }
     getDatosContacto() {
         axios.get('/api/empresa').then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 datosContacto: res.data,
                 load: true

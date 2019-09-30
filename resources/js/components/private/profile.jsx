@@ -24,7 +24,6 @@ class Profile extends Component{
             passwordConfirm: '',
             eyeOpen: true,
             eyeOpen2: true
-
         }
         this.getProfile = this.getProfile.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -124,7 +123,7 @@ class Profile extends Component{
     handleOnSubmitPass(e){
         e.preventDefault()
         this.setState({ loadAction: true })
-        console.log(this.state)
+        // console.log(this.state)
         const data = new FormData()
 
         if(this.state.passwordConfirm === this.state.passwordNew){

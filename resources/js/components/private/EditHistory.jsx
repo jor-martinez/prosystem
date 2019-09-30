@@ -60,7 +60,7 @@ class EditHistory extends Component {
         })
     }
     handleEditorChange(e) {
-        console.log(e.target.getContent())
+        // console.log(e.target.getContent())
         this.setState({ historia: e.target.getContent() })
     }
     render() {

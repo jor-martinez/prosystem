@@ -81,7 +81,7 @@ class Articulo extends Component{
        }).then((result) => {
          if (result.value) {
             axios.delete('/dev/blog/borrar/'+this.state.id).then((res)=>{
-                console.log(res)
+               //  console.log(res)
                 SweetAlert.fire(
                     'Eliminado!',
                     'El elemento ha sido eliminado.',
@@ -104,7 +104,7 @@ class Articulo extends Component{
    handleOnUpdate(e){
         e.preventDefault();
 
-        console.log()
+      //   console.log()
 
         this.setState({loadAction: true})
 
@@ -115,7 +115,7 @@ class Articulo extends Component{
         formData.append('cuerpo', this.state.cuerpo)
         
 
-        console.log(formData)
+      //   console.log(formData)
 
         axios({
             method: 'post',
@@ -124,7 +124,7 @@ class Articulo extends Component{
             config: {headers: {'Content-Type': 'multipart/form-data'}}
         }).then(res=>{
             this.setState({loadAction: false})
-            console.log(res)
+            // console.log(res)
             SweetAlert.fire(
             'Correcto',
             'El articulo se ha modificado correctamente!!',
@@ -147,11 +147,11 @@ class Articulo extends Component{
         })
    }
    handleEditorChange(e){
-      console.log(e.target.getContent())
+      // console.log(e.target.getContent())
       this.setState({cuerpo: e.target.getContent()})
    }
    render(){
-      console.log(this.state.cuerpo)
+      // console.log(this.state.cuerpo)
       const {loadAction,errors, titulo, encabezado, cuerpo} = this.state
       return(
          <div>

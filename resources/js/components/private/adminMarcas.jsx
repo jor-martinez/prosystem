@@ -35,7 +35,7 @@ class AdminMarcas extends Component{
 
    getMarcas(){
       axios.get('/api/marca').then(res=>{
-         console.log(res)
+         // console.log(res)
          this.setState({
             marcas: res.data,
             load: true
@@ -79,7 +79,7 @@ class AdminMarcas extends Component{
          data: data
       }).then(res=>{
          this.setState({loadAction: false})
-         console.log('Marca agregada correctamente', res)
+         // console.log('Marca agregada correctamente', res)
          SweetAlert.fire(
             'Correcto',
             'La marca se ha agregado correctamente',

@@ -29,7 +29,7 @@ class AdminUsers extends Component{
     }
     getUsuarios(){
         axios.get('/dev/usuario').then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 users: res.data,
                 load: true
@@ -49,7 +49,7 @@ class AdminUsers extends Component{
 
         this.setState({loadAction: true})
 
-        console.log(this.state)
+        // console.log(this.state)
 
         const data = new FormData()
 
@@ -63,7 +63,7 @@ class AdminUsers extends Component{
             data: data
         }).then(res=>{
             this.setState({ loadAction: false })
-            console.log(res)
+            // console.log(res)
             SweetAlert.fire(
                 'Correcto',
                 'El usuario se ha agregado correctamente',

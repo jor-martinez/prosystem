@@ -15,7 +15,7 @@ class Admin extends Component{
    }
    getUser() {
       axios.get('/admin/obtener-info').then(res => {
-         console.log(res.data)
+         // console.log(res.data)
          this.setState({
             user: res.data,
             load: true

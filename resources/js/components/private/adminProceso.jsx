@@ -26,7 +26,7 @@ class AdminProceso extends Component{
     }
     getProcesos(){
         axios.get('/api/proceso',).then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 procesos: res.data,
                 load: true

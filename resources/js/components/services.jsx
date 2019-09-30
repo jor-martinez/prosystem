@@ -20,7 +20,7 @@ class Services extends Component{
    }
    getServices(){
       axios.get('/api/servicios').then(result=>{
-         console.log(result)
+         // console.log(result)
          this.setState({services: result.data})
       }).catch(err=>{
          console.log(err)

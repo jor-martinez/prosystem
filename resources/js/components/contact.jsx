@@ -56,7 +56,7 @@ class Contact extends Component{
       data.append('msg', this.state.msg)
 
       axios.post('/enviar', data).then(res=>{
-         console.log(res)
+         // console.log(res)
          SweetAlert.fire({
             type: 'success',
             title: 'Correo enviado correctamente'

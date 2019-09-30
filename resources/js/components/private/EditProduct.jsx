@@ -34,7 +34,7 @@ class EditProducto extends Component {
     }
     getProduct(){
         axios.get('/dev/productos/'+this.state.slug).then(res=>{
-            console.log(res)
+            // console.log(res)
             this.setState({
                id: res.data[0].id,
                titulo: res.data[0].titulo,
@@ -74,7 +74,7 @@ class EditProducto extends Component {
             }).then((result) => {
             if (result.value) {
                 axios.delete('/dev/productos/borrar/'+this.state.id).then((res)=>{
-                    console.log(res)
+                    // console.log(res)
                     SweetAlert.fire(
                         'Eliminado!',
                         'El producto ha sido eliminado.',
@@ -95,7 +95,7 @@ class EditProducto extends Component {
     }
     handleOnUpdate(e) {
         e.preventDefault()
-        console.log(this.state)
+        // console.log(this.state)
         this.setState({ loadAction: true })
         const data = new FormData()
 
@@ -131,7 +131,7 @@ class EditProducto extends Component {
         })
     }
     handleEditorChange(e){
-        console.log(e.target.getContent())
+        // console.log(e.target.getContent())
         this.setState({descripcion: e.target.getContent()})
     }
     handleOnClickEdit(){
@@ -139,7 +139,7 @@ class EditProducto extends Component {
         document.getElementById('serv-cont').style.display = 'none';
     }
     render() {
-        console.log(this.state.slug)
+        // console.log(this.state.slug)
         const { loadAction, errors } = this.state
         return (
             <div>

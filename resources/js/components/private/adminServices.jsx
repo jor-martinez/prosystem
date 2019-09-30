@@ -42,7 +42,7 @@ class AdminServices extends Component{
             services: result.data,
             load: true
          })
-         console.log(this.state)
+         // console.log(this.state)
       }).catch(err=>{
          console.log(err)
       })
@@ -78,7 +78,7 @@ class AdminServices extends Component{
       data.append('descripcion', this.state.descripcion);
       data.append('Imagen', this.state.Imagen);
       
-      console.log(data)
+      // console.log(data)
       axios.post('/dev/servicios/nueva', data)
          .then(res=>{
             this.setState({loadAction: false})
@@ -98,7 +98,7 @@ class AdminServices extends Component{
                })
                document.getElementById('errores').style.display = 'none';
             })
-            console.log(res);
+            // console.log(res);
          }).catch(err=>{
             this.setState({loadAction: false})
             SweetAlert.fire(
@@ -115,7 +115,7 @@ class AdminServices extends Component{
       // console.log(this.state)
    }
    handleEditorChange(e){
-      console.log(e.target.getContent())
+      // console.log(e.target.getContent())
       this.setState({descripcion: e.target.getContent()})
    }
    onReset() {

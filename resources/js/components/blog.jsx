@@ -23,7 +23,7 @@ class Blog extends Component {
    getArticles(){
       axios.get('/api/blog').then(res=>{
          this.setState({articulos: res.data})
-         console.log(res.data)
+         // console.log(res.data)
       }).catch(err=>{
          console.log(err)
       })

@@ -14,7 +14,7 @@ class Brands extends Component{
    }
    getMarcas(){
       axios.get('/api/marca').then(result=>{
-         console.log(result)
+         // console.log(result)
          this.setState({marcas: result.data})
       }).catch(err=>{
          console.log(err)
