@@ -103,3 +103,28 @@ export const PreVentajas = () => (
 		</ContentLoader>
 	</div>
 )
+
+export const PreProceso = () => (
+	<div>
+		<ContentLoader 
+			height={222}
+			width={1100}
+			speed={3}
+			primaryColor="#f3f3f3"
+			secondaryColor="#ecebeb"
+		>
+			<rect x="35" y="82" rx="4" ry="4" width="200" height="10" /> 
+			<rect x="35" y="111" rx="4" ry="4" width="309" height="87" /> 
+			<circle cx="62" cy="35" r="30" />
+
+			<rect x="390" y="82" rx="4" ry="4" width="200" height="10" /> 
+			<rect x="390" y="111" rx="4" ry="4" width="309" height="87" /> 
+			<circle cx="62" cy="390" r="30" />
+
+			<rect x="743" y="82" rx="4" ry="4" width="200" height="10" /> 
+			<rect x="743" y="111" rx="4" ry="4" width="309" height="87" /> 
+			<circle cx="62" cy="743" r="30" />
+
+		</ContentLoader>
+	</div>
+)

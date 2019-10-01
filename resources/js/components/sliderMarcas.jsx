@@ -7,6 +7,7 @@ import axios from 'axios'
 class Brands extends Component{
    constructor(props){
       super(props)
+      this._isMounted = false;
       this.state={
          marcas:[]
       }
@@ -15,14 +16,20 @@ class Brands extends Component{
    getMarcas(){
       axios.get('/api/marca').then(result=>{
          // console.log(result)
-         this.setState({marcas: result.data})
+         if(this._isMounted){
+            this.setState({marcas: result.data})
+         }
       }).catch(err=>{
          console.log(err)
       })
    }
    componentDidMount(){
+      this._isMounted = true;
       this.getMarcas()
       window.scrollTo(0,0)
+   }
+   componentWillUnmount(){
+      this._isMounted = false;
    }
    render(){
       const {marcas} = this.state

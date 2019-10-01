@@ -12,7 +12,7 @@ import ListPagination from './listaPags'
 class Blog extends Component {
    constructor(props){
       super(props)
-
+      this._isMounted = false;
       this.state = {
          articulos: [],
          currentPage: 1,
@@ -22,16 +22,22 @@ class Blog extends Component {
    }
    getArticles(){
       axios.get('/api/blog').then(res=>{
-         this.setState({articulos: res.data})
+         if(this._isMounted){
+            this.setState({articulos: res.data})
+         }
          // console.log(res.data)
       }).catch(err=>{
          console.log(err)
       })
    }
    componentDidMount(){
+      this._isMounted = true;
       this.getArticles()
       window.scrollTo(0,0)
       // document.getElementById('spinner').style.display = 'none';
+   }
+   componentWillUnmount(){
+      this._isMounted = false;
    }
    render(){
       const {articulos,currentPage,postsPerPage} = this.state

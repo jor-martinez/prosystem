@@ -149,7 +149,7 @@ class AdminBlog extends Component{
                                             {/* <p dangerouslySetInnerHTML={{ __html: service.descripcion }}></p> */}
                                             <p> <strong>Autor:</strong>  {post.autor} <br /> <strong>Fecha de creación:</strong> <Moment format="DD/MM/YYYY HH:mm">{post.created_at}</Moment></p>
                                             <div className="buttons-containor">
-                                                <Link to={{ pathname: '/admin/articulo/' + post.slug, state: { post } }}
+                                                <Link to={{ pathname: '/admin/articulo/' + post.slug }}
                                                     className="button button-show">Ver más</Link>
                                             </div>
                                         </div>

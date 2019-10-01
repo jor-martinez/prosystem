@@ -144,6 +144,7 @@ body .slider{
    margin-top: -15px;
    background-color: #EBF0EB;
    padding: 110px 0;
+   margin-bottom: 170px;
 }
 .offer-style-one .container{
    width: 90%;
@@ -261,7 +262,7 @@ body .slider{
 /* Acerca de nosotros */
 
 .about-style-one {
-   padding-bottom: 185px;
+   padding-bottom: 60px;
    padding-top: 65px;
 }
 

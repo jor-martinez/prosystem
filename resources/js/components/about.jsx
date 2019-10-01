@@ -11,6 +11,7 @@ import Brand from './sliderMarcas'
 class About extends Component{
    constructor(props){
       super(props)
+      this._isMounted = false;
       this.state={
          nosotros: [],
          historia: []
@@ -19,17 +20,24 @@ class About extends Component{
       this.getHistory = this.getHistory.bind(this)
    }
    componentDidMount(){
+      this._isMounted = true;
+
       this.getMisionVision()
       this.getHistory()
       window.scrollTo(0,0)
       // document.getElementById('spinner').style.display = 'none';
    }
+   componentWillUnmount(){
+      this._isMounted = false;
+   }
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{
          // console.log(res.data)
-         this.setState({
-            nosotros: res.data
-         })
+         if(this._isMounted){
+            this.setState({
+               nosotros: res.data
+            })
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -37,7 +45,9 @@ class About extends Component{
    getHistory(){
       axios.get('/api/historia').then(result=>{
          // console.log(result)
-         this.setState({historia: result.data})
+         if(this._isMounted){
+            this.setState({historia: result.data})
+         }
       }).catch(err=>{
          console.log(err)
       })

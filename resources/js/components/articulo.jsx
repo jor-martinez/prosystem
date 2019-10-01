@@ -7,6 +7,7 @@ import Brand from './sliderMarcas'
 class Articulo extends Component {
     constructor(props) {
         super(props)
+        this._isMounted = false;
         this.state = {
             titulo: this.props.location.state.articulo.titulo,
             cuerpo: this.props.location.state.articulo.cuerpo,
@@ -16,8 +17,12 @@ class Articulo extends Component {
         }
     }
     componentDidMount(){
+        this._isMounted = true;
         window.scrollTo(0,0)
         // document.getElementById('spinner').style.display = 'none';
+    }
+    componentWillUnmount(){
+        this._isMounted = false;
     }
     render() {
         return (

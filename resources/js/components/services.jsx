@@ -11,7 +11,7 @@ import pageTitle from './media/resources/page-title-bg.jpg'
 class Services extends Component{
    constructor(props){
       super(props)
-
+      this._isMounted = false;
       this.state = {
          services:[],
          data:[]
@@ -21,18 +21,22 @@ class Services extends Component{
    getServices(){
       axios.get('/api/servicios').then(result=>{
          // console.log(result)
-         this.setState({services: result.data})
+         if(this._isMounted){
+            this.setState({services: result.data})
+         }
       }).catch(err=>{
          console.log(err)
       })
    }
-   
    componentDidMount(){
+      this._isMounted = true;
       this.getServices()
       window.scrollTo(0,0)
       // document.getElementById('spinner').style.display = 'none';
    }
-
+   componentWillUnmount(){
+      this._isMounted = false;
+   }
    render(){
       const {services} = this.state
       return(

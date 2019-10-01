@@ -154,7 +154,7 @@ class AdminServices extends Component{
                               <div className="text-containor">
                                  <h2>{service.nombre}</h2>
                                  <div className="buttons-containor">
-                                    <Link to={{ pathname: '/admin/servicio/'+service.slug, state : { service: service } }}
+                                    <Link to={{ pathname: '/admin/servicio/'+service.slug }}
                                     className="button button-show">Ver más</Link>
                                  </div>
                               </div>

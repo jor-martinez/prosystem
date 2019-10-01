@@ -11,6 +11,7 @@ import Brand from './sliderMarcas'
 class Contact extends Component{
    constructor(props){
       super(props)
+      this._isMounted = false;
       this.state={
          contacto: [],
          name: '',
@@ -23,15 +24,21 @@ class Contact extends Component{
       this.change = this.change.bind(this)
    }
    componentDidMount(){
+      this._isMounted = true;
       this.getDatosContacto()
       window.scrollTo(0,0)
       // document.getElementById('spinner').style.display = 'none';
    }
+   componentWillUnmount(){
+      this._isMounted = false;
+   }
    getDatosContacto(){
       axios.get('/api/empresa').then(res=>{
-         this.setState({
-            contacto: res.data
-         })
+         if(this._isMounted){
+            this.setState({
+               contacto: res.data
+            })
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -43,7 +50,6 @@ class Contact extends Component{
          [name]: value
       })
    }
-
    handleOnSubmit(e){
       e.preventDefault()
       // console.log(this.state)

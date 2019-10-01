@@ -15,7 +15,8 @@ import {
    PreProduct,
    PreMision,
    PreServices,
-   PreVentajas
+   PreVentajas,
+   PreProceso
 } from './allPreloaders'
 
 import '../css/stylesPublic.css'
@@ -45,7 +46,8 @@ class Home extends Component{
          preContMision: false,
          preContHistory: false,
          preContServices: false,
-         preContVentajas: false
+         preContVentajas: false,
+         preContProceso: false
       }
       this.getServices = this.getServices.bind(this)
       this.getSliders = this.getSliders.bind(this)
@@ -105,13 +107,13 @@ class Home extends Component{
          console.log(err)
       })
    }
-
    getProcesos(){
       axios.get('/api/proceso').then(res=>{
          // console.log(res.data)
          if(this._isMounted){
             this.setState({
-               procesos: res.data
+               procesos: res.data,
+               preContProceso: true
             })
          }
       }).catch(err=>{
@@ -178,8 +180,6 @@ class Home extends Component{
       const responsive1 = {
          1024: { items: 1 },
       }
-
-
       const {
          services,
          slider,
@@ -193,7 +193,8 @@ class Home extends Component{
          preContMision,
          preContHistory,
          preContServices,
-         preContVentajas
+         preContVentajas,
+         preContProceso
       } = this.state
 
       return(
@@ -318,34 +319,6 @@ class Home extends Component{
                :
                <PreProduct/>
             }
-            {
-               (preContHistory)
-            }
-            <section className="about-style-one">
-               <div className="container">
-                  {
-                     (preContHistory)
-                     ?
-                     (historia.map(item=>(
-                        <div className="row" key={item.id}>
-                              <div className="content-block my-auto">
-                                 <div className="title-block">
-                                    <span className="tag-line">Nuestra historia</span>{/* /.tag-line */}
-                                    <h2>Pro System</h2>
-                                 </div>
-                                 <div className="about-description" dangerouslySetInnerHTML={{ __html: item.historia }} ></div>
-                                 <Link to="/acerca" className="more-btn">Leer más</Link>
-                              </div>
-                              <div className="image-block">
-                                 <img src={story} alt="Awesome Image" />
-                              </div>
-                        </div>
-                     )))
-                     :
-                     <PreSlider/>
-                  }
-               </div>
-            </section>
             <section className="mission-style-one wow fadeInUp" data-wow-duration="1300ms">
                <div className="container">
                   <div className="inner-container">
@@ -401,6 +374,31 @@ class Home extends Component{
                   {/* <a href="index.html" className="cta-btn">Otra acción</a> */}
                </div>
             </section>
+            <section className="about-style-one">
+               <div className="container">
+                  {
+                     (preContHistory)
+                     ?
+                     (historia.map(item=>(
+                        <div className="row" key={item.id}>
+                              <div className="content-block my-auto">
+                                 <div className="title-block">
+                                    <span className="tag-line">Nuestra historia</span>{/* /.tag-line */}
+                                    <h2>Pro System</h2>
+                                 </div>
+                                 <div className="about-description" dangerouslySetInnerHTML={{ __html: item.historia }} ></div>
+                                 <Link to="/acerca" className="more-btn">Leer más</Link>
+                              </div>
+                              <div className="image-block">
+                                 <img src={story} alt="Awesome Image" />
+                              </div>
+                        </div>
+                     )))
+                     :
+                     <PreSlider/>
+                  }
+               </div>
+            </section>
             <section className="fun-fact-style-one" style={{backgroundImage: `url(${funFact})`}}>
             </section>
             <section className="featured-style-one"> 
@@ -443,6 +441,8 @@ class Home extends Component{
                   </div>
                   <div className="working-process-wrap">
                      {
+                        (preContProceso)
+                        ?
                         (procesos.map(proceso=>(
                            <div className="single-working-process-one wow fadeInUp" key={proceso.id}>
                               <div className="count-block">
@@ -452,6 +452,8 @@ class Home extends Component{
                               <p>{proceso.descripcion}</p>
                            </div>
                         )))
+                        :
+                        <PreProceso/>
                      }
                   </div>
                </div>
