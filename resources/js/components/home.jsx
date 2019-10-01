@@ -3,7 +3,6 @@ import AliceCarousel from 'react-alice-carousel'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Helmet from 'react-helmet'
-import ContentLoader from 'react-content-loader'
 
 import story from './media/resources/story-1-1.png'
 import cta from './media/resources/building.jpg'
@@ -14,7 +13,9 @@ import Brand from './sliderMarcas'
 import {
    PreSlider,
    PreProduct,
-   PreMision
+   PreMision,
+   PreServices,
+   PreVentajas
 } from './allPreloaders'
 
 import '../css/stylesPublic.css'
@@ -23,8 +24,10 @@ import "react-alice-carousel/lib/alice-carousel.css"
 
 
 class Home extends Component{
-   constructor(...props){
-      super(...props)
+   // _isMounted = false;
+   // _isMounted = false;
+   constructor(props){
+      super(props)
 
       this.state = {
          slider:[],
@@ -37,7 +40,10 @@ class Home extends Component{
          historia: [],
          preContSlider: false,
          preContProduct: false,
-         preContMision: false
+         preContMision: false,
+         preContHistory: false,
+         preContServices: false,
+         preContVentajas: false
       }
       this.getServices = this.getServices.bind(this)
       this.getSliders = this.getSliders.bind(this)
@@ -50,7 +56,7 @@ class Home extends Component{
    getHistory(){
       axios.get('/api/historia').then(result=>{
          // console.log(result)
-         this.setState({historia: result.data, preContSlider: true})
+         this.setState({historia: result.data, preContHistory: true})
       }).catch(err=>{
          console.log(err)
       })
@@ -58,7 +64,10 @@ class Home extends Component{
    getServices(){
       axios.get('/api/servicios').then(result=>{
          // console.log(result)
-         this.setState({services: result.data})
+         this.setState({
+            services: result.data,
+            preContServices: true
+         })
       }).catch(err=>{
          console.log(err)
       })
@@ -77,7 +86,9 @@ class Home extends Component{
    getSliders(){
       axios.get('/api/slyder').then(result=>{
          // console.log(result)
-         this.setState({slider: result.data})
+         this.setState({slider: result.data,
+            preContSlider: true
+         })
       }).catch(err=>{
          console.log(err)
       })
@@ -97,7 +108,8 @@ class Home extends Component{
       axios.get('/api/caracteristicas').then(res => {
          // console.log(res.data)
          this.setState({
-            ventajas: res.data
+            ventajas: res.data,
+            preContVentajas: true
          })
       }).catch(err => {
          console.log(err)
@@ -115,6 +127,7 @@ class Home extends Component{
       })
    }
    componentDidMount(){
+      // _isMounted = true;
       Promise.all([
          this.getServices(),
          this.getSliders(),
@@ -132,6 +145,9 @@ class Home extends Component{
       window.scrollTo(0,0)
       // document.getElementById('spinner').style.display = 'none';
    }
+   // componentWillUnmount(){
+   //    _isMounted = false;
+   // }
 
    render(){
       const responsive = {
@@ -155,7 +171,10 @@ class Home extends Component{
          productos,
          preContSlider,
          preContProduct,
-         preContMision
+         preContMision,
+         preContHistory,
+         preContServices,
+         preContVentajas
       } = this.state
 
       return(
@@ -210,6 +229,46 @@ class Home extends Component{
                :
                <PreSlider/>
             }
+            <section className="services-style-one">
+               <section className="service-style-one">
+                     <div className="upper-block">
+                        <div className="title-block">
+                        <span className="tag-line">Servicios</span>
+                        <h2>Los servicios que ofrecemos</h2>
+                        </div>
+                     </div>
+               </section>
+               {
+                  (preContServices)
+                  ?
+                  <AliceCarousel
+                     mouseDragEnabled
+                     responsive={responsive}
+                     autoPlay
+                     infinite
+                     duration={2000}
+                     buttonsDisabled
+                     autoPlayInterval={1000}
+                  >
+                     {services.map(service=>
+                        <div className="single-service-one" key={service.id}>
+                           <div className="image-block">
+                              <img src={`../images/servicios/${service.Imagen}`} alt="Servicio" />
+                           </div>
+                           <div className="text-block">
+                              <h3><Link to="/servicio">{service.nombre}</Link></h3>
+                              <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
+                              <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}
+                              className="more-btn">Leer más</Link>
+                           </div>
+                        </div>
+                     )}
+                  </AliceCarousel>
+                  :
+                  <PreServices/>
+               }
+
+            </section>
             {
                (preContProduct)
                ?
@@ -246,6 +305,8 @@ class Home extends Component{
             <section className="about-style-one">
                <div className="container">
                   {
+                     (preContHistory)
+                     ?
                      (historia.map(item=>(
                         <div className="row" key={item.id}>
                               <div className="content-block my-auto">
@@ -261,6 +322,8 @@ class Home extends Component{
                               </div>
                         </div>
                      )))
+                     :
+                     <PreSlider/>
                   }
                </div>
             </section>
@@ -319,42 +382,6 @@ class Home extends Component{
                   {/* <a href="index.html" className="cta-btn">Otra acción</a> */}
                </div>
             </section>
-            <section className="services-style-one">
-               <section className="service-style-one">
-                     <div className="upper-block">
-                        <div className="title-block">
-                        <span className="tag-line">Servicios</span>
-                        <h2>Los servicios que ofrecemos</h2>
-                        </div>
-                     </div>
-               </section>
-               {
-                  <AliceCarousel
-                     mouseDragEnabled
-                     responsive={responsive}
-                     autoPlay
-                     infinite
-                     duration={2000}
-                     buttonsDisabled
-                     autoPlayInterval={1000}
-                  >
-                     {services.map(service=>
-                        <div className="single-service-one" key={service.id}>
-                           <div className="image-block">
-                              <img src={`../images/servicios/${service.Imagen}`} alt="Servicio" />
-                           </div>
-                           <div className="text-block">
-                              <h3><Link to="/servicio">{service.nombre}</Link></h3>
-                              <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
-                              <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}
-                              className="more-btn">Leer más</Link>
-                           </div>
-                        </div>
-                     )}
-                  </AliceCarousel>
-               }
-
-            </section>
             <section className="fun-fact-style-one" style={{backgroundImage: `url(${funFact})`}}>
             </section>
             <section className="featured-style-one"> 
@@ -365,6 +392,8 @@ class Home extends Component{
                         <h2>¿Por qué elegirnos?</h2>
                      </div>
                      {
+                        (preContVentajas)
+                        ?
                         (ventajas.map(ventaja=>(
                            <div className="signle-featured-one" key={ventaja.id}>
                               <div className="icon-block">
@@ -378,6 +407,8 @@ class Home extends Component{
                               </div>
                            </div>
                         )))
+                        :
+                        <PreVentajas/>
                      }
                   </div>
                   <div className="image-block">

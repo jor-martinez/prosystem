@@ -43,13 +43,13 @@ Route::prefix('api') -> group(function() {
     //   Route::get('/', 'Api\MainController@productos');
     //   Route::get('/{slug}', 'Api\MainController@showProductos');
     // });
-    Route::get('/{slug}', 'Api\MainController@showProductos');
+    Route::get('/prodcutos/{slug}', 'Api\MainController@showProductos');
     // Route::prefix('servicios')->group(function(){
     //   Route::get('/', 'Api\MainController@servicios');
     //   Route::get('/{slug}', 'Api\MainController@showServicios');
     // });
-    Route::get('servicios', 'Api\MainController@servicios');
-    Route::get('/{slug}', 'Api\MainController@showServicios');
+    Route::get('/servicios', 'Api\MainController@servicios');
+    Route::get('/servicios/{slug}', 'Api\MainController@showServicios');
     Route::get('valores', 'Api\MainController@valores');
     Route::get('slyder', 'Api\MainController@slyder');
 });

@@ -109,7 +109,7 @@ class MainController extends Controller
         //     }
         // }    
 
-        $datos = Servicios::where('slug', $slug);
+        $datos = Servicios::where('slug', $slug) -> get();
         
         return $datos;
     } 
