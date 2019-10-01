@@ -37,7 +37,7 @@ class EditMission extends Component {
 
         axios({
             method: 'post',
-            url: '/dev/nosotros/editar' + this.state.id,
+            url: '/dev/nosotros/editar/' + this.state.id,
             data
         }).then(res => {
             this.setState({ loadAction: false })

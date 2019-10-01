@@ -46,7 +46,7 @@ class Services extends Component{
             </Helmet>
             <section className="page-title-block text-center" style={{backgroundImage: `url(${pageTitle})`}} >
              <div className="container">
-                <h2>Nuestos Servicios</h2>
+                <h2>Nuestros Servicios</h2>
                 <div className="thm-breadcrumb">
                    <Link to="/">Inicio</Link>
                    <span className="sep">/</span>
