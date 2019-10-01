@@ -26,9 +26,11 @@ import "react-alice-carousel/lib/alice-carousel.css"
 class Home extends Component{
    // _isMounted = false;
    // _isMounted = false;
+   
    constructor(props){
       super(props)
-
+      
+      this._isMounted = false;
       this.state = {
          slider:[],
          services:[],
@@ -56,7 +58,10 @@ class Home extends Component{
    getHistory(){
       axios.get('/api/historia').then(result=>{
          // console.log(result)
-         this.setState({historia: result.data, preContHistory: true})
+         if(this._isMounted)
+         {
+            this.setState({historia: result.data, preContHistory: true})
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -64,10 +69,13 @@ class Home extends Component{
    getServices(){
       axios.get('/api/servicios').then(result=>{
          // console.log(result)
-         this.setState({
-            services: result.data,
-            preContServices: true
-         })
+         if(this._isMounted)
+         {
+            this.setState({
+               services: result.data,
+               preContServices: true
+            })
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -75,10 +83,12 @@ class Home extends Component{
    getMisionVision(){
       axios.get('/api/nosotros').then(res=>{
          // console.log(res.data)
-         this.setState({
-            nosotros: res.data,
-            preContMision: true
-         })
+         if(this._isMounted){
+            this.setState({
+               nosotros: res.data,
+               preContMision: true
+            })
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -86,9 +96,11 @@ class Home extends Component{
    getSliders(){
       axios.get('/api/slyder').then(result=>{
          // console.log(result)
-         this.setState({slider: result.data,
-            preContSlider: true
-         })
+         if(this._isMounted){
+            this.setState({slider: result.data,
+               preContSlider: true
+            })
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -97,9 +109,11 @@ class Home extends Component{
    getProcesos(){
       axios.get('/api/proceso').then(res=>{
          // console.log(res.data)
-         this.setState({
-            procesos: res.data
-         })
+         if(this._isMounted){
+            this.setState({
+               procesos: res.data
+            })
+         }
       }).catch(err=>{
          console.log(err)
       })
@@ -107,10 +121,12 @@ class Home extends Component{
    getVentajas() {
       axios.get('/api/caracteristicas').then(res => {
          // console.log(res.data)
-         this.setState({
-            ventajas: res.data,
-            preContVentajas: true
-         })
+         if(this._isMounted){
+            this.setState({
+               ventajas: res.data,
+               preContVentajas: true
+            })
+         }
       }).catch(err => {
          console.log(err)
       })
@@ -118,16 +134,19 @@ class Home extends Component{
    getProductos() {
       axios.get('/api/productos').then(res => {
          // console.log(res.data)
-         this.setState({
-            productos: res.data,
-            preContProduct: true
-         })
+         if(this._isMounted){
+            this.setState({
+               productos: res.data,
+               preContProduct: true
+            })
+         }
       }).catch(err => {
          console.log(err)
       })
    }
    componentDidMount(){
       // _isMounted = true;
+      this._isMounted = true;
       Promise.all([
          this.getServices(),
          this.getSliders(),
@@ -145,9 +164,9 @@ class Home extends Component{
       window.scrollTo(0,0)
       // document.getElementById('spinner').style.display = 'none';
    }
-   // componentWillUnmount(){
-   //    _isMounted = false;
-   // }
+   componentWillUnmount(){
+      this._isMounted = false;
+   }
 
    render(){
       const responsive = {
