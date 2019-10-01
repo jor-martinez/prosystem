@@ -89,6 +89,7 @@ class ProductosController extends Controller
         return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
 
+    
     public function show($slug)
     {
         $datos = Productos::all();

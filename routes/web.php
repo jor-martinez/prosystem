@@ -22,9 +22,16 @@ Route::post('/enviar', 'EmailController@enviar');
 
 // Front
 
+
+
 Route::prefix('api') -> group(function() {
 
+  // Route::prefix('blog')->group(function(){
+  //   Route::get('/', 'Api\MainController@blog');
+  //   Route::get('/{slug}', 'Api\MainController@showBlog');
+  // });
     Route::get('blog', 'Api\MainController@blog');
+    Route::get('blog/articulo/{slug}', 'Api\MainController@showBlog');
     Route::get('caracteristicas', 'Api\MainController@caracteristicas');
     Route::get('empresa', 'Api\MainController@empresa');
     Route::get('historia', 'Api\MainController@historia');
@@ -32,7 +39,17 @@ Route::prefix('api') -> group(function() {
     Route::get('nosotros', 'Api\MainController@nosotros');
     Route::get('proceso', 'Api\MainController@proceso');
     Route::get('productos', 'Api\MainController@productos');
+    // Route::prefix('productos')->group(function(){
+    //   Route::get('/', 'Api\MainController@productos');
+    //   Route::get('/{slug}', 'Api\MainController@showProductos');
+    // });
+    Route::get('/{slug}', 'Api\MainController@showProductos');
+    // Route::prefix('servicios')->group(function(){
+    //   Route::get('/', 'Api\MainController@servicios');
+    //   Route::get('/{slug}', 'Api\MainController@showServicios');
+    // });
     Route::get('servicios', 'Api\MainController@servicios');
+    Route::get('/{slug}', 'Api\MainController@showServicios');
     Route::get('valores', 'Api\MainController@valores');
     Route::get('slyder', 'Api\MainController@slyder');
 });
@@ -145,19 +162,12 @@ Route::middleware(['auth:admin']) -> group(function() {
     });
 
     Route::get('/admin/obtener-info', 'Api\UsuarioController@show');
-     Route::get('/admin/{path?}', function () {
-       return view('admin');
-     });
-    // Route::get('/admin/{path?}', function(){
-    //   return View::make('admin');
-    // }) -> where('path', '.*');
+
+    Route::get('/admin/{path?}', function(){
+      return View::make('admin');
+   }) -> where('path', '.*');
 
 });
-
-//  Route::get('/{path?}', function () {
-//    return view('main');
-//  });
-
 
 Route::get('/{path?}', function($path = null){
   return View::make('main');
