@@ -26,28 +26,17 @@ Route::post('/enviar', 'EmailController@enviar');
 
 Route::prefix('api') -> group(function() {
 
-  // Route::prefix('blog')->group(function(){
-  //   Route::get('/', 'Api\MainController@blog');
-  //   Route::get('/{slug}', 'Api\MainController@showBlog');
-  // });
-    Route::get('blog', 'Api\MainController@blog');
-    Route::get('blog/articulo/{slug}', 'Api\MainController@showBlog');
+
+    Route::get('/blog', 'Api\MainController@blog');
+    Route::get('/blog/{slug}', 'Api\MainController@showBlog');
     Route::get('caracteristicas', 'Api\MainController@caracteristicas');
     Route::get('empresa', 'Api\MainController@empresa');
     Route::get('historia', 'Api\MainController@historia');
     Route::get('marca', 'Api\MainController@marcas');
     Route::get('nosotros', 'Api\MainController@nosotros');
     Route::get('proceso', 'Api\MainController@proceso');
-    Route::get('productos', 'Api\MainController@productos');
-    // Route::prefix('productos')->group(function(){
-    //   Route::get('/', 'Api\MainController@productos');
-    //   Route::get('/{slug}', 'Api\MainController@showProductos');
-    // });
-    Route::get('/prodcutos/{slug}', 'Api\MainController@showProductos');
-    // Route::prefix('servicios')->group(function(){
-    //   Route::get('/', 'Api\MainController@servicios');
-    //   Route::get('/{slug}', 'Api\MainController@showServicios');
-    // });
+    Route::get('/productos', 'Api\MainController@productos');
+    Route::get('/productos/{slug}', 'Api\MainController@showProductos');
     Route::get('/servicios', 'Api\MainController@servicios');
     Route::get('/servicios/{slug}', 'Api\MainController@showServicios');
     Route::get('valores', 'Api\MainController@valores');
@@ -139,6 +128,15 @@ Route::middleware(['auth:admin']) -> group(function() {
         Route::post('/editar/{id}', 'Api\ServiciosController@update');
         Route::delete('/borrar/{id}', 'Api\ServiciosController@destroy');
         Route::get('/{slug}', 'Api\ServiciosController@show');
+      });
+
+      //CATEGORIA DE SERVICIOS
+      Route::prefix('categoria') ->group(function(){
+        Route::get('/', 'Api\DescripcionServController@index');
+        Route::post('/nueva', 'Api\DescripcionServController@store');
+        Route::post('/editar/{id}', 'Api\DescripcionServController@update');
+        Route::delete('/borrar/{id}', 'Api\DescripcionServController@destroy');
+        Route::get('/{slug}', 'Api\DescripcionServController@show');
       });
 
       //SLYDER
