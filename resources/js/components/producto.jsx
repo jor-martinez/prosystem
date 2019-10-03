@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import {Link} from 'react-router-dom'
 
 import Brand from './sliderMarcas'
@@ -6,14 +7,34 @@ import Brand from './sliderMarcas'
 class Product extends Component{
    constructor(props){
       super(props)
+      this._isMounted = false;
       this.state={
          nombre: this.props.location.state.producto.titulo,
          descripcion: this.props.location.state.producto.descripcion,
-         imagen: this.props.location.state.producto.imagen
+         imagen: this.props.location.state.producto.imagen,
+         slug: this.props.location.pathname.substring(10),
+         producto: []
       }
    }
+   getProd(){
+      axios.get('/api/productos/'+this.state.slug).then(res=>{
+         if(this._isMounted){
+            console.log(res.data)
+            this.setState({
+               producto: res.data
+            })
+         }
+      }).catch(err=>{
+         console.log(err)
+      })
+   }
    componentDidMount(){
+      this._isMounted = true;
+      this.getProd()
       window.scrollTo(0,0)
+   }
+   componentWillUnmount(){
+      this._isMounted = false;
    }
    render(){
       return(

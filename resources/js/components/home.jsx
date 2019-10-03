@@ -216,7 +216,7 @@ class Home extends Component{
                      autoPlayInterval={1000}
                      buttonsDisabled
                      fadeOutAnimation
-                     ref={(el) => (this.Carousel = el)}
+                     ref={(el)=>(this.Carousel = el)}
                   >
                      {slider.map((item) => (
                         (item.link)

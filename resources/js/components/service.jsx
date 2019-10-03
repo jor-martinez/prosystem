@@ -1,47 +1,53 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import {Link} from 'react-router-dom'
-import {
-   Route,
-	BrowserRouter as Router,
-	Switch
-} from 'react-router-dom'
 
-import Residencial from './residencial'
-import Comercial from './comercial'
 import Brand from './sliderMarcas'
 
 class Service extends Component{
    constructor(props){
       super(props)
+      this._isMounted = false;
       this.state={
          nombre: this.props.location.state.service.nombre,
          descripcion: this.props.location.state.service.descripcion,
-         slug: this.props.location.state.service.slug,
+         slug: this.props.location.pathname.substring(10),
          Imagen: this.props.location.state.service.Imagen,
-         categorias: ['residencial', 'comercial', 'industrial', 'urbana', 'transporte']
+         service: []
       }
+      this.getService = this.getService.bind(this)
+   }
+   getService(){
+      axios.get('/api/servicios/'+this.state.slug).then(res=>{
+         if(this._isMounted){
+            console.log(res.data[0])
+            this.setState({
+               service: res.data[0]
+            })
+         }
+      }).catch(err=>{
+         console.log(err)
+      })
    }
    componentDidMount(){
+      this._isMounted = true;
+      this.getService()
       window.scrollTo(0,0)
    }
+   componentWillUnmount(){
+      this._isMounted = false;
+   }
    render(){
-      const {categorias} = this.state
+      // console.log(this.state.slug)
       return(
          <div>
             <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/servicios/${this.state.Imagen})` }}>
                <div className="container">
                   <h2>{this.state.nombre}</h2>
                   <div className="thm-breadcrumb">
-                     <ul style={{ display: 'flex', justifyContent: 'space-between', width: '40%', margin: 'auto'}}>
-                     {
-                        categorias.map((cat)=>
-                           <li style={{listStyle: 'none', margin: '0 10px'}}><Link to={{pathname:'/servicio/'+this.state.slug+'/'+cat}} >{cat}</Link></li>
-                        )
-                     }
-                     </ul>
-                     {/* <Link to="/">Inicio</Link>
+                     <Link to="/">Inicio</Link>
                      <span className="sep">/</span>
-                     <span className="page-title">Detalles del servicio</span> */}
+                     <span className="page-title">Detalles del servicio</span>
                   </div>
                </div>
             </section>
@@ -58,10 +64,6 @@ class Service extends Component{
                   </div>
                </div>
             </section>
-            <Switch>
-                  <Route path="/servicio/:slug/residencial" component={Residencial} />
-                  <Route path="/servicio/:slug/comercial" component={Comercial} />
-            </Switch>
             <section className="brands-area-one">
                <Brand/>
             </section>

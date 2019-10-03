@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 
 import Brand from './sliderMarcas'
+import axios from 'axios'
 
 class Articulo extends Component {
     constructor(props) {
@@ -13,11 +14,26 @@ class Articulo extends Component {
             cuerpo: this.props.location.state.articulo.cuerpo,
             encabezado: this.props.location.state.articulo.encabezado,
             autor: this.props.location.state.articulo.autor,
-            fechaCreado: this.props.location.state.articulo.created_at
+            fechaCreado: this.props.location.state.articulo.created_at,
+            slug: this.props.location.pathname.substring(10),
+            articulo: []
         }
+    }
+    getArt(){
+        axios.get('/api/blog/articulo/'+this.state.slug).then(res=>{
+            if(this._isMounted){
+                console.log(res.data)
+                this.setState({
+                    articulo: res.data[0]
+                })
+            }
+        }).catch(err=>{
+            console.log(err)
+        })
     }
     componentDidMount(){
         this._isMounted = true;
+        this.getArt()
         window.scrollTo(0,0)
         // document.getElementById('spinner').style.display = 'none';
     }
@@ -25,6 +41,7 @@ class Articulo extends Component {
         this._isMounted = false;
     }
     render() {
+        // console.log(this.state.slug)
         return (
             <div>
                 <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/blog/${this.state.encabezado})` }}>

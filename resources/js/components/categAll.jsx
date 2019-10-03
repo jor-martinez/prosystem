@@ -8,7 +8,7 @@ import Brand from './sliderMarcas'
 import pageTitle from './media/resources/page-title-bg.jpg'
 
 
-class Services extends Component{
+class Categorias extends Component{
    constructor(props){
       super(props)
       this._isMounted = false;
@@ -93,4 +93,4 @@ class Services extends Component{
 }
 
 
-export default Services
+export default Categorias

@@ -23,6 +23,9 @@ import Product from './producto'
 import Error404 from './error404'
 import Paginacion from './paginacion'
 
+import Categorias from './categAll'
+import Categoria from './categOne'
+
 class App extends Component{
    constructor(props){
       super(props)

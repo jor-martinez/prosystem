@@ -32,6 +32,8 @@ import EditHistory from './EditHistory'
 import AdminContacto from './AdminContacto'
 import EditContacto from './EditContacto'
 
+import ServicesCat from './adminServicesCat'
+
 
 import '../../css/stylesAdmin.css'
 import '../../css/responsiveAdmin.css'
@@ -69,7 +71,7 @@ class Admin extends Component{
                </div>
                <Switch>
                   <Route exact path="/admin" component={AdminHome} />
-                  <Route path="/admin/servicios" component={AdminServices} />
+                  <Route path="/admin/servicios" component={ServicesCat} />
                   <Route path="/admin/servicio" component={Service} />
                   <Route path="/admin/slider" component={AdminSlider} />
                   <Route path="/admin/marcas" component={AdminMarcas} />

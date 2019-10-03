@@ -73,6 +73,20 @@
    margin-right: 7px;
 }
 
+/* Estilos para categorias */
+
+.page-title-block .thm-breadcrumb .list-categories{
+   width: 50%;
+   margin: auto;
+   display: flex;
+   padding: 0;
+   justify-content: center;
+   list-style: none;
+}
+.page-title-block .thm-breadcrumb .list-categories li{
+   margin: 5px 15px;
+}
+
 /* slider */
 
 body .slider{
