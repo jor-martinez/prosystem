@@ -9,9 +9,6 @@ class Product extends Component{
       super(props)
       this._isMounted = false;
       this.state={
-         nombre: this.props.location.state.producto.titulo,
-         descripcion: this.props.location.state.producto.descripcion,
-         imagen: this.props.location.state.producto.imagen,
          slug: this.props.location.pathname.substring(10),
          producto: []
       }
@@ -21,7 +18,7 @@ class Product extends Component{
          if(this._isMounted){
             console.log(res.data)
             this.setState({
-               producto: res.data
+               producto: res.data[0]
             })
          }
       }).catch(err=>{
@@ -37,11 +34,12 @@ class Product extends Component{
       this._isMounted = false;
    }
    render(){
+      const {producto} = this.state
       return(
          <div>
-            <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/productos/${this.state.imagen})` }}>
+            <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/productos/${producto.imagen})` }}>
                <div className="container">
-                  <h2>{this.state.nombre}</h2>
+                  <h2>{producto.nombre}</h2>
                   <div className="thm-breadcrumb">
                      <Link to="/">Inicio</Link>
                      <span className="sep">/</span>
@@ -54,9 +52,9 @@ class Product extends Component{
                   <div className="row">
                      <div className="service-details-content">
                         <br />
-                        <h3>{this.state.nombre}</h3>
+                        <h3>{producto.nombre}</h3>
                         <br />
-                        <div dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
+                        <div dangerouslySetInnerHTML={{ __html: producto.descripcion }}></div>
                         <br />
                      </div>
                   </div>

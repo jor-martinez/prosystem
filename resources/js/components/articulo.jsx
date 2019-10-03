@@ -10,11 +10,6 @@ class Articulo extends Component {
         super(props)
         this._isMounted = false;
         this.state = {
-            titulo: this.props.location.state.articulo.titulo,
-            cuerpo: this.props.location.state.articulo.cuerpo,
-            encabezado: this.props.location.state.articulo.encabezado,
-            autor: this.props.location.state.articulo.autor,
-            fechaCreado: this.props.location.state.articulo.created_at,
             slug: this.props.location.pathname.substring(10),
             articulo: []
         }
@@ -42,11 +37,12 @@ class Articulo extends Component {
     }
     render() {
         // console.log(this.state.slug)
+        const {articulo} = this.state
         return (
             <div>
-                <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/blog/${this.state.encabezado})` }}>
+                <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/blog/${articulo.encabezado})` }}>
                     <div className="container">
-                        <h2>{this.state.titulo}</h2>
+                        <h2>{articulo.titulo}</h2>
                         <div className="thm-breadcrumb">
                             <Link to="/">Inicio</Link>
                             <span className="sep">/</span>
@@ -59,14 +55,14 @@ class Articulo extends Component {
                         <div className="row">
                             <div className="service-details-content">
                                 <br />
-                                <h3>{this.state.titulo}</h3>
+                                <h3>{articulo.titulo}</h3>
                                 <br />
                                 <div>
-                                    <span>Autor: {this.state.autor}</span><br/>
-                                    <span>Creado el: <Moment format="DD/MM/YYYY" >{this.state.fechaCreado}</Moment> </span>
+                                    <span>Autor: {articulo.autor}</span><br/>
+                                    <span>Creado el: <Moment format="DD/MM/YYYY" >{articulo.fechaCreado}</Moment> </span>
                                 </div>
                                 <br/>
-                                <div dangerouslySetInnerHTML={{ __html: this.state.cuerpo }}></div>
+                                <div dangerouslySetInnerHTML={{ __html: articulo.cuerpo }}></div>
                                 <br />
                             </div>
                         </div>

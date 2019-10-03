@@ -147,7 +147,6 @@ class Home extends Component{
       })
    }
    componentDidMount(){
-      // _isMounted = true;
       this._isMounted = true;
       Promise.all([
          this.getServices(),
@@ -228,7 +227,7 @@ class Home extends Component{
                               <div className="center info-slider-container">
                                  <h1>{item.titulo}</h1>
                                  <p>{item.descripcion}</p>
-                                 <a target="blank" href={`${item.link}`}>Ver publicación</a>
+                                 <a target="blank" href={`${item.link}`}>Ver más</a>
                               </div>
                            </div>
                         :

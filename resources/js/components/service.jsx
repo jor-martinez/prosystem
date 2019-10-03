@@ -9,10 +9,7 @@ class Service extends Component{
       super(props)
       this._isMounted = false;
       this.state={
-         nombre: this.props.location.state.service.nombre,
-         descripcion: this.props.location.state.service.descripcion,
          slug: this.props.location.pathname.substring(10),
-         Imagen: this.props.location.state.service.Imagen,
          service: []
       }
       this.getService = this.getService.bind(this)
@@ -20,7 +17,7 @@ class Service extends Component{
    getService(){
       axios.get('/api/servicios/'+this.state.slug).then(res=>{
          if(this._isMounted){
-            console.log(res.data[0])
+            // console.log(res.data[0])
             this.setState({
                service: res.data[0]
             })
@@ -39,11 +36,12 @@ class Service extends Component{
    }
    render(){
       // console.log(this.state.slug)
+      const {service} = this.state
       return(
          <div>
-            <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/servicios/${this.state.Imagen})` }}>
+            <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/servicios/${service.Imagen})` }}>
                <div className="container">
-                  <h2>{this.state.nombre}</h2>
+                  <h2>{service.nombre}</h2>
                   <div className="thm-breadcrumb">
                      <Link to="/">Inicio</Link>
                      <span className="sep">/</span>
@@ -56,9 +54,9 @@ class Service extends Component{
                   <div className="row">
                      <div className="service-details-content">
                         <br />
-                        <h3>{this.state.nombre}</h3>
+                        <h3>{service.nombre}</h3>
                         <br />
-                        <div dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
+                        <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
                         <br />
                      </div>
                   </div>
