@@ -62,8 +62,8 @@
                 <form action="categoria/editar/{{$c->id}}" method="POST" class="form-inline align-items-center justify-content-center" enctype="multipart/form-data">
                   {{ csrf_field() }}
                 <div class="form-group mx-sm-3 mb-2">
-                  <input class="form-control" id="titulo" name="titulo" value="{{$caracteristica->titulo}}"/>
-                  <input class="form-control" id="descripcion" name="descripcion" value="{{$caracteristica->descripcion}}"/>
+                  <input class="form-control" id="titulo" name="titulo" value="{{$c->titulo}}"/>
+                  <input class="form-control" id="descripcion" name="descripcion" value="{{$c->descripcion}}"/>
                  </div>
                 <button type="submit" class="btn btn-success mb-2">Aceptar</button>
               </form>

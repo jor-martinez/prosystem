@@ -28,7 +28,7 @@ Route::prefix('api') -> group(function() {
 
 
     Route::get('/blog', 'Api\MainController@blog');
-    Route::get('/blog/{slug}', 'Api\MainController@showBlog');
+    //Route::get('/blog/{slug}', 'Api\MainController@showBlog');
     Route::get('caracteristicas', 'Api\MainController@caracteristicas');
     Route::get('empresa', 'Api\MainController@empresa');
     Route::get('historia', 'Api\MainController@historia');

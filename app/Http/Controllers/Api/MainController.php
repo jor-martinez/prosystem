@@ -27,15 +27,11 @@ class MainController extends Controller
     }
 
     public function showBlog($slug) {
-        // $datos = Blog::where('slug', $slug)
-        //         -> first();
-        $datos = Blog::all();
-        foreach($datos as $dato){
-            if (($dato->slug) == $slug){
-                return [$datos];
-            }
-        }   
-        //return [$datos];
+        // $datos = Blog::where('slug', $slug) -> get();
+        
+        // return $datos;
+
+        
     }
 
     public function caracteristicas() {
@@ -81,16 +77,11 @@ class MainController extends Controller
         return $datos;
     }
 
-    public function showProductos(){
-        // $datos = Productos::where('slug', $slug);
-        // return $datos;
-        // $datos = Producto::all();
-        // foreach($datos as $dato){
-        //     if (($dato->slug) == $slug){
-        //         return [$dato];
-        //     }
-        // }   
-        return response('puto slug', 200)->header('Content-type', 'application/json');
+    public function showProductos($slug){
+
+        $datos = Productos::where('slug', $slug) -> get(); 
+        return $datos;
+
     }
 
 
@@ -102,13 +93,6 @@ class MainController extends Controller
 
     public function showServicios($slug)
     {
-        // $datos = Servicios::all();
-        // foreach($datos as $dato){
-        //     if (($dato->slug) == $slug){
-        //         return [$dato];
-        //     }
-        // }    
-
         $datos = Servicios::where('slug', $slug) -> get();
         
         return $datos;
