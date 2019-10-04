@@ -18,7 +18,7 @@ class DescripcionServController extends Controller
         return view('dev.create-catServ', ['cat' => $cat]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $datos = [
             'titulo' => 'required|string|min:5',
@@ -27,7 +27,10 @@ class DescripcionServController extends Controller
         $this -> validate($request, $datos);
 
         $dato = new CatServicios;
-        $nuevo = new Servicios;
+        $nuevo = Servicios::all();
+        $id_serv = Servicios::select('id')
+                    -> where('id', $id);
+        $dato -> id_cat = $id_serv;
         $dato -> titulo = $request -> titulo;
         $dato -> descripcion = $request -> descripcion;
         $dato -> save();

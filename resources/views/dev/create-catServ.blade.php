@@ -36,8 +36,9 @@
                   </ul>
                 </div>
               @endif
-              <form action="/dev/categoria/nueva" method="POST" class="form-inline align-items-center justify-content-center" enctype="multipart/form-data">
+              <form action="/dev/categoria/nueva/" method="POST" class="form-inline align-items-center justify-content-center" enctype="multipart/form-data">
                   {{ csrf_field() }}
+                  {{ method_field('POST') }}
                 <div class="form-group mx-sm-3 mb-2">
                   <input class="form-control" id="titulo" name="titulo" placeholder="Titulo"/>
                   <input accept="image/" class="form-control" type="text" id="descripcion" name="descripcion" placeholder="Descripción"/>

@@ -28,7 +28,7 @@ Route::prefix('api') -> group(function() {
 
 
     Route::get('/blog', 'Api\MainController@blog');
-    //Route::get('/blog/{slug}', 'Api\MainController@showBlog');
+    Route::get('/blog/artuculo/{slug}', 'Api\MainController@showBlog');
     Route::get('caracteristicas', 'Api\MainController@caracteristicas');
     Route::get('empresa', 'Api\MainController@empresa');
     Route::get('historia', 'Api\MainController@historia');
@@ -133,7 +133,7 @@ Route::middleware(['auth:admin']) -> group(function() {
       //CATEGORIA DE SERVICIOS
       Route::prefix('categoria') ->group(function(){
         Route::get('/', 'Api\DescripcionServController@index');
-        Route::post('/nueva', 'Api\DescripcionServController@store');
+        Route::post('/nueva/{id}', 'Api\DescripcionServController@store');
         Route::post('/editar/{id}', 'Api\DescripcionServController@update');
         Route::delete('/borrar/{id}', 'Api\DescripcionServController@destroy');
         Route::get('/{slug}', 'Api\DescripcionServController@show');
