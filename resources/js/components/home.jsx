@@ -24,10 +24,7 @@ import '../css/responsivePublic.css'
 import "react-alice-carousel/lib/alice-carousel.css"
 
 
-class Home extends Component{
-   // _isMounted = false;
-   // _isMounted = false;
-   
+class Home extends Component{   
    constructor(props){
       super(props)
       
@@ -167,9 +164,11 @@ class Home extends Component{
    }
    componentWillUnmount(){
       this._isMounted = false;
+      // console.log(this._isMounted)
    }
 
    render(){
+      // console.log(this._isMounted)
       const responsive = {
          0: { items: 1 },
          600: { items: 1},
@@ -194,60 +193,62 @@ class Home extends Component{
          preContServices,
          preContVentajas,
          preContProceso
-      } = this.state
+      } = this.state;
 
       return(
          <div>
             <Helmet>
                <title>Pro System</title>
             </Helmet>
-            {
-               (preContSlider)
-               ?
-               <section className="slider">
-                  <AliceCarousel
-                     mouseDragEnabled
-                     responsive={responsive1}
-                     infinite
-                     duration={2000}
-                     autoPlay
-                     duration={2000}
-                     autoPlayInterval={1000}
-                     buttonsDisabled
-                     fadeOutAnimation
-                     ref={(el)=>(this.Carousel = el)}
-                  >
-                     {slider.map((item) => (
-                        (item.link)
-                        ?
-                           <div
-                              className="slider-img"
-                              key={item.id}
-                              style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
-                              <div className="center info-slider-container">
-                                 <h1>{item.titulo}</h1>
-                                 <p>{item.descripcion}</p>
-                                 <a target="blank" href={`${item.link}`}>Ver más</a>
+            <section className="slider">
+               {
+                  (preContSlider)
+                  ?
+                  <div>
+                     <AliceCarousel
+                        mouseDragEnabled
+                        responsive={responsive1}
+                        infinite
+                        duration={2000}
+                        autoPlay
+                        duration={2000}
+                        autoPlayInterval={1000}
+                        buttonsDisabled
+                        fadeOutAnimation
+                        ref={(el)=>(this.Carousel = el)}
+                     >
+                        {slider.map((item) => (
+                           (item.link)
+                           ?
+                              <div
+                                 className="slider-img"
+                                 key={item.id}
+                                 style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                                 <div className="center info-slider-container">
+                                    <h1>{item.titulo}</h1>
+                                    <p>{item.descripcion}</p>
+                                    <a target="blank" href={`${item.link}`}>Ver más</a>
+                                 </div>
                               </div>
-                           </div>
-                        :
-                           <div
-                              className="slider-img"
-                              key={item.id}
-                              style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
-                              <div className="center info-slider-container">
-                                 <h1>{item.titulo}</h1>
-                                 <p>{item.descripcion}</p>
+                           :
+                              <div
+                                 className="slider-img"
+                                 key={item.id}
+                                 style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                                 <div className="center info-slider-container">
+                                    <h1>{item.titulo}</h1>
+                                    <p>{item.descripcion}</p>
+                                 </div>
                               </div>
-                           </div>
-                     ))}
-                  </AliceCarousel>
-                  <button className="button-slider button-prev" onClick={() => this.Carousel.slidePrev()}><i className="fas fa-chevron-left"></i></button>
-                  <button className="button-slider button-next" onClick={() => this.Carousel.slideNext()}><i className="fas fa-chevron-right"></i></button>
-               </section>
-               :
-               <PreSlider/>
-            }
+                        ))}
+                     </AliceCarousel>
+                     <button className="button-slider button-prev" onClick={() => this.Carousel.slidePrev()}><i className="fas fa-chevron-left"></i></button>
+                     <button className="button-slider button-next" onClick={() => this.Carousel.slideNext()}><i className="fas fa-chevron-right"></i></button>
+                  </div>
+                  :
+                  <PreSlider/>
+               }
+            </section>
             <section className="services-style-one">
                <section className="service-style-one">
                      <div className="upper-block">
@@ -288,36 +289,34 @@ class Home extends Component{
                }
 
             </section>
-            {
-               (preContProduct)
-               ?
-               <section className="offer-style-one">
-                  <div className="container">
-                     <div className="title-block">
-                        <span className="tag-line">Algunos productos</span>{/* /.tag-line */}
-                        <h2>Lo que ofrecemos</h2>
-                     </div>
-                     <div className="row">
-                        {
-                           (productos.map(producto=>(
-                              <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
-                                 <div className="icon-block">
-                                    <img src={`../images/productos/${producto.imagen}`} alt="imagen del producto"/>
-                                 </div>
-                                 <h3>{producto.titulo}</h3>
-                                 <div>
-                                    <Link to={{ pathname: '/producto/'+producto.slug, state : { producto } }}
-                                    className="more-link">Leer más</Link>
-                                 </div>
-                              </div>
-                           )))
-                        }
-                     </div>
+            <section className="offer-style-one">
+               <div className="container">
+                  <div className="title-block">
+                     <span className="tag-line">Algunos productos</span>{/* /.tag-line */}
+                     <h2>Lo que ofrecemos</h2>
                   </div>
-               </section>
-               :
-               <PreProduct/>
-            }
+                  <div className="row">
+                     {
+                        (preContProduct)
+                        ?
+                        (productos.map(producto=>(
+                           <div key={producto.id} className="single-offer-style-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
+                              <div className="icon-block">
+                                 <img src={`../images/productos/${producto.imagen}`} alt="imagen del producto"/>
+                              </div>
+                              <h3>{producto.titulo}</h3>
+                              <div>
+                                 <Link to={{ pathname: '/producto/'+producto.slug, state : { producto } }}
+                                 className="more-link">Leer más</Link>
+                              </div>
+                           </div>
+                        )))
+                        :
+                        <PreProduct/>
+                     }
+                  </div>
+               </div>
+            </section>
             <section className="mission-style-one wow fadeInUp" data-wow-duration="1300ms">
                <div className="container">
                   <div className="inner-container">

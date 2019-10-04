@@ -32,7 +32,7 @@ import EditHistory from './EditHistory'
 import AdminContacto from './AdminContacto'
 import EditContacto from './EditContacto'
 
-import ServicesCat from './adminServicesCat'
+import AdminCategories from './adminCategories'
 
 
 import '../../css/stylesAdmin.css'
@@ -71,7 +71,7 @@ class Admin extends Component{
                </div>
                <Switch>
                   <Route exact path="/admin" component={AdminHome} />
-                  <Route path="/admin/servicios" component={ServicesCat} />
+                  <Route path="/admin/servicios" component={AdminServices} />
                   <Route path="/admin/servicio" component={Service} />
                   <Route path="/admin/slider" component={AdminSlider} />
                   <Route path="/admin/marcas" component={AdminMarcas} />
@@ -96,6 +96,7 @@ class Admin extends Component{
                   <Route path="/admin/historia-info/editar" component={EditHistory} />
                   <Route path="/admin/contacto" component={AdminContacto} />
                   <Route path="/admin/contacto-info/editar" component={EditContacto} />
+                  <Route path="/admin/categorias" component={AdminCategories} />
                </Switch>
                <div className="buttons-logout">
                   <button className="btn go-prosystem tooltip">

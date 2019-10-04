@@ -18,7 +18,7 @@ class DescripcionServController extends Controller
         return view('dev.create-catServ', ['cat' => $cat]);
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $datos = [
             'titulo' => 'required|string|min:5',

@@ -148,7 +148,7 @@ class EditProducto extends Component {
                         <img src={`../../images/productos/${this.state.imagen}`} alt="Imagen del producto" />
                     </div>
                     <div className="info-block">
-                        <h1>{this.state.nombre}</h1>
+                        <h1>{this.state.titulo}</h1>
                         <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
                         <div className="buttons-block one-item-btn-block">
                             <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">

@@ -39,7 +39,7 @@ class Product extends Component{
          <div>
             <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/productos/${producto.imagen})` }}>
                <div className="container">
-                  <h2>{producto.nombre}</h2>
+                  <h2>{producto.titulo}</h2>
                   <div className="thm-breadcrumb">
                      <Link to="/">Inicio</Link>
                      <span className="sep">/</span>
