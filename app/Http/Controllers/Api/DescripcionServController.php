@@ -109,7 +109,7 @@ class DescripcionServController extends Controller
 
     public function destroy($id)
     {
-        $dato = CatServicios::findOrFail($titulo);
+        $dato = CatServicios::findOrFail($id);
         //$ruta_acceso_imagen = public_path('images/categorias').'/'.$dato -> encabezado;
         //unlink($ruta_acceso_imagen);
         $dato -> delete();
