@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Caracteristicas;
+use App\Models\CatServicios;
 use App\Models\Empresa;
 use App\Models\Historia;
 use App\Models\Marca;
@@ -36,6 +37,12 @@ class MainController extends Controller
 
     public function caracteristicas() {
         $datos = Caracteristicas::all();
+
+        return $datos;
+    }
+
+    public function categorias() {
+        $datos = CatServicios::all();
 
         return $datos;
     }

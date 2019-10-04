@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 use App\Models\CatServicios;
-use App\Models\Servicios;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,6 +29,7 @@ class DescripcionServController extends Controller
     
         $dato -> id_serv = $request -> id;
         $dato -> titulo = $request -> titulo;
+        $dato -> slug = StringReplace::getPureString($request -> titulo);
         $dato -> descripcion = $request -> descripcion;
         $dato -> save();
 
@@ -38,22 +38,35 @@ class DescripcionServController extends Controller
     
     public function show($id)
     {
-        $datos = CatServicios::all();
-        foreach($datos as $dato){
-            if (($dato->id) == $id){
-                return [$dato];
-            }
-        }   
+        $datos = CatServicios::where('slug', $slug) -> get(); 
+        return $datos; 
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $datos = [
+            'titulo' => 'required|string|min:2',
+            'descripcion' => 'required|string|min:2',
+        ];
+        $this -> validate($request, $datos);
+
+        $dato = CatServicios::findOrFail($id);
+        $dato -> titulo = $request -> titulo;
+        $dato -> slug = StringReplace::getPureString($request -> titulo);
+        $dato -> descripcion = $request -> descripcion;
+        $dato -> save();
+
+        return response("actualizado", 200) -> header('Content-Type', 'application/json');
     }
 
     public function destroy($id)
     {
-        //
+        $dato = CatServicios::findOrFail($titulo);
+        //$ruta_acceso_imagen = public_path('images/blog').'/'.$dato -> encabezado;
+        //unlink($ruta_acceso_imagen);
+        $dato -> delete();
+
+        return response("eliminado", 200) -> header('Content-Type', 'application/json');
     }
 }
