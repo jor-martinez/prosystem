@@ -17,29 +17,38 @@ class AdminCategories extends Component{
       super(props)
 
       this.state = {
+         slug: this.props.location.pathname.substring(18),
          loadAction: false,
          load: false,
-         services: [],
+         servicio: [],
          nombre: '',
          descripciones: [],
          errors: {},
          categorias: [],
-         idServicio: ''
+         idserv: this.props.location.state.idserv
       }
       this.handleOnSubmit = this.handleOnSubmit.bind(this)
-      this.getServices = this.getServices.bind(this)
+      this.getService = this.getService.bind(this)
       this.handleEditorChange = this.handleEditorChange.bind(this)
       this.addCategory = this.addCategory.bind(this)
       this.changeInput = this.changeInput.bind(this)
-      this.selectChange = this.selectChange.bind(this)
       this.removeCategory = this.removeCategory.bind(this)
+      this.getCategories = this.getCategories.bind(this)
    }
-
-
-   getServices(){
-      axios.get('/api/servicios').then(result=>{
+   getCategories(){
+      axios({
+         method: 'get',
+         url: '/dev/categoria/'+this.state.idserv
+      }).then(res=>{
+         console.log(res.data)
+      }).catch(err=>{
+         console.log(err)
+      })
+   }
+   getService(){
+      axios.get('/dev/servicios/'+this.state.slug).then(result=>{
          this.setState({
-            services: result.data,
+            servicio: result.data[0],
             load: true
          })
          // console.log(this.state)
@@ -48,69 +57,50 @@ class AdminCategories extends Component{
       })
    }
    componentDidMount(){
-      this.getServices()
+      this.getService()
+      this.getCategories()
    }
    handleOnSubmit(e){
       e.preventDefault()
+      this.setState({loadAction:true})
       const contCategories = this.state.categorias.length
-
-      // console.log(contCategories)
-
+      
       for(let i=0; i<contCategories; i++){
          const data = new FormData()
          data.append('titulo', this.state.categorias[i])
          data.append('descripcion', this.state.descripciones[i])
-         data.append('id', this.state.idServicio)
+         data.append('id', this.state.servicio.id)
          axios({
             method: 'post',
             url: '/dev/categoria/nueva',
             data
          }).then(res=>{
-            console.log(res)
+            // console.log(res)
+            this.setState({loadAction: false})
+            SweetAlert.fire(
+                'Correcto',
+                'Las categorías se han agregado correctamente',
+                'success'
+            ).then(()=>{
+               this.setState({
+                  categorias: [],
+                  descripciones:[]
+               })
+            })
          }).catch(err=>{
-            console.log(err)
+            this.setState({
+               loadAction: false,
+               errors: err.response.data.errors
+            })
+            console.log(err.response.data.errors)
+            SweetAlert.fire(
+                  'Error',
+                  'Algo salió mal!',
+                  'error'
+            )
+            window.scrollTo(0,0)
          })
       }
-
-      // this.setState({loadAction: true})
-
-      // const data = new FormData();
-      // data.append('nombre', this.state.nombre);
-      // data.append('descripcion', this.state.descripcion);
-      // data.append('Imagen', this.state.Imagen);
-      
-      // console.log(data)
-      // axios.post('/dev/servicios/nueva', data)
-      //    .then(res=>{
-      //       this.setState({loadAction: false})
-      //       console.log('servicio creado exitosamente');
-      //       SweetAlert.fire(
-      //          'Correcto',
-      //          'El servicio se ha agregado correctamente',
-      //          'success'
-      //       ).then(()=>{
-      //          this.getServices()
-      //          this.onReset()
-      //          this.setState({
-      //             nombre: '',
-      //             descripcion: '',
-      //             Imagen: '',
-      //             img: null
-      //          })
-      //          document.getElementById('errores').style.display = 'none';
-      //       })
-      //       // console.log(res);
-      //    }).catch(err=>{
-      //       this.setState({loadAction: false})
-      //       SweetAlert.fire(
-      //          'Error',
-      //          'Algo salió mal!',
-      //          'error'
-      //       )
-      //       console.log(err.response.data.errors)
-      //       this.setState({errors: err.response.data.errors})
-      //       window.scrollTo(0,0)
-      //    })
    }
    handleEditorChange(e, index){
       this.state.descripciones[index] = e.target.getContent();
@@ -127,36 +117,34 @@ class AdminCategories extends Component{
    }
    removeCategory(index){
       this.state.categorias.splice(index, 1)
-      console.log(this.state.categorias, "####")
+      // console.log(this.state.categorias, "####")
       this.setState({categorias: this.state.categorias})
    }
-   selectChange(e){
-      this.setState({idServicio: e.target.value})
-   }
    render(){
-      const {services,loadAction,errors} = this.state
+      // console.log(this.props.location.state.idserv)
+      
+      const {servicio,loadAction,errors} = this.state
       return(
          <div className="admin-categories">
             <Helmet>
-               <title>Admin | Categorias</title>
+               <title>Admin | Categorías</title>
             </Helmet>
             <section className="item-add">
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
-                  <legend>Agregar categorías a los servicios</legend>
+                  <legend>Agregar categorías al servicio: <strong>{servicio.nombre}</strong></legend>
                   {errorAlert(errors)}
                   <Container className="group">
-                     <Select name="servicio" label="Selecciona un servicio" onChange={this.selectChange} >
+                     {/* <Select name="servicio" label="Selecciona un servicio" onChange={this.selectChange} >
                         {
                            (services.map(service=>(
-                              // console.log(service.nombre)
                               <Option key={service.id} value={service.id} label={service.nombre} />
                            )))
                         }
-                     </Select>
+                     </Select> */}
                   </Container>
                   <span className="add tooltip" onClick={this.addCategory}>
                      <i className="fas fa-plus"></i>
-                     <span className="tooltiptext">Agregar categoria</span>
+                     <span className="tooltiptext-top">Agregar categoría</span>
                   </span>
 
                   {
@@ -214,10 +202,16 @@ class AdminCategories extends Component{
                                  }}
                               />
                            </Container>
-                           <span className="remove tooltip" onClick={()=>this.removeCategory(index)}>
-                              <i className="fas fa-minus"></i>
-                              <span className="tooltiptext tooltiptext-left">Eliminar categoria</span>
-                           </span>
+                           <div className="column">
+                              <span className="remove tooltip" onClick={()=>this.removeCategory(index)}>
+                                 <i className="fas fa-minus"></i>
+                                 <span className="tooltiptext-top">Eliminar categoría</span>
+                              </span>
+                              <span className="add added tooltip" onClick={this.addCategory}>
+                                 <i className="fas fa-plus"></i>
+                                 <span className="tooltiptext-top">Agregar categoría</span>
+                              </span>
+                           </div>
                         </Container>
                      ))
                   }

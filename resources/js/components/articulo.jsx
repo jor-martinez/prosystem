@@ -13,6 +13,7 @@ class Articulo extends Component {
             slug: this.props.location.pathname.substring(10),
             articulo: []
         }
+        this.getArt = this.getArt.bind(this)
     }
     getArt(){
         axios.get('/api/blog/articulo/'+this.state.slug).then(res=>{

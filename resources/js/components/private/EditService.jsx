@@ -141,30 +141,38 @@ class Service extends Component{
    }
    render(){
       // console.log(this.state)
-      const {loadAction,errors,nombre,descripcion,Imagen} = this.state
+      const {loadAction,errors,nombre,descripcion} = this.state
       return(
          <div>
+            <section className="buttons-block">
+               <Link className="button button-return tooltip" to="/admin/servicios">
+                  <i className="fas fa-reply"></i>
+                  <span className="tooltiptext-right">Regresar</span>
+               </Link>
+            </section>
             <div className="one-service-containor" id="serv-cont" >
                <div className="img-block">
-                  <img src={`../../images/servicios/${Imagen}`} alt="Imagen del servicio" />
+                  <img src={`../../images/servicios/${this.state.Imagen}`} alt="Imagen del servicio" />
                </div>
                <div className="info-block">
                   <h1>{nombre}</h1>
                   <div className="content-service" dangerouslySetInnerHTML={{ __html: descripcion }}></div>
-                  <div className="buttons-block one-item-btn-block">
-                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
+                  <section className="buttons-info">
+                     <button onClick={this.handleOnClickEdit} className="button button-edit tooltip">
                         <i className="fas fa-edit"></i>
-                        <span className="tooltiptext tooltiptext-left">Editar</span>
+                        <span className="tooltiptext-top">Editar</span>
                      </button>
                      <button onClick={this.handleOnDelete} className="button button-delete delete-btn tooltip">
                         <i className="fas fa-trash-alt"></i>
-                        <span className="tooltiptext tooltiptext-left">Eliminar</span>
+                        <span className="tooltiptext-top">Eliminar</span>
                      </button>
-                     <Link className="button button-return tooltip return-btn" to="/admin/servicios">
-                        <i className="fas fa-reply"></i>
-                        <span className="tooltiptext tooltiptext-left">Regresar</span>
+                  </section>
+                  <section className="buttons-info-cat">
+                     <Link to={{pathname: '/admin/categorias/'+this.state.slug, state: { idserv: this.state.id }}} className="button button-cat tooltip">
+                        <i className="fas fa-list"></i>
+                        <span className="tooltiptext-top">Categorías</span>
                      </Link>
-                  </div>
+                  </section>
                </div>
             </div>
             <div className="one-service-edit" id="serv-edit">
