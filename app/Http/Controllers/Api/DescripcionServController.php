@@ -27,10 +27,11 @@ class DescripcionServController extends Controller
         $this -> validate($request, $datos);
 
         $dato = new CatServicios;
-        $nuevo = Servicios::all();
-        $id_serv = Servicios::select('id')
-                    -> where('id', $id);
-        $dato -> id_cat = $id_serv;
+        //$nuevo = Servicios::all();
+        // $id_s = Servicios::select('id')
+        //             -> where('id', $id);
+        // $dato -> id_serv = $id_s;
+        $dato -> id_serv = $request -> id;
         $dato -> titulo = $request -> titulo;
         $dato -> descripcion = $request -> descripcion;
         $dato -> save();
