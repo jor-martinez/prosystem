@@ -29,7 +29,9 @@ class MainController extends Controller
 
     public function showBlog($slug) {
       
-        return Blog::where('slug', $slug) -> first();
+        $datos = Blog::where('slug', $slug) -> get();
+        
+        return $datos;
 
         
     }
