@@ -67,7 +67,7 @@ const Navigation = styled.header`
     }
     a {
       font-weight: 500;
-      font-size: 17px;
+      font-size: 13px;
       color: #182345;
       position: relative;
       top: 5px;
@@ -205,6 +205,9 @@ class Nav extends Component {
             </NavLink>
             <NavLink activeClassName="active" to="/admin/servicios">
               <li>Servicios</li>
+            </NavLink>
+            <NavLink activeClassName="active" to="/admin/categorias">
+              <li>Categorias de servicios</li>
             </NavLink>
             <NavLink activeClassName="active" to="/admin/slider">
               <li>Slider</li>

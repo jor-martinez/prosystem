@@ -542,6 +542,65 @@ textarea{
 .containor-full{
    width: 100%;
 }
+/* Categorias */
+
+.admin-categories .item-add {
+   width: 80%;
+   margin: 40px auto;
+}
+.admin-categories .item-add form{
+   padding: 25px;
+   border: 2px solid rgb(230, 230, 230);
+   border-radius: 10px;
+   position: relative;
+}
+.admin-categories .item-add form > legend{
+   margin-bottom: 50px;
+}
+.admin-categories .item-add .group{
+   width: 40%;
+   text-align: left;
+}
+.admin-categories .item-add .group-categories{
+   position: relative;
+   display: flex;
+   justify-content: space-between;
+}
+.admin-categories .item-add .group-categories .form-input{
+   width: 20%;
+   margin-right: 20px;
+}
+.admin-categories .item-add .group-categories .mui-container{
+   width: 60%;
+}
+.admin-categories .item-add form .add{
+   display: inline-block;
+   width: 50px;
+   height: 50px;
+   background: #03A9F4;
+   border-radius: 50px;
+   font-size: 30px;
+   text-align: center;
+   padding-top: 5px;
+   cursor: pointer;
+   color: #fff;
+   position: absolute;
+   right: 70px;
+   top: 100px;
+}
+.admin-categories .item-add form .remove{
+   display: inline-block;
+   width: 50px;
+   height: 50px;
+   background: #e53935;
+   border-radius: 50px;
+   font-size: 30px;
+   text-align: center;
+   padding-top: 5px;
+   cursor: pointer;
+   color: #fff;
+}
+
 /* Uploader */
 
 .subir{

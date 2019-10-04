@@ -3,7 +3,6 @@ import AliceCarousel from 'react-alice-carousel'
 import "react-alice-carousel/lib/alice-carousel.css"
 import axios from 'axios'
 
-
 class Brands extends Component{
    constructor(props){
       super(props)
@@ -32,7 +31,7 @@ class Brands extends Component{
       this._isMounted = false;
    }
    render(){
-      const {marcas} = this.state
+      const {marcas} = this.state;
       const responsive = {
          0: { items: 2 },
          600: { items: 2},
