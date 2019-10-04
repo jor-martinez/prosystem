@@ -583,7 +583,16 @@ textarea{
    cursor: pointer;
    color: #fff;
 }
-
+.admin-categories .item-add .cat-containor{
+   width: 40%;
+   padding: 5px 15px;
+   border: 2px solid rgb(230, 230, 230);
+   border-radius: 10px;
+   margin-bottom: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
 /* Uploader */
 
 .subir{

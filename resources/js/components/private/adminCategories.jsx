@@ -25,7 +25,8 @@ class AdminCategories extends Component{
          descripciones: [],
          errors: {},
          categorias: [],
-         idserv: this.props.location.state.idserv
+         idserv: this.props.location.state.idserv,
+         listCatServ: []
       }
       this.handleOnSubmit = this.handleOnSubmit.bind(this)
       this.getService = this.getService.bind(this)
@@ -40,7 +41,10 @@ class AdminCategories extends Component{
          method: 'get',
          url: '/dev/categoria/'+this.state.idserv
       }).then(res=>{
-         console.log(res.data)
+         // console.log(res.data)
+         this.setState({
+            listCatServ: res.data
+         })
       }).catch(err=>{
          console.log(err)
       })
@@ -86,6 +90,7 @@ class AdminCategories extends Component{
                   categorias: [],
                   descripciones:[]
                })
+               this.getCategories()
             })
          }).catch(err=>{
             this.setState({
@@ -123,7 +128,7 @@ class AdminCategories extends Component{
    render(){
       // console.log(this.props.location.state.idserv)
       
-      const {servicio,loadAction,errors} = this.state
+      const {servicio,loadAction,errors,listCatServ} = this.state
       return(
          <div className="admin-categories">
             <Helmet>
@@ -131,6 +136,62 @@ class AdminCategories extends Component{
             </Helmet>
             <section className="item-add">
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
+                  <legend>Lista de categorías del servicio: <strong>{servicio.nombre}</strong></legend>
+                  {
+                     (listCatServ.map(cat=>(
+                        <section key={cat.id_cat} className="cat-containor">
+                           <span>{cat.titulo}</span>
+                           <div>
+                                 <button className="button button-edit tooltip">
+                                    <i className="fas fa-edit"></i>
+                                    <span className="tooltiptext-top">Editar</span>
+                                 </button>
+                                 <button onClick={() => {
+                                    SweetAlert.fire({
+                                       title: '¿Estás seguro de eliminar este elemento?',
+                                       text: "No se podrán revertir los cambios",
+                                       type: 'warning',
+                                       showCancelButton: true,
+                                       confirmButtonColor: '#3085d6',
+                                       cancelButtonColor: '#d33',
+                                       cancelButtonText: 'Cancelar',
+                                       confirmButtonText: 'Si, eliminalo!'
+                                    }).then((result) => {
+                                       if (result.value) {
+                                             axios.delete('/dev/categoria/borrar/'+cat.id_cat).then((res) => {
+                                                console.log(res)
+                                                SweetAlert.fire(
+                                                   'Eliminado!',
+                                                   'La categoría ha sido eliminada.',
+                                                   'success'
+                                                ).then(() => {
+                                                   this.getCategories()
+                                                })
+                                             }).catch(err => {
+                                                console.log(err)
+                                                SweetAlert.fire(
+                                                   'Ooops!',
+                                                   'Algo salió mal.',
+                                                   'error'
+                                                ).then(() => {
+                                                   this.getCategories()
+                                                })
+                                             })
+
+
+                                       }
+                                    })
+                                 }} className="button button-delete tooltip">
+                                    <i className="fas fa-trash-alt"></i>
+                                    <span className="tooltiptext-top">Eliminar</span>
+                                 </button>
+                           </div>
+                        </section>
+                     )))
+                  }
+                  <br/>
+                  <br/>
+                  <br/>
                   <legend>Agregar categorías al servicio: <strong>{servicio.nombre}</strong></legend>
                   {errorAlert(errors)}
                   <Container className="group">
