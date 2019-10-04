@@ -136,7 +136,7 @@ Route::middleware(['auth:admin']) -> group(function() {
         Route::post('/nueva/{id}', 'Api\DescripcionServController@store');
         Route::post('/editar/{id}', 'Api\DescripcionServController@update');
         Route::delete('/borrar/{id}', 'Api\DescripcionServController@destroy');
-        Route::get('/{slug}', 'Api\DescripcionServController@show');
+        Route::get('/{id}', 'Api\DescripcionServController@show');
       });
 
       //SLYDER

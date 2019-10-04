@@ -209,9 +209,9 @@ textarea{
    display: flex;
    transition: all 1s linear;
 }
-.content-service{
+/* .content-service{
    height: 100%;
-}
+} */
 
 /* marcas */
 .main-containor .item-list .marca-containor{
@@ -293,8 +293,8 @@ textarea{
 }
 .button{
    margin: 10px;
-   width: 70px;
-   height: 30px;
+   width: 50px;
+   height: 50px;
    border: none;
    border-radius: 5px;
    font-size: 14px;
@@ -305,37 +305,16 @@ textarea{
    background: #006064;
 }
 .button-edit{
-   width: 40px;
-   height: 40px;
    background: #26C6DA;
    color: #fff;
    font-size: 20px;
    padding: 5px 10px;
 }
-.edit-mision{
-   width: 50px;
-   height: 50px;
-   font-size: 20px;
-   padding-top: 10px;
-   text-align: center;
-   margin: 0;
-   margin-top: 10px;
-}
 .button-delete{
-   width: 40px;
-   height: 40px;
    background: #e53935;
    color: #fff;
    font-size: 20px;
    margin: auto;
-}
-.delete-btn{
-   width: 50px;
-   height: 50px;
-   font-size: 20px;
-   margin: 0;
-   margin-bottom: 10px;
-   margin-top: 10px;
 }
 .button-show{
    display: inline-block;
@@ -359,29 +338,30 @@ textarea{
    font-size: 18px;
 }
 .button-return{
-   width: 50px;
-   height: 50px;
    background: #26C6DA;
    color: #fff;
    font-size: 20px;
    padding-top: 10px;
-}
-.return-btn{
-   margin: 0;
    text-align: center;
+   margin: 0;
+}
+.button-cat{
+   background: #26C6DA;
+   color: #fff;
+   font-size: 20px;
+   padding-top: 10px;
+   text-align: center;
+   margin: 0;
 }
 .buttons-block{
    position: absolute;
    left: 10px;
-   top: 10px;
+   top: 190px;
    display: flex;
    flex-direction: column;
 }
 .buttons-block .tacha{
    transform: rotate(45deg);
-}
-.one-item-btn-block{
-   top: 180px;
 }
 .main-containor .item-add{
    width: 50%;
@@ -584,9 +564,12 @@ textarea{
    padding-top: 5px;
    cursor: pointer;
    color: #fff;
-   position: absolute;
+   /* position: absolute;
    right: 70px;
-   top: 100px;
+   top: 100px; */
+}
+.admin-categories .item-add form .added{
+   margin-top: 10px;
 }
 .admin-categories .item-add form .remove{
    display: inline-block;
@@ -662,6 +645,13 @@ textarea{
 }
 .one-service-containor .info-block h1, p{
    margin-bottom: 20px;
+}
+.one-service-containor .info-block .buttons-info{
+   text-align: right;
+   margin-top: 50px;
+}
+.one-service-containor .info-block .buttons-info-cat{
+   text-align: right;
 }
 .one-service-edit{
    width: 50%;
@@ -807,7 +797,7 @@ textarea{
    display: inline-block;
  }
  
- .tooltip .tooltiptext {
+ .tooltip .tooltiptext-right {
     font-size: 14px;
    background-color: #555;
    color: #fff;
@@ -823,9 +813,29 @@ textarea{
    top: 8px;
    left: 105%;
  }
+ .tooltip .tooltiptext-top{
+   font-size: 14px;
+   background-color: #555;
+   color: #fff;
+   visibility: hidden;
+   width: 120px;
+   text-align: center;
+   border-radius: 6px;
+   padding: 5px 0;
+
+   /* Position the tooltip */
+   position: absolute;
+   z-index: 1;
+   bottom: 115%;
+   left: 50%;
+   margin-left: -60px;
+ }
  
- 
- .tooltip:hover .tooltiptext {
+ .tooltip:hover .tooltiptext-right {
+   visibility: visible;
+   opacity: 1;
+ }
+ .tooltip:hover .tooltiptext-top {
    visibility: visible;
    opacity: 1;
  }
@@ -901,4 +911,8 @@ textarea{
    font-size: 30px;
    margin: 5px auto;
    color: #fff;
+}
+.column{
+   display: flex;
+   flex-direction: column;
 }

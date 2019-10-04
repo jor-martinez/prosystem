@@ -101,13 +101,13 @@ class Admin extends Component{
                <div className="buttons-logout">
                   <button className="btn go-prosystem tooltip">
                      <a href="/" target="_blank"><img src={icon} alt="icono"/></a>
-                     <span className="tooltiptext">Ir a Pro System</span>
+                     <span className="tooltiptext-right">Ir a Pro System</span>
                   </button>
                   <button className="btn button-logout tooltip">
                      <a href="/logout" onClick={()=>{
                         localStorage.removeItem('usuarioNombre')
                      }}><i className="fas fa-sign-out-alt"></i></a>
-                     <span className="tooltiptext">Cerrar sesión</span>
+                     <span className="tooltiptext-right">Cerrar sesión</span>
                   </button>
                </div>
             </Router>

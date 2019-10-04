@@ -187,76 +187,76 @@ class Nav extends Component {
   render() {
     const { isExpanded, email } = this.state;
     return (
-      <Navigation>
-        <div className="logo">
-          <a href="/" target="_blank">
-            <img src={logo} alt="logo" />
-          </a>
-        </div>
-        <nav className="nav">
-          <i
-            className="fa fa-bars"
-            aria-hidden="true"
-            onClick={e => this.handleToggle(e)}
-          />
-          <ul className={`collapsed ${isExpanded ? "is-expanded" : ""}`}>
-            <NavLink activeClassName="active" to="/admin">
-              <li>Inicio</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/servicios">
-              <li>Servicios</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/categorias">
-              <li>Categorias de servicios</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/slider">
-              <li>Slider</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/marcas">
-              <li>Marcas</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/articulos">
-              <li>Blog</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/procesos">
-              <li>Proceso de trabajo</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/ventajas">
-              <li>Ventajas</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/productos">
-              <li>Productos</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/mision-vision-objetivo">
-              <li>Misión, visión y objetivo</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/historia">
-              <li>Historia</li>
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/contacto">
-              <li>Contacto</li>
-            </NavLink>
-            {
-              (email === 'admin@prosystem.mx')
-              ?
-              <NavLink activeClassName="active" to="/admin/usuarios">
-                <li>Usuarios</li>
-              </NavLink>
-              :
-              <NavLink activeClassName="active" to="/admin/usuarios">
-                <li>Perfil</li>
-              </NavLink>
-            }
+		<Navigation>
+			<div className="logo">
+				<a href="/" target="_blank">
+					<img src={logo} alt="logo" />
+				</a>
+			</div>
+			<nav className="nav">
+				<i
+					className="fa fa-bars"
+					aria-hidden="true"
+					onClick={e => this.handleToggle(e)}
+				/>
+				<ul className={`collapsed ${isExpanded ? "is-expanded" : ""}`}>
+					<NavLink activeClassName="active" to="/admin">
+						<li>Inicio</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/servicios">
+						<li>Servicios</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/categorias">
+						<li>Categorías de servicios</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/slider">
+					<li>Slider</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/marcas">
+					<li>Marcas</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/articulos">
+					<li>Blog</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/procesos">
+					<li>Proceso de trabajo</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/ventajas">
+					<li>Ventajas</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/productos">
+					<li>Productos</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/mision-vision-objetivo">
+					<li>Misión, visión y objetivo</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/historia">
+					<li>Historia</li>
+					</NavLink>
+					<NavLink activeClassName="active" to="/admin/contacto">
+					<li>Contacto</li>
+					</NavLink>
+					{
+					(email === 'admin@prosystem.mx')
+					?
+					<NavLink activeClassName="active" to="/admin/usuarios">
+						<li>Usuarios</li>
+					</NavLink>
+					:
+					<NavLink activeClassName="active" to="/admin/usuarios">
+						<li>Perfil</li>
+					</NavLink>
+					}
 
-            {/* <li><a href="/" target="_blank">Ir a Pro System</a></li>
+					{/* <li><a href="/" target="_blank">Ir a Pro System</a></li>
 
-            <li><a href="/logout" onClick={()=>{
-                localStorage.removeItem('usuarioNombre')
-            }}>Cerrar sesión</a></li> */}
+					<li><a href="/logout" onClick={()=>{
+						localStorage.removeItem('usuarioNombre')
+					}}>Cerrar sesión</a></li> */}
 
-          </ul>
-        </nav>
-      </Navigation>
+				</ul>
+			</nav>
+		</Navigation>
     );
   }
 }

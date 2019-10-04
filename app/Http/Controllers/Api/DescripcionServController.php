@@ -46,7 +46,7 @@ class DescripcionServController extends Controller
     
     public function show($id)
     {
-        $datos = CatServicios::where('slug', $slug) -> get(); 
+        $datos = CatServicios::where('id_serv', $id) -> get(); 
         return $datos; 
     }
 
