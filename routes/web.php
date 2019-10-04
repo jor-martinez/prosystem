@@ -133,7 +133,7 @@ Route::middleware(['auth:admin']) -> group(function() {
       //CATEGORIA DE SERVICIOS
       Route::prefix('categoria') ->group(function(){
         Route::get('/', 'Api\DescripcionServController@index');
-        Route::post('/nueva', 'Api\DescripcionServController@store');
+        Route::post('/nueva/{id}', 'Api\DescripcionServController@store');
         Route::post('/editar/{id}', 'Api\DescripcionServController@update');
         Route::delete('/borrar/{id}', 'Api\DescripcionServController@destroy');
         Route::get('/{slug}', 'Api\DescripcionServController@show');
