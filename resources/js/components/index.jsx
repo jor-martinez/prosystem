@@ -22,9 +22,7 @@ import Contact from './contact'
 import Product from './producto'
 import Error404 from './error404'
 import Paginacion from './paginacion'
-
-import Categorias from './categAll'
-import Categoria from './categOne'
+import Categoria from './categoria'
 
 class App extends Component{
    constructor(props){
@@ -53,6 +51,7 @@ class App extends Component{
                   <Route path="/contacto" component={Contact} />
                   <Route path="/paginacion" component={Paginacion} />
                   <Route path="/producto" component={Product} />
+                  {/* <Route path="/area" component={Categoria}/> */}
                   <Route component={Error404} />
                </Switch>
                <a href="#" onClick={this.handleOnScroll} className="scroll-to-top"><i className="fas fa-angle-up"></i></a>

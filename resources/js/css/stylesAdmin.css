@@ -309,6 +309,8 @@ textarea{
    color: #fff;
    font-size: 20px;
    padding: 5px 10px;
+   text-align: center;
+   padding-top: 10px;
 }
 .button-delete{
    background: #e53935;
@@ -593,6 +595,10 @@ textarea{
    justify-content: space-between;
    align-items: center;
 }
+.admin-categories .item-add .cat-containor > div{
+   display: flex;
+   align-items: center;
+}
 /* Uploader */
 
 .subir{
@@ -861,6 +867,9 @@ textarea{
 .pre-inicio{
    left: 0;
 }
+.pre-categorias{
+   top: 0;
+}
 /* ERRORES */
 
 .errors-containor .error-text{
@@ -924,4 +933,10 @@ textarea{
 .column{
    display: flex;
    flex-direction: column;
+}
+.warning-label{
+   background: #ffc107;
+   border-radius: 50px;
+   font-weight: 500;
+   padding: 10px;
 }

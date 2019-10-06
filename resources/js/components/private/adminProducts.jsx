@@ -163,7 +163,7 @@ class AdminProducts extends Component {
                                                     <div className="inner-info" dangerouslySetInnerHTML={{ __html: producto.descripcion}}></div>
                                                     <div className="buttons-containor">
                                                         <Link to={{ pathname: '/admin/producto/'+producto.slug }}
-                                                            className="button button-edit tooltip button-edit-res">
+                                                            className="button button-edit tooltip">
                                                             <i className="fas fa-edit"></i>
                                                             <span className="tooltiptext">Editar</span>
                                                         </Link>

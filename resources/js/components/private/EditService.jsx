@@ -136,7 +136,7 @@ class Service extends Component{
       })
    }
    handleEditorChange(e){
-      console.log(e.target.getContent())
+      // console.log(e.target.getContent())
       this.setState({descripcion: e.target.getContent()})
    }
    render(){

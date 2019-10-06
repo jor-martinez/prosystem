@@ -4,14 +4,26 @@ class Categoria extends Component{
     constructor(props){
         super(props)
         this.state={
-             cat: this.props.location.state.categoria
+             cat: []
         }
     }
+    componentDidMount(){
+        this.setState({
+            cat: this.props.history.location.state.categoria
+        })
+    }
+    componentWillUnmount(){
+        this.setState({
+            cat: []
+        })
+    }
     render(){
-        console.log(this.state.cat)
+        // console.log(this.props)
+        const {cat} = this.state
         return(
             <div>
-                <h1>{this.state.cat}</h1>
+                <h1>{cat.titulo}</h1>
+                <div dangerouslySetInnerHTML={{__html: cat.descripcion}}></div>
             </div>
         )
     }

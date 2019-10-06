@@ -26,7 +26,7 @@ class AdminCategories extends Component{
          errors: {},
          categorias: [],
          idserv: this.props.location.state.idserv,
-         listCatServ: []
+         listCatServ: [],
       }
       this.handleOnSubmit = this.handleOnSubmit.bind(this)
       this.getService = this.getService.bind(this)
@@ -43,7 +43,8 @@ class AdminCategories extends Component{
       }).then(res=>{
          // console.log(res.data)
          this.setState({
-            listCatServ: res.data
+            listCatServ: res.data,
+            load: true
          })
       }).catch(err=>{
          console.log(err)
@@ -128,7 +129,7 @@ class AdminCategories extends Component{
    render(){
       // console.log(this.props.location.state.idserv)
       
-      const {servicio,loadAction,errors,listCatServ} = this.state
+      const {servicio,loadAction,errors,listCatServ,load} = this.state
       return(
          <div className="admin-categories">
             <Helmet>
@@ -138,56 +139,65 @@ class AdminCategories extends Component{
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                   <legend>Lista de categorías del servicio: <strong>{servicio.nombre}</strong></legend>
                   {
-                     (listCatServ.map(cat=>(
-                        <section key={cat.id_cat} className="cat-containor">
-                           <span>{cat.titulo}</span>
-                           <div>
-                                 <button className="button button-edit tooltip">
-                                    <i className="fas fa-edit"></i>
-                                    <span className="tooltiptext-top">Editar</span>
-                                 </button>
-                                 <button onClick={() => {
-                                    SweetAlert.fire({
-                                       title: '¿Estás seguro de eliminar este elemento?',
-                                       text: "No se podrán revertir los cambios",
-                                       type: 'warning',
-                                       showCancelButton: true,
-                                       confirmButtonColor: '#3085d6',
-                                       cancelButtonColor: '#d33',
-                                       cancelButtonText: 'Cancelar',
-                                       confirmButtonText: 'Si, eliminalo!'
-                                    }).then((result) => {
-                                       if (result.value) {
-                                             axios.delete('/dev/categoria/borrar/'+cat.id_cat).then((res) => {
-                                                console.log(res)
-                                                SweetAlert.fire(
-                                                   'Eliminado!',
-                                                   'La categoría ha sido eliminada.',
-                                                   'success'
-                                                ).then(() => {
-                                                   this.getCategories()
+                     (load)
+                     ?
+                        (listCatServ.length === 0)
+                        ?
+                        <strong className="warning-label">Este servicio no tiene categorías aún.</strong>
+                        :
+                        (listCatServ.map(cat=>(
+                           <section key={cat.id_cat} className="cat-containor">
+                              <span>{cat.titulo}</span>
+                              <div>
+                                    <Link className="button button-edit tooltip"
+                                    to={{pathname:'/admin/categoria/editar', state: {cat}}}>
+                                       <i className="fas fa-edit"></i>
+                                       <span className="tooltiptext-top">Editar</span>
+                                    </Link>
+                                    <button onClick={() => {
+                                       SweetAlert.fire({
+                                          title: '¿Estás seguro de eliminar este elemento?',
+                                          text: "No se podrán revertir los cambios",
+                                          type: 'warning',
+                                          showCancelButton: true,
+                                          confirmButtonColor: '#3085d6',
+                                          cancelButtonColor: '#d33',
+                                          cancelButtonText: 'Cancelar',
+                                          confirmButtonText: 'Si, eliminalo!'
+                                       }).then((result) => {
+                                          if (result.value) {
+                                                axios.delete('/dev/categoria/borrar/'+cat.id_cat).then((res) => {
+                                                   console.log(res)
+                                                   SweetAlert.fire(
+                                                      'Eliminado!',
+                                                      'La categoría ha sido eliminada.',
+                                                      'success'
+                                                   ).then(() => {
+                                                      this.getCategories()
+                                                   })
+                                                }).catch(err => {
+                                                   console.log(err)
+                                                   SweetAlert.fire(
+                                                      'Ooops!',
+                                                      'Algo salió mal.',
+                                                      'error'
+                                                   ).then(() => {
+                                                      this.getCategories()
+                                                   })
                                                 })
-                                             }).catch(err => {
-                                                console.log(err)
-                                                SweetAlert.fire(
-                                                   'Ooops!',
-                                                   'Algo salió mal.',
-                                                   'error'
-                                                ).then(() => {
-                                                   this.getCategories()
-                                                })
-                                             })
 
 
-                                       }
-                                    })
-                                 }} className="button button-delete tooltip">
-                                    <i className="fas fa-trash-alt"></i>
-                                    <span className="tooltiptext-top">Eliminar</span>
-                                 </button>
-                           </div>
-                        </section>
-                     )))
+                                          }
+                                       })
+                                    }} className="button button-delete tooltip">
+                                       <i className="fas fa-trash-alt"></i>
+                                       <span className="tooltiptext-top">Eliminar</span>
+                                    </button>
+                              </div>
+                           </section>
+                        )))
+                     :
+                     <span className="preloader pre-categorias">Cargando información ...</span>
                   }
                   <br/>
                   <br/>
@@ -213,7 +223,7 @@ class AdminCategories extends Component{
                         <Container className="group-categories" key={index}>
                            <Input
                               className="form-input"
-                              label="Categoria"
+                              label="Titulo de la categoría"
                               floatingLabel={true}
                               value={categoria}
                               onChange={(e)=>this.changeInput(e, index)} 

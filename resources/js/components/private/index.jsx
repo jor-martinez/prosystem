@@ -33,6 +33,7 @@ import AdminContacto from './AdminContacto'
 import EditContacto from './EditContacto'
 
 import AdminCategories from './adminCategories'
+import EditCategory from './EditCategory'
 
 
 import '../../css/stylesAdmin.css'
@@ -97,6 +98,7 @@ class Admin extends Component{
                   <Route path="/admin/contacto" component={AdminContacto} />
                   <Route path="/admin/contacto-info/editar" component={EditContacto} />
                   <Route path="/admin/categorias" component={AdminCategories} />
+                  <Route path="/admin/categoria/editar" component={EditCategory} />
                </Switch>
                <div className="buttons-logout">
                   <button className="btn go-prosystem tooltip">
