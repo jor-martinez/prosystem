@@ -9,8 +9,6 @@ import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
 import { Editor } from '@tinymce/tinymce-react'
 import errorAlert from './errors'
-import Option from 'muicss/lib/react/option'
-import Select from 'muicss/lib/react/select'
 
 class AdminCategories extends Component{
    constructor(props){

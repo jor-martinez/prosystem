@@ -75,7 +75,7 @@ class AdminVentajas extends Component {
                     'La ventaja se ha agregado correctamente',
                     'success'
                 ).then(() => {
-                    this.getVentajas()+
+                    this.getVentajas()
                     this.setState({
                         titulo: '',
                         descripcion: ''
@@ -112,7 +112,7 @@ class AdminVentajas extends Component {
                     <div className="refresh">
                         <button className="btn-refresh tooltip" onClick={this.actualizar}>
                             <i className="fas fa-sync-alt"></i>
-                            <span className="tooltiptext tooltiptext-left">Actualizar lista</span>
+                            <span className="tooltiptext-right">Actualizar lista</span>
                         </button>
                     </div>
                     {
