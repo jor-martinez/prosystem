@@ -51,7 +51,7 @@ class DescripcionServController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_cat)
     {
 
         // $datos = [
@@ -98,7 +98,7 @@ class DescripcionServController extends Controller
         ];
         $this -> validate($request, $datos);
 
-        $dato = CatServicios::findOrFail($id);
+        $dato = CatServicios::findOrFail($id_cat);
         $dato -> titulo = $request -> titulo;
         $dato -> slug = StringReplace::getPureString($request -> titulo);
         $dato -> descripcion = $request -> descripcion;
