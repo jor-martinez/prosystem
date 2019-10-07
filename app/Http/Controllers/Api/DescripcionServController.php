@@ -44,14 +44,14 @@ class DescripcionServController extends Controller
         return response("creado", 200) -> header('Content-Type', 'application/json');
     }
     
-    public function show($id)
+    public function show($id_cat)
     {
-        $datos = CatServicios::where('id_serv', $id) -> get(); 
+        $datos = CatServicios::where('id_serv', $id_cat) -> get(); 
         return $datos; 
     }
 
 
-    public function update(Request $request, $id_cat)
+    public function update(Request $request, $id)
     {
 
         // $datos = [
@@ -98,7 +98,7 @@ class DescripcionServController extends Controller
         ];
         $this -> validate($request, $datos);
 
-        $dato = CatServicios::findOrFail($id_cat);
+        $dato = CatServicios::findOrFail($id);
         $dato -> titulo = $request -> titulo;
         $dato -> slug = StringReplace::getPureString($request -> titulo);
         $dato -> descripcion = $request -> descripcion;
@@ -107,9 +107,9 @@ class DescripcionServController extends Controller
         return response("actualizado", 200) -> header('Content-Type', 'application/json');
     }
 
-    public function destroy($id)
+    public function destroy($id_cat)
     {
-        $dato = CatServicios::findOrFail($id);
+        $dato = CatServicios::findOrFail($id_cat);
         //$ruta_acceso_imagen = public_path('images/categorias').'/'.$dato -> encabezado;
         //unlink($ruta_acceso_imagen);
         $dato -> delete();

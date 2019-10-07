@@ -15,10 +15,11 @@ class CreateCat extends Migration
     {
         Schema::create('cat', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->integer('id_cat')->unsigned();
-            $table->primary('id_cat');
-            $table->foreign('id_cat')->references('id')->on('servicios')->onDelete('cascade');
+            $table->increments('id');
+            $table->string('titulo', 50);
             $table->longText('descripcion');
+            $table->integer('id_serv', 11);
+            $table->string('slug', 50);
         });
     }
 
