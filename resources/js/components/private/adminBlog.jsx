@@ -7,10 +7,9 @@ import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
-import { Editor } from '@tinymce/tinymce-react';
-import Moment from 'react-moment'
+import { Editor } from '@tinymce/tinymce-react'
 import errorAlert from './errors'
-
+import dateFormat from 'dateformat'
 
 class AdminBlog extends Component{
     constructor(props){
@@ -147,7 +146,7 @@ class AdminBlog extends Component{
                                         <div className="text-containor">
                                             <h2>{post.titulo}</h2>
                                             {/* <p dangerouslySetInnerHTML={{ __html: service.descripcion }}></p> */}
-                                            <p> <strong>Autor:</strong>  {post.autor} <br /> <strong>Fecha de creación:</strong> <Moment format="DD/MM/YYYY HH:mm">{post.created_at}</Moment></p>
+                                            <p> <strong>Autor:</strong>  {post.autor} <br /> <strong>Fecha de creación:</strong> {dateFormat(post.created_at, "d/m/yyyy, h:MM:ss TT")}</p>
                                             <div className="buttons-containor">
                                                 <Link to={{ pathname: '/admin/articulo/' + post.slug }}
                                                     className="button button-show">Ver más</Link>

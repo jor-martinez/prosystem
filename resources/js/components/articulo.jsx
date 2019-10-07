@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Moment from 'react-moment'
-
+import dateFormat from 'dateformat'
 import Brand from './sliderMarcas'
 import axios from 'axios'
 
@@ -60,7 +59,7 @@ class Articulo extends Component {
                                 <br />
                                 <div>
                                     <span>Autor: {articulo.autor}</span><br/>
-                                    <span>Creado el: <Moment format="DD/MM/YYYY" >{articulo.fechaCreado}</Moment> </span>
+                                    <span>Creado el: {dateFormat(articulo.fechaCreado, "d/m/yyyy, h:MM:ss TT")} </span>
                                 </div>
                                 <br/>
                                 <div dangerouslySetInnerHTML={{ __html: articulo.cuerpo }}></div>

@@ -324,7 +324,7 @@ class Home extends Component{
                         <div className="count-block">
                            01
                         </div>
-                        <h3>Nuestra Misión</h3>
+                        <h3>Misión</h3>
                         {
                            (preContMision)
                            ?
@@ -337,7 +337,7 @@ class Home extends Component{
                         <div className="count-block">
                            02
                         </div>
-                        <h3>Nuestra Visión</h3>
+                        <h3>Visión</h3>
                         {
                            (preContMision)
                            ?
@@ -350,7 +350,7 @@ class Home extends Component{
                         <div className="count-block">
                            03
                         </div>
-                        <h3>Nuestro Objetivo</h3>
+                        <h3>Objetivo</h3>
                         {
                            (preContMision)
                            ?

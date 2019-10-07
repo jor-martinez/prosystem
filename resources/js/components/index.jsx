@@ -43,15 +43,14 @@ class App extends Component{
                <Nav/>
                <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route path="/acerca" component={About}/>
-                  <Route path="/servicios" component={Services}/>
-                  <Route path="/servicio" component={Service} />
-                  <Route path="/blog" component={Blog} />
-                  <Route path="/articulo" component={Articulo} />
-                  <Route path="/contacto" component={Contact} />
-                  <Route path="/paginacion" component={Paginacion} />
-                  <Route path="/producto" component={Product} />
-                  {/* <Route path="/area" component={Categoria}/> */}
+                  <Route exact path="/acerca" component={About}/>
+                  <Route exact path="/servicios" component={Services}/>
+                  <Route exact path="/servicio/:slug" component={Service} />
+                  <Route exact path="/blog" component={Blog} />
+                  <Route exact path="/articulo/:slug" component={Articulo} />
+                  <Route exact path="/contacto" component={Contact} />
+                  <Route exact path="/producto/:slug" component={Product} />
+                  <Route exact path="/servicio/:slug/:categoria" component={Categoria}/>
                   <Route component={Error404} />
                </Switch>
                <a href="#" onClick={this.handleOnScroll} className="scroll-to-top"><i className="fas fa-angle-up"></i></a>

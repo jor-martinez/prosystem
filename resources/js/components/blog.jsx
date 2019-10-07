@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Helmet from 'react-helmet'
 import axios from 'axios'
-import Moment from 'react-moment'
+import dateFormat from 'dateformat'
 
 import pageTitle from './media/resources/blog.jpg'
 
@@ -82,7 +82,7 @@ class Blog extends Component {
                                  <div className="meta-info">
                                     <a href="#">Por {articulo.autor}</a>
                                     <span className="sep">/</span>
-                                    <a href="#"><Moment format="DD/MM/YYYY">{articulo.created_at}</Moment></a>
+                                    <a href="#">{ dateFormat(articulo.created_at, "d/m/yyyy, h:MM:ss TT") }</a>
                                  </div>
                                  <Link to={{ pathname: '/articulo/' + articulo.slug, state: { articulo } }}
                                     className="more-btn">Leer más</Link>

@@ -69,11 +69,11 @@ class Service extends Component{
                <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/servicios/${service.Imagen})` }}>
                   <div className="container">
                      <h2>{service.nombre}</h2>
-                     <div className="thm-breadcrumb">
+                     <div className="thm-breadcrumb-two">
                         <ul className="list-categories">
                            {
                               (categorias.map(cat=>(
-                                 <li key={cat.id_cat}><Link replace to={{pathname: '/servicio/'+this.state.slug+'/'+cat.slug, state: { categoria: cat }}}>{cat.titulo}</Link></li>
+                                 <li key={cat.id}><Link replace to={{pathname: '/servicio/'+this.state.slug+'/'+cat.slug, state: { categoria: cat, service }}}>{cat.titulo}</Link></li>
                               )))
                            }
                         </ul>
@@ -92,9 +92,10 @@ class Service extends Component{
                            <br />
                            <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
                            <br />
-                           <Switch>
-                              <Route path="/servicio/:servicio/:categoria" component={Categoria}/>
-                           </Switch>
+                           {/* <Switch>
+                              <Route path="/servicio/:slug/:categoria" component={Categoria}/>
+                           </Switch> */}
+                           {/* <Route exact path="/servicio/:slug/:categoria" component={Categoria}/> */}
                         </div>
                      </div>
                   </div>

@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import Moment from 'react-moment'
 import Input from 'muicss/lib/react/input'
 import Form from 'muicss/lib/react/form'
 import Button from 'muicss/lib/react/button'
 import Container from 'muicss/lib/react/container'
 import errorAlert from './errors'
 import SweetAlert from 'sweetalert2'
+import dateFormat from 'dateformat'
 
 class Profile extends Component{
     constructor(props){
@@ -18,12 +18,14 @@ class Profile extends Component{
             id: '',
             nombre: '',
             email: '',
+            fecha: '',
             errors: {},
             password:'',
             passwordNew: '',
             passwordConfirm: '',
             eyeOpen: true,
-            eyeOpen2: true
+            eyeOpen2: true,
+            message: ''
         }
         this.getProfile = this.getProfile.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -46,6 +48,7 @@ class Profile extends Component{
                nombre: res.data.name,
                email: res.data.email,
                id: res.data.id,
+               fecha: res.data.created_at,
                load: true,
             })
             
@@ -145,10 +148,11 @@ class Profile extends Component{
                     window.location.href = '/logout'
                 })
             }).catch(err=>{
-                console.log(err)
+                console.log(err.response)
                 this.setState({
                     loadAction: false,
-                    errors: err.response.data.errors
+                    errors: err.response.data.errors,
+                    message: err.response.data.message
                 })
                 SweetAlert.fire(
                     'Error',
@@ -193,7 +197,7 @@ class Profile extends Component{
         }
     }
     render(){
-        const {user, load, loadAction, nombre, email, errors, eyeOpen, eyeOpen2} = this.state
+        const {message, load, loadAction, nombre, email, fecha, errors, eyeOpen, eyeOpen2} = this.state
         return(
             <div>
                 {
@@ -219,7 +223,7 @@ class Profile extends Component{
                                         </tr>
                                         <tr className="light">
                                             <th>Fecha de creación</th>
-                                            <td><Moment format="DD/MM/YYYY">{user.created_at}</Moment></td>
+                                            <td>{dateFormat(fecha, "d/m/yyyy, h:MM:ss TT")}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -232,7 +236,7 @@ class Profile extends Component{
                                         <i className="fas fa-key"></i>
                                         <span className="tooltiptext-right">Cambiar contraseña</span>
                                     </button>
-                                    <button id="btn-dlt" className="button button-delete tooltip"
+                                    <button id="btn-dlt" className="button button-canc tooltip"
                                     style={{display: 'none'}}
                                     onClick={this.handleOnCancel}>
                                         <i className="fas fa-plus tacha"></i>
@@ -280,7 +284,17 @@ class Profile extends Component{
                         <div className="password-edit" id="pass-edit">
                             <Form onSubmit={this.handleOnSubmitPass} encType="multipart/form-data" autoComplete="off">
                                 <legend>Cambia tu contraseña</legend>
-                                {errorAlert(errors)}
+                                {
+                                    (message === "Las contraseña actual no coincide")
+                                    ?
+                                    <div className="errors-containor" id="errores">
+                                         <div className="error-text">
+                                             <span>{message}</span>
+                                         </div>
+                                    </div>
+                                    :
+                                    errorAlert(errors)
+                                }
                                 <Input
                                     className="form-input"
                                     label="Contraseña actual"
@@ -306,9 +320,9 @@ class Profile extends Component{
                                     {
                                         (eyeOpen)
                                         ?
-                                        <span onClick={this.showPass}><i className="fas fa-eye"></i></span>
-                                        :
                                         <span onClick={this.showPass}><i className="fas fa-eye-slash"></i></span>
+                                        :
+                                        <span onClick={this.showPass}><i className="fas fa-eye"></i></span>
                                     }
                                 </Container>
                                 <Container className="form-group">
@@ -326,9 +340,9 @@ class Profile extends Component{
                                     {
                                         (eyeOpen2)
                                         ?
-                                        <span onClick={this.showPassCon}><i className="fas fa-eye"></i></span>
-                                        :
                                         <span onClick={this.showPassCon}><i className="fas fa-eye-slash"></i></span>
+                                        :
+                                        <span onClick={this.showPassCon}><i className="fas fa-eye"></i></span>
                                     }
                                 </Container>
                                 <Container>

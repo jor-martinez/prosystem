@@ -144,12 +144,12 @@ class Service extends Component{
       const {loadAction,errors,nombre,descripcion} = this.state
       return(
          <div>
-            <section className="buttons-block">
-               <Link className="button button-return tooltip" to="/admin/servicios">
+            <div className="return">
+               <Link className="button button-return tooltip return-btn" to="/admin/servicios">
                   <i className="fas fa-reply"></i>
                   <span className="tooltiptext-right">Regresar</span>
                </Link>
-            </section>
+            </div>
             <div className="one-service-containor" id="serv-cont" >
                <div className="img-block">
                   <img src={`../../images/servicios/${this.state.Imagen}`} alt="Imagen del servicio" />

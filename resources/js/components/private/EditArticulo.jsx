@@ -155,12 +155,12 @@ class Articulo extends Component{
       const {loadAction,errors, titulo, encabezado, cuerpo} = this.state
       return(
          <div>
-            <section className="buttons-block">
-               <Link className="button button-return tooltip" to="/admin/articulos">
+            <div className="return">
+               <Link className="button button-return tooltip return-btn" to="/admin/articulos">
                   <i className="fas fa-reply"></i>
                   <span className="tooltiptext-right">Regresar</span>
                </Link>
-            </section>
+            </div>
             <div className="one-service-containor" id="serv-cont" >
                <div className="img-block">
                   <img src={`../../images/blog/${encabezado}`} alt="Imagen del servicio" />

@@ -319,6 +319,12 @@ textarea{
    font-size: 20px;
    margin: auto;
 }
+.button-canc{
+   background: #e53935;
+   color: #fff;
+   font-size: 20px;
+   margin-left: auto;
+}
 .button-show{
    display: inline-block;
    width: 80px;
@@ -349,6 +355,7 @@ textarea{
    margin: 0;
 }
 .button-cat{
+   width: 110px;
    background: #26C6DA;
    color: #fff;
    font-size: 20px;
@@ -475,6 +482,9 @@ textarea{
    width: 30%;
    margin: 0;
    padding-right: 10px;
+}
+.admin-process .item-list .process-containor .text-containor > p{
+   width: 70%;
 }
 .admin-process .item-list .process-containor .text-containor .info-butt-containor{
    width: 70%;

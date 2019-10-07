@@ -143,12 +143,12 @@ class EditProducto extends Component {
         const { loadAction, errors } = this.state
         return (
             <div>
-                <section className="buttons-block">
+                <div className="return">
                     <Link className="button button-return tooltip" to="/admin/productos">
                         <i className="fas fa-reply"></i>
                         <span className="tooltiptext-right">Regresar</span>
                     </Link>
-                </section>
+                </div>
                 <div className="one-service-containor" id="serv-cont" >
                     <div className="img-block">
                         <img src={`../../images/productos/${this.state.imagen}`} alt="Imagen del producto" />
@@ -169,12 +169,12 @@ class EditProducto extends Component {
                     </div>
                 </div>
                 <div className="one-process-edit" id="serv-edit">
-                    {/* <div className="return">
-                        <Link className="button button-return tooltip return-btn" to="/admin/productos">
+                    <div className="return">
+                        <Link className="button button-return tooltip" to="/admin/productos">
                             <i className="fas fa-reply"></i>
                             <span className="tooltiptext-right">Regresar</span>
                         </Link>
-                    </div> */}
+                    </div>
                     <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                         <legend>Editar Producto</legend>
                         {errorAlert(errors)}
