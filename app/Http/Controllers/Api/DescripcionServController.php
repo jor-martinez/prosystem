@@ -107,9 +107,9 @@ class DescripcionServController extends Controller
         return response("actualizado", 200) -> header('Content-Type', 'application/json');
     }
 
-    public function destroy($id_cat)
+    public function destroy($id)
     {
-        $dato = CatServicios::findOrFail($id_cat);
+        $dato = CatServicios::findOrFail($id);
         //$ruta_acceso_imagen = public_path('images/categorias').'/'.$dato -> encabezado;
         //unlink($ruta_acceso_imagen);
         $dato -> delete();
