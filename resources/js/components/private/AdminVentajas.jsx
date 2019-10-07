@@ -133,9 +133,9 @@ class AdminVentajas extends Component {
                                                     <p>{ventaja.descripcion}</p>
                                                     <div className="buttons-containor">
                                                         <Link to={{ pathname: '/admin/ventaja/editar', state: { ventaja } }}
-                                                            className="button button-edit tooltip button-edit-res">
+                                                            className="button button-edit tooltip">
                                                             <i className="fas fa-edit"></i>
-                                                            <span className="tooltiptext">Editar</span>
+                                                            <span className="tooltiptext-top">Editar</span>
                                                         </Link>
                                                     </div>
                                                 </div>

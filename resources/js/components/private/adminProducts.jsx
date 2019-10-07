@@ -155,20 +155,17 @@ class AdminProducts extends Component {
                                 </strong>
                                 :
                                 (productos.map((producto) => (
-                                    <section key={producto.id} className="item-containor process-containor product-containor">
-                                        <div className="info-containor">
-                                            <div className="text-containor">
-                                                <h2>{producto.titulo}</h2>
-                                                <div className="info-butt-containor">
-                                                    <div className="inner-info" dangerouslySetInnerHTML={{ __html: producto.descripcion}}></div>
-                                                    <div className="buttons-containor">
-                                                        <Link to={{ pathname: '/admin/producto/'+producto.slug }}
-                                                            className="button button-edit tooltip">
-                                                            <i className="fas fa-edit"></i>
-                                                            <span className="tooltiptext">Editar</span>
-                                                        </Link>
-                                                    </div>
-                                                </div>
+                                    <section key={producto.id} className="item-containor">
+                                        <div className="img-containor">
+                                            <Link to={{ pathname: '/admin/producto/'+producto.slug}}>
+                                                <img src={`../images/productos/${producto.imagen}`} alt="imagen-producto"/>
+                                            </Link>
+                                        </div>
+                                        <div className="text-containor">
+                                            <h2>{producto.titulo}</h2>
+                                            <div className="buttons-containor">
+                                                <Link to={{ pathname: '/admin/producto/'+producto.slug }}
+                                                className="button button-show">Ver más</Link>
                                             </div>
                                         </div>
                                     </section>

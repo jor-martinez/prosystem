@@ -67,7 +67,7 @@ class EditProceso extends Component{
                 <div className="return">
                     <Link className="button button-return tooltip return-btn" to="/admin/procesos">
                         <i className="fas fa-reply"></i>
-                        <span className="tooltiptext">Regresar</span>
+                        <span className="tooltiptext-right">Regresar</span>
                     </Link>
                 </div>
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
@@ -98,7 +98,6 @@ class EditProceso extends Component{
                                 <span>Aplicar cambios</span>
                         }
                     </Button>
-                    <Link className="button button-cancel" to="/admin/procesos">Cancelar</Link>
                 </Form>
             </div>
         )

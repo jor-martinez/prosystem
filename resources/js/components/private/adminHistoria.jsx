@@ -119,9 +119,9 @@ class Mission extends Component {
                             (history.length !== 0)
                             &&
                             <Link to={{ pathname: '/admin/historia-info/editar', state: { history } }}
-                                className="button button-edit tooltip button-edit-res edit-mision">
+                                className="button button-edit tooltip">
                                 <i className="fas fa-edit"></i>
-                                <span className="tooltiptext tooltiptext-left">Editar</span>
+                                <span className="tooltiptext-right">Editar</span>
                             </Link>
                         }
                     </div>

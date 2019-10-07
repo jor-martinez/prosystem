@@ -155,6 +155,12 @@ class Articulo extends Component{
       const {loadAction,errors, titulo, encabezado, cuerpo} = this.state
       return(
          <div>
+            <section className="buttons-block">
+               <Link className="button button-return tooltip" to="/admin/articulos">
+                  <i className="fas fa-reply"></i>
+                  <span className="tooltiptext-right">Regresar</span>
+               </Link>
+            </section>
             <div className="one-service-containor" id="serv-cont" >
                <div className="img-block">
                   <img src={`../../images/blog/${encabezado}`} alt="Imagen del servicio" />
@@ -162,27 +168,23 @@ class Articulo extends Component{
                <div className="info-block">
                   <h1>{titulo}</h1>
                   <div dangerouslySetInnerHTML={{ __html: cuerpo }}></div>
-                  <div className="buttons-block one-item-btn-block">
-                     <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
+                  <section className="buttons-info">
+                     <button onClick={this.handleOnClickEdit} className="button button-edit tooltip">
                         <i className="fas fa-edit"></i>
-                        <span className="tooltiptext tooltiptext-left">Editar</span>
+                        <span className="tooltiptext-top">Editar</span>
                      </button>
-                     <button onClick={this.handleOnDelete} className="button button-delete delete-btn tooltip">
+                     <button onClick={this.handleOnDelete} className="button button-delete tooltip">
                         <i className="fas fa-trash-alt"></i>
-                        <span className="tooltiptext tooltiptext-left">Eliminar</span>
+                        <span className="tooltiptext-top">Eliminar</span>
                      </button>
-                     <Link className="button button-return tooltip return-btn" to="/admin/articulos">
-                        <i className="fas fa-reply"></i>
-                        <span className="tooltiptext tooltiptext-left">Regresar</span>
-                     </Link>
-                  </div>
+                  </section>
                </div>
             </div>
             <div className="one-service-edit" id="serv-edit">
                <div className="return">
                   <Link className="button button-return tooltip return-btn" to="/admin/articulos">
                      <i className="fas fa-reply"></i>
-                     <span className="tooltiptext">Regresar</span>
+                     <span className="tooltiptext-right">Regresar</span>
                   </Link>
                </div>
                <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data">
@@ -255,7 +257,6 @@ class Articulo extends Component{
                            <span>Aplicar cambios</span>
                      }
                   </Button>
-                  <Link className="button button-cancel" to="/admin/articulos">Cancelar</Link>
                </Form>
             </div>
          </div>

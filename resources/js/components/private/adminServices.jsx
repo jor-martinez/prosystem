@@ -147,7 +147,7 @@ class AdminServices extends Component{
                         (services.map((service)=>(
                            <section key={service.id} className="item-containor">
                               <div className="img-containor">
-                                 <Link to={{ pathname: '/admin/servicio/'+service.slug, state : { service: service } }}>
+                                 <Link to={{ pathname: '/admin/servicio/'+service.slug}}>
                                     <img src={`../images/servicios/${service.Imagen}`} alt="imagen-servicio"/>
                                  </Link>
                               </div>

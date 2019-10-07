@@ -152,7 +152,7 @@ class AdminCategories extends Component{
                                        <i className="fas fa-edit"></i>
                                        <span className="tooltiptext-top">Editar</span>
                                     </Link>
-                                    <button onClick={() => {
+                                    <button type="button" onClick={() => {
                                        SweetAlert.fire({
                                           title: '¿Estás seguro de eliminar este elemento?',
                                           text: "No se podrán revertir los cambios",
@@ -164,7 +164,7 @@ class AdminCategories extends Component{
                                           confirmButtonText: 'Si, eliminalo!'
                                        }).then((result) => {
                                           if (result.value) {
-                                                axios.delete('/dev/categoria/borrar/'+cat.id_cat).then((res) => {
+                                                axios.delete('/dev/categoria/borrar/'+cat.id).then((res) => {
                                                    console.log(res)
                                                    SweetAlert.fire(
                                                       'Eliminado!',
@@ -285,7 +285,7 @@ class AdminCategories extends Component{
                      ))
                   }
                   <Container>
-                     <Button variant="raised" color="primary" disabled={loadAction}>
+                     <Button type="submit" variant="raised" color="primary" disabled={loadAction}>
                         {
                            (loadAction)
                            ?

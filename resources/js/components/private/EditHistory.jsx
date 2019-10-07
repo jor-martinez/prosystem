@@ -70,7 +70,7 @@ class EditHistory extends Component {
                 <div className="return">
                     <Link className="button button-return tooltip return-btn" to="/admin/historia">
                         <i className="fas fa-reply"></i>
-                        <span className="tooltiptext">Regresar</span>
+                        <span className="tooltiptext-right">Regresar</span>
                     </Link>
                 </div>
                 <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
@@ -128,7 +128,6 @@ class EditHistory extends Component {
                                 <span>Aplicar cambios</span>
                         }
                     </Button>
-                    <Link className="button button-cancel" to="/admin/historia">Cancelar</Link>
                 </Form>
             </div>
         )

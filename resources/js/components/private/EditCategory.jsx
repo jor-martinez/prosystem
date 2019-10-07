@@ -12,7 +12,7 @@ class EditCategory extends Component{
     constructor(props){
         super(props)
         this.state={
-            id_cat: this.props.location.state.cat.id_cat,
+            id: this.props.location.state.cat.id,
             titulo: this.props.location.state.cat.titulo,
             descripcion: this.props.location.state.cat.descripcion,
             id_serv: this.props.location.state.cat.id_serv,
@@ -43,7 +43,7 @@ class EditCategory extends Component{
 
         axios({
             method: 'post',
-            url: '/dev/categoria/editar/'+this.state.id_cat,
+            url: '/dev/categoria/editar/'+this.state.id,
             data
         }).then(res=>{
             this.setState({ loadAction: false })

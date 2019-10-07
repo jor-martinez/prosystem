@@ -179,7 +179,7 @@ class Service extends Component{
                <div className="return">
                   <Link className="button button-return tooltip return-btn" to="/admin/servicios">
                      <i className="fas fa-reply"></i>
-                     <span className="tooltiptext">Regresar</span>
+                     <span className="tooltiptext-right">Regresar</span>
                   </Link>
                </div>
                <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data">
@@ -252,7 +252,6 @@ class Service extends Component{
                            <span>Aplicar cambios</span>
                      }
                   </Button>
-                  <Link className="button button-cancel" to="/admin/servicios">Cancelar</Link>
                </Form>
             </div>
          </div>

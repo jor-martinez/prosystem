@@ -121,9 +121,9 @@ class Mission extends Component {
                             (datos.length !== 0)
                             &&
                             <Link to={{ pathname: '/admin/mision-vision-objetivo-info/editar', state: { datos } }}
-                                className="button button-edit tooltip button-edit-res edit-mision">
+                                className="button button-edit tooltip">
                                 <i className="fas fa-edit"></i>
-                                <span className="tooltiptext tooltiptext-left">Editar</span>
+                                <span className="tooltiptext-right">Editar</span>
                             </Link>
                         }
                     </div>

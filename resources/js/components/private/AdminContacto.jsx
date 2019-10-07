@@ -123,9 +123,9 @@ class AdminContacto extends Component {
                             (datosContacto.length !== 0)
                             &&
                             <Link to={{ pathname: '/admin/contacto-info/editar', state: { datosContacto } }}
-                                className="button button-edit tooltip button-edit-res edit-mision">
+                                className="button button-edit tooltip">
                                 <i className="fas fa-edit"></i>
-                                <span className="tooltiptext tooltiptext-left">Editar</span>
+                                <span className="tooltiptext-right">Editar</span>
                             </Link>
                         }
                     </div>

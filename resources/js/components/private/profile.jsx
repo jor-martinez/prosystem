@@ -224,19 +224,19 @@ class Profile extends Component{
                                     </tbody>
                                 </table>
                                 <div className="buttons-block buttons-block-admin">
-                                    <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn edit-mision tooltip">
+                                    <button onClick={this.handleOnClickEdit} className="button button-edit tooltip">
                                         <i className="fas fa-edit"></i>
-                                        <span className="tooltiptext tooltiptext-left">Cambiar datos</span>
+                                        <span className="tooltiptext-right">Cambiar datos</span>
                                     </button>
-                                    <button onClick={this.handleOnClickEditPass} className="button button-edit edit-btn edit-mision tooltip">
+                                    <button onClick={this.handleOnClickEditPass} className="button button-edit tooltip">
                                         <i className="fas fa-key"></i>
-                                        <span className="tooltiptext tooltiptext-left">Cambiar contraseña</span>
+                                        <span className="tooltiptext-right">Cambiar contraseña</span>
                                     </button>
-                                    <button id="btn-dlt" className="button button-delete delete-btn tooltip"
+                                    <button id="btn-dlt" className="button button-delete tooltip"
                                     style={{display: 'none'}}
                                     onClick={this.handleOnCancel}>
                                         <i className="fas fa-plus tacha"></i>
-                                        <span className="tooltiptext tooltiptext-left">Cancelar</span>
+                                        <span className="tooltiptext-right">Cancelar</span>
                                     </button>
                                 </div>
                             </div>

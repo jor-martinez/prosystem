@@ -143,6 +143,12 @@ class EditProducto extends Component {
         const { loadAction, errors } = this.state
         return (
             <div>
+                <section className="buttons-block">
+                    <Link className="button button-return tooltip" to="/admin/productos">
+                        <i className="fas fa-reply"></i>
+                        <span className="tooltiptext-right">Regresar</span>
+                    </Link>
+                </section>
                 <div className="one-service-containor" id="serv-cont" >
                     <div className="img-block">
                         <img src={`../../images/productos/${this.state.imagen}`} alt="Imagen del producto" />
@@ -150,29 +156,25 @@ class EditProducto extends Component {
                     <div className="info-block">
                         <h1>{this.state.titulo}</h1>
                         <div className="content-service" dangerouslySetInnerHTML={{ __html: this.state.descripcion }}></div>
-                        <div className="buttons-block one-item-btn-block">
-                            <button onClick={this.handleOnClickEdit} className="button button-edit edit-btn tooltip edit-mision">
+                        <section className="buttons-info">
+                            <button onClick={this.handleOnClickEdit} className="button button-edit tooltip">
                                 <i className="fas fa-edit"></i>
-                                <span className="tooltiptext tooltiptext-left">Editar</span>
+                                <span className="tooltiptext-top">Editar</span>
                             </button>
-                            <button onClick={this.handleOnDelete} className="button button-delete delete-btn tooltip">
+                            <button onClick={this.handleOnDelete} className="button button-delete tooltip">
                                 <i className="fas fa-trash-alt"></i>
-                                <span className="tooltiptext tooltiptext-left">Eliminar</span>
+                                <span className="tooltiptext-top">Eliminar</span>
                             </button>
-                            <Link className="button button-return tooltip return-btn" to="/admin/productos">
-                                <i className="fas fa-reply"></i>
-                                <span className="tooltiptext tooltiptext-left">Regresar</span>
-                            </Link>
-                        </div>
+                        </section>
                     </div>
                 </div>
                 <div className="one-process-edit" id="serv-edit">
-                    <div className="return">
+                    {/* <div className="return">
                         <Link className="button button-return tooltip return-btn" to="/admin/productos">
                             <i className="fas fa-reply"></i>
-                            <span className="tooltiptext">Regresar</span>
+                            <span className="tooltiptext-right">Regresar</span>
                         </Link>
-                    </div>
+                    </div> */}
                     <Form onSubmit={this.handleOnUpdate} encType="multipart/form-data" autoComplete="off">
                         <legend>Editar Producto</legend>
                         {errorAlert(errors)}
@@ -251,7 +253,6 @@ class EditProducto extends Component {
                                     <span>Aplicar cambios</span>
                             }
                         </Button>
-                        <Link className="button button-cancel" to="/admin/productos">Cancelar</Link>
                     </Form>
                 </div>
             </div>

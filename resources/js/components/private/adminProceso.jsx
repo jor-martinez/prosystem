@@ -134,9 +134,9 @@ class AdminProceso extends Component{
                                                     <p>{proceso.descripcion}</p>
                                                     <div className="buttons-containor">
                                                         <Link to={{ pathname: '/admin/proceso/editar', state: { proceso } }}
-                                                        className="button button-edit tooltip button-edit-res">
+                                                        className="button button-edit tooltip">
                                                             <i className="fas fa-edit"></i>
-                                                            <span className="tooltiptext">Editar</span>
+                                                            <span className="tooltiptext-top">Editar</span>
                                                         </Link>
                                                     </div>
                                                 </div>
