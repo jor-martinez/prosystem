@@ -162,7 +162,7 @@ class AdminSlider extends Component{
                                           }).then((result) => {
                                              if (result.value) {
                                                 axios.delete('/dev/slyder/borrar/'+slider.id).then((res)=>{
-                                                   console.log(res)
+                                                   // console.log(res)
                                                    SweetAlert.fire(
                                                       'Eliminado!',
                                                       'El elemento ha sido eliminado.',

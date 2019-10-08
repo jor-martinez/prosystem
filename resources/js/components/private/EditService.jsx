@@ -126,7 +126,7 @@ class Service extends Component{
             loadAction: false,
             errors: err.response.data.errors
          })
-         console.log(err)
+         // console.log(err)
          console.log(err.response.data)
          SweetAlert.fire(
             'Error',

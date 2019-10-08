@@ -29,7 +29,7 @@ class Categoria extends Component{
         })
     }
     render(){
-        console.log(this.state.service)
+        // console.log(this.state.service)
         const {cat, service} = this.state
         return(
             <div>

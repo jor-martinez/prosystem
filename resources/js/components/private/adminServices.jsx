@@ -82,7 +82,7 @@ class AdminServices extends Component{
       axios.post('/dev/servicios/nueva', data)
          .then(res=>{
             this.setState({loadAction: false})
-            console.log('servicio creado exitosamente');
+            // console.log('servicio creado exitosamente');
             SweetAlert.fire(
                'Correcto',
                'El servicio se ha agregado correctamente',
