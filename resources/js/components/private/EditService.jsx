@@ -145,7 +145,7 @@ class Service extends Component{
       return(
          <div>
             <div className="return">
-               <Link className="button button-return tooltip return-btn" to="/admin/servicios">
+               <Link className="button button-return tooltip return-btn" to="#" onClick={()=>window.history.back()}>
                   <i className="fas fa-reply"></i>
                   <span className="tooltiptext-right">Regresar</span>
                </Link>
@@ -177,7 +177,7 @@ class Service extends Component{
             </div>
             <div className="one-service-edit" id="serv-edit">
                <div className="return">
-                  <Link className="button button-return tooltip return-btn" to="/admin/servicios">
+                  <Link className="button button-return tooltip return-btn" to="#" onClick={()=>window.history.back()}>
                      <i className="fas fa-reply"></i>
                      <span className="tooltiptext-right">Regresar</span>
                   </Link>

@@ -310,7 +310,7 @@ textarea{
    font-size: 20px;
    padding: 5px 10px;
    text-align: center;
-   padding: 10px;
+   padding: 5px;
    margin-left: auto;
 }
 .button-delete{
@@ -446,6 +446,7 @@ textarea{
    margin-top: 10px;
    font-size: 16px;
    height: 50px;
+   overflow: hidden;
 }
 .admin-blog .item-list .text-containor > p{
    margin: 0;
@@ -559,12 +560,13 @@ textarea{
    display: flex;
    justify-content: space-between;
 }
-.admin-categories .item-add .group-categories .form-input{
-   width: 20%;
-   margin-right: 20px;
+.admin-categories .item-add .group-categories .descripcion-cat{
+   display: flex;
+   width: 75%;
 }
-.admin-categories .item-add .group-categories .mui-container{
-   width: 60%;
+.admin-categories .item-add .group-categories .form-input{
+   /* width: 20%; */
+   margin-right: 20px;
 }
 .admin-categories .item-add form .add{
    display: inline-block;

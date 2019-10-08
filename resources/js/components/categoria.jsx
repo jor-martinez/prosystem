@@ -29,11 +29,11 @@ class Categoria extends Component{
         })
     }
     render(){
-        // console.log(this.props)
+        console.log(this.state.service)
         const {cat, service} = this.state
         return(
             <div>
-                <section className="page-title-block text-center" style={{ backgroundImage: `url(${pageTitle})` }}>
+                <section className="page-title-block text-center" style={{ backgroundImage: `url(../../images/servicios/${service.Imagen})` }}>
                   <div className="container">
                      <h2>{service.nombre} / {cat.titulo}</h2>
                      <div className="thm-breadcrumb">

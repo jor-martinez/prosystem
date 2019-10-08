@@ -56,20 +56,17 @@ class Services extends Component{
           </section>
           <section className="service-style-two">
             <div className="container">
-               <div className="title-block-style-two text-center ">
+               {/* <div className="title-block-style-two text-center ">
                   <span className="tag-line">Servicios</span>
                   <h2>Servicios que ofrecemos</h2>
                   <p>En Prosystem le ofrecemos un robusto portafolio de soluciones tecnológicas de seguridad y servicios personalizados.</p>
-               </div>
+               </div> */}
                <div className="row">
                   {
                      (services.map((servicio)=>(
                         <div className="single-service-one" key={servicio.id}>
                            <div className="image-block">
                               <img src={`../images/servicios/${servicio.Imagen}`} alt="Servicio 1" />
-                              <div className="overlay-block">
-                              <a className="more-link" href="#"><i className="fa fa-arrows-alt" /></a>
-                              </div>
                            </div>
                            <div className="text-block">
                               <h3><Link to={{ pathname: '/servicio/'+servicio.slug, state : { service: servicio } }}

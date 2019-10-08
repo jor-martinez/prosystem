@@ -144,7 +144,7 @@ class EditProducto extends Component {
         return (
             <div>
                 <div className="return">
-                    <Link className="button button-return tooltip" to="/admin/productos">
+                    <Link className="button button-return tooltip" to="#" onClick={()=>window.history.back()}>
                         <i className="fas fa-reply"></i>
                         <span className="tooltiptext-right">Regresar</span>
                     </Link>
@@ -170,7 +170,7 @@ class EditProducto extends Component {
                 </div>
                 <div className="one-process-edit" id="serv-edit">
                     <div className="return">
-                        <Link className="button button-return tooltip" to="/admin/productos">
+                        <Link className="button button-return tooltip" to="#" onClick={()=>window.history.back()}>
                             <i className="fas fa-reply"></i>
                             <span className="tooltiptext-right">Regresar</span>
                         </Link>

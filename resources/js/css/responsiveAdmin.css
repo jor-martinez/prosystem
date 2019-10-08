@@ -2,7 +2,7 @@
 
 @media screen and (max-width: 991px){
     .main-containor{
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     .main-containor .item-add{
         width: 85%;
@@ -10,19 +10,21 @@
     }
     .main-containor .item-list{
         width: 85%;
-        margin: 50px auto;
+        margin: 0 auto 50px auto;
         position: relative;
     }
     .refresh{
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        left: 110%;
         top: 10px;
+        left: -100px;
     }
     .item-list .item-containor{
         margin: 10px auto;
+    }
+    .item-containor .text-containor h2{
+        font-size: 16px;
+    }
+    .admin-process .item-list .process-containor .text-containor .info-butt-containor > p{
+        font-size: 14px;
     }
     .button-show{
         font-size: 16px;
@@ -30,8 +32,7 @@
         padding-top: 5px;
     }
     .tooltip .tooltiptext-left{
-        top: 10px;
-        left: -255%;
+        left: -260%;
     }
     .main-containor .item-list .marca-containor{
         width: 45%;
@@ -39,10 +40,10 @@
     }
 
     /* para ver un servicio */
-    .buttons-block{
+    /* .buttons-block{
         left: 92%;
         top: 155px;
-    }
+    } */
     .one-service-edit{
         width: 80%;
     }
@@ -53,106 +54,131 @@
         flex-direction: column;
     }
     .profile-containor .profile-edit{
-        margin:auto;
+        margin: auto;
         width: 80%;
     }
     .profile-containor .profile-info table{
         width: 100%;
-     }
-}
-@media screen and (max-width: 575px){
-    .admin-main-panel{
-        width: 80%;
+    }
+    .profile-containor .password-edit{
         margin: auto;
+        width: 80%;
+        margin-top: 50px;
     }
-    .tooltip .tooltiptext{
-        font-size: 12px;
+    .buttons-logout{
+        right: 10px;
+        left: unset;
     }
-    .tooltip .tooltiptext-left{
-        top: 3px;
-        left: -420%;
-        font-size: 12px;
+    .admin-categories .item-add .cat-containor{
+        width: 80%;
     }
-    .refresh{
-        left: 106%;
+    .admin-categories .item-add .group-categories{
+        flex-direction: column;
     }
-    .refresh .btn-refresh{
-        width: 30px;
-        height: 30px;
-        font-size: 18px;
-    }
-    .buttons-block{
-        left: 93%;
-    }
-    .btn{
-        width: 35px;
-        height: 35px;
-    }
-    .button-logout i{
-        font-size: 16px;
-    }
-    .main-containor .item-add{
-        width: 100%;
-    }
-    .main-containor .item-list{
+    .admin-categories .item-add .group-categories .titulo-cat{
         width: 90%;
     }
-    .item-list .item-containor{
-        height: 150px;
+    .admin-categories .item-add .group-categories .descripcion-cat{
         width: 100%;
     }
-    .item-containor .text-containor h2{
-        font-size: 14px;
+    .admin-categories .item-add .group-categories .descripcion-cat .mui-container{
+        padding: 0;
+        width: 80%;
+        margin-right: 20px;
     }
-    .item-containor .buttons-containor{
-        bottom: 0;
-        right: 0;
+}
+@media screen and (max-width: 575px){
+    .user-logued > span{
+        font-size: 13px;
+    }
+    .button{
+        width: 40px;
+        height: 40px;
+    }
+    .refresh{
+        left: -55px;
+    }
+    .refresh .btn-refresh{
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .btn{
+        width: 40px;
+        height: 40px;
+    }
+    .button-logout > a{
+        padding-top: 0;
+    }
+    .tooltip .tooltiptext-left {
+        left: -310%;
     }
     .button-show{
-        width: 60px;
-        height: 28px;
-        font-size: 12px;
-    }
-    .button-form{
-        width: 100%;
-    }
-    .button-edit-res{
-        width: 30px;
+        width: 80px;
         height: 30px;
-        font-size: 14px;
-        padding-top: 5px;
+        font-size: 13px;
     }
-    .main-containor .item-list .marca-containor{
-        width: 100%;
-        height: 150px;
-    }
-    .admin-process .item-list .process-containor .text-containor .info-butt-containor > p{
-        height: 60px;
+    .item-containor .text-containor h2{
         font-size: 12px;
     }
-    .admin-process .item-list .product-containor .text-containor .info-butt-containor .inner-info{
-        font-size: 12px;
-    }
-    .item-containor .text-containor p{
-        font-size: 12px;
+    .button-cat{
+        width: 90px;
     }
     .one-service-containor{
         flex-direction: column;
     }
     .one-service-containor .img-block{
         width: 100%;
+        height: 200px;
     }
     .one-service-containor .info-block{
+        padding: 10px 20px;
         width: 100%;
     }
-    .edit-btn,
-    .delete-btn,
-    .return-btn{
-        width: 30px;
-        height: 30px;
+    .one-service-containor .info-block h1{
+        font-size: 22px;
+        margin-top: 0;
+    }
+    .one-service-containor .info-block .buttons-info{
+        align-items: center;
+    }
+    .one-service-edit form{
+        border: 2px solid rgb(230, 230, 230);
+        border-radius: 10px;
+        padding: 15px;
+    }
+    .admin-categories .item-add form > legend{
+        font-size: 16px;
+    }
+    .admin-categories .item-add .cat-containor{
+        width: 100%;
+    }
+    .admin-categories .item-add .group-categories .descripcion-cat .mui-container{
+        margin-right: 5px;
+    }
+    .main-containor .item-list .marca-containor{
+        width: 90%;
+    }
+    .admin-blog .item-list .text-containor > h2{
         font-size: 12px;
     }
-    .return-btn{
-        padding-top: 8px;
+    .admin-blog .item-list .text-containor > p{
+        font-size: 12px;
+    }
+    .admin-process .item-list .process-containor .text-containor .info-butt-containor > p{
+        font-size: 12px;
+        height: 50px;
+    }
+    .admin-process .item-list .process-containor .text-containor > p{
+        font-size: 12px;
+    }
+    .profile-containor .profile-info{
+        padding: 0 10px;
+    }
+    .profile-containor .profile-edit{
+        padding: 0 10px;
+    }
+    .profile-containor .password-edit{
+        padding: 0 10px;
     }
 }

@@ -133,6 +133,12 @@ class AdminCategories extends Component{
             <Helmet>
                <title>Admin | Categorías</title>
             </Helmet>
+            <div className="return">
+               <Link className="button button-return tooltip return-btn" to="#" onClick={()=>window.history.back()}>
+                  <i className="fas fa-reply"></i>
+                  <span className="tooltiptext-right">Regresar</span>
+               </Link>
+            </div>
             <section className="item-add">
                <Form onSubmit={this.handleOnSubmit} encType="multipart/form-data" autoComplete="off">
                   <legend>Lista de categorías del servicio: <strong>{servicio.nombre}</strong></legend>
@@ -219,67 +225,71 @@ class AdminCategories extends Component{
                   {
                      this.state.categorias.map((categoria, index)=>(
                         <Container className="group-categories" key={index}>
-                           <Input
-                              className="form-input"
-                              label="Titulo de la categoría"
-                              floatingLabel={true}
-                              value={categoria}
-                              onChange={(e)=>this.changeInput(e, index)} 
-                           />
-                           <Container>
-                              <legend style={{textAlign: 'left', fontSize: '12px'}}>Descripción</legend>
-                              <Editor
-                                 apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
-                                 textareaName="descripcion"
-                                 onChange={(e)=>this.handleEditorChange(e, index)}
-                                 value={this.state.descripcion}
-                                 init={{
-                                    height: 300,
-                                    plugins: 'link image code lists advlist',
-                                    toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright | numlist bullist | image link ',
-                                    image_title: true,
-
-                                    /* enable automatic uploads of images represented by blob or data URIs*/
-                                    automatic_uploads: true,
-                                    file_picker_types: 'image',
-
-                                    /* and here's our custom image picker*/
-                                    file_picker_callback: function (cb, value, meta) {
-                                       var input = document.createElement('input');
-                                       input.setAttribute('type', 'file');
-                                       input.setAttribute('accept', 'image/*');
-
-                                       input.onchange = function () {
-                                          var file = this.files[0];
-
-                                          var reader = new FileReader();
-                                          reader.onload = function () {
-                                             var id = 'blobid' + (new Date()).getTime();
-                                             var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                                             var base64 = reader.result.split(',')[1];
-                                             var blobInfo = blobCache.create(id, file, base64);
-                                             blobCache.add(blobInfo);
-
-                                             /* call the callback and populate the Title field with the file name */
-                                             cb(blobInfo.blobUri(), { title: file.name });
-                                          };
-                                          reader.readAsDataURL(file);
-                                       };
-
-                                       input.click();
-                                    }
-                                 }}
+                           <div className="titulo-cat">
+                              <Input
+                                 className="form-input"
+                                 label="Titulo de la categoría"
+                                 floatingLabel={true}
+                                 value={categoria}
+                                 onChange={(e)=>this.changeInput(e, index)} 
                               />
-                           </Container>
-                           <div className="column">
-                              <span className="remove tooltip" onClick={()=>this.removeCategory(index)}>
-                                 <i className="fas fa-minus"></i>
-                                 <span className="tooltiptext-top">Eliminar categoría</span>
-                              </span>
-                              <span className="add added tooltip" onClick={this.addCategory}>
-                                 <i className="fas fa-plus"></i>
-                                 <span className="tooltiptext-top">Agregar categoría</span>
-                              </span>
+                           </div>
+                           <div className="descripcion-cat">
+                              <Container>
+                                 <legend style={{textAlign: 'left', fontSize: '12px'}}>Descripción</legend>
+                                 <Editor
+                                    apiKey="otdi6um46x17oe387ukxlq2ksnt6fqdjyyjgsjbzsgst0mu7"
+                                    textareaName="descripcion"
+                                    onChange={(e)=>this.handleEditorChange(e, index)}
+                                    value={this.state.descripcion}
+                                    init={{
+                                       height: 300,
+                                       plugins: 'link image code lists advlist',
+                                       toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright | numlist bullist | image link ',
+                                       image_title: true,
+
+                                       /* enable automatic uploads of images represented by blob or data URIs*/
+                                       automatic_uploads: true,
+                                       file_picker_types: 'image',
+
+                                       /* and here's our custom image picker*/
+                                       file_picker_callback: function (cb, value, meta) {
+                                          var input = document.createElement('input');
+                                          input.setAttribute('type', 'file');
+                                          input.setAttribute('accept', 'image/*');
+
+                                          input.onchange = function () {
+                                             var file = this.files[0];
+
+                                             var reader = new FileReader();
+                                             reader.onload = function () {
+                                                var id = 'blobid' + (new Date()).getTime();
+                                                var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                                var base64 = reader.result.split(',')[1];
+                                                var blobInfo = blobCache.create(id, file, base64);
+                                                blobCache.add(blobInfo);
+
+                                                /* call the callback and populate the Title field with the file name */
+                                                cb(blobInfo.blobUri(), { title: file.name });
+                                             };
+                                             reader.readAsDataURL(file);
+                                          };
+
+                                          input.click();
+                                       }
+                                    }}
+                                 />
+                              </Container>
+                              <div className="column">
+                                 <span className="remove tooltip" onClick={()=>this.removeCategory(index)}>
+                                    <i className="fas fa-minus"></i>
+                                    <span className="tooltiptext-top">Eliminar categoría</span>
+                                 </span>
+                                 <span className="add added tooltip" onClick={this.addCategory}>
+                                    <i className="fas fa-plus"></i>
+                                    <span className="tooltiptext-top">Agregar categoría</span>
+                                 </span>
+                              </div>
                            </div>
                         </Container>
                      ))
