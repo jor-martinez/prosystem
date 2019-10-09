@@ -48,8 +48,8 @@ class MainController extends Controller
         return $datos;
     }
 
-    public function showCategorias($id_cat) {
-        $datos = CatServicios::where('id_cat', $id_cat) -> get();
+    public function showCategorias($id) {
+        $datos = CatServicios::where('id_serv', $id) -> get(); 
         
         return $datos;
     }
