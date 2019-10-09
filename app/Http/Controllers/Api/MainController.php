@@ -48,9 +48,9 @@ class MainController extends Controller
         return $datos;
     }
 
-    public function showCategorias() {
-        $datos = CatServicios::all();
-
+    public function showCategorias($id_cat) {
+        $datos = CatServicios::where('id_cat', $id_cat) -> get();
+        
         return $datos;
     }
 
@@ -91,10 +91,10 @@ class MainController extends Controller
         return $datos;
     }
 
-    public function showProductos($id_cat){
+    public function showProductos($slug){
 
-        $datos = CatServicios::where('id_serv', $id_cat) -> get(); 
-        return $datos; 
+        $datos = Productos::where('slug', $slug) -> get(); 
+        return $datos;
 
     }
 
