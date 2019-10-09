@@ -24,7 +24,7 @@ class CreateSlyderTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('titulo', 50)->nullable();
-            $table->string('descripcion', 100)->nullable();
+            $table->string('descripcion', 150)->nullable();
             $table->string('imagen', 50);
             $table->string('link', 100)->nullable();
         });
