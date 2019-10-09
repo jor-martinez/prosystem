@@ -100,12 +100,9 @@
 /* slider */
 
 body .slider{
-   height: 780px;
-   position: relative;
    margin-top: 120px;
 }
 .slider .slider-img{
-   height: 780px;
    width: 100%;
    position: relative;
 
@@ -805,7 +802,7 @@ body .slider{
 /* Servicios */
 
 .services-style-one{
-   margin: 160px auto 90px auto;
+   margin: 100px auto 90px auto;
    width: 90%;
 }
 .service-style-one {
