@@ -17,7 +17,7 @@ class Articulo extends Component {
     getArt(){
         axios.get('/api/blog/articulo/'+this.state.slug).then(res=>{
             if(this._isMounted){
-                console.log(res.data)
+                // console.log(res.data)
                 this.setState({
                     articulo: res.data[0]
                 })

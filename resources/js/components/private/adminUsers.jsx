@@ -143,7 +143,7 @@ class AdminUsers extends Component{
                                                         }).then((result) => {
                                                             if (result.value) {
                                                                 axios.delete('/dev/usuario/borrar/'+user.id).then((res) => {
-                                                                    console.log(res)
+                                                                    // console.log(res)
                                                                     SweetAlert.fire(
                                                                         'Eliminado!',
                                                                         'El usuario ha sido eliminado.',

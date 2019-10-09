@@ -194,7 +194,6 @@ class Home extends Component{
          preContVentajas,
          preContProceso
       } = this.state;
-
       return(
          <div>
             <Helmet>
@@ -205,6 +204,7 @@ class Home extends Component{
                   (preContSlider)
                   ?
                   <div>
+                     
                      <AliceCarousel
                         mouseDragEnabled
                         responsive={responsive1}
@@ -216,6 +216,7 @@ class Home extends Component{
                         buttonsDisabled
                         fadeOutAnimation
                         ref={(el)=>(this.Carousel = el)}
+                        startIndex={Math.round(Math.random()*slider.length)}
                      >
                         {slider.map((item) => (
                            (item.link)

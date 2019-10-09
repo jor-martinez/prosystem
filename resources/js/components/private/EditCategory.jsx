@@ -69,7 +69,7 @@ class EditCategory extends Component{
     }
     render(){
         const {loadAction, errors} = this.state
-        console.log(this.state)
+        // console.log(this.state)
         return(
             <div className="one-process-edit">
                 <div className="return">
