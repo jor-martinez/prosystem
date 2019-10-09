@@ -23,7 +23,6 @@ import '../css/stylesPublic.css'
 import '../css/responsivePublic.css'
 import "react-alice-carousel/lib/alice-carousel.css"
 
-
 class Home extends Component{   
    constructor(props){
       super(props)

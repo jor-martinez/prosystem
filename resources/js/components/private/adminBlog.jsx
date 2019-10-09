@@ -11,6 +11,19 @@ import { Editor } from '@tinymce/tinymce-react'
 import errorAlert from './errors'
 import dateFormat from 'dateformat'
 
+dateFormat.i18n = {
+    dayNames: [
+        'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab',
+        'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'
+    ],
+    monthNames: [
+        'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic',
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ],
+    timeNames: [
+        'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+    ]
+}
 class AdminBlog extends Component{
     constructor(props){
         super(props)
@@ -146,7 +159,7 @@ class AdminBlog extends Component{
                                         <div className="text-containor">
                                             <h2>{post.titulo}</h2>
                                             {/* <p dangerouslySetInnerHTML={{ __html: service.descripcion }}></p> */}
-                                            <p> <strong>Autor:</strong>  {post.autor} <br /> <strong>Fecha de creación:</strong> {dateFormat(post.created_at, "d/m/yyyy, h:MM:ss TT")}</p>
+                                            <p> <strong>Autor:</strong>  {post.autor} <br /> <strong>Fecha de creación:</strong> {dateFormat(post.created_at, 'dddd, d "de" mmmm "de" yyyy, h:MM:ss TT')}</p>
                                             <div className="buttons-containor">
                                                 <Link to={{ pathname: '/admin/articulo/' + post.slug }}
                                                     className="button button-show">Ver más</Link>

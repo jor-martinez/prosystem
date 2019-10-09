@@ -127,7 +127,7 @@ class AdminCategories extends Component{
    render(){
       // console.log(this.props.location.state.idserv)
       
-      const {servicio,loadAction,errors,listCatServ,load} = this.state
+      const {servicio,loadAction,errors,listCatServ,load, categorias} = this.state
       return(
          <div className="admin-categories">
             <Helmet>
@@ -294,17 +294,21 @@ class AdminCategories extends Component{
                         </Container>
                      ))
                   }
-                  <Container>
-                     <Button type="submit" variant="raised" color="primary" disabled={loadAction}>
-                        {
-                           (loadAction)
-                           ?
-                              <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
-                           :
-                              <span>Agregar</span>
-                        }
-                     </Button>
-                  </Container>
+                  {
+                     (categorias.length > 0)
+                     &&
+                     <Container>
+                        <Button type="submit" variant="raised" color="primary" disabled={loadAction}>
+                           {
+                              (loadAction)
+                              ?
+                                 <span><i className="fas fa-spinner fa-spin"></i> Agregando</span>
+                              :
+                                 <span>Agregar</span>
+                           }
+                        </Button>
+                     </Container>
+                  }
                </Form>
             </section>
          </div>

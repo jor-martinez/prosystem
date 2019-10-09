@@ -33,7 +33,7 @@ class Service extends Component{
          }
          axios({
             method: 'get',
-            url: '/dev/categoria/'+this.state.service.id
+            url: '/api/categorias/'+this.state.service.id
          }).then(res=>{
             if(this._isMounted)
             {
