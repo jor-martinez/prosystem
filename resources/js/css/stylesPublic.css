@@ -107,6 +107,7 @@ body .slider{
 .slider .slider-img{
    height: 450px;
    width: 100%;
+   position: relative;
 
 }
 .slider .button-slider{
@@ -133,7 +134,10 @@ body .slider{
 }
 .info-slider-container{
    text-align: center;
-   padding-top: 100px;
+   position: absolute;
+   top: 80px;
+   left: 25%;
+   width: 50%;
 }
 .info-slider-container h1{
    font-size: 5em;

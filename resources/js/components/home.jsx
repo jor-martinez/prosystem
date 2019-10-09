@@ -224,7 +224,8 @@ class Home extends Component{
                               <div
                                  className="slider-img"
                                  key={item.id}
-                                 style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                                 >
+                                 <img style={{width: '100%', height: '100%'}} src={`../images/slyder/${item.imagen}`} alt="slider"/>
                                  <div className="center info-slider-container">
                                     <h1>{item.titulo}</h1>
                                     <p>{item.descripcion}</p>
@@ -235,7 +236,8 @@ class Home extends Component{
                               <div
                                  className="slider-img"
                                  key={item.id}
-                                 style={{ background: `url(../images/slyder/${item.imagen}) no-repeat center center` }}>
+                                 >
+                                 <img style={{width: '100%', height: '100%'}} src={`../images/slyder/${item.imagen}`} alt="slider"/>
                                  <div className="center info-slider-container">
                                     <h1>{item.titulo}</h1>
                                     <p>{item.descripcion}</p>
