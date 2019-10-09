@@ -23,9 +23,9 @@ class CreateNosotrosTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('mision', 150);
-            $table->string('vision', 150);
-            $table->string('objetivo', 150);
+            $table->longtext('mision');
+            $table->longtext('vision');
+            $table->longtext('objetivo');
         });
     }
 
