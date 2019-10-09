@@ -29,7 +29,8 @@ Route::prefix('api') -> group(function() {
 
     Route::get('/blog', 'Api\MainController@blog');
     Route::get('/blog/articulo/{slug}', 'Api\MainController@showBlog');
-    Route::get('categorias', 'Api\MainController@categorias');
+    Route::get('/categorias', 'Api\MainController@categorias');
+    Route::get('/categorias/{slug}', 'Api\MainController@showCategorias');
     Route::get('caracteristicas', 'Api\MainController@caracteristicas');
     Route::get('empresa', 'Api\MainController@empresa');
     Route::get('historia', 'Api\MainController@historia');
