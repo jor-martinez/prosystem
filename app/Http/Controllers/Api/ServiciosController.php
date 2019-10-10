@@ -98,13 +98,6 @@ class ServiciosController extends Controller
 
     public function show($slug)
     {
-        // $datos = Servicios::all();
-        // foreach($datos as $dato){
-        //     if (($dato->slug) == $slug){
-        //         return [$dato];
-        //     }
-        // }    
-
         $datos = Servicios::where('slug', $slug) -> get(); 
         return $datos;
     } 
