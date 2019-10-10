@@ -4,6 +4,20 @@ import dateFormat from 'dateformat'
 import Brand from './sliderMarcas'
 import axios from 'axios'
 
+dateFormat.i18n = {
+    dayNames: [
+        'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab',
+        'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'
+    ],
+    monthNames: [
+        'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic',
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ],
+    timeNames: [
+        'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+    ]
+}
+
 class Articulo extends Component {
     constructor(props) {
         super(props)
@@ -59,7 +73,7 @@ class Articulo extends Component {
                                 <br />
                                 <div>
                                     <span>Autor: {articulo.autor}</span><br/>
-                                    <span>Creado el: {dateFormat(articulo.fechaCreado, "d/m/yyyy, h:MM:ss TT")} </span>
+                                    <span>Creado el: {dateFormat(articulo.fechaCreado, 'dddd, d "de" mmmm "de" yyyy, h:MM:ss TT')} </span>
                                 </div>
                                 <br/>
                                 <div dangerouslySetInnerHTML={{ __html: articulo.cuerpo }}></div>

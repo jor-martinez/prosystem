@@ -23,7 +23,6 @@ import '../css/stylesPublic.css'
 import '../css/responsivePublic.css'
 import "react-alice-carousel/lib/alice-carousel.css"
 
-
 class Home extends Component{   
    constructor(props){
       super(props)
@@ -212,6 +211,7 @@ class Home extends Component{
                         duration={2000}
                         autoPlay
                         duration={2000}
+                        autoHeight
                         autoPlayInterval={1000}
                         buttonsDisabled
                         fadeOutAnimation
@@ -225,7 +225,7 @@ class Home extends Component{
                                  className="slider-img"
                                  key={item.id}
                                  >
-                                 <img style={{width: '100%', height: '100%'}} src={`../images/slyder/${item.imagen}`} alt="slider"/>
+                                 <img style={{width: '100%'}} src={`../images/slyder/${item.imagen}`} alt="slider"/>
                                  <div className="center info-slider-container">
                                     <h1>{item.titulo}</h1>
                                     <p>{item.descripcion}</p>
@@ -236,8 +236,9 @@ class Home extends Component{
                               <div
                                  className="slider-img"
                                  key={item.id}
+                                 
                                  >
-                                 <img style={{width: '100%', height: '100%'}} src={`../images/slyder/${item.imagen}`} alt="slider"/>
+                                 <img style={{width: '100%'}} src={`../images/slyder/${item.imagen}`} alt="slider"/>
                                  <div className="center info-slider-container">
                                     <h1>{item.titulo}</h1>
                                     <p>{item.descripcion}</p>

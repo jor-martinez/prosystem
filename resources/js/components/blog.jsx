@@ -9,6 +9,20 @@ import pageTitle from './media/resources/blog.jpg'
 import Brand from './sliderMarcas'
 import ListPagination from './listaPags'
 
+dateFormat.i18n = {
+   dayNames: [
+       'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab',
+       'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'
+   ],
+   monthNames: [
+       'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic',
+       'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+   ],
+   timeNames: [
+       'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+   ]
+}
+
 class Blog extends Component {
    constructor(props){
       super(props)
@@ -82,7 +96,7 @@ class Blog extends Component {
                                  <div className="meta-info">
                                     <a href="#">Por {articulo.autor}</a>
                                     <span className="sep">/</span>
-                                    <a href="#">{ dateFormat(articulo.created_at, "d/m/yyyy, h:MM:ss TT") }</a>
+                                    <a href="#">{ dateFormat(articulo.created_at, 'dddd, d "de" mmmm "de" yyyy, h:MM:ss TT') }</a>
                                  </div>
                                  <Link to={{ pathname: '/articulo/' + articulo.slug, state: { articulo } }}
                                     className="more-btn">Leer más</Link>

@@ -21,9 +21,9 @@
    background: #000000 center center no-repeat fixed;
    background-size: cover;
    position: relative;
-   padding: 50px 0;
-   padding-top: 80px;
-   margin-top: 80px;
+   padding: 100px 0;
+   padding-top: 100px;
+   margin-top: 120px;
 }
 
 .page-title-block:before {
@@ -100,12 +100,9 @@
 /* slider */
 
 body .slider{
-   height: 600px;
-   position: relative;
    margin-top: 120px;
 }
 .slider .slider-img{
-   height: 450px;
    width: 100%;
    position: relative;
 
@@ -118,7 +115,7 @@ body .slider{
    cursor: pointer;
    background: rgba(22, 22, 22, 0.5);
    position: absolute;
-   top: 240px;
+   top: 340px;
    color: #fff;
    font-size: 16px;
    transition: all .4s ease-in-out;
@@ -135,7 +132,7 @@ body .slider{
 .info-slider-container{
    text-align: center;
    position: absolute;
-   top: 80px;
+   top: 180px;
    left: 25%;
    width: 50%;
 }
@@ -171,9 +168,9 @@ body .slider{
 /* Lo que ofrecemos */
 
 .offer-style-one {
-   margin-top: -15px;
+   margin-top: -45px;
    background-color: #EBF0EB;
-   padding: 110px 0;
+   padding: 80px 0;
    margin-bottom: 170px;
 }
 .offer-style-one .container{
@@ -680,6 +677,7 @@ body .slider{
    font-size: 15px;
    line-height: 26px;
    padding-right: 20px;
+   text-align: justify;
 }
 
 .mission-style-one.home-page-two {
@@ -804,12 +802,12 @@ body .slider{
 /* Servicios */
 
 .services-style-one{
-   margin: auto;
-   margin-bottom: 100px;
+   margin: 100px auto 90px auto;
    width: 90%;
 }
 .service-style-one {
-   padding: 50px 0 50px 0;
+   margin-top: -45px;
+   padding: 0 0 50px 0;
 }
 
 .service-style-one .upper-block {
@@ -1370,6 +1368,7 @@ body .slider{
    color: #848484;
    font-size: 15px;
    line-height: 26px;
+   text-align: justify;
 }
 
 /* slider logos */
