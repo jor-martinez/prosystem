@@ -280,7 +280,7 @@ class Home extends Component{
                               <img src={`../images/servicios/${service.Imagen}`} alt="Servicio" />
                            </div>
                            <div className="text-block">
-                              <h3><Link to="/servicio">{service.nombre}</Link></h3>
+                              <h3><Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}>{service.nombre}</Link></h3>
                               <div dangerouslySetInnerHTML={{ __html: service.descripcion }}></div>
                               <Link to={{ pathname: '/servicio/'+service.slug, state : { service: service } }}
                               className="more-btn">Leer más</Link>
