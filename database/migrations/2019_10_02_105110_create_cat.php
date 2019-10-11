@@ -18,7 +18,7 @@ class CreateCat extends Migration
             $table->increments('id');
             $table->string('titulo', 50);
             $table->longText('descripcion');
-            $table->integer('id_serv', 11);
+            $table->string('id_serv', 11);
             $table->string('slug', 50);
         });
     }
