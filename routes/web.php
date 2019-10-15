@@ -41,7 +41,7 @@ Route::prefix('api') -> group(function() {
     Route::get('/productos/{slug}', 'Api\MainController@showProductos');
     Route::get('/servicios', 'Api\MainController@servicios');
     Route::get('/servicios/{slug}', 'Api\MainController@showServicios');
-    Route::get('/servicios/{slug}/{id}', 'Api\MainController@showServCat');
+    Route::get('/servicios/{slug}/{ss}', 'Api\MainController@showServCat');
     Route::get('valores', 'Api\MainController@valores');
     Route::get('slyder', 'Api\MainController@slyder');
 });
