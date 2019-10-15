@@ -112,6 +112,14 @@ class MainController extends Controller
         return $datos;
     } 
 
+    public function showServicio($slug, $id)
+    {
+        $datos -> servicio = Servicios::where('slug', $slug) -> get();
+        $datos -> cat = CatServicios::where('id_serv', $id) -> get(); 
+        
+        return $datos;
+    } 
+
     public function valores() {
         $datos = Valores::all();
 
