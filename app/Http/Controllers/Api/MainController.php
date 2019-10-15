@@ -114,17 +114,19 @@ class MainController extends Controller
 
     public function showServCat($slug, $ss)
     {
-        // $serv_id = Servicios::select('id') 
-        //                 -> where('slug', $slug)
-        //                 -> get();
+         $serv_id = Servicios::select('id') 
+                         -> where('slug', $slug)
+                         -> first();
 
         // $datos = CatServicios::where('id_serv', $serv_id) 
         //                     -> where('slug', $ss)
         //                     -> get(); 
         
-        $datos = CatServicios::where('slug', $ss) -> get();
+        $categoria = CatServicios::where('slug', $ss)
+                                -> where('id_serv', $serv_id->id)
+                                -> get();
 
-        return $datos;
+        return $categoria;
     } 
 
     public function valores() {
