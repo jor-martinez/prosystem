@@ -39,6 +39,7 @@ class Product extends Component{
       return(
          <div>
             <Helmet>
+               <title>{producto.titulo}</title>
                <meta name="description" content={producto.titulo} />
             </Helmet>
             <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/productos/${producto.imagen})` }}>

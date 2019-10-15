@@ -17,7 +17,8 @@ class Categoria extends Component{
         this.state={
             cat: [],
             service: [],
-            slugServ: this.props.location.pathname.substring(10),
+            slugs: this.props.location.pathname.substring(10),
+            slug: '',
             slugCat: ''
         }
     }
@@ -26,18 +27,26 @@ class Categoria extends Component{
         this._isMounted = true;
         // console.log(this.state.slugServ.split("/")[1])
         this.setState({
-            slugCat: this.state.slugServ.split("/")[1]
+            slug: this.state.slugs.split("/")[0],
+            slugCat: this.state.slugs.split("/")[1]
         })
-        axios({
-            method: 'get',
-            url: '/api/servicios/'+this.state.slugServ+'/'+this.state.slugCat
-        }).then(res=>{
-            // console.log(res)
+        axios.get('/api/servicios/'+this.state.slug).then(res=>{
+            console.log(res.data)
             if(this._isMounted){
                 this.setState({
-                    cat: res.data
+                    service: res.data[0]
                 })
             }
+            axios.get('/api/servicios/'+this.state.slug+'/'+this.state.slugCat).then(res=>{
+                console.log(res.data)
+                if(this._isMounted){
+                    this.setState({
+                        cat: res.data[0]
+                    })
+                }
+            }).catch(err=>{
+                console.log(err)
+            })
         }).catch(err=>{
             console.log(err)
         })
@@ -54,6 +63,7 @@ class Categoria extends Component{
         return(
             <div>
                 <Helmet>
+                    <title>{cat.titulo}</title>
                     <meta name="description" content={service.nombre + " " + cat.titulo} />
                 </Helmet>
                 <section className="page-title-block text-center" style={{ backgroundImage: `url(../../images/servicios/${service.Imagen})` }}>

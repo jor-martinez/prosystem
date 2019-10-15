@@ -14,7 +14,8 @@ class Services extends Component{
       this._isMounted = false;
       this.state = {
          services:[],
-         data:[]
+         data:[],
+         load: false
       }
       this.getServices = this.getServices.bind(this)
    }
@@ -22,7 +23,10 @@ class Services extends Component{
       axios.get('/api/servicios').then(result=>{
          // console.log(result)
          if(this._isMounted){
-            this.setState({services: result.data})
+            this.setState({
+               services: result.data,
+               load: true
+            })
          }
       }).catch(err=>{
          console.log(err)
@@ -38,29 +42,24 @@ class Services extends Component{
       this._isMounted = false;
    }
    render(){
-      const {services} = this.state
+      const {services, load} = this.state
       return(
          <div>
             <Helmet>
                <title>Servicios</title>
             </Helmet>
             <section className="page-title-block text-center" style={{backgroundImage: `url(${pageTitle})`}} >
-             <div className="container">
-                <h2>Nuestros Servicios</h2>
-                <div className="thm-breadcrumb">
-                   <Link to="/">Inicio</Link>
-                   <span className="sep">/</span>
-                   <span className="page-title">Servicios</span>
-                </div>
-             </div>
-          </section>
-          <section className="service-style-two">
+               <div className="container">
+                  <h2>Nuestros Servicios</h2>
+                  <div className="thm-breadcrumb">
+                     <Link to="/">Inicio</Link>
+                     <span className="sep">/</span>
+                     <span className="page-title">Servicios</span>
+                  </div>
+               </div>
+            </section>
+            <section className="service-style-two">
             <div className="container">
-               {/* <div className="title-block-style-two text-center ">
-                  <span className="tag-line">Servicios</span>
-                  <h2>Servicios que ofrecemos</h2>
-                  <p>En Prosystem le ofrecemos un robusto portafolio de soluciones tecnológicas de seguridad y servicios personalizados.</p>
-               </div> */}
                <div className="row">
                   {
                      (services.map((servicio)=>(

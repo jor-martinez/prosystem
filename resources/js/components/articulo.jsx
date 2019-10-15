@@ -56,6 +56,7 @@ class Articulo extends Component {
         return (
             <div>
                 <Helmet>
+                    <title>{articulo.titulo}</title>
                     <meta name="description" content={articulo.titulo} />
                 </Helmet>
                 <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/blog/${articulo.encabezado})` }}>

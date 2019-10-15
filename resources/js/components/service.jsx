@@ -28,8 +28,7 @@ class Service extends Component{
          if(this._isMounted){
             // console.log(res.data[0])
             this.setState({
-               service: res.data[0],
-               desc: res.data[0].descripcion
+               service: res.data[0]
             })
          }
          axios({
@@ -60,11 +59,12 @@ class Service extends Component{
    }
    render(){
       // console.log(this.state.categorias)
-      const {service, categorias, desc} = this.state
+      const {service, categorias} = this.state
       // console.log(desc)
       return(
          <div>
             <Helmet>
+               <title>{service.nombre}</title>
                <meta name="description" content={service.nombre} />
             </Helmet>
                <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/servicios/${service.Imagen})` }}>
