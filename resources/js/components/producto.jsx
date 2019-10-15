@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 import Brand from './sliderMarcas'
 
@@ -37,6 +38,9 @@ class Product extends Component{
       const {producto} = this.state
       return(
          <div>
+            <Helmet>
+               <meta name="description" content={producto.titulo} />
+            </Helmet>
             <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/productos/${producto.imagen})` }}>
                <div className="container">
                   <h2>{producto.titulo}</h2>

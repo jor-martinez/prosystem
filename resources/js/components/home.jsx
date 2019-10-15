@@ -196,7 +196,7 @@ class Home extends Component{
       return(
          <div>
             <Helmet>
-               <title>Pro System</title>
+               <title>ProSystem</title>
             </Helmet>
             <section className="slider">
                {

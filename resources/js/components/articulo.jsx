@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import dateFormat from 'dateformat'
 import Brand from './sliderMarcas'
 import axios from 'axios'
+import Helmet from 'react-helmet'
 
 dateFormat.i18n = {
     dayNames: [
@@ -54,6 +55,9 @@ class Articulo extends Component {
         const {articulo} = this.state
         return (
             <div>
+                <Helmet>
+                    <meta name="description" content={articulo.titulo} />
+                </Helmet>
                 <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/blog/${articulo.encabezado})` }}>
                     <div className="container">
                         <h2>{articulo.titulo}</h2>

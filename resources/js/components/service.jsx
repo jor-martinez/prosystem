@@ -6,6 +6,7 @@ import {
    BrowserRouter as Router,
    Route
 } from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 import Brand from './sliderMarcas'
 import Categoria from './categoria'
@@ -21,14 +22,14 @@ class Service extends Component{
          categorias: []
       }
       this.getService = this.getService.bind(this)
-      this.getCategories = this.getCategories.bind(this)
    }
    getService(){
       axios.get('/api/servicios/'+this.state.slug).then(res=>{
          if(this._isMounted){
             // console.log(res.data[0])
             this.setState({
-               service: res.data[0]
+               service: res.data[0],
+               desc: res.data[0].descripcion
             })
          }
          axios({
@@ -49,13 +50,9 @@ class Service extends Component{
          console.log(err)
       })
    }
-   getCategories(){
-      
-   }
    componentDidMount(){
       this._isMounted = true;
       this.getService()
-      this.getCategories()
       window.scrollTo(0,0)
    }
    componentWillUnmount(){
@@ -63,9 +60,13 @@ class Service extends Component{
    }
    render(){
       // console.log(this.state.categorias)
-      const {service, categorias} = this.state
+      const {service, categorias, desc} = this.state
+      // console.log(desc)
       return(
          <div>
+            <Helmet>
+               <meta name="description" content={service.nombre} />
+            </Helmet>
                <section className="page-title-block text-center" style={{ backgroundImage: `url(../images/servicios/${service.Imagen})` }}>
                   <div className="container">
                      <h2>{service.nombre}</h2>

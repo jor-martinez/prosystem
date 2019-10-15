@@ -1,25 +1,45 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import {
     Link,
     Switch,
     BrowserRouter as Router,
     Route
  } from 'react-router-dom'
+ import Helmet from 'react-helmet'
 
 import pageTitle from './media/resources/page-title-bg.jpg'
 
 class Categoria extends Component{
     constructor(props){
         super(props)
+        this._isMounted = false;
         this.state={
-             cat: [],
-             service: []
+            cat: [],
+            service: [],
+            slugServ: this.props.location.pathname.substring(10),
+            slugCat: ''
         }
     }
+
     componentDidMount(){
+        this._isMounted = true;
+        // console.log(this.state.slugServ.split("/")[1])
         this.setState({
-            cat: this.props.history.location.state.categoria,
-            service: this.props.history.location.state.service
+            slugCat: this.state.slugServ.split("/")[1]
+        })
+        axios({
+            method: 'get',
+            url: '/api/servicios/'+this.state.slugServ+'/'+this.state.slugCat
+        }).then(res=>{
+            // console.log(res)
+            if(this._isMounted){
+                this.setState({
+                    cat: res.data
+                })
+            }
+        }).catch(err=>{
+            console.log(err)
         })
     }
     componentWillUnmount(){
@@ -27,12 +47,15 @@ class Categoria extends Component{
             cat: [],
             service: []
         })
+        this._isMounted = false;
     }
     render(){
-        // console.log(this.state.service)
         const {cat, service} = this.state
         return(
             <div>
+                <Helmet>
+                    <meta name="description" content={service.nombre + " " + cat.titulo} />
+                </Helmet>
                 <section className="page-title-block text-center" style={{ backgroundImage: `url(../../images/servicios/${service.Imagen})` }}>
                   <div className="container">
                      <h2>{service.nombre} / {cat.titulo}</h2>
