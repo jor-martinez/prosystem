@@ -58,9 +58,7 @@ class Service extends Component{
       this._isMounted = false;
    }
    render(){
-      // console.log(this.state.categorias)
       const {service, categorias} = this.state
-      // console.log(desc)
       return(
          <div>
             <Helmet>

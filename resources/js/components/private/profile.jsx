@@ -8,6 +8,20 @@ import errorAlert from './errors'
 import SweetAlert from 'sweetalert2'
 import dateFormat from 'dateformat'
 
+dateFormat.i18n = {
+    dayNames: [
+        'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab',
+        'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'
+    ],
+    monthNames: [
+        'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic',
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ],
+    timeNames: [
+        'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+    ]
+}
+
 class Profile extends Component{
     constructor(props){
         super(props)
@@ -223,7 +237,7 @@ class Profile extends Component{
                                         </tr>
                                         <tr className="light">
                                             <th>Fecha de creación</th>
-                                            <td>{dateFormat(fecha, "d/m/yyyy, h:MM:ss TT")}</td>
+                                            <td>{dateFormat(fecha, 'dddd, d "de" mmmm "de" yyyy, h:MM:ss TT')}</td>
                                         </tr>
                                     </tbody>
                                 </table>

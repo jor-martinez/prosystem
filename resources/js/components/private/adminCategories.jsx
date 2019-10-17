@@ -171,7 +171,6 @@ class AdminCategories extends Component{
                                        }).then((result) => {
                                           if (result.value) {
                                                 axios.delete('/dev/categoria/borrar/'+cat.id).then((res) => {
-                                                   console.log(res)
                                                    SweetAlert.fire(
                                                       'Eliminado!',
                                                       'La categoría ha sido eliminada.',

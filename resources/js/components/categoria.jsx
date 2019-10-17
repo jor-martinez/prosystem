@@ -31,14 +31,12 @@ class Categoria extends Component{
             slugCat: this.state.slugs.split("/")[1]
         })
         axios.get('/api/servicios/'+this.state.slug).then(res=>{
-            console.log(res.data)
             if(this._isMounted){
                 this.setState({
                     service: res.data[0]
                 })
             }
             axios.get('/api/servicios/'+this.state.slug+'/'+this.state.slugCat).then(res=>{
-                console.log(res.data)
                 if(this._isMounted){
                     this.setState({
                         cat: res.data[0]
