@@ -48,7 +48,7 @@
 
    .cta-style-one{
       height: 200px;
-      padding-top: 200px;
+      padding-top: 470px;
    }
 
    .carrusel-services{
@@ -91,7 +91,7 @@
       
    }
    .featured-style-one .container{
-      height: 400px;
+      height: 420px;
       box-shadow: 1px 0px 25px 0px rgba(13, 29, 13, 0.1);
    }
    .featured-style-one .container .title-block h2{
@@ -199,6 +199,9 @@
    .offer-style-one {
       padding-top: 50px;
    }
+   .about-style-one .about-description{
+      height: 238px;
+   }
    .offer-style-one .title-block .tag-line {
       font-size: 20px;
    }
@@ -256,7 +259,7 @@
       display: none;
    }
    .single-service-one .text-block > div{
-      height: 40px;
+      display: none;
    }
    .services-style-one{
       width: 90%;
@@ -356,7 +359,9 @@
       height: 250px;
    }
    .single-service-one .text-block{
-      height: 200px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
    }
    .single-service-one .text-block p{
       font-size: 14px;
